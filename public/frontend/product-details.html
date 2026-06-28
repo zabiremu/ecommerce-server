@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - NF Shop 24</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <img class="pl-logo" src="assets/images/logo.png" alt="NF Shop 24">
+    <div class="pl-spinner"></div>
+    <div class="pl-text">Loading...</div>
+</div>
+
+<!-- Top Announcement Bar -->
+<div class="top-announce">
+    <div class="container">
+        <div>
+            <i class="fas fa-shield-alt blink"></i> পণ্য বুঝে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করবেন
+        </div>
+        <div>
+            <span><i class="fas fa-headset"></i> হেল্পলাইন: <a href="tel:+8801820834086">+8801820834086</a></span>
+            <span style="opacity:.3">|</span>
+            <a href="track-order.html"><i class="fas fa-truck"></i> ট্র্যাক অর্ডার</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="NF Shop 24">
+        </a>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search products..." id="searchInput">
+            <button onclick="document.getElementById('searchInput').focus()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="wishlist.html"><i class="far fa-heart"></i> <span>Wishlist</span></a>
+            <a href="cart.html">
+                <i class="fas fa-shopping-cart"></i> <span>Cart</span>
+                <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+            </a>
+            <a href="login.html"><i class="far fa-user"></i> <span>Account</span></a>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+    <div class="container">
+        <button class="cat-btn"><i class="fas fa-bars"></i> All Categories</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">All Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+    <div class="container">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="#">Gadget & Electronics</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Wireless Microphone SX21</span>
+    </div>
+</section>
+
+<!-- Product Details -->
+<section class="pd-section">
+    <div class="container">
+        <div class="pd-layout">
+            <!-- Left: Gallery -->
+            <div class="pd-gallery">
+                <div class="pd-main-img">
+                    <span class="pd-badge">-34%</span>
+                    <button class="pd-wish"><i class="far fa-heart"></i></button>
+                    <img src="assets/images/products/1752769883-WhatsApp-Image-2025-07-17-at-22.24.58_9939d163.jpg" alt="Wireless Microphone SX21" id="mainImg">
+                </div>
+                <div class="pd-thumbs" id="pdThumbs">
+                    <img src="assets/images/products/1752769883-WhatsApp-Image-2025-07-17-at-22.24.58_9939d163.jpg" alt="Thumb 1" class="active" onclick="changeImg(this)">
+                    <img src="assets/images/products/1752836546-WhatsApp-Image-2025-07-18-at-16.56.42_6e92568e.jpg" alt="Thumb 2" onclick="changeImg(this)">
+                    <img src="assets/images/products/1752843619-WhatsApp-Image-2025-07-18-at-18.57.06_5f5aaa82.jpg" alt="Thumb 3" onclick="changeImg(this)">
+                    <img src="assets/images/products/1752763923-WhatsApp-Image-2025-07-17-at-20.42.51_e8735581.jpg" alt="Thumb 4" onclick="changeImg(this)">
+                </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="pd-info">
+                <div class="pd-brand">KEMEI</div>
+                <h1 class="pd-title">SX21 Wireless Microphone with Bluetooth Connectivity</h1>
+                <div class="pd-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(128 reviews)</span>
+                </div>
+                <div class="pd-price-wrap">
+                    <div class="pd-price">
+                        <span class="cur">TK 1,450</span>
+                        <span class="old">TK 2,200</span>
+                        <span class="off">-34%</span>
+                    </div>
+                    <div class="pd-save">You save <strong>TK 750</strong></div>
+                </div>
+                <div class="pd-stock">
+                    <i class="fas fa-check-circle"></i> 103 In Stock
+                </div>
+                <div class="pd-desc">
+                    High-quality wireless microphone with Bluetooth 5.0, noise cancellation, 10m range, and 8-hour battery life. Perfect for karaoke, parties, presentations, and live streaming.
+                </div>
+
+                <!-- Highlights -->
+                <ul class="pd-highlights">
+                    <li><i class="fas fa-check"></i> Bluetooth 5.0 Stable Connection</li>
+                    <li><i class="fas fa-check"></i> Noise Cancellation Technology</li>
+                    <li><i class="fas fa-check"></i> 8 Hours Playback Time</li>
+                    <li><i class="fas fa-check"></i> 10 Meter Wireless Range</li>
+                    <li><i class="fas fa-check"></i> 1 Year Warranty</li>
+                </ul>
+
+                <!-- Quantity & Actions -->
+                <div class="pd-actions">
+                    <div class="pd-qty">
+                        <button onclick="qtyChange(-1)"><i class="fas fa-minus"></i></button>
+                        <input type="number" value="1" min="1" id="qtyInput" readonly>
+                        <button onclick="qtyChange(1)"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <button class="btn-order-lg"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                    <button class="btn-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+
+                <!-- Extra Info -->
+                <div class="pd-extra">
+                    <div class="pd-extra-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong>Safe Payment</strong> — Cash on Delivery</span>
+                    </div>
+                    <div class="pd-extra-item">
+                        <i class="fas fa-undo-alt"></i>
+                        <span><strong>Easy Returns</strong> — 7 days return policy</span>
+                    </div>
+                    <div class="pd-extra-item">
+                        <i class="fas fa-truck"></i>
+                        <span><strong>Free Delivery</strong> — Orders above TK 500</span>
+                    </div>
+                </div>
+
+                <!-- Share -->
+                <div class="pd-share">
+                    <span>Share:</span>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Tabs -->
+<section class="pd-tabs-section">
+    <div class="container">
+        <div class="pd-tabs">
+            <button class="pd-tab active" onclick="switchTab(this, 'desc')">Description</button>
+            <button class="pd-tab" onclick="switchTab(this, 'reviews')">Reviews (128)</button>
+            <button class="pd-tab" onclick="switchTab(this, 'shipping')">Shipping Info</button>
+        </div>
+        <div class="pd-tab-content active" id="tabDesc">
+            <div class="pd-tab-inner">
+                <h3>Product Description</h3>
+                <p>The KEMEI SX21 Wireless Microphone delivers professional-grade audio performance with cutting-edge Bluetooth 5.0 technology. Designed for both casual and professional use, this microphone is perfect for karaoke nights, public speaking, live streaming, teaching, and parties.</p>
+                <h4>Key Features</h4>
+                <ul>
+                    <li><strong>Bluetooth 5.0:</strong> Ultra-stable connection with low latency and 10-meter range.</li>
+                    <li><strong>Noise Cancellation:</strong> Advanced chipset filters background noise for crystal-clear audio.</li>
+                    <li><strong>Long Battery Life:</strong> Built-in 1200mAh rechargeable battery provides up to 8 hours of continuous use.</li>
+                    <li><strong>Wide Compatibility:</strong> Works with smartphones, tablets, laptops, speakers, and PA systems.</li>
+                    <li><strong>Ergonomic Design:</strong> Lightweight body with comfortable grip for extended use.</li>
+                </ul>
+                <h4>What's in the Box</h4>
+                <ul>
+                    <li>1x SX21 Wireless Microphone</li>
+                    <li>1x USB Charging Cable</li>
+                    <li>1x Audio Adapter</li>
+                    <li>1x User Manual</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pd-tab-content" id="tabReviews">
+            <div class="pd-tab-inner">
+                <h3>Customer Reviews</h3>
+
+                <!-- Existing Reviews -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="reviewer"><i class="fas fa-user-circle"></i> Md. Rahman</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p>Excellent sound quality! Using it for my live streams and the audio is crystal clear. Battery lasts really long.</p>
+                    <span class="review-date">2 weeks ago</span>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="reviewer"><i class="fas fa-user-circle"></i> Fatima Akter</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p>Great product for the price. Perfect for family karaoke nights. Delivery was fast too!</p>
+                    <span class="review-date">1 month ago</span>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="reviewer"><i class="fas fa-user-circle"></i> Kabir Hossain</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p>Good build quality and easy to connect. Would recommend to anyone looking for a budget wireless microphone.</p>
+                    <span class="review-date">1 month ago</span>
+                </div>
+
+                <!-- User Comments -->
+                <div id="userComments"></div>
+
+                <!-- Comment Form -->
+                <div class="comment-form-wrap">
+                    <h4>Write a Review</h4>
+                    <form class="comment-form" onsubmit="return handleProductComment(event)">
+                        <div class="comment-rating">
+                            <span>Your Rating:</span>
+                            <div class="star-rating" id="starRating">
+                                <i class="far fa-star" data-star="1"></i>
+                                <i class="far fa-star" data-star="2"></i>
+                                <i class="far fa-star" data-star="3"></i>
+                                <i class="far fa-star" data-star="4"></i>
+                                <i class="far fa-star" data-star="5"></i>
+                            </div>
+                            <input type="hidden" id="commentRating" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="commentName"><i class="fas fa-user"></i> Your Name</label>
+                            <input type="text" id="commentName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="commentText"><i class="fas fa-comment"></i> Your Review</label>
+                            <textarea id="commentText" rows="4" placeholder="Share your experience with this product..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-auth"><i class="fas fa-paper-plane"></i> Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="pd-tab-content" id="tabShipping">
+            <div class="pd-tab-inner">
+                <h3>Shipping & Delivery</h3>
+                <ul>
+                    <li><strong>Delivery Time:</strong> 2-5 business days anywhere in Bangladesh.</li>
+                    <li><strong>Cash on Delivery:</strong> Pay when you receive the product.</li>
+                    <li><strong>Free Shipping:</strong> On orders above TK 500.</li>
+                    <li><strong>Tracking:</strong> Order tracking available via our website.</li>
+                </ul>
+                <h3>Return Policy</h3>
+                <ul>
+                    <li>7 days easy return from the date of delivery.</li>
+                    <li>Product must be unused and in original packaging.</li>
+                    <li>Full refund or exchange available.</li>
+                </ul>
+                <h3>Payment Methods</h3>
+                <ul>
+                    <li>Cash on Delivery (COD)</li>
+                    <li>bKash / Nagad / Rocket</li>
+                    <li>Bank Transfer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-tags"></i> Related Products</h2>
+            <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card fade-up" data-id="10">
+                <span class="badge">-30%</span>
+                <button class="wish"><i class="far fa-heart"></i></button>
+                <a href="product-details.html?id=10" class="img-wrap"><img src="assets/images/products/1752836546-WhatsApp-Image-2025-07-18-at-16.56.42_6e92568e.jpg" alt="Microphone Q8"></a>
+                <div class="info">
+                    <a href="product-details.html?id=10" class="title">Q8SX22 Wireless Microphone</a>
+                    <div class="stock"><i class="fas fa-check-circle"></i> 103 In Stock</div>
+                    <div class="price"><span class="cur">TK 1,550</span><span class="old">TK 2,200</span></div>
+                    <button class="btn-order"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            <div class="product-card fade-up" data-id="11">
+                <span class="badge">-31%</span>
+                <button class="wish"><i class="far fa-heart"></i></button>
+                <a href="product-details.html?id=11" class="img-wrap"><img src="assets/images/products/1752843619-WhatsApp-Image-2025-07-18-at-18.57.06_5f5aaa82.jpg" alt="Beard Trimmer"></a>
+                <div class="info">
+                    <a href="product-details.html?id=11" class="title">HTC AT-522 Beard Trimmer For Men</a>
+                    <div class="stock"><i class="fas fa-check-circle"></i> 103 In Stock</div>
+                    <div class="price"><span class="cur">TK 830</span><span class="old">TK 1,200</span></div>
+                    <button class="btn-order"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            <div class="product-card fade-up" data-id="12">
+                <span class="badge">-27%</span>
+                <button class="wish"><i class="far fa-heart"></i></button>
+                <a href="product-details.html?id=12" class="img-wrap"><img src="assets/images/products/1752763923-WhatsApp-Image-2025-07-17-at-20.42.51_e8735581.jpg" alt="Knife Set"></a>
+                <div class="info">
+                    <a href="product-details.html?id=12" class="title">Zepter International 6pc Knife Set</a>
+                    <div class="stock"><i class="fas fa-check-circle"></i> 106 In Stock</div>
+                    <div class="price"><span class="cur">TK 800</span><span class="old">TK 1,100</span></div>
+                    <button class="btn-order"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            <div class="product-card fade-up" data-id="9">
+                <span class="badge">-34%</span>
+                <button class="wish"><i class="far fa-heart"></i></button>
+                <a href="product-details.html?id=9" class="img-wrap"><img src="assets/images/products/1752769883-WhatsApp-Image-2025-07-17-at-22.24.58_9939d163.jpg" alt="Microphone"></a>
+                <div class="info">
+                    <a href="product-details.html?id=9" class="title">SX21 Wireless Microphone</a>
+                    <div class="stock"><i class="fas fa-check-circle"></i> 103 In Stock</div>
+                    <div class="price"><span class="cur">TK 1,450</span><span class="old">TK 2,200</span></div>
+                    <button class="btn-order"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div>
+            <img src="assets/images/logo.png" alt="NF Shop 24" style="height:42px;margin-bottom:12px;">
+            <p>NF Shop 24 — Largest E-commerce platform in Bangladesh. Quality products at the best prices with reliable delivery across the country.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="index.html"><i class="fas fa-chevron-right"></i> All Products</a></li>
+                <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                <li><a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Policies</h3>
+            <ul>
+                <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                <li><a href="terms-conditions.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                <li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Contact Info</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chittagong, Bangladesh</a></li>
+                <li><a href="mailto:info@nfshop24.com"><i class="fas fa-envelope"></i> info@nfshop24.com</a></li>
+                <li><a href="tel:+8801820834086"><i class="fas fa-phone-alt"></i> +8801820834086</a></li>
+                <li><a href="#"><i class="fas fa-clock"></i> Sat-Thu: 9AM - 10PM</a></li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <span>Copyright &copy; 2026 NF Shop 24. All rights reserved.</span>
+            <span>Developed by <a href="#">SEBA IT</a></span>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp -->
+<div class="whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=8801820834086" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- Back to Top -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

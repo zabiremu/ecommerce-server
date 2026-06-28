@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - NF Shop 24</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <img class="pl-logo" src="assets/images/logo.png" alt="NF Shop 24">
+    <div class="pl-spinner"></div>
+    <div class="pl-text">Loading...</div>
+</div>
+
+<!-- Top Announcement Bar -->
+<div class="top-announce">
+    <div class="container">
+        <div>
+            <i class="fas fa-shield-alt blink"></i> পণ্য বুঝে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করবেন
+        </div>
+        <div>
+            <span><i class="fas fa-headset"></i> হেল্পলাইন: <a href="tel:+8801820834086">+8801820834086</a></span>
+            <span style="opacity:.3">|</span>
+            <a href="track-order.html"><i class="fas fa-truck"></i> ট্র্যাক অর্ডার</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="NF Shop 24">
+        </a>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search products..." id="searchInput" oninput="filterCatProducts()">
+            <button onclick="document.getElementById('searchInput').focus()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="wishlist.html"><i class="far fa-heart"></i> <span>Wishlist</span></a>
+            <a href="cart.html">
+                <i class="fas fa-shopping-cart"></i> <span>Cart</span>
+                <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+            </a>
+            <a href="login.html"><i class="far fa-user"></i> <span>Account</span></a>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+    <div class="container">
+        <button class="cat-btn"><i class="fas fa-bars"></i> All Categories</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="all-products.html">All Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+    <div class="container">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="all-products.html">All Products</a>
+        <i class="fas fa-chevron-right"></i>
+        <span id="catBreadcrumb">Category</span>
+    </div>
+</section>
+
+<!-- Page Header -->
+<section class="page-header" id="catPageHeader">
+    <div class="container">
+        <h1 id="catTitle"><i class="fas fa-th-large"></i> Category</h1>
+        <p id="catDesc">Browse products in this category</p>
+    </div>
+</section>
+
+<!-- Products -->
+<section class="ap-section">
+    <div class="container">
+        <div class="ap-layout">
+            <!-- Sidebar Filters (simplified — price + sort only) -->
+            <aside class="ap-sidebar" id="apSidebar">
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-filter"></i> Filters</h3>
+                    <button class="sidebar-close" onclick="toggleCatSidebar()"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="filter-options">
+                        <label class="filter-option" onclick="setCatPrice(this, 0, 300)">
+                            <input type="radio" name="price" value="0-300" hidden>
+                            <span class="check"></span> Under TK 300
+                        </label>
+                        <label class="filter-option" onclick="setCatPrice(this, 300, 600)">
+                            <input type="radio" name="price" value="300-600" hidden>
+                            <span class="check"></span> TK 300 – TK 600
+                        </label>
+                        <label class="filter-option" onclick="setCatPrice(this, 600, 1000)">
+                            <input type="radio" name="price" value="600-1000" hidden>
+                            <span class="check"></span> TK 600 – TK 1,000
+                        </label>
+                        <label class="filter-option" onclick="setCatPrice(this, 1000, 2000)">
+                            <input type="radio" name="price" value="1000-2000" hidden>
+                            <span class="check"></span> TK 1,000 – TK 2,000
+                        </label>
+                        <label class="filter-option" onclick="setCatPrice(this, 2000, Infinity)">
+                            <input type="radio" name="price" value="2000+" hidden>
+                            <span class="check"></span> TK 2,000+
+                        </label>
+                        <label class="filter-option active" onclick="setCatPrice(this, 0, Infinity)">
+                            <input type="radio" name="price" value="all" checked hidden>
+                            <span class="check"></span> All Prices
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-clear" onclick="clearCatFilters()"><i class="fas fa-redo"></i> Clear Filters</button>
+            </aside>
+
+            <!-- Products Area -->
+            <div class="ap-main">
+                <div class="ap-toolbar">
+                    <button class="filter-toggle" onclick="toggleCatSidebar()">
+                        <i class="fas fa-sliders-h"></i> Filters
+                    </button>
+                    <div class="ap-meta">
+                        Showing <strong id="resultCount">0</strong> products
+                    </div>
+                    <div class="ap-sort">
+                        <label for="sortSelect">Sort:</label>
+                        <select id="sortSelect" onchange="sortCatProducts()">
+                            <option value="default">Default</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="name">Name: A–Z</option>
+                            <option value="discount">Biggest Discount</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="productGrid"></div>
+
+                <div class="ap-pagination" id="apPagination"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div>
+            <img src="assets/images/logo.png" alt="NF Shop 24" style="height:32px;margin-bottom:12px;">
+            <p>NF Shop 24 — Largest E-commerce platform in Bangladesh. Quality products at the best prices with reliable delivery across the country.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="all-products.html"><i class="fas fa-chevron-right"></i> All Products</a></li>
+                <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                <li><a href="track-order.html"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Policies</h3>
+            <ul>
+                <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                <li><a href="terms-conditions.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                <li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Contact Info</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chittagong, Bangladesh</a></li>
+                <li><a href="mailto:info@nfshop24.com"><i class="fas fa-envelope"></i> info@nfshop24.com</a></li>
+                <li><a href="tel:+8801820834086"><i class="fas fa-phone-alt"></i> +8801820834086</a></li>
+                <li><a href="#"><i class="fas fa-clock"></i> Sat-Thu: 9AM - 10PM</a></li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <span>Copyright &copy; 2026 NF Shop 24. All rights reserved.</span>
+            <span>Developed by <a href="#">SEBA IT</a></span>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp -->
+<div class="whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=8801820834086" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- Back to Top -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

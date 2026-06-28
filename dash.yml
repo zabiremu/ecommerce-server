@@ -1,0 +1,202 @@
+- generic [active] [ref=e1]:
+  - text:   
+  - banner [ref=e13]:
+    - generic [ref=e14]:
+      - button "Open menu" [ref=e161] [cursor=pointer]:
+        - generic [ref=e162]: 
+      - link "NF Shop 24" [ref=e15] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000
+        - img "NF Shop 24" [ref=e16]
+      - text:    
+      - link "Cart" [ref=e163] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/cart
+        - generic [ref=e164]: 
+  - text:             
+  - complementary [ref=e42]:
+    - search [ref=e43]:
+      - textbox "Search for products" [ref=e44]
+      - button "Search" [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]: 
+    - generic [ref=e47]:
+      - button "MENU" [ref=e48] [cursor=pointer]
+      - button "CATEGORIES" [ref=e49] [cursor=pointer]
+    - generic [ref=e50]:
+      - link "HOME" [ref=e51] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000
+      - link "SHOP" [ref=e52] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/all-products
+      - link "ALL PRODUCTS" [ref=e53] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/all-products
+      - link "ABOUT" [ref=e54] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/about
+      - link "CONTACT" [ref=e55] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/contact
+      - link "TRACK ORDER" [ref=e56] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/track-order
+      - link " WISHLIST" [ref=e57] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/wishlist
+        - generic [ref=e58]: 
+        - text: WISHLIST
+      - link " CART" [ref=e59] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/cart
+        - generic [ref=e60]: 
+        - text: CART
+      - link " MY ACCOUNT" [ref=e61] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/login
+        - generic [ref=e62]: 
+        - text: MY ACCOUNT
+  - navigation [ref=e165]:
+    - link " Shop" [ref=e166] [cursor=pointer]:
+      - /url: http://127.0.0.1:8000/all-products
+      - generic [ref=e167]: 
+      - generic [ref=e168]: Shop
+    - link " Wishlist" [ref=e169] [cursor=pointer]:
+      - /url: http://127.0.0.1:8000/wishlist
+      - generic [ref=e171]: 
+      - generic [ref=e172]: Wishlist
+    - link " My account" [ref=e173] [cursor=pointer]:
+      - /url: http://127.0.0.1:8000/login
+      - generic [ref=e174]: 
+      - generic [ref=e175]: My account
+    - link " Compare" [ref=e176] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=e178]: 
+      - generic [ref=e179]: Compare
+  - generic [ref=e64]:
+    - link "Home" [ref=e65] [cursor=pointer]:
+      - /url: http://127.0.0.1:8000
+    - generic [ref=e66]: 
+    - generic [ref=e67]: Dashboard
+  - generic [ref=e69]:
+    - text:                =                          
+    - generic [ref=e71]:
+      - generic [ref=e73]: 
+      - heading "Please Login First" [level=2] [ref=e74]
+      - paragraph [ref=e75]: You need to sign in to access your dashboard.
+      - link " Go to Login" [ref=e76] [cursor=pointer]:
+        - /url: /login
+        - generic [ref=e77]: 
+        - text: Go to Login
+      - generic [ref=e78]:
+        - text: Don't have an account?
+        - link "Create Account" [ref=e79] [cursor=pointer]:
+          - /url: /register
+  - contentinfo [ref=e80]:
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - img "NF Shop 24" [ref=e83]
+        - paragraph [ref=e84]: NF Shop 24 — Largest E-commerce platform in Bangladesh. Quality products at the best prices with reliable delivery across the country.
+        - link "" [ref=e86] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=8801820834086
+          - generic [ref=e87]: 
+      - generic [ref=e88]:
+        - heading "Quick Links" [level=3] [ref=e89]
+        - list [ref=e90]:
+          - listitem [ref=e91]:
+            - link " Home" [ref=e92] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+              - generic [ref=e93]: 
+              - text: Home
+          - listitem [ref=e94]:
+            - link " All Products" [ref=e95] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+              - generic [ref=e96]: 
+              - text: All Products
+          - listitem [ref=e97]:
+            - link " About Us" [ref=e98] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/about
+              - generic [ref=e99]: 
+              - text: About Us
+          - listitem [ref=e100]:
+            - link " Contact" [ref=e101] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/contact
+              - generic [ref=e102]: 
+              - text: Contact
+          - listitem [ref=e103]:
+            - link " Track Order" [ref=e104] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/track-order
+              - generic [ref=e105]: 
+              - text: Track Order
+      - generic [ref=e106]:
+        - heading "Categories" [level=3] [ref=e107]
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - link " Gadget & Electronics" [ref=e110] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=gadget-electronics
+              - generic [ref=e111]: 
+              - text: Gadget & Electronics
+          - listitem [ref=e112]:
+            - link " Kitchen" [ref=e113] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=kitchen
+              - generic [ref=e114]: 
+              - text: Kitchen
+          - listitem [ref=e115]:
+            - link " Accessories" [ref=e116] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=accessories
+              - generic [ref=e117]: 
+              - text: Accessories
+          - listitem [ref=e118]:
+            - link " Fashion & Lifestyle" [ref=e119] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=fashion-lifestyle
+              - generic [ref=e120]: 
+              - text: Fashion & Lifestyle
+          - listitem [ref=e121]:
+            - link " Attar & Fragrance" [ref=e122] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=attar-fragrance
+              - generic [ref=e123]: 
+              - text: Attar & Fragrance
+          - listitem [ref=e124]:
+            - link " Cleaning Supplies" [ref=e125] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=cleaning-supplies
+              - generic [ref=e126]: 
+              - text: Cleaning Supplies
+      - generic [ref=e127]:
+        - heading "Policies" [level=3] [ref=e128]
+        - list [ref=e129]:
+          - listitem [ref=e130]:
+            - link " Privacy Policy" [ref=e131] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/privacy-policy
+              - generic [ref=e132]: 
+              - text: Privacy Policy
+          - listitem [ref=e133]:
+            - link " Terms & Conditions" [ref=e134] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/terms-conditions
+              - generic [ref=e135]: 
+              - text: Terms & Conditions
+          - listitem [ref=e136]:
+            - link " Refund Policy" [ref=e137] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/refund-policy
+              - generic [ref=e138]: 
+              - text: Refund Policy
+      - generic [ref=e139]:
+        - heading "Contact Info" [level=3] [ref=e140]
+        - list [ref=e141]:
+          - listitem [ref=e142]:
+            - link " Chittagong, Bangladesh" [ref=e143] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e144]: 
+              - text: Chittagong, Bangladesh
+          - listitem [ref=e145]:
+            - link " info@nfshop24.com" [ref=e146] [cursor=pointer]:
+              - /url: mailto:info@nfshop24.com
+              - generic [ref=e147]: 
+              - text: info@nfshop24.com
+          - listitem [ref=e148]:
+            - link " +8801820834086" [ref=e149] [cursor=pointer]:
+              - /url: tel:+8801820834086
+              - generic [ref=e150]: 
+              - text: "+8801820834086"
+          - listitem [ref=e151]:
+            - 'link " Sat-Thu: 9AM - 10PM" [ref=e152] [cursor=pointer]':
+              - /url: "#"
+              - generic [ref=e153]: 
+              - text: "Sat-Thu: 9AM - 10PM"
+      - generic [ref=e154]:
+        - generic [ref=e155]: Copyright © 2026 NF Shop 24. All rights reserved.
+        - generic [ref=e156]:
+          - text: Developed by
+          - link "SEBA IT" [ref=e157] [cursor=pointer]:
+            - /url: "#"
+  - link "" [ref=e159] [cursor=pointer]:
+    - /url: https://api.whatsapp.com/send?phone=8801820834086
+    - generic [ref=e160]: 
