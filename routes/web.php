@@ -45,6 +45,7 @@ use App\Http\Controllers\Frontend\LandingPageController as FrontendLandingPageCo
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+Route::view('/product-detail', 'Frontend.product-details');
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/about', [HomePageController::class, 'about'])->name('about');
 Route::get('/all-products', [HomePageController::class, 'allProducts'])->name('all-products');
@@ -65,6 +66,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard/data', [HomePageController::class, 'dashboardData'])->name('dashboard.data');
     Route::put('/dashboard/profile', [HomePageController::class, 'dashboardUpdateProfile'])->name('dashboard.profile');
 });
+
+
 Route::get('/forgot-password', [HomePageController::class, 'forgotPassword'])->name('forgot-password');
 Route::get('/login', [HomePageController::class, 'login'])->name('login');
 Route::post('/login', [HomePageController::class, 'loginSubmit'])->name('login.submit');

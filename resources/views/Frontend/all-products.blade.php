@@ -1,10 +1,1687 @@
 @extends('Frontend.Layout.app')
+@push('styles')
+	<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+		img:is([sizes=auto i], [sizes^="auto," i]) {
+			contain-intrinsic-size: 3000px 1500px
+		}
 
+		/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+	</style>
+	<style id='woocommerce-inline-inline-css' type='text/css'>
+		.woocommerce form .form-row .required {
+			visibility: visible;
+		}
+
+		/*# sourceURL=woocommerce-inline-inline-css */
+	</style>
+	<link rel='stylesheet' id='wd-style-base-css'
+		href='merchandise/wp-content/themes/woodmart/css/parts/base.css'
+		type='text/css' media='all' />
+	<style id='wd-style-base-inline-css' type='text/css'>
+		@font-face {
+			font-weight: normal;
+			font-style: normal;
+			font-family: "woodmart-font";
+			src: url("merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2") format("woff2");
+		}
+
+		/* Mobile logo fix */
+.whb-cqgb8qgsj8fpo4qz9frx .wd-logo img { transform: scale(1.3) !important; transform-origin: center center !important; }
+/*# sourceURL=wd-style-base-inline-css */
+	</style>
+	<style id='wd-header-base-inline-css' type='text/css'>
+		.whb-flex-row {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between
+		}
+
+		.whb-column {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			max-height: inherit
+		}
+
+		.whb-col-left,
+		.whb-mobile-left {
+			justify-content: flex-start;
+			margin-left: -10px
+		}
+
+		.whb-col-right,
+		.whb-mobile-right {
+			justify-content: flex-end;
+			margin-right: -10px
+		}
+
+		.whb-col-mobile {
+			flex: 1 1 auto;
+			justify-content: center;
+			margin-inline: -10px
+		}
+
+		.whb-flex-flex-middle .whb-col-center {
+			flex: 1 1 0%
+		}
+
+		.whb-flex-equal-sides :is(.whb-col-left, .whb-col-right) {
+			flex: 1 1 0%
+		}
+
+		.whb-col-1 :is(.whb-flex-row, .whb-column) {
+			max-width: calc(100% + 20px);
+			justify-content: center
+		}
+
+		.whb-col-1 :is(.whb-col-left, .whb-mobile-left) {
+			flex: 1 1 auto;
+			margin-inline: -10px
+		}
+
+		.whb-col-1 .wd-header-html {
+			max-width: 100%
+		}
+
+		.whb-general-header :is(.whb-mobile-left, .whb-mobile-right) {
+			flex: 1 1 0%
+		}
+
+		.whb-empty-column+.whb-mobile-right {
+			flex: 1 1 auto
+		}
+
+		.whb-with-shadow {
+			box-shadow: 0 1px 8px rgba(0, 0, 0, .1)
+		}
+
+		.whb-main-header {
+			position: relative;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: 390;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden
+		}
+
+		.whb-sticky-prepared {
+			padding-top: var(--wd-header-h)
+		}
+
+		.whb-sticky-prepared .whb-main-header {
+			position: absolute
+		}
+
+		:root:has(.whb-sticky-prepared):not(:has(.whb-top-bar)) {
+			--wd-top-bar-h: .00001px;
+			--wd-top-bar-sm-h: .00001px
+		}
+
+		:root:has(.whb-sticky-prepared):not(:has(.whb-general-header)) {
+			--wd-header-general-h: .00001px;
+			--wd-header-general-sm-h: .00001px
+		}
+
+		:root:has(.whb-sticky-prepared):not(:has(.whb-header-bottom)) {
+			--wd-header-bottom-h: .00001px;
+			--wd-header-bottom-sm-h: .00001px;
+			--wd-header-bottom-brd-w: .00001px
+		}
+
+		.whb-sticked .whb-row {
+			transition: background-color .3s ease
+		}
+
+		.whb-sticked .whb-not-sticky-row {
+			display: none
+		}
+
+		.whb-header.whb-sticked .whb-main-header {
+			position: fixed
+		}
+
+		.whb-row {
+			transition: background-color .2s ease
+		}
+
+		.whb-color-dark:not(.whb-with-bg) {
+			background-color: #fff
+		}
+
+		.whb-color-light:not(.whb-with-bg) {
+			background-color: #212121
+		}
+
+		body:not(.single-product) .whb-overcontent:not(.whb-sticked) .whb-row:not(.whb-with-bg) {
+			background-color: rgba(0, 0, 0, 0)
+		}
+
+		.whb-row.whb-with-bdf,
+		.whb-row.whb-with-bdf>.container {
+			position: relative
+		}
+
+		.whb-row.whb-with-bdf:before {
+			content: "";
+			position: absolute;
+			inset: 0
+		}
+
+		@keyframes wd-fadeInDownBig {
+			from {
+				transform: translate3d(0, -100%, 0)
+			}
+
+			to {
+				transform: none
+			}
+		}
+
+		@media(min-width: 1025px) {
+			.whb-top-bar-inner {
+				height: var(--wd-top-bar-h);
+				max-height: var(--wd-top-bar-h)
+			}
+
+			.whb-sticked .whb-top-bar-inner {
+				height: var(--wd-top-bar-sticky-h);
+				max-height: var(--wd-top-bar-sticky-h)
+			}
+
+			.whb-general-header-inner {
+				height: var(--wd-header-general-h);
+				max-height: var(--wd-header-general-h)
+			}
+
+			.whb-sticked:not(.whb-clone) .whb-general-header-inner {
+				height: var(--wd-header-general-sticky-h);
+				max-height: var(--wd-header-general-sticky-h)
+			}
+
+			.whb-header-bottom-inner {
+				height: var(--wd-header-bottom-h);
+				max-height: var(--wd-header-bottom-h)
+			}
+
+			.whb-sticked .whb-header-bottom-inner {
+				height: var(--wd-header-bottom-sticky-h);
+				max-height: var(--wd-header-bottom-sticky-h)
+			}
+
+			.whb-hidden-lg,
+			.whb-hidden-desktop {
+				display: none
+			}
+
+			.whb-clone,
+			.whb-sticked .whb-main-header {
+				top: var(--wd-admin-bar-h)
+			}
+
+			.whb-full-width .whb-row>.container,
+			.whb-full-width+.whb-clone .whb-row>.container {
+				max-width: 100%;
+				width: clamp(var(--wd-container-w), 95%, 100%)
+			}
+		}
+
+		@media(max-width: 1024px) {
+			.whb-top-bar-inner {
+				height: var(--wd-top-bar-sm-h);
+				max-height: var(--wd-top-bar-sm-h)
+			}
+
+			.whb-general-header-inner {
+				height: var(--wd-header-general-sm-h);
+				max-height: var(--wd-header-general-sm-h)
+			}
+
+			.whb-header-bottom-inner {
+				height: var(--wd-header-bottom-sm-h);
+				max-height: var(--wd-header-bottom-sm-h)
+			}
+
+			.whb-visible-lg,
+			.whb-hidden-mobile {
+				display: none
+			}
+
+			.whb-sticky-prepared {
+				padding-top: var(--wd-header-sm-h)
+			}
+		}
+
+		.wd-tools-element {
+			position: relative;
+			--wd-header-el-color: #333;
+			--wd-header-el-color-hover: rgba(51, 51, 51, .6);
+			--wd-tools-icon-base-width: 20px
+		}
+
+		.wd-tools-element>a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			height: 40px;
+			color: var(--wd-header-el-color);
+			line-height: 1;
+			text-decoration: none !important;
+			padding-inline: 10px
+		}
+
+		.wd-tools-element [class*=wd-tools-text] {
+			text-transform: var(--wd-header-el-transform);
+			white-space: nowrap;
+			font-weight: var(--wd-header-el-font-weight);
+			font-style: var(--wd-header-el-font-style);
+			font-size: var(--wd-header-el-font-size);
+			font-family: var(--wd-header-el-font)
+		}
+
+		.wd-tools-element .wd-tools-count {
+			z-index: 1;
+			width: var(--wd-count-size, 15px);
+			height: var(--wd-count-size, 15px);
+			border-radius: 50%;
+			text-align: center;
+			letter-spacing: 0;
+			font-weight: 400;
+			line-height: var(--wd-count-size, 15px)
+		}
+
+		.wd-tools-element:hover>a {
+			color: var(--wd-header-el-color-hover)
+		}
+
+		.whb-top-bar .wd-tools-element {
+			--wd-count-size: 13px;
+			--wd-tools-icon-base-width: 14px
+		}
+
+		.whb-top-bar .wd-tools-element .wd-tools-text {
+			font-weight: 400;
+			font-size: 12px
+		}
+
+		.whb-color-light .wd-tools-element {
+			--wd-header-el-color: #FFF;
+			--wd-header-el-color-hover: rgba(255, 255, 255, 0.8)
+		}
+
+		.wd-tools-icon {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			font-size: 0
+		}
+
+		.wd-tools-icon:before {
+			content: var(--wd-tools-icon, unset);
+			font-size: var(--wd-tools-icon-base-width);
+			font-family: "woodmart-font"
+		}
+
+		.wd-tools-inner {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 7px
+		}
+
+		.wd-custom-icon,
+		picture.wd-custom-icon img {
+			max-width: var(--wd-tools-icon-width, 38px);
+			width: var(--wd-tools-icon-width, revert-layer);
+			transition: all .25s ease
+		}
+
+		.wd-tools-custom-icon .wd-tools-icon:before,
+		.wd-tools-custom-icon .wd-tools-icon:after {
+			display: none
+		}
+
+		.wd-tools-custom-icon:hover .wd-custom-icon {
+			opacity: .6
+		}
+
+		.wd-tools-element:is(.wd-design-2, .wd-design-5).wd-with-count .wd-tools-icon {
+			margin-inline-end: 6px
+		}
+
+		.wd-tools-element:is(.wd-design-2, .wd-design-5) .wd-tools-count {
+			position: absolute;
+			top: -5px;
+			inset-inline-end: -9px;
+			background-color: var(--wd-primary-color);
+			color: #fff;
+			font-size: 9px
+		}
+
+		.wd-tools-element[class*=wd-design-1] .wd-tools-count {
+			width: auto;
+			height: auto;
+			text-transform: var(--wd-header-el-transform);
+			font-weight: var(--wd-header-el-font-weight);
+			font-style: var(--wd-header-el-font-style);
+			font-size: var(--wd-header-el-font-size);
+			font-family: var(--wd-header-el-font);
+			line-height: inherit
+		}
+
+		.wd-tools-element[class*=wd-design-1] .subtotal-divider {
+			display: inline
+		}
+
+		.wd-tools-element[class*=wd-design-4] {
+			--wd-count-size: 19px
+		}
+
+		.wd-tools-element[class*=wd-design-4] .wd-tools-count {
+			display: inline-block;
+			padding: 0 2px;
+			background-color: var(--wd-primary-color);
+			color: #fff;
+			font-weight: 600;
+			font-size: 10px
+		}
+
+		.whb-top-bar .wd-tools-element[class*=wd-design-4] {
+			--wd-count-size: 16px
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7], .wd-design-8) {
+			--wd-count-size: 18px
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7], .wd-design-8) .wd-tools-inner .wd-tools-icon {
+			position: static
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7], .wd-design-8) .wd-custom-icon {
+			max-width: var(--wd-tools-icon-width, var(--wd-tools-icon-base-width))
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7], .wd-design-8) .wd-tools-count {
+			position: absolute;
+			top: -3px;
+			inset-inline-end: -7px;
+			background-color: #fff;
+			box-shadow: 0 0 4px rgba(0, 0, 0, .17);
+			color: var(--wd-primary-color);
+			font-size: 11px
+		}
+
+		.whb-top-bar .wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7], .wd-design-8) {
+			--wd-count-size: 13px
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) {
+			--wd-tools-sp: 13px
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) :is(.wd-tools-inner, .wd-tools-icon) {
+			height: 42px;
+			border-radius: 42px
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) .wd-tools-inner {
+			padding-inline: var(--wd-tools-sp)
+		}
+
+		.wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]):not(.wd-with-wrap) .wd-tools-icon {
+			width: 42px
+		}
+
+		.whb-top-bar .wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) {
+			--wd-tools-sp: 9px
+		}
+
+		.whb-top-bar .wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) :is(.wd-tools-inner, .wd-tools-icon) {
+			height: 28px
+		}
+
+		.whb-top-bar .wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]):not(.wd-with-wrap) .wd-tools-icon {
+			width: 28px
+		}
+
+		.whb-top-bar .wd-tools-element:is([class*=wd-design-6], [class*=wd-design-7]) .wd-tools-count {
+			font-size: 9px
+		}
+
+		.wd-tools-element[class*=wd-design-6]>a>:is(.wd-tools-inner, .wd-tools-icon) {
+			border: 1px solid rgba(0, 0, 0, 0.105)
+		}
+
+		.whb-color-light .wd-tools-element[class*=wd-design-6]>a>:is(.wd-tools-inner, .wd-tools-icon) {
+			border-color: rgba(255, 255, 255, 0.25)
+		}
+
+		.wd-tools-element[class*=wd-design-7]>a>:is(.wd-tools-inner, .wd-tools-icon) {
+			background-color: var(--wd-primary-color);
+			color: #fff;
+			transition: inherit
+		}
+
+		.wd-tools-element[class*=wd-design-7]:hover>a>:is(.wd-tools-inner, .wd-tools-icon) {
+			color: hsla(0, 0%, 100%, .8)
+		}
+
+		.wd-header-nav {
+			flex: 1 1 auto;
+			padding-inline: 10px
+		}
+
+		.wd-header-nav.wd-inline {
+			flex: 0 0 auto;
+			max-width: 100%
+		}
+
+		.whb-color-light .wd-header-nav>span {
+			color: hsla(0, 0%, 100%, .8)
+		}
+
+		.wd-nav-header>li>a {
+			font-size: var(--wd-header-el-font-size);
+			font-weight: var(--wd-header-el-font-weight);
+			font-style: var(--wd-header-el-font-style);
+			font-family: var(--wd-header-el-font);
+			text-transform: var(--wd-header-el-transform)
+		}
+
+		.wd-nav-header>li.color-primary {
+			--nav-color: var(--wd-primary-color);
+			--nav-color-hover: var(--wd-primary-color)
+		}
+
+		.wd-nav-header:not(.wd-offsets-calculated)>li>.wd-dropdown:not(.wd-design-default) {
+			opacity: 0;
+			pointer-events: none
+		}
+
+		@supports(-webkit-touch-callout: none) {
+			.wd-nav-header:not(.wd-offsets-calculated)>li>.wd-dropdown:not(.wd-design-default) {
+				transform: translateY(15px) translateZ(0)
+			}
+		}
+
+		.whb-color-light .wd-nav-header {
+			--wd-navigation-color: 255, 255, 255
+		}
+
+		.whb-color-light .wd-nav-header.wd-style-default {
+			--nav-color-hover: rgba(255, 255, 255, 0.7)
+		}
+
+		.whb-color-dark .wd-nav-header {
+			--wd-navigation-color: 51, 51, 51
+		}
+
+		:is(.whb-top-bar, .whb-clone) .wd-nav-header>li>a .menu-label {
+			position: static;
+			margin-top: 0;
+			margin-inline-start: 5px;
+			opacity: 1;
+			align-self: center
+		}
+
+		:is(.whb-top-bar, .whb-clone) .wd-nav-header>li>a .menu-label:before {
+			content: none
+		}
+
+		.whb-top-bar .wd-nav-secondary>li>a {
+			font-weight: 400;
+			font-size: 12px
+		}
+
+		.wd-header-nav.wd-full-height,
+		.wd-header-nav.wd-full-height :is(.wd-nav, .wd-nav>li, .wd-nav>li>a) {
+			height: 100%
+		}
+
+		.wd-header-nav.wd-full-height .wd-nav>li>.wd-dropdown-menu {
+			margin-top: 0 !important
+		}
+
+		.wd-header-nav.wd-full-height .wd-nav>li>.wd-dropdown-menu:after {
+			width: auto !important;
+			height: auto !important
+		}
+
+		.rtl .wd-header-nav .wd-nav.wd-icon-left>li>a .wd-nav-img {
+			order: 1;
+			margin: 0;
+			margin-inline-start: 7px
+		}
+
+		.rtl .wd-header-nav .wd-nav.wd-icon-right>li>a .wd-nav-img {
+			order: 0;
+			margin: 0;
+			margin-inline-end: 7px
+		}
+
+		.wd-header-sticky-nav {
+			--wd-tools-icon: "\f15a"
+		}
+
+		.site-logo {
+			max-height: inherit;
+			padding-inline: 10px
+		}
+
+		.wd-logo {
+			max-height: inherit;
+			transition: none
+		}
+
+		.wd-logo picture {
+			max-height: inherit
+		}
+
+		.wd-logo picture img {
+			max-width: inherit
+		}
+
+		.wd-logo img {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			max-height: inherit;
+			transform: translateZ(0);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			perspective: 800px
+		}
+
+		.wd-logo img[src$=".svg"] {
+			height: 100%
+		}
+
+		.wd-logo img[width]:not([src$=".svg"]) {
+			width: auto;
+			object-fit: contain
+		}
+
+		.whb-column>.info-box-wrapper {
+			padding-inline: 10px
+		}
+
+		.whb-column>.info-box-wrapper .wd-info-box {
+			--ib-icon-sp: 10px
+		}
+
+		.wd-header-text {
+			--wd-tags-mb: 10px;
+			flex: 1 1 auto;
+			padding-inline: 10px
+		}
+
+		.wd-header-text p:first-child:empty {
+			display: none
+		}
+
+		.wd-header-text.wd-inline {
+			flex: 0 0 auto
+		}
+
+		.whb-top-bar .wd-header-text {
+			font-size: 12px;
+			line-height: 1.2
+		}
+
+		.whb-color-light .wd-header-text {
+			--wd-text-color: rgba(255, 255, 255, 0.8);
+			--wd-title-color: #FFF;
+			--wd-link-color: rgba(255, 255, 255, 0.9);
+			--wd-link-color-hover: #FFF;
+			color: var(--wd-text-color)
+		}
+
+		.whb-column>.wd-button-wrapper {
+			padding-inline: 10px
+		}
+
+		.whb-column>.wd-social-icons {
+			padding-inline: 10px
+		}
+
+		.wd-header-html {
+			padding-inline: 10px
+		}
+
+		.wd-header-mobile-nav {
+			--wd-tools-icon: "\f15a"
+		}
+
+		.wd-header-wishlist {
+			--wd-tools-icon: "\f106"
+		}
+
+		.wd-header-compare {
+			--wd-tools-icon: "\f128"
+		}
+
+		.wd-dropdown-compare a {
+			justify-content: space-between
+		}
+
+		.wd-dropdown-compare .count {
+			margin-inline-start: 10px;
+			color: var(--color-gray-300)
+		}
+
+		.wd-header-my-account {
+			--wd-tools-icon: "\f124"
+		}
+
+		@media(max-width: 1024px) {
+			.wd-header-my-account .wd-dropdown {
+				display: none
+			}
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/header-base.css */
+	</style>
+	<style id='wd-int-yoast-inline-css' type='text/css'>
+		.yoast-breadcrumb>span {
+			color: var(--wd-bcrumb-delim-color)
+		}
+
+		.yoast-breadcrumb .breadcrumb_last {
+			--wd-link-color: var(--wd-bcrumb-color-active);
+			--wd-link-color-hover: color-mix(in srgb, var(--wd-bcrumb-color-active), transparent 25%);
+			color: var(--wd-bcrumb-color-active)
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/int-yoast.css */
+	</style>
+	<style id='wd-int-wordfence-inline-css' type='text/css'>
+		.wfls-login-message {
+			scroll-margin-top: 150px;
+			max-width: calc(var(--wd-container-w) - 30px);
+			margin-inline: auto;
+			padding-block: 15px
+		}
+
+		.wfls-login-message ul {
+			margin-bottom: 0
+		}
+
+		#wfls-prompt-overlay {
+			margin-top: 20px;
+			border: none !important
+		}
+
+		#wfls-prompt-overlay .submit {
+			margin-bottom: 0
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/int-wordfence.css */
+	</style>
+	<style id='wd-woocommerce-base-inline-css' type='text/css'>
+		.amount {
+			color: var(--wd-primary-color);
+			font-weight: 600
+		}
+
+		.price {
+			color: var(--wd-primary-color);
+			font-weight: 600
+		}
+
+		.price .amount {
+			color: inherit;
+			font-size: inherit;
+			font-weight: inherit
+		}
+
+		.price del {
+			color: var(--color-gray-300);
+			font-size: 90%;
+			font-weight: 400
+		}
+
+		.price ins {
+			padding: 0;
+			background-color: rgba(0, 0, 0, 0);
+			text-decoration: none;
+			opacity: 1
+		}
+
+		.woocommerce-price-suffix {
+			color: var(--color-gray-500);
+			font-weight: 400
+		}
+
+		.woocommerce-notices-wrapper:empty {
+			display: none
+		}
+
+		ul:is(.woocommerce-error, .woocommerce-message, .woocommerce-info) {
+			list-style: none;
+			--li-pl: 0;
+			--li-mb: 5px;
+			align-items: stretch;
+			flex-direction: column;
+			justify-content: center
+		}
+
+		ul.variation {
+			font-size: 90%;
+			--li-mb: 5px;
+			--list-mb: 0;
+			--wd-tags-mb: 0;
+			--li-pl: 0;
+			list-style: none
+		}
+
+		ul.variation p {
+			display: inline
+		}
+
+		ul.variation .item-variation-name {
+			color: var(--color-gray-800);
+			font-weight: 600
+		}
+
+		.wc-item-meta {
+			--li-pl: 0;
+			--list-mb: 0;
+			--li-mb: 0;
+			margin-top: 10px;
+			font-size: 90%;
+			list-style: none
+		}
+
+		.wc-item-meta li>* {
+			display: inline-block;
+			margin-top: 0 !important;
+			margin-bottom: 5px;
+			vertical-align: middle
+		}
+
+		.wc-item-meta strong {
+			color: var(--color-gray-800)
+		}
+
+		.single_add_to_cart_button {
+			padding: var(--btn-accented-padding, var(--btn-padding, 5px 20px));
+			min-height: var(--btn-accented-height, var(--btn-height, 42px));
+			font-size: var(--btn-accented-font-size, var(--btn-font-size, 13px));
+			border-radius: var(--btn-accented-brd-radius);
+			color: var(--btn-accented-color);
+			box-shadow: var(--btn-accented-box-shadow);
+			background-color: var(--btn-accented-bgcolor);
+			text-transform: var(--btn-accented-transform, var(--btn-transform, uppercase));
+			font-weight: var(--btn-accented-font-weight, var(--btn-font-weight, 600));
+			font-family: var(--btn-accented-font-family, var(--btn-font-family, inherit));
+			font-style: var(--btn-accented-font-style, var(--btn-font-style, unset))
+		}
+
+		.single_add_to_cart_button:hover {
+			color: var(--btn-accented-color-hover);
+			box-shadow: var(--btn-accented-box-shadow-hover);
+			background-color: var(--btn-accented-bgcolor-hover)
+		}
+
+		.single_add_to_cart_button:active {
+			box-shadow: var(--btn-accented-box-shadow-active);
+			bottom: var(--btn-accented-bottom-active, 0)
+		}
+
+		.single_add_to_cart_button:before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			z-index: 1;
+			border-radius: inherit;
+			background-color: inherit;
+			box-shadow: inherit;
+			transition: opacity 0s ease
+		}
+
+		.single_add_to_cart_button:after {
+			position: absolute;
+			top: calc(50% - 9px);
+			inset-inline-start: calc(50% - 9px);
+			opacity: 0;
+			z-index: 2;
+			transition: opacity 0s ease;
+			content: "";
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			border: 1px solid rgba(0, 0, 0, 0);
+			border-left-color: currentColor;
+			border-radius: 50%;
+			vertical-align: middle;
+			animation: wd-rotate 450ms infinite linear var(--wd-anim-state, paused)
+		}
+
+		.single_add_to_cart_button.loading:before {
+			opacity: 1;
+			transition: opacity .25s ease
+		}
+
+		.single_add_to_cart_button.loading:after {
+			opacity: 1;
+			transition: opacity .25s ease;
+			--wd-anim-state: running
+		}
+
+		.single_add_to_cart_button+.added_to_cart {
+			display: none
+		}
+
+		form.cart {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			justify-content: var(--content-align)
+		}
+
+		form.cart>* {
+			flex: 1 1 100%
+		}
+
+		form.cart :where(.single_add_to_cart_button, .wd-buy-now-btn, .quantity) {
+			flex: 0 0 auto
+		}
+
+		.woocommerce-product-details__short-description {
+			margin-bottom: 20px
+		}
+
+		.woocommerce-product-details__short-description>*:last-child {
+			margin-bottom: 0
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woocommerce-base.css */
+	</style>
+	<style id='wd-mod-star-rating-inline-css' type='text/css'>
+		.star-rating {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			white-space: nowrap;
+			letter-spacing: 2px;
+			font-weight: 400;
+			color: var(--wd-star-color, #EABE12);
+			width: fit-content;
+			font-family: "woodmart-font"
+		}
+
+		.star-rating:before {
+			content: "\f149" "\f149" "\f149" "\f149" "\f149";
+			color: var(--wd-empty-star-color, var(--color-gray-300))
+		}
+
+		.star-rating span {
+			position: absolute;
+			inset-block: 0;
+			inset-inline-start: 0;
+			overflow: hidden;
+			width: 100%;
+			text-indent: 99999px
+		}
+
+		.star-rating span:before {
+			content: "\f148" "\f148" "\f148" "\f148" "\f148";
+			position: absolute;
+			top: 0;
+			inset-inline-start: 0;
+			text-indent: 0
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/mod-star-rating.css */
+	</style>
+	<style id='wd-woo-opt-free-progress-bar-inline-css' type='text/css'>
+		.wd-free-progress-bar {
+			--wd-progress-height: 10px
+		}
+
+		.wd-free-progress-bar .progress-bar {
+			margin-top: 10px;
+			background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+			background-size: 15px 15px
+		}
+
+		.wd-free-progress-bar.wd-progress-hide .progress-area {
+			display: none
+		}
+
+		.wd-shipping-progress-bar.wd-style-bordered .wd-free-progress-bar {
+			padding: 20px;
+			border: 2px dashed var(--brdcolor-gray-300);
+			border-radius: var(--wd-brd-radius)
+		}
+
+		.widget_shopping_cart .wd-free-progress-bar {
+			margin-bottom: 0;
+			padding-block: 15px;
+			border-top: 1px solid var(--brdcolor-gray-300)
+		}
+
+		.wd-builder-off .wd-shipping-progress-bar {
+			margin-bottom: 20px
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-opt-free-progress-bar.css */
+	</style>
+	<style id='wd-woo-mod-progress-bar-inline-css' type='text/css'>
+		.wd-progress-bar p:last-child {
+			--wd-tags-mb: 0
+		}
+
+		.wd-progress-bar .stock-info {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 8px;
+			margin-bottom: 8px;
+			color: var(--color-gray-500);
+			line-height: 1
+		}
+
+		.wd-progress-bar .stock-info span {
+			margin-inline-start: 3px;
+			color: var(--color-gray-800);
+			font-weight: 600
+		}
+
+		.wd-progress-bar :is(.progress-area, .progress-bar) {
+			height: var(--wd-progress-height, 7px);
+			border-radius: var(--wd-brd-radius)
+		}
+
+		.wd-progress-bar .progress-area {
+			width: 100%;
+			background-color: rgba(var(--bgcolor-black-rgb), 0.06);
+			transition: background-color .25s ease
+		}
+
+		.wd-progress-bar .progress-bar {
+			background-color: var(--wd-primary-color)
+		}
+
+		@media(max-width: 576px) {
+			.wd-product .wd-progress-bar .stock-info {
+				justify-content: center
+			}
+
+			.wd-product .wd-progress-bar .total-sold {
+				display: none
+			}
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-mod-progress-bar.css */
+	</style>
+	<style id='wd-widget-active-filters-inline-css' type='text/css'>
+		.widget_layered_nav_filters a {
+			display: inline-flex;
+			align-items: center;
+			color: var(--color-gray-800);
+			font-weight: 600;
+			line-height: 2
+		}
+
+		.widget_layered_nav_filters a .amount {
+			margin-inline-start: 3px
+		}
+
+		.widget_layered_nav_filters a:before {
+			margin-inline-end: .3em;
+			font-weight: 400;
+			content: "\f112";
+			font-family: "woodmart-font"
+		}
+
+		.widget_layered_nav_filters a:hover {
+			color: var(--color-gray-500)
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-widget-active-filters.css */
+	</style>
+	<style id='wd-woo-shop-predefined-inline-css' type='text/css'>
+		.wd-content-area>.woocommerce-notices-wrapper {
+			margin-bottom: 30px
+		}
+
+		.wd-show-sidebar-btn {
+			--wd-action-icon-size: 1.2em;
+			display: none
+		}
+
+		.search-no-results.woocommerce .woocommerce-info {
+			margin-bottom: 30px
+		}
+
+		@media(max-width: 1024px) {
+			.woodmart-archive-shop .wd-builder-off {
+				padding-block: 20px
+			}
+		}
+
+		.wd-shop-tools .woocommerce-ordering.wd-style-underline select {
+			max-width: 200px
+		}
+
+		@media(max-width: 1024px) {
+			.wd-builder-off .wd-products-per-page {
+				display: none
+			}
+		}
+
+		@media(max-width: 1024px) {
+			.wd-builder-off .wd-products-shop-view {
+				display: none
+			}
+		}
+
+		.wd-builder-off .woocommerce-result-count {
+			display: none;
+			margin-bottom: 0
+		}
+
+		:is(.term-description, .page-description)>*:last-child {
+			margin-bottom: 0
+		}
+
+		:is(.term-description, .page-description):not(:last-child) {
+			margin-bottom: 25px
+		}
+
+		.wd-products-element+:is(.term-description, .page-description) {
+			margin-top: 25px
+		}
+
+		.wd-term-desc {
+			margin-top: 25px
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-shop-predefined.css */
+	</style>
+	<style id='wd-woo-shop-el-products-per-page-inline-css' type='text/css'>
+		.wd-products-per-page {
+			--wd-link-color: var(--color-gray-500);
+			--wd-link-color-hover: var(--color-gray-800);
+			--wd-link-decor: none;
+			--wd-link-decor-hover: none;
+			display: inline-flex;
+			align-items: center;
+			flex-wrap: wrap;
+			color: var(--color-gray-500)
+		}
+
+		.wd-products-per-page a {
+			padding: 0 7px
+		}
+
+		.wd-products-per-page a.current-variation {
+			color: var(--wd-link-color-hover);
+			font-weight: 600
+		}
+
+		.per-page-title:after {
+			content: ":"
+		}
+
+		.per-page-border:after {
+			content: "/"
+		}
+
+		.per-page-border:last-child {
+			display: none
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-shop-el-products-per-page.css */
+	</style>
+	<style id='wd-woo-shop-page-title-inline-css' type='text/css'>
+		.wd-title-wrapp {
+			display: flex;
+			align-items: center
+		}
+
+		.wd-back-btn.wd-style-icon {
+			--wd-action-icon-size: 24px;
+			--wd-action-h: 40px;
+			--wd-btn-icon: "\f121"
+		}
+
+		:is(.title-design-centered, .without-title.with-back-btn) .wd-back-btn {
+			margin-inline-start: -50px
+		}
+
+		@media(max-width: 1024px) {
+			.wd-back-btn {
+				display: none
+			}
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-shop-page-title.css */
+	</style>
+	<style id='wd-woo-mod-shop-loop-head-inline-css' type='text/css'>
+		.shop-loop-head {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 10px;
+			margin-bottom: 30px;
+			max-width: 100%;
+			width: 100%
+		}
+
+		.wd-shop-tools {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 10px 30px;
+			max-width: 100%
+		}
+
+		@media(max-width: 1024px) {
+			.shop-loop-head {
+				margin-bottom: 20px
+			}
+		}
+
+		@media(max-width: 768.98px) {
+			.wd-shop-tools {
+				gap: 10px
+			}
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-mod-shop-loop-head.css */
+	</style>
+	<style id='wd-woo-shop-el-order-by-inline-css' type='text/css'>
+		.woocommerce-ordering select {
+			cursor: pointer
+		}
+
+		.woocommerce-ordering.wd-style-underline select {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			height: auto;
+			border-top-style: none;
+			border-right-style: none;
+			border-left-style: none;
+			border-radius: 0;
+			background-color: unset;
+			background-position: right 0 top 50%;
+			color: var(--color-gray-900);
+			font-weight: 600;
+			font-size: inherit;
+			line-height: 1.2;
+			padding-inline-start: 2px;
+			padding-inline-end: 20px
+		}
+
+		.woocommerce-ordering.wd-style-underline select:focus {
+			border-color: var(--wd-primary-color)
+		}
+
+		@media(max-width: 768.98px) {
+			.woocommerce-ordering.wd-ordering-mb-icon {
+				position: relative;
+				z-index: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 30px;
+				height: 30px
+			}
+
+			.woocommerce-ordering.wd-ordering-mb-icon select {
+				position: absolute;
+				inset: 0;
+				padding: 0;
+				height: inherit;
+				border: none;
+				background: none;
+				color: rgba(0, 0, 0, 0) !important;
+				font-weight: 400;
+				font-size: 16px;
+				-webkit-appearance: none;
+				-moz-appearance: none
+			}
+
+			.woocommerce-ordering.wd-ordering-mb-icon select option {
+				font-size: 14px
+			}
+
+			.woocommerce-ordering.wd-ordering-mb-icon:after {
+				position: relative;
+				color: var(--color-gray-900);
+				font-size: 120%;
+				z-index: 2;
+				pointer-events: none;
+				content: "\f119";
+				font-family: "woodmart-font"
+			}
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-shop-el-order-by.css */
+	</style>
+	<style id='wd-woo-shop-el-products-view-inline-css' type='text/css'>
+		.wd-products-shop-view {
+			--wd-link-color: var(--color-gray-300);
+			--wd-link-color-hover: var(--color-gray-600);
+			--wd-link-decor: none;
+			--wd-link-decor-hover: none;
+			display: inline-flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 10px .9em;
+			line-height: 1
+		}
+
+		.wd-products-shop-view a.current-variation {
+			color: var(--color-gray-800);
+			cursor: default
+		}
+
+		.wd-products-shop-view a svg {
+			display: none
+		}
+
+		.wd-products-shop-view a:before {
+			font-size: 180%;
+			font-weight: 400;
+			content: "\f12a";
+			font-family: "woodmart-font"
+		}
+
+		.wd-products-shop-view a.per-row-1:before {
+			content: "\f13"
+		}
+
+		.wd-products-shop-view a.per-row-2:before {
+			content: "\f12b"
+		}
+
+		.wd-products-shop-view a.per-row-3:before {
+			content: "\f12c"
+		}
+
+		.wd-products-shop-view a.per-row-4:before {
+			content: "\f12d"
+		}
+
+		.wd-products-shop-view a.per-row-5:before {
+			content: "\f12e"
+		}
+
+		.wd-products-shop-view a.per-row-6:before {
+			content: "\f12f"
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/woo-shop-el-products-view.css */
+	</style>
+	<style id='child-style-inline-css' type='text/css'>
+
+
+		.woocommerce-account .wfls-login-message {
+			/*VALID*/
+			margin-block: 20px -40px;
+		}
+
+		/**** WORDFANCE Fix login notice (remove on 8.6) ****/
+
+		.wd-header-overlap .wfls-login-message {
+			/*VALID*/
+			position: absolute;
+			top: calc(var(--wd-header-h) + var(--wd-header-boxed-sp, .0001px));
+			z-index: 388;
+			inset-inline: 0;
+		}
+
+		.wd-header-overlap:not(.single-product) .wfls-login-message+.wd-content-layout {
+			padding-top: 0;
+		}
+
+		/*# sourceURL=merchandise/wp-content/themes/woodmart-child/style.css */
+	</style>
+<script type="text/javascript"
+		src="merchandise/wp-includes/js/jquery/jquery.min.js"
+		id="jquery-core-js"></script>
+<script type="text/javascript"
+		src="merchandise/wp-content/themes/woodmart/js/scripts/global/scrollBar.min.js"
+		id="wd-scrollbar-js"></script>
+<meta name="theme-color" content="rgb(245,245,245)">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon"
+		href="wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-45x45.png"
+		sizes="32x32" />
+	<link rel="icon"
+		href="wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png"
+		sizes="192x192" />
+	<link rel="apple-touch-icon"
+		href="wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png" />
+	<meta name="msapplication-TileImage"
+		content="wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png" />
+<style id="wd-style-header_747230-inline-css" data-type="wd-style-header_747230">
+		:root {
+			--wd-top-bar-h: .00001px;
+			--wd-top-bar-sm-h: .00001px;
+			--wd-top-bar-sticky-h: .00001px;
+			--wd-top-bar-brd-w: .00001px;
+
+			--wd-header-general-h: 70px;
+			--wd-header-general-sm-h: 70px;
+			--wd-header-general-sticky-h: 70px;
+			--wd-header-general-brd-w: .00001px;
+
+			--wd-header-bottom-h: .00001px;
+			--wd-header-bottom-sm-h: .00001px;
+			--wd-header-bottom-sticky-h: .00001px;
+			--wd-header-bottom-brd-w: .00001px;
+
+			--wd-header-clone-h: .00001px;
+
+			--wd-header-brd-w: calc(var(--wd-top-bar-brd-w) + var(--wd-header-general-brd-w) + var(--wd-header-bottom-brd-w));
+			--wd-header-h: calc(var(--wd-top-bar-h) + var(--wd-header-general-h) + var(--wd-header-bottom-h) + var(--wd-header-brd-w));
+			--wd-header-sticky-h: calc(var(--wd-top-bar-sticky-h) + var(--wd-header-general-sticky-h) + var(--wd-header-bottom-sticky-h) + var(--wd-header-clone-h) + var(--wd-header-brd-w));
+			--wd-header-sm-h: calc(var(--wd-top-bar-sm-h) + var(--wd-header-general-sm-h) + var(--wd-header-bottom-sm-h) + var(--wd-header-brd-w));
+		}
+
+		.whb-sticked .whb-general-header .wd-dropdown:not(.sub-sub-menu) {
+			margin-top: 14px;
+		}
+
+		.whb-sticked .whb-general-header .wd-dropdown:not(.sub-sub-menu):after {
+			height: 25px;
+		}
+
+		.whb-d3ki4iaou697ll19rjk8>ul>li>.wd-dropdown-menu,
+		.whb-d3ki4iaou697ll19rjk8 .wd-design-default .wd-dropdown {
+			--wd-dropdown-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.11);
+		}
+
+		.whb-row .whb-25hasyb8l3nqyybphmhc.wd-tools-element .wd-tools-inner,
+		.whb-row .whb-25hasyb8l3nqyybphmhc.wd-tools-element>a>.wd-tools-icon {
+			color: rgba(255, 255, 255, 1);
+			background-color: rgba(17, 18, 17, 1);
+		}
+
+		.whb-row .whb-25hasyb8l3nqyybphmhc.wd-tools-element:hover .wd-tools-inner,
+		.whb-row .whb-25hasyb8l3nqyybphmhc.wd-tools-element:hover>a>.wd-tools-icon {
+			color: rgba(255, 255, 255, 1);
+			background-color: rgba(43, 44, 43, 1);
+		}
+
+		.whb-general-header {
+			background-color: rgba(245, 245, 245, 1);
+
+		}
+	</style>
+	<style id="wd-style-theme_settings_default-inline-css" data-type="wd-style-theme_settings_default">
+		:root {
+			--wd-cat-brd-radius: 50%;
+			--wd-text-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-text-font-weight: 400;
+			--wd-text-color: #767676;
+			--wd-text-font-size: 16px;
+			--wd-title-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-title-font-weight: 600;
+			--wd-title-color: #242424;
+			--wd-entities-title-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-entities-title-font-weight: 500;
+			--wd-entities-title-color: #333333;
+			--wd-entities-title-color-hover: rgba(51, 51, 51, 0.65);
+			--wd-alternative-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-widget-title-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-widget-title-font-weight: 600;
+			--wd-widget-title-transform: none;
+			--wd-widget-title-color: #333;
+			--wd-widget-title-font-size: 20px;
+			--wd-header-el-font: "Lexend Deca", Arial, Helvetica, sans-serif;
+			--wd-header-el-font-weight: 600;
+			--wd-header-el-transform: none;
+			--wd-header-el-font-size: 16px;
+			--wd-brd-radius: 16px;
+			--wd-otl-style: dotted;
+			--wd-otl-width: 2px;
+			--wd-primary-color: rgb(230, 57, 70);
+			--wd-alternative-color: rgb(17, 18, 17);
+			--btn-default-bgcolor: rgb(17, 18, 17);
+			--btn-default-bgcolor-hover: rgb(51, 51, 51);
+			--btn-accented-bgcolor: rgb(230, 57, 70);
+			--btn-accented-bgcolor-hover: rgb(237, 173, 23);
+			--btn-transform: capitalize;
+			--wd-form-brd-width: 1px;
+			--notices-success-bg: #459647;
+			--notices-success-color: #fff;
+			--notices-warning-bg: #E0B252;
+			--notices-warning-color: #fff;
+			--wd-link-color: #333333;
+			--wd-link-color-hover: #242424;
+		}
+
+		.wd-age-verify-wrap {
+			--wd-popup-width: 500px;
+		}
+
+		.wd-popup.wd-promo-popup {
+			background-color: #111111;
+			background-image: none;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: left center;
+		}
+
+		.wd-promo-popup-wrap {
+			--wd-popup-width: 800px;
+		}
+
+		:is(.woodmart-woocommerce-layered-nav, .wd-product-category-filter) .wd-scroll-content {
+			max-height: 223px;
+		}
+
+		.wd-page-title .wd-page-title-bg img {
+			object-fit: cover;
+			object-position: center center;
+		}
+
+		.wd-footer {
+			background-color: rgb(245, 245, 244);
+			background-image: none;
+		}
+
+		html .wd-checkout-steps {
+			font-size: 16px;
+			text-transform: none;
+		}
+
+		html table th {
+			text-transform: none;
+		}
+
+		html .wd-nav-mobile>li>a,
+		html .wd-nav.wd-layout-drilldown>li>a,
+		html .wd-nav.wd-layout-drilldown>li [class*="sub-menu"]> :is(.menu-item, .wd-drilldown-back)>a,
+		html .wd-nav.wd-layout-drilldown .woocommerce-MyAccount-navigation-link>a {
+			text-transform: none;
+		}
+
+		html .btn.wd-buy-now-btn {
+			color: rgb(255, 255, 255);
+			background: rgb(17, 18, 17);
+		}
+
+		html .btn.wd-buy-now-btn:hover {
+			color: rgb(255, 255, 255);
+			background: rgb(51, 51, 51);
+		}
+
+		.wd-nav-arrows.wd-pos-sep:not(:where(.wd-custom-style)) {
+			--wd-arrow-size: 40px;
+			--wd-arrow-icon-size: 16px;
+			--wd-arrow-offset-h: 15px;
+			--wd-arrow-color: rgb(36, 36, 36);
+			--wd-arrow-color-hover: rgb(255, 255, 255);
+			--wd-arrow-color-dis: rgb(36, 36, 36);
+			--wd-arrow-bg: rgb(244, 244, 244);
+			--wd-arrow-bg-hover: rgb(230, 57, 70);
+			--wd-arrow-bg-dis: rgb(244, 244, 244);
+			--wd-arrow-radius: 20px;
+			--wd-arrow-brd-color: rgba(0, 0, 0, 0.11);
+			--wd-arrow-brd: 1px solid;
+		}
+
+		.wd-nav-scroll {
+			--wd-nscroll-drag-bg: rgb(17, 18, 17);
+			--wd-nscroll-drag-bg-hover: rgb(17, 18, 17);
+		}
+
+		.wd .product-label.onsale {
+			background-color: rgb(77, 172, 153);
+			color: rgb(255, 255, 255);
+		}
+
+		.wd .product-label.new {
+			background-color: rgb(77, 172, 153);
+			color: rgb(255, 255, 255);
+		}
+
+		.wd .product-label.featured {
+			background-color: rgb(77, 172, 153);
+			color: rgb(255, 255, 255);
+		}
+
+		.mfp-wrap.wd-popup-quick-view-wrap {
+			--wd-popup-width: 920px;
+		}
+
+		@media (max-width: 1024px) {
+			:root {
+				--wd-widget-title-font-size: 18px;
+			}
+
+			.wd-nav-arrows.wd-pos-sep:not(:where(.wd-custom-style)) {
+				--wd-arrow-offset-h: -30px;
+			}
+
+		}
+
+		@media (max-width: 768.98px) {
+			.wd-nav-arrows.wd-pos-sep:not(:where(.wd-custom-style)) {
+				--wd-arrow-offset-h: 15px;
+			}
+
+		}
+
+		:root {
+			--wd-container-w: 1324px;
+			--wd-form-brd-radius: 5px;
+			--btn-default-color: #fff;
+			--btn-default-color-hover: #fff;
+			--btn-accented-color: #333;
+			--btn-accented-color-hover: #333;
+			--btn-default-brd-radius: 5px;
+			--btn-default-box-shadow: none;
+			--btn-default-box-shadow-hover: none;
+			--btn-accented-brd-radius: 5px;
+			--btn-accented-box-shadow: none;
+			--btn-accented-box-shadow-hover: none;
+		}
+
+		.wd-page-title {
+			background-color: rgb(230, 57, 70);
+		}
+	</style>
+	<style id="wd-style-local-google-fonts-inline-css" data-type="wd-style-local-google-fonts">
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+			unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+			unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 500;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+			unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 500;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+			unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 500;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 600;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+			unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 600;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+			unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		@font-face {
+			font-family: 'Lexend Deca';
+			font-style: normal;
+			font-weight: 600;
+			font-display: swap;
+			src: url(merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	</style>
+@endpush
 @section('content')
-<div class="wd-page-content main-page-wrapper">
+		<div class="wd-page-content main-page-wrapper">
 
 			<link rel="stylesheet" id="wd-page-title-css"
-				href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/page-title.css') }}"
+				href="merchandise/wp-content/themes/woodmart/css/parts/page-title.css"
 				type="text/css" media="all" />
 			<div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
 				style="">
@@ -26,7 +1703,7 @@
 				role="main" style="--wd-col-lg:12;--wd-gap-lg:30px;--wd-gap-sm:20px;">
 
 				<link rel="stylesheet" id="wd-off-canvas-sidebar-critical-css"
-					href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/opt-off-canvas-sidebar-critical.css') }}"
+					href="merchandise/wp-content/themes/woodmart/css/parts/opt-off-canvas-sidebar-critical.css"
 					type="text/css" media="all" />
 				<aside class="wd-sidebar sidebar-container wd-grid-col sidebar-left"
 					style="--wd-col-lg:3;--wd-col-md:12;--wd-col-sm:12;">
@@ -41,28 +1718,28 @@
 					</div>
 					<div class="widget-area">
 						<link rel="stylesheet" id="wd-widget-general-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/widget-general.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/widget-general.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-widget-wd-layered-nav-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-widget-wd-layered-nav.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-widget-wd-layered-nav.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-mod-swatches-base-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-base.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-base.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-mod-swatches-filter-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-filter.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-filter.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-widget-slider-price-filter-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-widget-slider-price-filter.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-widget-slider-price-filter.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-filter-search-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/mod-filter-search.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/mod-filter-search.css"
 							type="text/css" media="all" />
 						<div id="woodmart-woocommerce-layered-nav-2"
 							class="wd-widget widget sidebar-widget woodmart-woocommerce-layered-nav">
 							<h5 class="widget-title">Franchise</h5>
 							<link rel="stylesheet" id="wd-woo-mod-swatches-style-1-css"
-								href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-style-1.css') }}"
+								href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-style-1.css"
 								type="text/css" media="all" />
 							<div class="wd-filter-wrapper">
 								<div class="wd-filter-search wd-search">
@@ -232,7 +1909,7 @@
 							class="wd-widget widget sidebar-widget woodmart-woocommerce-layered-nav">
 							<h5 class="widget-title">Size</h5>
 							<link rel="stylesheet" id="wd-woo-mod-swatches-style-4-css"
-								href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-style-4.css') }}"
+								href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-swatches-style-4.css"
 								type="text/css" media="all" />
 							<div class="wd-scroll">
 								<ul
@@ -506,40 +2183,40 @@
 
 					<div class="wd-products-element">
 						<link rel="stylesheet" id="wd-woo-categories-loop-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-categories-loop-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-product-loop-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-product-loop-quick-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-opt-title-limit-predefined-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-opt-stretch-cont-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-woo-opt-stretch-cont-predefined-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-bordered-product-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css"
 							type="text/css" media="all" />
 						<link rel="stylesheet" id="wd-bordered-product-predefined-css"
-							href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css') }}"
+							href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css"
 							type="text/css" media="all" />
 						<div class="wd-sticky-loader wd-deferred wd-content-loader"><span class="wd-loader"></span>
 						</div>
@@ -553,27 +2230,27 @@
 
 								<div class="wd-product-wrapper product-wrapper">
 									<div class="wd-product-thumb product-element-top wd-quick-shop">
-										<a href="product_details.html"
+										<a href="{{route('product-details')}}"
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Dogpool Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" fetchpriority="high"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-150x171.jpeg') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush.jpeg.webp 700w"
 												sizes="(max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-263x300.jpeg') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dogpool-plush-1.jpeg.webp 700w"
 												sizes="(max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
 											<link rel="stylesheet" id="wd-mod-animations-transform-css"
-												href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css') }}"
+												href="merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css"
 												type="text/css" media="all" />
 											<div
 												class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
@@ -629,18 +2306,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Liara Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/liara-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -698,18 +2375,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Plush Traveling Korok">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-600x686.jpeg') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-600x686.jpeg"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-600x686.jpeg') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-600x686.jpeg 600w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-150x171.jpeg') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/plush-traveling-korok-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -768,27 +2445,27 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Grogu Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<link rel="stylesheet" id="wd-woo-mod-product-labels-default-css"
-											href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css') }}"
+											href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
 											type="text/css" media="all" />
 										<link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-											href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css') }}"
+											href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
 											type="text/css" media="all" />
 										<div class="product-labels labels-rounded-sm">
 											<span class="onsale product-label wd-shape-round-sm">-38%</span>
 										</div>
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/grogu-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -852,18 +2529,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Dune Desert Mouse Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -922,18 +2599,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Yoshi Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/yoshi-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -991,10 +2668,10 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Vault Boy Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="product-labels labels-rounded-sm">
@@ -1002,10 +2679,10 @@
 										</div>
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/vault-boy-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1069,18 +2746,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Claptrap Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/claptrap-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1138,18 +2815,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Ciri Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/ciri-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1207,10 +2884,10 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Chicken Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="product-labels labels-rounded-sm">
@@ -1218,10 +2895,10 @@
 										</div>
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-263x300.jpeg') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1.jpeg') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/chicken-plush-1.jpeg 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1285,18 +2962,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Companion Cube Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/companion-cube-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1355,18 +3032,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Astro Bot Plush">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1429,18 +3106,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Minecraft Creeper Vinyl Figure">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft-creeper-vinyl-figure-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1499,18 +3176,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Super Mario Figures">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-600x686.jpeg') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-600x686.jpeg"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-600x686.jpeg') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-600x686.jpeg 600w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/super-mario-figures-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1569,18 +3246,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Marty Mcfly Figure">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/marty-mcfly-figure-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
@@ -1639,18 +3316,18 @@
 											class="wd-product-img-link product-image-link" tabindex="-1"
 											aria-label="Frodo Baggins Figure">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" /> </a>
 
 										<div class="wd-product-img-hover hover-img">
 											<img width="430" height="492"
-												src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-600x686.jpeg.webp') }}"
+												src="merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-600x686.jpeg.webp"
 												class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 												alt="" decoding="async" loading="lazy"
-												srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-600x686.jpeg.webp') }} 600w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-263x300.jpeg.webp') }} 263w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-88x100.jpeg.webp') }} 88w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-150x171.jpeg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1.jpeg.webp') }} 700w"
+												srcset="merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/frodo-baggins-figure-1.jpeg.webp 700w"
 												sizes="auto, (max-width: 430px) 100vw, 430px" />
 										</div>
 										<div class="wd-buttons wd-pos-r-t">
