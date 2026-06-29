@@ -55,7 +55,7 @@
                             <div id="wd-c3a0b007"
                                 class=" wd-social-icons wd-style-default wd-size-default social-follow wd-shape-circle  wd-c3a0b007">
                                 <link rel="stylesheet" id="wd-social-icons-css"
-                                    href="merchandise/wp-content/themes/woodmart/css/parts/el-social-icons.css"
+                                    href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/el-social-icons.css') }}"
                                     type="text/css" media="all" />
 
                                 <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/xtemos.studio"

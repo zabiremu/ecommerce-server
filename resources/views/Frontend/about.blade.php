@@ -4,7 +4,7 @@
 
 @push('styles')
     @verbatim
-        <link rel="preload" as="font" href="/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2"
+        <link rel="preload" as="font" href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2') }}"
             type="font/woff2" crossorigin>
         <style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
             img:is([sizes=auto i],[sizes^="auto," i]) {
@@ -20,14 +20,14 @@
 
             /*# sourceURL=woocommerce-inline-inline-css */
         </style>
-        <link rel='stylesheet' id='wd-style-base-css' href='merchandise/wp-content/themes/woodmart/css/parts/base.css'
+        <link rel='stylesheet' id='wd-style-base-css' href='{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/base.css') }}'
             type='text/css' media='all' />
         <style id='wd-style-base-inline-css' type='text/css'>
             @font-face {
                 font-weight: normal;
                 font-style: normal;
                 font-family: "woodmart-font";
-                src: url("/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2") format("woff2");
+                src: url("{{ asset('frontend/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2') }}") format("woff2");
             }
 
             /* Mobile logo fix */
@@ -1741,8 +1741,8 @@
 
             /*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/el-accordion-block.css */
         </style>
-        <script type="text/javascript" src="/merchandise/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
-        <script type="text/javascript" src="/merchandise/wp-content/themes/woodmart/js/scripts/global/scrollBar.min.js"
+        <script type="text/javascript" src="{{ asset('frontend/merchandise/wp-includes/js/jquery/jquery.min.js') }}" id="jquery-core-js"></script>
+        <script type="text/javascript" src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/global/scrollBar.min.js') }}"
             id="wd-scrollbar-js"></script>
         <meta name="theme-color" content="rgb(245,245,245)">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -2196,7 +2196,7 @@
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2') }}) format('woff2');
                 unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
             }
 
@@ -2205,7 +2205,7 @@
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2') }}) format('woff2');
                 unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
             }
 
@@ -2214,7 +2214,7 @@
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2') }}) format('woff2');
                 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
             }
 
@@ -2223,7 +2223,7 @@
                 font-style: normal;
                 font-weight: 500;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2') }}) format('woff2');
                 unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
             }
 
@@ -2232,7 +2232,7 @@
                 font-style: normal;
                 font-weight: 500;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2') }}) format('woff2');
                 unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
             }
 
@@ -2241,7 +2241,7 @@
                 font-style: normal;
                 font-weight: 500;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2') }}) format('woff2');
                 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
             }
 
@@ -2250,7 +2250,7 @@
                 font-style: normal;
                 font-weight: 600;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-d972ba76.woff2') }}) format('woff2');
                 unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
             }
 
@@ -2259,7 +2259,7 @@
                 font-style: normal;
                 font-weight: 600;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-3e4fce5c.woff2') }}) format('woff2');
                 unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
             }
 
@@ -2268,7 +2268,7 @@
                 font-style: normal;
                 font-weight: 600;
                 font-display: swap;
-                src: url(/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2) format('woff2');
+                src: url({{ asset('frontend/merchandise/wp-content/uploads/sites/31/woodmart/google-fonts/fonts/lexenddeca-fcf1177e.woff2') }}) format('woff2');
                 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
             }
         </style>
@@ -2282,7 +2282,7 @@
         <div class="wd-page-content main-page-wrapper">
 
             <link rel="stylesheet" id="wd-page-title-css"
-                href="/merchandise/wp-content/themes/woodmart/css/parts/page-title.css" type="text/css" media="all" />
+                href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/page-title.css') }}" type="text/css" media="all" />
             <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
                 style="">
                 <div class="wd-page-title-bg wd-fill">
@@ -2309,32 +2309,32 @@
                         <div id="wd-2581e6d1" class="wp-block-wd-column">
                             <div id="wd-bf3d7474" class="wp-block-wd-image wd-block-image"><img fetchpriority="high"
                                     decoding="async" width="316" height="316" class="wp-image-807"
-                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp" alt=""
-                                    srcset="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp 316w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-300x300.jpg.webp 300w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-150x150.jpg.webp 150w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-290x290.jpg.webp 290w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-100x100.jpg.webp 100w"
+                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp') }}" alt=""
+                                    srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp') }} 316w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-300x300.jpg.webp') }} 300w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-150x150.jpg.webp') }} 150w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-290x290.jpg.webp') }} 290w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-100x100.jpg.webp') }} 100w"
                                     sizes="(max-width: 316px) 100vw, 316px" /></div>
                         </div>
 
                         <div id="wd-bde209e7" class="wp-block-wd-column">
                             <div id="wd-33932e98" class="wp-block-wd-image wd-block-image"><img decoding="async"
                                     width="316" height="380" class="wp-image-809"
-                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp" alt=""
-                                    srcset="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp 316w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-249x300.jpg.webp 249w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-274x330.jpg.webp 274w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-83x100.jpg.webp 83w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-150x180.jpg.webp 150w"
+                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp') }}" alt=""
+                                    srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp') }} 316w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-249x300.jpg.webp') }} 249w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-274x330.jpg.webp') }} 274w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-83x100.jpg.webp') }} 83w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-150x180.jpg.webp') }} 150w"
                                     sizes="(max-width: 316px) 100vw, 316px" /></div>
                         </div>
 
                         <div id="wd-c0be48ff" class="wp-block-wd-column">
                             <div id="wd-45900e23" class="wp-block-wd-image wd-block-image"><img decoding="async"
                                     width="316" height="284" class="wp-image-806"
-                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp" alt=""
-                                    srcset="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp 316w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-300x270.jpg.webp 300w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-290x261.jpg.webp 290w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-100x90.jpg.webp 100w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-150x135.jpg.webp 150w"
+                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp') }}" alt=""
+                                    srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp') }} 316w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-300x270.jpg.webp') }} 300w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-290x261.jpg.webp') }} 290w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-100x90.jpg.webp') }} 100w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-150x135.jpg.webp') }} 150w"
                                     sizes="(max-width: 316px) 100vw, 316px" /></div>
                         </div>
 
                         <div id="wd-03cc1817" class="wp-block-wd-column">
                             <div id="wd-06623b74" class="wp-block-wd-image wd-block-image"><img loading="lazy"
                                     decoding="async" width="316" height="348" class="wp-image-808"
-                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp" alt=""
-                                    srcset="/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp 316w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-272x300.jpg.webp 272w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-290x319.jpg.webp 290w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-91x100.jpg.webp 91w, /merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-150x165.jpg.webp 150w"
+                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp') }}" alt=""
+                                    srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp') }} 316w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-272x300.jpg.webp') }} 272w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-290x319.jpg.webp') }} 290w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-91x100.jpg.webp') }} 91w,  {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-150x165.jpg.webp') }} 150w"
                                     sizes="auto, (max-width: 316px) 100vw, 316px" /></div>
                         </div>
                     </div>
@@ -2372,7 +2372,7 @@
                                             class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
                                             <div id="wd-9d7b892a" class="wp-block-wd-icon"><img loading="lazy"
                                                     decoding="async" width="68" height="68" class="wp-image-839"
-                                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gamepad.jpg.webp"
+                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gamepad.jpg.webp') }}"
                                                     alt="" /></div>
 
                                             <div id="wd-d4863966" class="wp-block-wd-container wd-dir-col">
@@ -2390,7 +2390,7 @@
                                             class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
                                             <div id="wd-0da377f0" class="wp-block-wd-icon"><img loading="lazy"
                                                     decoding="async" width="68" height="68" class="wp-image-840"
-                                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-puzzle.jpg.webp"
+                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-puzzle.jpg.webp') }}"
                                                     alt="" /></div>
 
                                             <div id="wd-3edf8750" class="wp-block-wd-container wd-dir-col">
@@ -2408,7 +2408,7 @@
                                             class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
                                             <div id="wd-5c1d0fd4" class="wp-block-wd-icon"><img loading="lazy"
                                                     decoding="async" width="68" height="68" class="wp-image-841"
-                                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-art.jpg.webp"
+                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-art.jpg.webp') }}"
                                                     alt="" /></div>
 
                                             <div id="wd-eb316032" class="wp-block-wd-container wd-dir-col">
@@ -2426,7 +2426,7 @@
                                             class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
                                             <div id="wd-afd3b010" class="wp-block-wd-icon"><img loading="lazy"
                                                     decoding="async" width="68" height="68" class="wp-image-842"
-                                                    src="/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gift.jpg.webp"
+                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gift.jpg.webp') }}"
                                                     alt="" /></div>
 
                                             <div id="wd-5809a874" class="wp-block-wd-container wd-dir-col">
