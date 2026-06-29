@@ -1,0 +1,28 @@
+/*
+ Theme Name:   Woodmart Child
+ Description:  Woodmart Child Theme
+ Author:       XTemos
+ Author URI:   http://xtemos.com
+ Template:     woodmart
+ Version:      1.0.0
+ Text Domain:  woodmart
+*/
+
+/**** WORDFANCE Fix login plugin notice ****/
+
+.woocommerce-account .wfls-login-message {  /*VALID*/
+	margin-block: 20px -40px;
+}
+
+/**** WORDFANCE Fix login notice (remove on 8.6) ****/
+
+.wd-header-overlap .wfls-login-message { /*VALID*/
+	position: absolute;
+	top: calc(var(--wd-header-h) + var(--wd-header-boxed-sp, .0001px));
+	z-index: 388;
+	inset-inline: 0;
+}
+
+.wd-header-overlap:not(.single-product) .wfls-login-message + .wd-content-layout {
+	padding-top: 0;
+}

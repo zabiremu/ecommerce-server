@@ -1,130 +1,160 @@
 @extends('Frontend.Layout.app')
 
 @php
-    $phone   = \App\Models\SiteSetting::get('contact_phone',   '+8801820834086');
-    $email   = \App\Models\SiteSetting::get('contact_email',   '');
+    $phone = \App\Models\SiteSetting::get('contact_phone', '+8801820834086');
+    $email = \App\Models\SiteSetting::get('contact_email', '');
     $address = \App\Models\SiteSetting::get('contact_address', 'Bangladesh');
-    $hours   = \App\Models\SiteSetting::get('contact_hours',   'Sat – Thu: 9AM – 10PM');
-    $company = \App\Models\SiteSetting::get('company_name',    'NF Shop 24');
+    $hours = \App\Models\SiteSetting::get('contact_hours', 'Sat – Thu: 9AM – 10PM');
+    $company = \App\Models\SiteSetting::get('company_name', 'NF Shop 24');
 @endphp
 
 @section('title', 'Contact Us — ' . $company)
 
 @section('content')
-<!-- Breadcrumb -->
-<section class="breadcrumb">
-    <div class="container">
-        <a href="{{ route('home') }}">Home</a>
-        <i class="fas fa-chevron-right"></i>
-        <span>Contact Us</span>
-    </div>
-</section>
-
-<!-- Page Header -->
-<section class="page-header">
-    <div class="container">
-        <h1><i class="fas fa-headset"></i> Contact Us</h1>
-        <p>We'd love to hear from you. Get in touch with us.</p>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact-section">
-    <div class="container">
-        <div class="contact-layout">
-            <!-- Contact Info Cards -->
-            <div class="contact-info">
-                @if ($address)
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h4>Our Address</h4>
-                    <p>{{ $address }}</p>
-                </div>
-                @endif
-                @if ($phone)
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
-                    <h4>Phone</h4>
-                    <p><a href="tel:{{ preg_replace('/\s+/', '', $phone) }}">{{ $phone }}</a></p>
-                </div>
-                @endif
-                @if ($email)
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
-                    <h4>Email</h4>
-                    <p><a href="mailto:{{ $email }}">{{ $email }}</a></p>
-                </div>
-                @endif
-                @if ($hours)
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
-                    <h4>Working Hours</h4>
-                    <p>{{ $hours }}</p>
-                </div>
-                @endif
-            </div>
-
-            <!-- Contact Form -->
-            <div class="contact-form-wrap">
-                <h3>Send us a Message</h3>
-                <form class="contact-form" id="contactForm" onsubmit="return handleContact(event)">
-                    @csrf
-                    <div id="contactError" class="contact-error"
-                         style="display:none;background:#fef2f2;border-left:4px solid #ef4444;color:#b91c1c;padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:12px"></div>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label for="conName"><i class="fas fa-user"></i> Your Name</label>
-                            <input type="text" id="conName" name="name" placeholder="Enter your name" required maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="conEmail"><i class="fas fa-envelope"></i> Your Email</label>
-                            <input type="email" id="conEmail" name="email" placeholder="Enter your email" required maxlength="255">
-                        </div>
-                    </div>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label for="conPhone"><i class="fas fa-phone"></i> Phone <span style="color:#94a3b8;font-weight:400">(optional)</span></label>
-                            <input type="tel" id="conPhone" name="phone" placeholder="Your phone number" maxlength="30">
-                        </div>
-                        <div class="form-group">
-                            <label for="conSubject"><i class="fas fa-tag"></i> Subject</label>
-                            <input type="text" id="conSubject" name="subject" placeholder="What's this about?" maxlength="255">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="conMsg"><i class="fas fa-comment"></i> Message</label>
-                        <textarea id="conMsg" name="message" rows="5" placeholder="Write your message here..." required maxlength="5000"></textarea>
-                    </div>
-                    <button type="submit" class="btn-auth" id="contactSubmitBtn">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-                <div id="contactSuccess" class="contact-success" style="display:none">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Message Sent!</h4>
-                    <p id="contactSuccessMsg">Thank you for reaching out. We'll get back to you shortly.</p>
-                    <button class="btn-auth" onclick="resetContactForm()">Send Another Message</button>
-                </div>
-            </div>
+    <link rel="stylesheet" id="wd-page-title-css"
+        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/page-title.css') }}" />
+    <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default">
+        <div class="wd-page-title-bg wd-fill">
+        </div>
+        <div class="container">
+            <h1 class="entry-title title">
+                Contact us </h1>
+            <nav class="wd-breadcrumbs"><a href="index.html">Home</a><span class="wd-delimiter">/</span><span
+                    class="wd-last">Contact us</span></nav>
         </div>
     </div>
-</section>
 
-<!-- Map Section -->
-@if ($address)
-<section class="contact-map">
-    <div class="container">
-        <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt"></i>
-            <h4>{{ $address }}</h4>
-            <p>We serve customers across the country</p>
+    <main id="main-content" class="wd-content-layout content-layout-wrapper container" role="main">
+        <div class="wd-content-area site-content">
+            <article id="post-595" class="entry-content post-595 page type-page status-publish hentry">
+
+                <div id="wd-6f134382" class="wp-block-wd-section">
+                    <div id="wd-675b1206" class="wp-block-wd-row">
+                        <div id="wd-790e14bf" class="wp-block-wd-column wd-align">
+                            <h2 id="wd-ec0d6ae3" class="wp-block-wd-title title">Phone:</h2>
+
+                            <p id="wd-92d381d3" class="wp-block-wd-paragraph">+1 202-853-9050</p>
+                        </div>
+
+                        <div id="wd-5fbdbcae" class="wp-block-wd-column wd-align">
+                            <h2 id="wd-e1fbe778" class="wp-block-wd-title title">Email:</h2>
+
+                            <p id="wd-1d2447d8" class="wp-block-wd-paragraph">xtemos.studio@gmail.com</p>
+                        </div>
+
+                        <div id="wd-a0ee08aa" class="wp-block-wd-column wd-align">
+                            <h2 id="wd-2735733b" class="wp-block-wd-title title">Address:</h2>
+
+                            <p id="wd-c5459fdc" class="wp-block-wd-paragraph wd-custom-width">13 Ridge Square
+                                NW, Washington, DC 20016</p>
+                        </div>
+
+                        <div id="wd-bf44abcb" class="wp-block-wd-column wd-align">
+                            <h2 id="wd-645b3c2b" class="wp-block-wd-title title">Social Links:</h2>
+
+                            <div id="wd-c3a0b007"
+                                class=" wd-social-icons wd-style-default wd-size-default social-follow wd-shape-circle  wd-c3a0b007">
+                                <link rel="stylesheet" id="wd-social-icons-css"
+                                    href="merchandise/wp-content/themes/woodmart/css/parts/el-social-icons.css"
+                                    type="text/css" media="all" />
+
+                                <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/xtemos.studio"
+                                    target="_blank" class=" wd-social-icon social-facebook"
+                                    aria-label="Facebook social link">
+                                    <span class="wd-icon"></span>
+                                </a>
+
+                                <a rel="noopener noreferrer nofollow" href="https://x.com/xtemos_studio" target="_blank"
+                                    class=" wd-social-icon social-twitter" aria-label="X social link">
+                                    <span class="wd-icon"></span>
+                                </a>
+
+
+
+                                <a rel="noopener noreferrer nofollow" href="https://www.instagram.com/xtemos.studio/"
+                                    target="_blank" class=" wd-social-icon social-instagram"
+                                    aria-label="Instagram social link">
+                                    <span class="wd-icon"></span>
+                                </a>
+
+
+                                <a rel="noopener noreferrer nofollow"
+                                    href="https://www.youtube.com/channel/UCu3loFwqqOQ9z-YTcnplK8w" target="_blank"
+                                    class=" wd-social-icon social-youtube" aria-label="YouTube social link">
+                                    <span class="wd-icon"></span>
+                                </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wd-6152329d" class="wp-block-wd-container wd-dir-col wd-align wd-custom-width">
+                    <h2 id="wd-3237cd08" class="wp-block-wd-title title">Get In Touch</h2>
+
+                    <div id="wd-8b53b095" class="wd-cf7 wd-8b53b095">
+                        <div class="wpcf7 no-js" id="wpcf7-f863-p595-o1" lang="en-US" dir="ltr" data-wpcf7-id="863">
+                            <div class="screen-reader-response">
+                                <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                <ul></ul>
+                            </div>
+                            <form action="/merchandise/contact-us/#wpcf7-f863-p595-o1" method="post"
+                                class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate"
+                                data-status="init">
+
+                                <p class="wd-col"><span class="wpcf7-form-control-wrap" data-name="First"><input
+                                            size="40" maxlength="400"
+                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                            aria-required="true" aria-invalid="false" placeholder="First name"
+                                            value="" type="text" name="First" /></span>
+                                </p>
+                                <p class="wd-col"><span class="wpcf7-form-control-wrap" data-name="Last"><input
+                                            size="40" maxlength="400"
+                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                            aria-required="true" aria-invalid="false" placeholder="Last name"
+                                            value="" type="text" name="Last" /></span>
+                                </p>
+                                <p class="wd-col"><span class="wpcf7-form-control-wrap" data-name="Last"><input
+                                            size="40" maxlength="400"
+                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                            aria-required="true" aria-invalid="false" placeholder="Email" value=""
+                                            type="text" name="Last" /></span>
+                                </p>
+                                <p class="wd-col"><span class="wpcf7-form-control-wrap" data-name="your-message">
+                                        <textarea cols="40" rows="10" maxlength="2000" class="wpcf7-form-control wpcf7-textarea"
+                                            aria-invalid="false" placeholder="Your Message" name="your-message"></textarea>
+                                    </span>
+                                </p>
+                                <p class="wd-col"><input
+                                        class="wpcf7-form-control wpcf7-submit has-spinner btn btn-color-primary"
+                                        type="submit" value="Send Message" />
+                                </p>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
-    </div>
-</section>
-@endif
-
-<script>
-    window.NF_CSRF = @json(csrf_token());
-    window.NF_CONTACT_STORE_URL = @json(route('contact.store'));
-</script>
+    </main>
 @endsection

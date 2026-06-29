@@ -1,0 +1,632 @@
+/* ============================================================
+   GMS Custom Styles
+   ============================================================ */
+
+/* --- Design Tokens --- */
+:root {
+  --gms-red: #E63946;
+  --gms-red-dark: #C5303C;
+  --gms-ink: #1A1A1A;
+  --gms-title: #242424;
+  --gms-text: #555;
+  --gms-bg: #FFF;
+  --gms-bg-soft: #F7F7F7;
+  --gms-line: #ECECEC;
+  --gms-radius: 10px;
+  --gms-radius-sm: 6px;
+  --gms-shadow: 0 4px 16px rgba(0,0,0,.08);
+  --gms-ease: 200ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ==========================================================
+   1. DISCOUNT POPUP
+   ========================================================== */
+.gms-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.gms-popup-overlay.gms-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.gms-popup {
+  background: var(--gms-bg);
+  border-radius: var(--gms-radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+  max-width: 420px;
+  width: 90%;
+  padding: 40px 32px 32px;
+  text-align: center;
+  position: relative;
+  transform: translateY(20px) scale(.96);
+  transition: transform .3s ease;
+  font-family: 'Lexend Deca', sans-serif;
+}
+.gms-popup-overlay.gms-visible .gms-popup {
+  transform: translateY(0) scale(1);
+}
+.gms-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--gms-text);
+  line-height: 1;
+  padding: 4px;
+  transition: color var(--gms-ease);
+}
+.gms-popup-close:hover { color: var(--gms-ink); }
+.gms-popup-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+.gms-popup h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gms-title);
+  margin: 0 0 8px;
+}
+.gms-popup p {
+  font-size: 14px;
+  color: var(--gms-text);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+.gms-coupon-code {
+  display: inline-block;
+  background: var(--gms-bg-soft);
+  border: 2px dashed var(--gms-red);
+  border-radius: var(--gms-radius-sm);
+  padding: 10px 24px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gms-red);
+  margin-bottom: 20px;
+  user-select: all;
+}
+.gms-popup-cta {
+  display: inline-block;
+  background: var(--gms-red);
+  color: #FFF !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  border-radius: var(--gms-radius-sm);
+  text-decoration: none;
+  transition: background var(--gms-ease);
+  letter-spacing: .5px;
+}
+.gms-popup-cta:hover {
+  background: var(--gms-red-dark);
+}
+
+/* ==========================================================
+   2. DIRECT MESSAGE BUTTON
+   ========================================================== */
+.gms-dm-wrap {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  font-family: 'Lexend Deca', sans-serif;
+}
+.gms-dm-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gms-red);
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(230,57,70,.35);
+  transition: background var(--gms-ease), transform var(--gms-ease);
+  position: relative;
+  z-index: 2;
+}
+.gms-dm-toggle:hover {
+  background: var(--gms-red-dark);
+  transform: scale(1.07);
+}
+.gms-dm-toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: #FFF;
+  transition: transform .25s ease;
+}
+.gms-dm-wrap.gms-dm-open .gms-dm-toggle svg {
+  transform: rotate(45deg);
+}
+.gms-dm-links {
+  position: absolute;
+  bottom: 68px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+}
+.gms-dm-wrap.gms-dm-open .gms-dm-links {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.gms-dm-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gms-bg);
+  border-radius: 28px;
+  padding: 10px 18px 10px 12px;
+  box-shadow: var(--gms-shadow);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gms-ink);
+  white-space: nowrap;
+  transition: box-shadow var(--gms-ease), transform var(--gms-ease);
+}
+.gms-dm-links a:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+.gms-dm-links a svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================
+   3. COLOR COMBINATION FIX — white text on red buttons
+   ========================================================== */
+.btn-color-primary,
+.single_add_to_cart_button,
+.button.add_to_cart_button,
+.add-to-cart-loop,
+.checkout-button,
+.woocommerce .button.alt,
+.woocommerce .button.checkout,
+[class*="btn-color-primary"],
+.wp-block-wd-button.btn-color-primary,
+a.wp-block-wd-button.btn-color-primary {
+  --btn-accented-color: #FFF !important;
+  --btn-accented-color-hover: #FFF !important;
+  color: #FFF !important;
+  background-color: var(--gms-red) !important;
+  --btn-accented-bgcolor: var(--gms-red) !important;
+}
+.btn-color-primary:hover,
+.single_add_to_cart_button:hover,
+.button.add_to_cart_button:hover,
+.add-to-cart-loop:hover,
+.checkout-button:hover,
+.woocommerce .button.alt:hover,
+.woocommerce .button.checkout:hover,
+[class*="btn-color-primary"]:hover,
+a.wp-block-wd-button.btn-color-primary:hover {
+  background-color: var(--gms-red-dark) !important;
+  --btn-accented-bgcolor-hover: var(--gms-red-dark) !important;
+  color: #FFF !important;
+}
+
+/* Sale price color */
+.price ins .amount,
+.price > .amount {
+  color: var(--gms-red);
+}
+
+/* On-sale label */
+.onsale.product-label {
+  background-color: var(--gms-red) !important;
+  color: #FFF !important;
+}
+
+/* ==========================================================
+   4. PRICE FILTER (range slider)
+   ========================================================== */
+.gms-price-filter {
+  font-family: 'Lexend Deca', sans-serif;
+  padding: 20px 24px;
+  background: var(--gms-bg);
+  border: 1px solid var(--gms-line);
+  border-radius: var(--gms-radius);
+  margin-bottom: 24px;
+  box-shadow: var(--gms-shadow);
+}
+.gms-price-filter h4 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gms-title);
+}
+.gms-price-filter-sliders {
+  position: relative;
+  height: 6px;
+  margin: 20px 0 16px;
+}
+.gms-price-filter-track {
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: var(--gms-line);
+  border-radius: 3px;
+}
+.gms-price-filter-range {
+  position: absolute;
+  height: 6px;
+  background: var(--gms-red);
+  border-radius: 3px;
+}
+.gms-price-filter input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  pointer-events: none;
+  margin: 0;
+  top: 0;
+}
+.gms-price-filter input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gms-red);
+  border: 3px solid #FFF;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  cursor: pointer;
+  pointer-events: all;
+  position: relative;
+  z-index: 2;
+}
+.gms-price-filter input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gms-red);
+  border: 3px solid #FFF;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  cursor: pointer;
+  pointer-events: all;
+}
+.gms-price-filter-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gms-title);
+}
+
+/* ==========================================================
+   6 / 8d. SMOOTH HOVER TRANSITIONS
+   ========================================================== */
+a,
+button,
+.btn,
+.wd-action-btn,
+input[type="submit"] {
+  transition: color var(--gms-ease), background-color var(--gms-ease),
+              border-color var(--gms-ease), box-shadow var(--gms-ease),
+              transform var(--gms-ease), opacity var(--gms-ease);
+}
+
+/* Product card lift + shadow */
+.wd-product.product-grid-item .wd-product-wrapper {
+  transition: transform var(--gms-ease), box-shadow var(--gms-ease);
+}
+.wd-product.product-grid-item:hover .wd-product-wrapper {
+  transform: translateY(-4px);
+  box-shadow: var(--gms-shadow);
+}
+
+/* Image zoom on hover */
+.wd-product-thumb {
+  overflow: hidden;
+}
+.wd-product-thumb img {
+  transition: transform var(--gms-ease);
+}
+.wd-product.product-grid-item:hover .wd-product-thumb > a > img {
+  transform: scale(1.05);
+}
+
+/* Category card hover */
+.wd-cat .wd-cat-inner {
+  transition: transform var(--gms-ease), box-shadow var(--gms-ease);
+}
+.wd-cat:hover .wd-cat-inner {
+  transform: translateY(-4px);
+  box-shadow: var(--gms-shadow);
+}
+
+/* ==========================================================
+   7. SLIDER AUTOPLAY — CSS for fade transitions
+   ========================================================== */
+.wd-slider .wd-carousel-wrap {
+  display: block !important;
+  position: relative;
+}
+.wd-slider .wd-carousel-wrap .wd-slide {
+  opacity: 0;
+  transition: opacity .7s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+.wd-slider .wd-carousel-wrap .wd-slide.gms-slide-active {
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Slider prev/next buttons */
+.gms-slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  transition: background var(--gms-ease), transform var(--gms-ease);
+  font-size: 0;
+  padding: 0;
+}
+.gms-slider-nav:hover {
+  background: #FFF;
+  transform: translateY(-50%) scale(1.08);
+}
+.gms-slider-nav::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--gms-ink);
+  border-right: 2px solid var(--gms-ink);
+}
+.gms-slider-prev { left: 16px; }
+.gms-slider-prev::after { transform: rotate(-135deg); margin-left: 3px; }
+.gms-slider-next { right: 16px; }
+.gms-slider-next::after { transform: rotate(45deg); margin-right: 3px; }
+
+/* ==========================================================
+   8a. LOADING SKELETON
+   ========================================================== */
+.gms-skeleton {
+  position: relative;
+  overflow: hidden;
+}
+.gms-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: gms-shimmer 1.5s infinite ease-in-out;
+  z-index: 5;
+  border-radius: inherit;
+}
+.gms-skeleton.gms-loaded::after {
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+@keyframes gms-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ==========================================================
+   8b. EMPTY STATE
+   ========================================================== */
+.gms-empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  font-family: 'Lexend Deca', sans-serif;
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.gms-empty-state.gms-visible {
+  display: flex;
+}
+.gms-empty-state-icon {
+  font-size: 52px;
+  margin-bottom: 16px;
+  opacity: .7;
+}
+.gms-empty-state h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gms-title);
+  margin: 0 0 6px;
+}
+.gms-empty-state p {
+  font-size: 14px;
+  color: var(--gms-text);
+  margin: 0;
+}
+
+/* ==========================================================
+   5. NAVBAR DROPDOWN ARROWS — injected arrow styling
+   ========================================================== */
+
+/* Keep the link + injected arrow on one horizontal line */
+.wd-nav-header > li.menu-item-has-children {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.gms-dropdown-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-left: 2px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform var(--gms-ease);
+  border: none;
+  background: none;
+  padding: 0;
+}
+.gms-dropdown-arrow::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -3px;
+}
+.gms-dropdown-arrow.gms-arrow-open {
+  transform: rotate(180deg);
+}
+
+/* Desktop: force-show dropdown when arrow-toggled */
+.menu-item-has-children.gms-dropdown-open > .wd-dropdown-menu,
+.menu-item-has-children.gms-dropdown-open > .wd-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================
+   8e. SIDEBAR WIDGET PADDING
+   ========================================================== */
+
+/* Each sidebar widget gets card-like padding, border, and spacing */
+.wd-sidebar .wd-widget,
+.wd-sidebar .widget_block {
+  padding: 20px 20px 18px !important;
+  margin-bottom: 16px !important;
+  border: 1px solid var(--gms-line) !important;
+  border-radius: var(--gms-radius) !important;
+  background: var(--gms-bg) !important;
+}
+
+/* Widget titles spacing */
+.wd-sidebar .widget-title {
+  padding-bottom: 12px;
+  margin-bottom: 14px !important;
+  border-bottom: 1px solid var(--gms-line);
+  font-size: 15px !important;
+}
+
+/* List items inside filters */
+.wd-sidebar .wd-filter-wrapper ul li,
+.wd-sidebar .widget ul li {
+  padding: 4px 0;
+}
+
+/* Search input inside Franchise filter */
+.wd-sidebar .wd-filter-search input {
+  padding: 8px 12px !important;
+  border-radius: var(--gms-radius-sm) !important;
+}
+
+/* Custom price filter — remove double border since it already has card style */
+.gms-price-filter {
+  border-radius: var(--gms-radius) !important;
+  margin-bottom: 16px !important;
+}
+
+/* ==========================================================
+   9. DESIGN CONSISTENCY
+   ========================================================== */
+
+/* 9a. One font family */
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, li, span, input, textarea, select, button,
+.wd-entities-title,
+.price,
+.btn {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+/* 9b. Consistent button style */
+.btn,
+.button,
+input[type="submit"],
+.single_add_to_cart_button,
+.add-to-cart-loop,
+.checkout-button {
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+/* 9c. Border radius consistency */
+.wd-product-wrapper,
+.wd-cat-inner,
+.category-grid-item,
+input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+.widget,
+.wd-sidebar .widget_block {
+  border-radius: var(--gms-radius) !important;
+}
+.btn,
+.button,
+input[type="submit"],
+.single_add_to_cart_button,
+.add-to-cart-loop,
+.checkout-button,
+.gms-popup-cta,
+.onsale.product-label {
+  border-radius: var(--gms-radius-sm) !important;
+}
+
+/* 9d. Consistent card shadow */
+.wd-product-wrapper,
+.wd-cat-inner,
+.widget,
+.wd-sidebar .widget_block {
+  box-shadow: var(--gms-shadow);
+}
+
+/* Overflow hidden for image zoom containment */
+.wd-product-thumb,
+.wd-cat-thumb {
+  overflow: hidden;
+  border-radius: var(--gms-radius) var(--gms-radius) 0 0;
+}
