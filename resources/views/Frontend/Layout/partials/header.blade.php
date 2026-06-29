@@ -2421,4 +2421,5 @@
         }
     </style>
     <link rel="stylesheet" href="{{ asset('frontend/assets/gms-custom.css') }}">
+    @stack('styles')
 </head>
