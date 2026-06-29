@@ -16,10 +16,10 @@
 
                     <div class="wp-block-wd-column wd-03826530">
                         <link rel="stylesheet" id="wd-woo-categories-loop-css"
-                            href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-categories-loop.css') }}" type="text/css"
+                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop.css" type="text/css"
                             media="all" />
                         <link rel="stylesheet" id="wd-categories-loop-css"
-                            href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
+                            href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
                             type="text/css" media="all" />
                         <div class="products wd-carousel-container wd-cats-element  wd-37bdf58d wd-img-width wd-cats">
                             <div class="wd-carousel-inner">
@@ -37,9 +37,9 @@
                                                             aria-label="Figures">
 
                                                             <img decoding="async" width="150" height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}"
+                                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-figures-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-figures-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-figures.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures.jpg.webp 256w"
                                                                 sizes="(max-width: 150px) 100vw, 150px" /> </a>
                                                     </div>
                                                     <div class="wd-cat-content hover-mask">
@@ -65,9 +65,9 @@
                                                             aria-label="Hats">
 
                                                             <img decoding="async" width="150" height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp') }}"
+                                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp') }}"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-hats-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-hats-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-hats.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats.jpg.webp 256w"
                                                                 sizes="(max-width: 150px) 100vw, 150px" /> </a>
                                                     </div>
                                                     <div class="wd-cat-content hover-mask">
@@ -93,9 +93,9 @@
                                                             aria-label="Pins">
 
                                                             <img decoding="async" width="150" height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.webp') }}"
+                                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.web') }}"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-pins-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-pins-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-pins.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins.jpg.webp 256w"
                                                                 sizes="(max-width: 150px) 100vw, 150px" /> </a>
                                                     </div>
                                                     <div class="wd-cat-content hover-mask">
@@ -122,9 +122,9 @@
 
                                                             <img loading="lazy" decoding="async" width="150"
                                                                 height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp') }}"
+                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-plushes-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-plushes-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-plushes.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes.jpg.webp 256w"
                                                                 sizes="auto, (max-width: 150px) 100vw, 150px" />
                                                         </a>
                                                     </div>
@@ -152,9 +152,9 @@
 
                                                             <img loading="lazy" decoding="async" width="150"
                                                                 height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp') }}"
+                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-posters-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-posters-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-posters.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters.jpg.webp 256w"
                                                                 sizes="auto, (max-width: 150px) 100vw, 150px" />
                                                         </a>
                                                     </div>
@@ -182,9 +182,9 @@
 
                                                             <img loading="lazy" decoding="async" width="150"
                                                                 height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp') }}"
+                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-stickers-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-stickers-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-stickers.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers.jpg.webp 256w"
                                                                 sizes="auto, (max-width: 150px) 100vw, 150px" />
                                                         </a>
                                                     </div>
@@ -212,9 +212,9 @@
 
                                                             <img loading="lazy" decoding="async" width="150"
                                                                 height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp') }}"
+                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts.jpg.webp 256w"
                                                                 sizes="auto, (max-width: 150px) 100vw, 150px" />
                                                         </a>
                                                     </div>
@@ -242,9 +242,9 @@
 
                                                             <img loading="lazy" decoding="async" width="150"
                                                                 height="150"
-                                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp') }}"
+                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp"
                                                                 class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-100x100.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-130x130.jpg') }} 130w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt.jpg.webp') }} 256w"
+                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt.jpg.webp 256w"
                                                                 sizes="auto, (max-width: 150px) 100vw, 150px" />
                                                         </a>
                                                     </div>
@@ -288,7 +288,7 @@
                                     <div class="wd-slide-container">
                                         <div class="wp-block-wd-image wd-block-image wd-3f08b74b"><img loading="lazy"
                                                 decoding="async" width="96" height="64" class="wp-image-664"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-logo.png.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-logo.png.webp"
                                                 alt="" /></div>
 
                                         <h2 class="wp-block-wd-title title wd-df1534d5 wd-custom-width">Say
@@ -302,9 +302,9 @@
                                                 now</span></a>
                                     </div>
                                     <div class="wd-slide-bg wd-fill"><img decoding="async" width="1294" height="600"
-                                            src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }}"
+                                            src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp"
                                             class="wp-image-943" alt=""
-                                            srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }} 1294w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-300x139.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-1024x475.jpg.webp') }} 1024w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-768x356.jpg.webp') }} 768w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-290x134.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-100x46.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-600x278.jpg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-150x70.jpg.webp') }} 150w"
+                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-150x70.jpg.webp 150w"
                                             sizes="(max-width: 1294px) 100vw, 1294px" /></div>
                                 </div>
 
@@ -313,9 +313,9 @@
                                     <div class="wd-slide-container">
                                         <div class="wp-block-wd-image wd-block-image wd-1044f57f"><img loading="lazy"
                                                 decoding="async" width="216" height="24" class="wp-image-669"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp') }} 216w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-100x11.png.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-150x17.png.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp 216w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-100x11.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-150x17.png.webp 150w"
                                                 sizes="auto, (max-width: 216px) 100vw, 216px" /></div>
 
                                         <h2 class="wp-block-wd-title title wd-f8c4ce99 wd-custom-width">Embrace
@@ -330,9 +330,9 @@
                                     </div>
                                     <div class="wd-slide-bg wd-fill"><img loading="lazy" decoding="async" width="1294"
                                             height="600"
-                                            src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp') }}"
+                                            src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp"
                                             class="wp-image-944" alt=""
-                                            srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp') }} 1294w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-300x139.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-1024x475.jpg.webp') }} 1024w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-768x356.jpg.webp') }} 768w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-290x134.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-100x46.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-600x278.jpg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-150x70.jpg.webp') }} 150w"
+                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-150x70.jpg.webp 150w"
                                             sizes="auto, (max-width: 1294px) 100vw, 1294px" /></div>
                                 </div>
 
@@ -342,9 +342,9 @@
                                         <div class="wp-block-wd-image wd-block-image wd-4f999482 wd-custom-width">
                                             <img loading="lazy" decoding="async" width="163" height="80"
                                                 class="wp-image-674"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp') }} 163w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-100x49.png.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-150x74.png.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp 163w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-100x49.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-150x74.png.webp 150w"
                                                 sizes="auto, (max-width: 163px) 100vw, 163px" />
                                         </div>
 
@@ -360,9 +360,9 @@
                                     </div>
                                     <div class="wd-slide-bg wd-fill"><img loading="lazy" decoding="async" width="1294"
                                             height="600"
-                                            src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp') }}"
+                                            src="merchandise/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp"
                                             class="wp-image-940" alt=""
-                                            srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp') }} 1294w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-300x139.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-1024x475.jpg.webp') }} 1024w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-768x356.jpg.webp') }} 768w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-290x134.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-100x46.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-600x278.jpg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/Frame-1-150x70.jpg.webp') }} 150w"
+                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-150x70.jpg.webp 150w"
                                             sizes="auto, (max-width: 1294px) 100vw, 1294px" /></div>
                                 </div>
                             </div>
@@ -384,9 +384,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-691"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -394,9 +394,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-713"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -404,9 +404,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-693"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -414,9 +414,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-699"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -424,9 +424,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-702"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-300x169.jpg') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-290x163.jpg') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-100x56.jpg') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-150x85.jpg') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-300x169.jpg 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-290x163.jpg 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-100x56.jpg 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-150x85.jpg 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -434,9 +434,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-707"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-300x169.jpg') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-290x163.jpg') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-100x56.jpg') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-150x85.jpg') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-300x169.jpg 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-290x163.jpg 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-100x56.jpg 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-150x85.jpg 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -444,9 +444,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-714"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
 
@@ -454,9 +454,9 @@
                                     <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
                                                 class="wp-image-705"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp"
                                                 alt=""
-                                                srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp') }} 408w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-300x169.jpg.webp') }} 300w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-290x163.jpg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-100x56.jpg.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-150x85.jpg.webp') }} 150w"
+                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-150x85.jpg.webp 150w"
                                                 sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
                                 </div>
                             </div>
@@ -479,40 +479,40 @@
                         href="products.html"><span>View more</span>
                         <div class="wp-block-wd-icon wd-56c1d5ff"><img loading="lazy" decoding="async" width="16"
                                 height="17" class="wp-image-1013"
-                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg') }}"
+                                src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
                                 alt="" /></div>
                     </a>
                 </div>
 
                 <link rel="stylesheet" id="wd-product-loop-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-product-loop.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-product-loop-quick-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css') }}"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css"
                     type="text/css" media="all" />
                 <link rel="stylesheet" id="wd-woo-opt-stretch-cont-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-woo-opt-stretch-cont-predefined-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css') }}"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css"
                     type="text/css" media="all" />
                 <link rel="stylesheet" id="wd-bordered-product-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css') }}" type="text/css"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css" type="text/css"
                     media="all" />
                 <link rel="stylesheet" id="wd-bordered-product-predefined-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css') }}"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css"
                     type="text/css" media="all" />
                 <link rel="stylesheet" id="wd-woo-opt-title-limit-predefined-css"
-                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css') }}"
+                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css"
                     type="text/css" media="all" />
                 <div id="carousel-879"
                     class="wd-carousel-container  wd-e77fab64 wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins title-line-one">
@@ -531,30 +531,30 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="Astro Bot T-Shirt">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <link rel="stylesheet" id="wd-woo-mod-product-labels-default-css"
-                                                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css') }}"
+                                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
                                                     type="text/css" media="all" />
                                                 <link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-                                                    href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css') }}"
+                                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
                                                     type="text/css" media="all" />
                                                 <div class="product-labels labels-rounded-sm">
                                                     <span class="featured product-label wd-shape-round-sm">Hot</span>
                                                 </div>
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
                                                     <link rel="stylesheet" id="wd-mod-animations-transform-css"
-                                                        href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/mod-animations-transform.css') }}"
+                                                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css"
                                                         type="text/css" media="all" />
                                                     <div
                                                         class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
@@ -622,9 +622,9 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="Back to the Future T-Shirt">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <div class="product-labels labels-rounded-sm">
@@ -632,9 +632,9 @@
                                                 </div>
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
@@ -706,9 +706,9 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="Dune Sun Cap">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-290x330.jpeg') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-88x100.jpeg') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-600x686.jpeg') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-150x171.jpeg') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap.jpeg') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-290x330.jpeg 290w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-88x100.jpeg 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-600x686.jpeg 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap.jpeg 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <div class="product-labels labels-rounded-sm">
@@ -716,9 +716,9 @@
                                                 </div>
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
@@ -790,16 +790,16 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="God of War Logo Blue Cap">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-88x100.jpeg') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-88x100.jpeg 88w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
@@ -865,16 +865,16 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="Jinx Monkey Graffiti Sweatshirt">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
@@ -940,16 +940,16 @@
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
                                                     aria-label="Level UP Mushroom">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp') }}"
+                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp"
                                                         class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1.jpeg.webp') }} 700w"
+                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1.jpeg.webp 700w"
                                                         sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                 </div>
                                                 <div class="wd-buttons wd-pos-r-t">
@@ -1030,9 +1030,9 @@
                         <div class="wp-block-wd-column wd-dcd1f159">
                             <div class="wp-block-wd-image wd-block-image wd-7b572e8c"><img loading="lazy"
                                     decoding="async" width="203" height="35" class="wp-image-731"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp"
                                     alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp') }} 203w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-100x17.png.webp') }} 100w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-150x26.png.webp') }} 150w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp 203w, merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-100x17.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-150x26.png.webp 150w"
                                     sizes="auto, (max-width: 203px) 100vw, 203px" /></div>
 
                             <h2 class="wp-block-wd-title title wd-b0b336a8 wd-custom-width">Apparel &amp;
@@ -1045,7 +1045,7 @@
 
                         <div class="wp-block-wd-column wd-a01cba50">
                             <link rel="stylesheet" id="wd-woo-opt-products-bg-css"
-                                href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/woo-opt-products-bg.css') }}"
+                                href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-products-bg.css"
                                 type="text/css" media="all" />
                             <div id="carousel-836"
                                 class="wd-carousel-container  wd-6b34d997 wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm wd-products-with-bg title-line-one">
@@ -1065,18 +1065,18 @@
                                                                 tabindex="-1" aria-label="8 Bit Hearts Cap">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300" alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </a>
 
                                                             <div class="wd-product-img-hover hover-img">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300" alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </div>
                                                             <div class="wd-buttons wd-pos-r-t">
@@ -1149,10 +1149,10 @@
                                                                 tabindex="-1" aria-label="Alex Minecraft Figure">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </a>
 
@@ -1163,10 +1163,10 @@
                                                             <div class="wd-product-img-hover hover-img">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </div>
                                                             <div class="wd-buttons wd-pos-r-t">
@@ -1247,20 +1247,20 @@
                                                                 aria-label="Minecraft &#8211; 4 Pack Pins">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </a>
 
                                                             <div class="wd-product-img-hover hover-img">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </div>
                                                             <div class="wd-buttons wd-pos-r-t">
@@ -1334,10 +1334,10 @@
                                                                 tabindex="-1" aria-label="Pig Unisex T-Shirt">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-290x330.jpeg') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-290x330.jpeg 290w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </a>
 
@@ -1350,10 +1350,10 @@
                                                             <div class="wd-product-img-hover hover-img">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </div>
                                                             <div class="wd-buttons wd-pos-r-t">
@@ -1432,20 +1432,20 @@
                                                                 tabindex="-1" aria-label="Pixel Axolotl Cap">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </a>
 
                                                             <div class="wd-product-img-hover hover-img">
                                                                 <img loading="lazy" decoding="async" width="263"
                                                                     height="300"
-                                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp') }}"
+                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp"
                                                                     class="attachment-263x300 size-263x300"
                                                                     alt=""
-                                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1.jpeg.webp') }} 700w"
+                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1.jpeg.webp 700w"
                                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                                             </div>
                                                             <div class="wd-buttons wd-pos-r-t">
@@ -1571,16 +1571,16 @@
                                                 class="wd-product-img-link product-image-link" tabindex="-1"
                                                 aria-label="8 Bit Hearts Cap">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                             <div class="wd-product-img-hover hover-img">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                             </div>
                                             <div class="wd-buttons wd-pos-r-t">
@@ -1642,9 +1642,9 @@
                                                 class="wd-product-img-link product-image-link" tabindex="-1"
                                                 aria-label="Alex Minecraft Figure">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                             <div class="product-labels labels-rounded-sm">
@@ -1652,9 +1652,9 @@
                                             </div>
                                             <div class="wd-product-img-hover hover-img">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                             </div>
                                             <div class="wd-buttons wd-pos-r-t">
@@ -1722,16 +1722,16 @@
                                                 class="wd-product-img-link product-image-link" tabindex="-1"
                                                 aria-label="Astro Bot Plush">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                             <div class="wd-product-img-hover hover-img">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                             </div>
                                             <div class="wd-buttons wd-pos-r-t">
@@ -1793,9 +1793,9 @@
                                                 class="wd-product-img-link product-image-link" tabindex="-1"
                                                 aria-label="Astro Bot T-Shirt">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
 
                                             <div class="product-labels labels-rounded-sm">
@@ -1803,9 +1803,9 @@
                                             </div>
                                             <div class="wd-product-img-hover hover-img">
                                                 <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp') }}"
+                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp"
                                                     class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp') }} 263w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp') }} 290w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp') }} 88w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp') }} 600w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp') }} 700w"
+                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp 700w"
                                                     sizes="auto, (max-width: 263px) 100vw, 263px" />
                                             </div>
                                             <div class="wd-buttons wd-pos-r-t">
@@ -1877,7 +1877,7 @@
                                     <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-23aea4a6">
                                         <div class="wp-block-wd-icon wd-9d7b892a"><img loading="lazy" decoding="async"
                                                 width="32" height="32" class="wp-image-1016"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-rocket-1.svg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-rocket-1.svg"
                                                 alt="" /></div>
 
                                         <div class="wp-block-wd-container wd-dir-col wd-d4863966">
@@ -1893,7 +1893,7 @@
                                     <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-537a081e">
                                         <div class="wp-block-wd-icon wd-0da377f0"><img loading="lazy" decoding="async"
                                                 width="32" height="32" class="wp-image-1017"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-star-1.svg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-star-1.svg"
                                                 alt="" /></div>
 
                                         <div class="wp-block-wd-container wd-dir-col wd-3edf8750">
@@ -1909,7 +1909,7 @@
                                     <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-39af9d48">
                                         <div class="wp-block-wd-icon wd-5c1d0fd4"><img loading="lazy" decoding="async"
                                                 width="32" height="32" class="wp-image-1018"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-question-1.svg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-question-1.svg"
                                                 alt="" /></div>
 
                                         <div class="wp-block-wd-container wd-dir-col wd-eb316032">
@@ -1925,7 +1925,7 @@
                                     <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-245259dd">
                                         <div class="wp-block-wd-icon wd-afd3b010"><img loading="lazy" decoding="async"
                                                 width="32" height="32" class="wp-image-1019"
-                                                src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-sale-1.svg') }}"
+                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-sale-1.svg"
                                                 alt="" /></div>
 
                                         <div class="wp-block-wd-container wd-dir-col wd-5809a874">
@@ -1953,7 +1953,7 @@
                 <div class="wp-block-wd-container wd-dir-col wd-align wd-066a5243">
                     <div class="wp-block-wd-image wd-block-image wd-9e91bcf0"><img loading="lazy" decoding="async"
                             width="48" height="48" class="wp-image-1021"
-                            src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-mail-1.svg') }}" alt="" /></div>
+                            src="merchandise/wp-content/uploads/sites/31/2025/11/gms-mail-1.svg" alt="" /></div>
 
                     <h2 class="wp-block-wd-title title wd-29c12066">Subscribe and get 10% off your first
                         purchase</h2>
@@ -1983,7 +1983,7 @@
                         href="https://www.instagram.com/xtemos.studio/"><span>@xtemos.studio</span></a>
 
                     <link rel="stylesheet" id="wd-instagram-css"
-                        href="{{ asset('frontend/wp-content/themes/woodmart/css/parts/el-instagram.css') }}" type="text/css"
+                        href="merchandise/wp-content/themes/woodmart/css/parts/el-instagram.css" type="text/css"
                         media="all" />
                     <div class="wd-insta  wd-0c7ef44c data-source-images">
 
@@ -1995,9 +1995,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-1.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-1.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-1.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-1-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-1-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-1.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-1-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-1-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>7337</span></span>
@@ -2010,9 +2010,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-2.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-2.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-2.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-2-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-2-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-2.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-2-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-2-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>6926</span></span>
@@ -2025,9 +2025,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-3.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-3.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-3.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-3-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-3-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-3.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-3-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-3-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>9605</span></span>
@@ -2040,9 +2040,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-4.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-4.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-4.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-4-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-4-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-4.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-4-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-4-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>5380</span></span>
@@ -2055,9 +2055,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-5.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-5.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-5.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-5-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-5-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-5.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-5-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-5-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>7061</span></span>
@@ -2070,9 +2070,9 @@
                                     aria-label="Instagram picture"></a>
 
                                 <img loading="lazy" decoding="async" width="256" height="256"
-                                    src="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-6.jpg.webp') }}"
+                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-6.jpg.webp"
                                     class="attachment-medium size-medium" alt=""
-                                    srcset="{{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-6.jpg.webp') }} 256w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-6-150x150.jpg.webp') }} 150w, {{ asset('frontend/wp-content/uploads/sites/31/2025/11/gms-inst-6-100x100.jpg.webp') }} 100w"
+                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-6.jpg.webp 256w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-6-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-inst-6-100x100.jpg.webp 100w"
                                     sizes="auto, (max-width: 256px) 100vw, 256px" />
                                 <div class="wd-insta-meta wd-grid-g">
                                     <span class="wd-insta-likes instagram-likes"><span>5848</span></span>
