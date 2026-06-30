@@ -430,7 +430,7 @@
                                     <link rel="stylesheet" id="wd-header-cart-css"
                                         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/header-el-cart.css') }}"
                                         type="text/css" media="all" /> <a
-                                        href="cart.html" title="Shopping cart">
+                                        href="{{route('cart')}}" title="Shopping cart">
                                         <span class="wd-tools-inner">
 
                                             <span class="wd-tools-icon wd-icon-alt">
