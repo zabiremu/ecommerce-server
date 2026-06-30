@@ -81,88 +81,28 @@
                             data-sliding_speed="700" style="--wd-col-lg:1;--wd-col-md:1;--wd-col-sm:1"
                             data-autoplay="yes" data-speed="20000">
                             <div class="wd-carousel-wrap">
+                                @foreach($sliders as $slider)
                                 <div
-                                    class="wp-block-wd-slider-item wd-slide wd-carousel-item color-scheme-light wd-853a328b">
+                                    class="wp-block-wd-slider-item wd-slide wd-carousel-item {{ $loop->even ? 'color-scheme-dark' : 'color-scheme-light' }}">
                                     <div class="wd-slide-container">
-                                        <div class="wp-block-wd-image wd-block-image wd-3f08b74b"><img loading="lazy"
-                                                decoding="async" width="96" height="64" class="wp-image-664"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-logo.png.webp"
-                                                alt="" /></div>
+                                        <h2 class="wp-block-wd-title title wd-custom-width">{{ $slider->title }}</h2>
 
-                                        <h2 class="wp-block-wd-title title wd-df1534d5 wd-custom-width">Say
-                                            “Hello” to Adventure</h2>
+                                        @if($slider->subtitle)
+                                        <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->subtitle }}</p>
+                                        @endif
 
-                                        <p class="wp-block-wd-paragraph wd-hide-sm wd-fe4d192b">Perfect for fans
-                                            of the iconic platformer.</p>
+                                        @if($slider->description)
+                                        <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->description }}</p>
+                                        @endif
 
-                                        <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round wd-1470b733"
-                                            href="product_details.html"><span>Shop
+                                        <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round"
+                                            href="{{ route('all-products') }}"><span>Shop
                                                 now</span></a>
                                     </div>
                                     <div class="wd-slide-bg wd-fill"><img decoding="async" width="1294" height="600"
-                                            src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp"
-                                            class="wp-image-943" alt=""
-                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-150x70.jpg.webp 150w"
-                                            sizes="(max-width: 1294px) 100vw, 1294px" /></div>
+                                            src="{{ Storage::url($slider->image) }}" alt="{{ $slider->title }}" /></div>
                                 </div>
-
-                                <div
-                                    class="wp-block-wd-slider-item wd-slide wd-carousel-item color-scheme-dark wd-9a416bd4">
-                                    <div class="wd-slide-container">
-                                        <div class="wp-block-wd-image wd-block-image wd-1044f57f"><img loading="lazy"
-                                                decoding="async" width="216" height="24" class="wp-image-669"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo.png.webp 216w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-100x11.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-logo-150x17.png.webp 150w"
-                                                sizes="auto, (max-width: 216px) 100vw, 216px" /></div>
-
-                                        <h2 class="wp-block-wd-title title wd-f8c4ce99 wd-custom-width">Embrace
-                                            the Epic World of Arrakis</h2>
-
-                                        <p class="wp-block-wd-paragraph wd-hide-sm wd-d76f4b8d">Featuring
-                                            minimalist desert tones and iconic symbols from the saga</p>
-
-                                        <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round wd-5ac838f6"
-                                            href="product_details.html"><span>Shop
-                                                now</span></a>
-                                    </div>
-                                    <div class="wd-slide-bg wd-fill"><img loading="lazy" decoding="async" width="1294"
-                                            height="600"
-                                            src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp"
-                                            class="wp-image-944" alt=""
-                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-2-opt-150x70.jpg.webp 150w"
-                                            sizes="auto, (max-width: 1294px) 100vw, 1294px" /></div>
-                                </div>
-
-                                <div
-                                    class="wp-block-wd-slider-item wd-slide wd-carousel-item color-scheme-dark wd-93931277">
-                                    <div class="wd-slide-container">
-                                        <div class="wp-block-wd-image wd-block-image wd-4f999482 wd-custom-width">
-                                            <img loading="lazy" decoding="async" width="163" height="80"
-                                                class="wp-image-674"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo.png.webp 163w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-100x49.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-3-logo-150x74.png.webp 150w"
-                                                sizes="auto, (max-width: 163px) 100vw, 163px" />
-                                        </div>
-
-                                        <h2 class="wp-block-wd-title title wd-2736457d wd-custom-width">Geralt
-                                            of Rivia Figure</h2>
-
-                                        <p class="wp-block-wd-paragraph wd-hide-sm wd-d7e717ac">A must-have
-                                            collectible for any Witcher fan!</p>
-
-                                        <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round wd-f1c43cb0"
-                                            href="product_details.html"><span>Shop
-                                                now</span></a>
-                                    </div>
-                                    <div class="wd-slide-bg wd-fill"><img loading="lazy" decoding="async" width="1294"
-                                            height="600"
-                                            src="merchandise/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp"
-                                            class="wp-image-940" alt=""
-                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/Frame-1.jpg.webp 1294w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-300x139.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-1024x475.jpg.webp 1024w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-768x356.jpg.webp 768w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-290x134.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-100x46.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-600x278.jpg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/Frame-1-150x70.jpg.webp 150w"
-                                            sizes="auto, (max-width: 1294px) 100vw, 1294px" /></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

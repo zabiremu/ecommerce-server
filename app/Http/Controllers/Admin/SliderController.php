@@ -11,7 +11,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::orderBy('sort_order')->orderByDesc('id')->get();
+        $sliders = Slider::orderByDesc('id')->get();
         return view('Admin.slider.index', compact('sliders'));
     }
 
@@ -75,15 +75,10 @@ class SliderController extends Controller
     protected function validateData(Request $request, bool $imageOptional = false): array
     {
         return $request->validate([
-            'badge'       => 'nullable|string|max:100',
-            'badge_icon'  => 'nullable|string|max:100',
             'title'       => 'required|string|max:255',
             'subtitle'    => 'nullable|string|max:255',
             'description' => 'nullable|string|max:1000',
-            'button_text' => 'nullable|string|max:100',
-            'button_link' => 'nullable|string|max:500',
             'image'       => ($imageOptional ? 'nullable' : 'required') . '|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'sort_order'  => 'nullable|integer|min:0',
         ]);
     }
 }

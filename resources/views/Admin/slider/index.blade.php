@@ -29,9 +29,6 @@
         <tr>
             <th style="width: 140px;">Image</th>
             <th>Title</th>
-            <th>Badge</th>
-            <th>Button</th>
-            <th class="text-center" style="width: 90px;">Order</th>
             <th class="text-center" style="width: 100px;">Status</th>
         </tr>
     </thead>
@@ -58,26 +55,6 @@
                         </span>
                     </div>
                 </td>
-                <td class="text-[#50575e]">
-                    @if ($s->badge)
-                        @if ($s->badge_icon)
-                            @php $bi = str_contains($s->badge_icon, ' ') ? $s->badge_icon : 'fas ' . $s->badge_icon; @endphp
-                            <i class="{{ $bi }} mr-1"></i>
-                        @endif
-                        {{ $s->badge }}
-                    @else
-                        —
-                    @endif
-                </td>
-                <td class="text-[#50575e]">
-                    @if ($s->button_text)
-                        <div>{{ $s->button_text }}</div>
-                        <div class="text-[11.5px] text-[#787c82] truncate" style="max-width:220px">{{ $s->button_link }}</div>
-                    @else
-                        —
-                    @endif
-                </td>
-                <td class="text-center">{{ $s->sort_order }}</td>
                 <td class="text-center">
                     <form method="POST" action="{{ route('admin.sliders.toggle-status', $s) }}" style="display:inline">
                         @csrf @method('PATCH')
@@ -89,7 +66,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center text-[#646970] py-8">
+                <td colspan="3" class="text-center text-[#646970] py-8">
                     No sliders yet.
                     <a href="{{ route('admin.sliders.create') }}" class="text-[#2271b1] hover:underline">Create your first slider</a>.
                 </td>

@@ -29,28 +29,6 @@
                     <label>Description</label>
                     <textarea name="description" rows="3" maxlength="1000" class="wp-input">{{ old('description', $s->description ?? '') }}</textarea>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="wp-field">
-                        <label>Badge Text</label>
-                        <input type="text" name="badge" value="{{ old('badge', $s->badge ?? '') }}" maxlength="100" class="wp-input" placeholder="e.g. Hot Deal">
-                    </div>
-                    <div class="wp-field">
-                        <label>Badge Icon</label>
-                        @include('Admin._partials.icon-picker', ['name' => 'badge_icon', 'id' => 'sliderBadgeIcon', 'value' => old('badge_icon', $s->badge_icon ?? '')])
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="wp-field">
-                        <label>Button Text</label>
-                        <input type="text" name="button_text" value="{{ old('button_text', $s->button_text ?? '') }}" maxlength="100" class="wp-input" placeholder="e.g. Shop Now">
-                    </div>
-                    <div class="wp-field">
-                        <label>Button Link</label>
-                        <input type="text" name="button_link" value="{{ old('button_link', $s->button_link ?? '') }}" maxlength="500" class="wp-input" placeholder="e.g. /all-products">
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -77,12 +55,6 @@
         <div class="wp-panel">
             <div class="wp-panel-h">Display</div>
             <div class="wp-panel-body">
-                <div class="wp-field">
-                    <label>Sort Order</label>
-                    <input type="number" name="sort_order" min="0" value="{{ old('sort_order', $s->sort_order ?? 0) }}" class="wp-input">
-                    <p class="wp-help">Lower values appear first.</p>
-                </div>
-
                 <label class="flex items-center gap-2 cursor-pointer mt-2">
                     <input type="hidden" name="status" value="0">
                     <input type="checkbox" name="status" value="1" {{ old('status', $s->status ?? true) ? 'checked' : '' }}>

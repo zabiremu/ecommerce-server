@@ -28,7 +28,7 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::active()->orderBy('sort_order')->orderByDesc('id')->get();
+        $sliders = Slider::active()->orderByDesc('id')->get();
         $trustItems = TrustItem::active()->orderBy('sort_order')->orderByDesc('id')->get();
         $homeCategories = Category::where('status', true)
             ->where('home_visible', true)

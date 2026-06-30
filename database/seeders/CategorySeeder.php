@@ -14,6 +14,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Gadget & Electronics',
                 'icon' => 'fa-microchip',
+                'image' => 'categories/gadget-electronics-NoDkype9rWVUe2tumDAl.jpg',
                 'meta_title' => 'Gadget & Electronics — NF Shop 24',
                 'meta_description' => 'Smartphones, accessories, smart watches, headphones and the latest gadgets at unbeatable prices.',
                 'children' => [
@@ -27,6 +28,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Fashion & Lifestyle',
                 'icon' => 'fa-tshirt',
+                'image' => 'categories/fashion-lifestyle-lKtBMst7lkcfwjPcHLdL.jpg',
                 'meta_title' => 'Fashion & Lifestyle — NF Shop 24',
                 'meta_description' => 'Trendy clothing, footwear, bags and lifestyle accessories for men, women and kids.',
                 'children' => [
@@ -40,6 +42,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Health & Beauty',
                 'icon' => 'fa-spa',
+                'image' => 'categories/health-beauty-GOtDpQb0nAs08sHEvQWG.jpg',
                 'meta_title' => 'Health & Beauty — NF Shop 24',
                 'meta_description' => 'Skin care, hair care, makeup, personal care, and wellness products for everyday beauty and health.',
                 'children' => [
@@ -53,6 +56,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Toys, Kids & Baby',
                 'icon' => 'fa-baby',
+                'image' => 'categories/toys-kids-baby-haLTJDRpcvmt7hY6VUow.jpg',
                 'meta_title' => 'Toys, Kids & Baby — NF Shop 24',
                 'meta_description' => 'Educational toys, baby essentials, kids clothing, diapers and feeding products.',
                 'children' => [
@@ -65,6 +69,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Kitchen',
                 'icon' => 'fa-utensils',
+                'image' => 'categories/kitchen-MAFJmRTySWZQsvFZFmIS.jpg',
                 'meta_title' => 'Kitchen — NF Shop 24',
                 'meta_description' => 'Cookware, storage containers, kitchen tools and appliances to make cooking easier and faster.',
                 'children' => [
@@ -78,6 +83,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Accessories',
                 'icon' => 'fa-glasses',
+                'image' => 'categories/accessories-TxKwAz9qU6UpstiCMt8l.jpg',
                 'meta_title' => 'Accessories — NF Shop 24',
                 'meta_description' => 'Sunglasses, jewelry, belts and everyday accessories to complete your look.',
                 'children' => [
@@ -90,6 +96,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Attar & Fragrance',
                 'icon' => 'fa-leaf',
+                'image' => 'categories/attar-fragrance-7pbJHiWmlPIBconlmyFX.jpg',
                 'meta_title' => 'Attar & Fragrance — NF Shop 24',
                 'meta_description' => 'Premium attars, perfumes, body sprays and long-lasting fragrances.',
                 'children' => [
@@ -101,6 +108,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Cleaning Supplies',
                 'icon' => 'fa-broom',
+                'image' => 'categories/cleaning-supplies-WHf4fJgnWyGvDC2CYGSG.jpg',
                 'meta_title' => 'Cleaning Supplies — NF Shop 24',
                 'meta_description' => 'Mops, brushes, detergents and cleaning tools for a spotless home.',
                 'children' => [
@@ -112,6 +120,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Sports & Fitness',
                 'icon' => 'fa-running',
+                'image' => 'categories/sports-fitness-qoymvmVVBVSCsfGd3ZD4.jpg',
                 'meta_title' => 'Sports & Fitness — NF Shop 24',
                 'meta_description' => 'Fitness equipment, sportswear, yoga mats and outdoor gear for an active lifestyle.',
                 'children' => [
@@ -123,6 +132,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Home & Living',
                 'icon' => 'fa-home',
+                'image' => 'categories/home-living-fPDVP6yvgaflhcjlQXcT.jpg',
                 'meta_title' => 'Home & Living — NF Shop 24',
                 'meta_description' => 'Home decor, bedding, storage and everything to upgrade your living space.',
                 'children' => [
@@ -135,6 +145,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Books & Stationery',
                 'icon' => 'fa-book',
+                'image' => 'categories/books-stationery-LZaiujEI3H6sWUghne52.jpg',
                 'meta_title' => 'Books & Stationery — NF Shop 24',
                 'meta_description' => 'Best-selling books, notebooks, pens and office supplies.',
                 'children' => [
@@ -146,6 +157,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Automotive',
                 'icon' => 'fa-car',
+                'image' => 'categories/automotive-tjCqYBnja1Mf1sw4Ejqh.jpg',
                 'meta_title' => 'Automotive — NF Shop 24',
                 'meta_description' => 'Car accessories, motorcycle parts, helmets and bike gear.',
                 'children' => [
@@ -162,6 +174,7 @@ class CategorySeeder extends Seeder
                 [
                     'name' => $cat['name'],
                     'icon' => $cat['icon'],
+                    'image' => $cat['image'] ?? null,
                     'meta_title' => $cat['meta_title'],
                     'meta_description' => $cat['meta_description'],
                     'parent_id' => null,

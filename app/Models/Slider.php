@@ -7,15 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     protected $fillable = [
-        'badge',
-        'badge_icon',
         'title',
         'subtitle',
         'description',
-        'button_text',
-        'button_link',
         'image',
-        'sort_order',
         'status',
     ];
 
@@ -23,7 +18,6 @@ class Slider extends Model
     {
         return [
             'status' => 'boolean',
-            'sort_order' => 'integer',
         ];
     }
 
