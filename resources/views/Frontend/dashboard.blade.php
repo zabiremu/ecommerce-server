@@ -1,5 +1,5 @@
 @extends('Frontend.Layout.app')
-@oush("styless")
+@push("styles")
 
 <link rel="preload" as="font"
         href="merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2"
@@ -1969,7 +1969,7 @@
                                         My account </h1>
 
                                     <nav class="wd-breadcrumbs"><a
-                                            href="index.html">Home</a><span
+                                            href="{{ route('home') }}">Home</a><span
                                             class="wd-delimiter">/</span><span class="wd-last">My account</span></nav>
                                 </div>
                             </div>
@@ -1984,7 +1984,7 @@
                                             class="wd-nav-my-acc wd-nav wd-nav-vertical wd-design-simple wd-gap-m wd-icon-left">
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard is-active wd-my-acc-dashboard wd-active">
-                                                <a href="account.html"
+                                                <a href="{{ route('dashboard') }}"
                                                     aria-current="page">
                                                     <span class="wd-nav-icon"></span>
                                                     <span class="nav-link-text">
@@ -1993,41 +1993,15 @@
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders wd-my-acc-orders">
-                                                <a href="account.html">
+                                                <a href="{{ route('dashboard') }}#orders">
                                                     <span class="wd-nav-icon"></span>
                                                     <span class="nav-link-text">
                                                         Orders </span>
                                                 </a>
                                             </li>
                                             <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads wd-my-acc-downloads">
-                                                <a href="account.html">
-                                                    <span class="wd-nav-icon"></span>
-                                                    <span class="nav-link-text">
-                                                        Downloads </span>
-                                                </a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address wd-my-acc-edit-address">
-                                                <a
-                                                    href="account.html">
-                                                    <span class="wd-nav-icon"></span>
-                                                    <span class="nav-link-text">
-                                                        Addresses </span>
-                                                </a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account wd-my-acc-edit-account">
-                                                <a
-                                                    href="account.html">
-                                                    <span class="wd-nav-icon"></span>
-                                                    <span class="nav-link-text">
-                                                        Account details </span>
-                                                </a>
-                                            </li>
-                                            <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist wd-my-acc-wishlist">
-                                                <a href="wishtlist.html">
+                                                <a href="{{ route('wishlist') }}">
                                                     <span class="wd-nav-icon"></span>
                                                     <span class="nav-link-text">
                                                         Wishlist </span>
@@ -2035,12 +2009,12 @@
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout wd-my-acc-customer-logout">
-                                                <a
-                                                    href="#">
+                                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                     <span class="wd-nav-icon"></span>
                                                     <span class="nav-link-text">
                                                         Logout </span>
                                                 </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
                                             </li>
                                         </ul>
                                     </nav>
@@ -2053,18 +2027,58 @@
                                     class="wd-el-my-acc-content wd-9020d6b2 woocommerce-MyAccount-content">
                                     <div class="woocommerce-notices-wrapper"></div>
                                     <p>
-                                        Hello <strong></strong> (not <strong></strong>? <a
-                                            href="#">Log
+                                        Hello <strong>{{ $authUser->name ?? 'Guest' }}</strong> (not <strong>{{ $authUser->name ?? '' }}</strong>? <a
+                                            href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log
                                             out</a>)</p>
 
                                     <p>
                                         From your account dashboard you can view your <a
-                                            href="account.html">recent
+                                            href="{{ route('dashboard') }}#orders">recent
                                             orders</a>, manage your <a
-                                            href="account.html">shipping
+                                            href="{{ route('dashboard') }}">shipping
                                             and billing addresses</a>, and <a
-                                            href="account.html">edit
+                                            href="{{ route('dashboard') }}">edit
                                             your password and account details</a>.</p>
+
+                                    {{-- Dashboard Stats --}}
+                                    <div id="dashboard-stats" style="margin-top: 20px;">
+                                        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+                                            <div style="flex:1; min-width: 200px; padding: 20px; background: #f5f5f5; border-radius: 12px; text-align: center;">
+                                                <div style="font-size: 28px; font-weight: 600; color: var(--wd-primary-color);" id="stat-total-orders">0</div>
+                                                <div style="color: #767676; font-size: 14px; margin-top: 5px;">Total Orders</div>
+                                            </div>
+                                            <div style="flex:1; min-width: 200px; padding: 20px; background: #f5f5f5; border-radius: 12px; text-align: center;">
+                                                <div style="font-size: 28px; font-weight: 600; color: var(--wd-primary-color);" id="stat-total-spent">TK 0</div>
+                                                <div style="color: #767676; font-size: 14px; margin-top: 5px;">Total Spent</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- Recent Orders --}}
+                                    <div id="orders" style="margin-top: 20px;">
+                                        <h3 style="margin-bottom: 15px;">Recent Orders</h3>
+                                        <div id="orders-loading" style="text-align:center; padding: 30px; color: #767676;">
+                                            Loading orders...
+                                        </div>
+                                        <div id="orders-empty" style="display:none; text-align:center; padding: 30px; color: #767676;">
+                                            <p>No orders yet.</p>
+                                            <a href="{{ route('all-products') }}" class="button btn btn-accent" >Browse Products</a>
+                                        </div>
+                                        <div id="orders-table-wrap" style="display:none;">
+                                            <table class="woocommerce-orders-table shop_table shop_table_responsive" style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Total</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="orders-tbody"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -2074,4 +2088,62 @@
             </main>
 
         </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const email = @json($authUser->email ?? '');
+    const phone = @json($authUser->phone ?? '');
+    if (!email && !phone) {
+        document.getElementById('orders-loading').style.display = 'none';
+        document.getElementById('orders-empty').style.display = 'block';
+        return;
+    }
+
+    const params = new URLSearchParams();
+    if (email) params.set('email', email);
+    if (phone) params.set('phone', phone);
+
+    fetch("{{ route('dashboard.data') }}?" + params.toString(), {
+        headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('orders-loading').style.display = 'none';
+
+        // Stats
+        document.getElementById('stat-total-orders').textContent = data.stats?.total_orders ?? 0;
+        document.getElementById('stat-total-spent').textContent = 'TK ' + (data.stats?.total_spent ?? 0).toLocaleString();
+
+        // Orders
+        const orders = data.orders || [];
+        if (orders.length === 0) {
+            document.getElementById('orders-empty').style.display = 'block';
+            return;
+        }
+
+        document.getElementById('orders-table-wrap').style.display = 'block';
+        const tbody = document.getElementById('orders-tbody');
+        const statusColors = {
+            pending: '#E0B252', confirmed: '#3B82F6', processing: '#8B5CF6',
+            shipped: '#06B6D4', delivered: '#459647', cancelled: '#EF4444', returned: '#6B7280'
+        };
+
+        orders.forEach(o => {
+            const color = statusColors[o.status] || '#767676';
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td data-title="Order"><strong>#${o.order_no}</strong></td>
+                <td data-title="Date">${o.date}</td>
+                <td data-title="Status"><span style="color:${color}; font-weight:600; text-transform:capitalize;">${o.status}</span></td>
+                <td data-title="Total"><span class="amount">TK ${o.total.toLocaleString()}</span> (${o.items.length} item${o.items.length > 1 ? 's' : ''})</td>
+                <td data-title="Actions"><a href="{{ route('track-order') }}?id=${o.order_no}" class="button btn btn-accent" style="padding:5px 14px; min-height:36px; font-size:12px;">View</a></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    })
+    .catch(() => {
+        document.getElementById('orders-loading').textContent = 'Failed to load data.';
+    });
+});
+</script>
 @endsection

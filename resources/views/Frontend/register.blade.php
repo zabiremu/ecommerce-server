@@ -2361,8 +2361,8 @@
                                         My account </h1>
 
                                     <nav class="wd-breadcrumbs"><a
-                                            href="index.html">Home</a><span
-                                            class="wd-delimiter">/</span><span class="wd-last">My account</span></nav>
+                                            href="{{ route('home') }}">Home</a><span
+                                            class="wd-delimiter">/</span><span class="wd-last">Register</span></nav>
                                 </div>
                             </div>
                         </div>
@@ -2383,17 +2383,18 @@
                                     type="text/css" media="all" />
                                 <div id="wd-455d40c3" class="wd-el-my-account-login wd-455d40c3">
                                     <form method="post" class="login woocommerce-form woocommerce-form-login"
-                                        action="account.html?action=login"
+                                        action="{{ route('login.submit') }}"
                                         id="customer_login">
+                                        @csrf
 
                                         <p
                                             class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-username">
-                                            <label for="username">Username or email address&nbsp;<span class="required"
+                                            <label for="email">Email address&nbsp;<span class="required"
                                                     aria-hidden="true">*</span><span
                                                     class="screen-reader-text">Required</span></label>
-                                            <input type="text"
+                                            <input type="email"
                                                 class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="username" id="username" autocomplete="username" value="" />
+                                                name="email" id="email" autocomplete="email" value="{{ old('email') }}" />
                                         </p>
                                         <p
                                             class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-password">
@@ -2406,21 +2407,18 @@
                                         </p>
 
                                         <p class="form-row form-row-btn">
-                                            <input type="hidden" id="woocommerce-login-nonce"
-                                                name="woocommerce-login-nonce" value="11905680bf" /><input type="hidden"
-                                                name="_wp_http_referer" value="/merchandise/my-account/" /> <button
-                                                type="submit"
+                                            <button type="submit"
                                                 class="button btn btn-accent woocommerce-button woocommerce-form-login__submit"
                                                 name="login" value="Log in">Log in</button>
                                         </p>
 
                                         <p class="login-form-footer">
-                                            <a href="reset_password.html"
+                                            <a href="{{ route('forgot-password') }}"
                                                 class="woocommerce-LostPassword lost_password">Lost your password?</a>
                                             <label
                                                 class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
                                                 <input class="woocommerce-form__input woocommerce-form__input-checkbox"
-                                                    name="rememberme" type="checkbox" value="forever"
+                                                    name="remember" type="checkbox" value="1"
                                                     title="Remember me" aria-label="Remember me" /> <span>Remember
                                                     me</span>
                                             </label>
@@ -2438,52 +2436,60 @@
 
                                 <h2 id="wd-88f5ed5a" class="wp-block-wd-title title">Register</h2>
 
+                                @if ($errors->any())
+                                <div class="woocommerce-notices-wrapper">
+                                    <ul class="woocommerce-error" role="alert">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+
                                 <div id="wd-fc2645af" class="wd-el-my-account-register wd-fc2645af">
                                     <form method="post"
-                                        action="account.html?action=register"
+                                        action="{{ route('register.submit') }}"
                                         class="woocommerce-form woocommerce-form-register register">
+                                        @csrf
 
-                                        <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_username">Username&nbsp;<span class="required"
-                                                    aria-hidden="true">*</span><span
-                                                    class="screen-reader-text">Required</span></label>
-                                            <input type="text"
-                                                class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="username" id="reg_username" autocomplete="username" value="" />
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_first_name">First Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="first_name" id="reg_first_name" value="{{ old('first_name') }}" required />
                                         </p>
 
-                                        <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_email">Email address&nbsp;<span class="required"
-                                                    aria-hidden="true">*</span><span
-                                                    class="screen-reader-text">Required</span></label>
-                                            <input type="email"
-                                                class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="email" id="reg_email" autocomplete="email" value="" />
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_last_name">Last Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="last_name" id="reg_last_name" value="{{ old('last_name') }}" required />
                                         </p>
 
-                                        <p
-                                            class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_password">Password&nbsp;<span class="required"
-                                                    aria-hidden="true">*</span><span
-                                                    class="screen-reader-text">Required</span></label>
-                                            <input type="password"
-                                                class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="password" id="reg_password" autocomplete="new-password" />
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_email">Email address&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="email" id="reg_email" autocomplete="email" value="{{ old('email') }}" required />
                                         </p>
 
-                                        <div style="left: -999em; position: absolute;"><label
-                                                for="trap">Anti-spam</label><input type="text" name="email_2" id="trap"
-                                                tabindex="-1" /></div>
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_phone">Phone&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="phone" id="reg_phone" value="{{ old('phone') }}" required />
+                                        </p>
 
-                                        <wc-order-attribution-inputs></wc-order-attribution-inputs>
-                                        <div class="woocommerce-privacy-policy-text"></div>
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_password">Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="password" id="reg_password" autocomplete="new-password" required />
+                                        </p>
+
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                            <label for="reg_password_confirmation">Confirm Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
+                                            <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="password_confirmation" id="reg_password_confirmation" autocomplete="new-password" required />
+                                        </p>
+
                                         <p class="woocommerce-form-row form-row form-row-btn">
-                                            <input type="hidden" id="woocommerce-register-nonce"
-                                                name="woocommerce-register-nonce" value="e3306083a7" /><input
-                                                type="hidden" name="_wp_http_referer"
-                                                value="/merchandise/my-account/" /> <button type="submit"
+                                            <button type="submit"
                                                 class="woocommerce-Button woocommerce-button btn btn-accent button"
                                                 name="register" value="Register">Register</button>
                                         </p>
