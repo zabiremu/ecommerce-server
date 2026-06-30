@@ -358,7 +358,8 @@
                             <div class="whb-column whb-col-right whb-column10 whb-visible-lg">
                                 <div
                                     class="wd-header-my-account wd-tools-element wd-event-hover wd-design-1 wd-style-icon whb-y2h188c83jht2ggqo16l">
-                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" title="My account">
+                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}"
+                                        title="My account">
 
                                         <span class="wd-tools-icon">
                                         </span>
@@ -369,31 +370,32 @@
                                         class="wd-dropdown wd-dropdown-menu wd-dropdown-my-account wd-design-default color-scheme-dark">
                                         <ul class="wd-sub-menu">
                                             @auth('web')
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                                <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
-                                                <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                                <a href="#" onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
-                                            </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                    <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                    <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
+                                                    <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                                                    <a href="#"
+                                                        onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
+                                                </li>
                                             @else
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a href="{{ route('login') }}"><span>Login</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                                <a href="{{ route('register') }}"><span>Register</span></a>
-                                            </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                    <a href="{{ route('login') }}"><span>Login</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                                    <a href="{{ route('register') }}"><span>Register</span></a>
+                                                </li>
                                             @endauth
                                         </ul>
                                     </div>
@@ -459,7 +461,8 @@
                             <div class="whb-column whb-mobile-right whb-column_mobile4 whb-hidden-lg">
                                 <div
                                     class="wd-header-my-account wd-tools-element wd-event-hover wd-design-1 wd-style-icon whb-eqxr5316rlpewvvrwqnr">
-                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" title="My account">
+                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}"
+                                        title="My account">
 
                                         <span class="wd-tools-icon">
                                         </span>
@@ -470,31 +473,32 @@
                                         class="wd-dropdown wd-dropdown-menu wd-dropdown-my-account wd-design-default color-scheme-dark">
                                         <ul class="wd-sub-menu">
                                             @auth('web')
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                                <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
-                                                <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                                <a href="#" onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
-                                            </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                    <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                    <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
+                                                    <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                                                    <a href="#"
+                                                        onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
+                                                </li>
                                             @else
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a href="{{ route('login') }}"><span>Login</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                                <a href="{{ route('register') }}"><span>Register</span></a>
-                                            </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                    <a href="{{ route('login') }}"><span>Login</span></a>
+                                                </li>
+                                                <li
+                                                    class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                                    <a href="{{ route('register') }}"><span>Register</span></a>
+                                                </li>
                                             @endauth
                                         </ul>
                                     </div>
@@ -929,7 +933,7 @@
         id="wd-clear-search-js"></script>
     <script defer src="{{ asset('frontend/assets/gms-custom.js') }}"></script>
     @auth('web')
-    <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+        <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
     @endauth
 </body>
 
