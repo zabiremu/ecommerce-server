@@ -118,85 +118,14 @@
                             style="--wd-col-lg:8;--wd-col-md:5;--wd-col-sm:3;--wd-gap-lg:20px;--wd-gap-sm:10px"
                             data-scroll_per_page="yes">
                             <div class="wd-carousel-wrap">
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-e45e8bcc">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
+                                @foreach($brands as $brand)
+                                <div class="wp-block-wd-gallery-item wd-carousel-item">
+                                    <div class="wd-block-image"><a href="{{ route('all-products') }}" class="wd-block-image-link"><img
                                                 loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-691"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-bttf-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
+                                                src="{{ Storage::url($brand->icon) }}"
+                                                alt="{{ $brand->name }}" /></a></div>
                                 </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-2d5dd936">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-713"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tlou-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-d10ba5e0">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-693"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-fallout-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-3be13ccb">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-699"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-hollow-knight-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-932d8c55">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-702"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft.jpg 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-300x169.jpg 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-290x163.jpg 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-100x56.jpg 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-minecraft-150x85.jpg 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-e98ddbab">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-707"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars.jpg 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-300x169.jpg 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-290x163.jpg 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-100x56.jpg 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-star-wars-150x85.jpg 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-06f0761e">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-714"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-tloz-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
-
-                                <div class="wp-block-wd-gallery-item wd-carousel-item wd-e91380fa">
-                                    <div class="wd-block-image"><a href="products.html" class="wd-block-image-link"><img
-                                                loading="lazy" decoding="async" width="408" height="230"
-                                                class="wp-image-705"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp"
-                                                alt=""
-                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon.jpg.webp 408w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-300x169.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-290x163.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-100x56.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-pokemon-150x85.jpg.webp 150w"
-                                                sizes="auto, (max-width: 408px) 100vw, 408px" /></a></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">

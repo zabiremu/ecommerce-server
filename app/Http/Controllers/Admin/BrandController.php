@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BrandController extends Controller
@@ -20,11 +21,13 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:brands,slug',
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $brand = Brand::create([
             'name' => $request->name,
             'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
+            'icon' => $request->hasFile('icon') ? $request->file('icon')->store('brands', 'public') : null,
         ]);
 
         return response()->json([
@@ -39,12 +42,22 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:brands,slug,' . $brand->id,
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        $brand->update([
+        $data = [
             'name' => $request->name,
             'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
-        ]);
+        ];
+
+        if ($request->hasFile('icon')) {
+            if ($brand->icon) {
+                Storage::disk('public')->delete($brand->icon);
+            }
+            $data['icon'] = $request->file('icon')->store('brands', 'public');
+        }
+
+        $brand->update($data);
 
         return response()->json([
             'success' => true,
@@ -55,6 +68,9 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
+        if ($brand->icon) {
+            Storage::disk('public')->delete($brand->icon);
+        }
         $brand->delete();
 
         return response()->json([

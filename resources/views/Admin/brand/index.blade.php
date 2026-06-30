@@ -16,7 +16,7 @@
         <div class="wp-panel">
             <div class="wp-panel-h" id="formTitle">Add New Brand</div>
             <div class="wp-panel-body">
-                <form id="brandForm" method="POST">
+                <form id="brandForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" id="methodField" name="_method" value="POST">
 
@@ -31,6 +31,13 @@
                         <label for="slug">Slug</label>
                         <input type="text" id="slug" name="slug" class="wp-input">
                         <p class="wp-help">URL-friendly version of the name. Leave empty to auto-generate.</p>
+                    </div>
+
+                    <div class="wp-field">
+                        <label for="icon">Image</label>
+                        <input type="file" id="icon" name="icon" accept="image/*" class="wp-input" onchange="previewBrandIcon(event)">
+                        <p class="wp-help">Logo image shown in the homepage gallery. JPG, PNG, WEBP. Max 4 MB.</p>
+                        <img id="brandIconPreview" src="" alt="" style="display:none; max-width:120px; height:auto; margin-top:8px; border-radius:4px; border:1px solid #dcdcde;">
                     </div>
 
                     <div class="flex items-center gap-2 mt-2">
@@ -50,6 +57,7 @@
         <table class="wp-list-table">
             <thead>
                 <tr>
+                    <th style="width: 80px;">Image</th>
                     <th>Name</th>
                     <th>Slug</th>
                     <th class="text-center" style="width: 100px;">Status</th>
@@ -58,6 +66,11 @@
             <tbody id="brandTbody">
                 @forelse ($brands as $b)
                     <tr data-row-id="{{ $b->id }}">
+                        <td>
+                            @if ($b->icon)
+                                <img src="{{ Storage::url($b->icon) }}" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:4px;border:1px solid #dcdcde;">
+                            @endif
+                        </td>
                         <td>
                             <strong><a href="javascript:void(0)" onclick="editBrand({{ $b->id }})" class="text-[#2271b1] hover:text-[#135e96]">{{ $b->name }}</a></strong>
                             <div class="wp-row-actions">
@@ -74,7 +87,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="3" class="text-center text-[#787c82] py-6">No brands found.</td></tr>
+                    <tr><td colspan="4" class="text-center text-[#787c82] py-6">No brands found.</td></tr>
                 @endforelse
             </tbody>
         </table>
@@ -88,7 +101,15 @@
 @push('scripts')
 @include('Admin._partials.wp-scripts')
 <script>
-    let allBrands = @json($brands);
+    @php
+        $brandsForJs = $brands->map(fn ($b) => [
+            'id' => $b->id,
+            'name' => $b->name,
+            'slug' => $b->slug,
+            'icon_url' => $b->icon ? Storage::url($b->icon) : null,
+        ]);
+    @endphp
+    let allBrands = @json($brandsForJs);
 
     $(function () {
         $('#name').on('keyup', function () {
@@ -111,10 +132,16 @@
             var isEdit = $('#methodField').val() === 'PUT';
             var id = $(this).data('edit-id');
             var url = isEdit ? '/admin/brands/' + id : '{{ route('admin.brands.store') }}';
+            var formData = new FormData(this);
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
             $.ajax({
                 url: url,
-                method: isEdit ? 'PUT' : 'POST',
-                data: $(this).serialize(),
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
                 headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function (res) {
                     wpToast(res.message, 'success');
@@ -143,7 +170,20 @@
         $('#formTitle').text('Edit Brand');
         $('#submitBtn').text('Update Brand');
         $('#cancelEditBtn').show();
+        if (b.icon_url) {
+            $('#brandIconPreview').attr('src', b.icon_url).show();
+        } else {
+            $('#brandIconPreview').hide();
+        }
         $('html, body').animate({ scrollTop: 0 }, 200);
+    }
+
+    function previewBrandIcon(e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var img = document.getElementById('brandIconPreview');
+        img.src = URL.createObjectURL(file);
+        img.style.display = 'block';
     }
 
     function resetForm() {
@@ -155,6 +195,7 @@
         $('#submitBtn').text('Add New Brand');
         $('#cancelEditBtn').hide();
         $('#nameError').hide();
+        $('#brandIconPreview').hide().attr('src', '');
     }
 
     function toggleStatus(id) {

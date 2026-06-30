@@ -105,11 +105,23 @@ class BrandSeeder extends Seeder
             'Hawkins',
         ];
 
+        $icons = [
+            'Samsung' => 'brands/samsung-5fpKlLx8VdScn7YcshqB.jpg',
+            'Apple' => 'brands/apple-D7acgV4qmUDboTC6Qizs.jpg',
+            'Xiaomi' => 'brands/xiaomi-nQ8C27mjvElKh14e9lXw.jpg',
+            'Realme' => 'brands/realme-tvSdVWA8meRjXTVmwmSO.jpg',
+            'Oppo' => 'brands/oppo-8L8gYoYuPUloyTcSm582.jpg',
+            'Vivo' => 'brands/vivo-ChIQKAvFMPtlhPLEP6bD.jpg',
+            'OnePlus' => 'brands/oneplus-PbMNBev7SawZCiSGhi4h.jpg',
+            'Nokia' => 'brands/nokia-5SonJw9hDRiCseNxOD0b.jpg',
+        ];
+
         foreach ($brands as $name) {
             Brand::updateOrCreate(
                 ['slug' => Str::slug($name)],
                 [
                     'name' => $name,
+                    'icon' => $icons[$name] ?? null,
                     'status' => true,
                 ]
             );

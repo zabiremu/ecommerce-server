@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\NewContactMessage;
 use App\Services\MailConfigService;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\Customer;
@@ -44,7 +45,12 @@ class HomePageController extends Controller
             ->orderByDesc('id')
             ->limit(5)
             ->get();
-        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'allProducts', 'dealsBanner', 'latestCategories'));
+        $brands = Brand::where('status', true)
+            ->whereNotNull('icon')
+            ->orderBy('name')
+            ->limit(8)
+            ->get();
+        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'allProducts', 'dealsBanner', 'latestCategories', 'brands'));
     }
 
     public function about()
