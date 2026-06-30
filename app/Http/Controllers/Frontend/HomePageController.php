@@ -39,7 +39,12 @@ class HomePageController extends Controller
         $latestProducts = Product::published()->orderByDesc('id')->limit(8)->get();
         $allProducts = Product::published()->orderByDesc('id')->limit(8)->get();
         $dealsBanner = DealsBanner::where('status', true)->first();
-        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'allProducts', 'dealsBanner'));
+        $latestCategories = Category::where('status', true)
+            ->whereNull('parent_id')
+            ->orderByDesc('id')
+            ->limit(5)
+            ->get();
+        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'allProducts', 'dealsBanner', 'latestCategories'));
     }
 
     public function about()

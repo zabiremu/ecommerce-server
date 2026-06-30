@@ -8,10 +8,9 @@
 
                 <div class="wp-block-wd-row wd-7ae8bcf1">
                     <div class="wp-block-wd-column wd-1083b687">
-                        <h2 class="wp-block-wd-title title wd-47de8d1e">Level Up Your Gear!</h2>
+                        <h2 class="wp-block-wd-title title wd-47de8d1e">{{ \App\Models\SiteSetting::get('home_hero_title', 'Level Up Your Gear!') }}</h2>
 
-                        <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">Official Merch for Every
-                            Gamer – Shop Hoodies, Collectibles, Posters, and More!</h2>
+                        <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">{{ \App\Models\SiteSetting::get('home_hero_subtitle', 'Official Merch for Every Gamer – Shop Hoodies, Collectibles, Posters, and More!') }}</h2>
                     </div>
 
                     <div class="wp-block-wd-column wd-03826530">
@@ -26,240 +25,39 @@
                                 <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
                                     style="--wd-col-lg:5;--wd-col-md:5;--wd-col-sm:3;--wd-gap-lg:20px;--wd-gap-sm:10px;">
                                     <div class="wd-carousel-wrap">
+                                        @foreach($latestCategories as $cat)
                                         <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product first"
-                                                data-loop="1">
-
+                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product {{ $loop->first ? 'first' : '' }} {{ $loop->last ? 'last' : '' }}"
+                                                data-loop="{{ $loop->iteration }}">
                                                 <div class="wd-cat-inner wrapp-category">
                                                     <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Figures">
-
-                                                            <img decoding="async" width="150" height="150"
+                                                        <a class="wd-cat-image category-image"
+                                                            href="{{ route('category-products') }}?cat={{ $cat->slug }}"
+                                                            aria-label="{{ $cat->name }}">
+                                                            @if($cat->image)
+                                                            <img {{ $loop->index > 1 ? 'loading=lazy' : '' }} decoding="async" width="150" height="150"
+                                                                src="{{ Storage::url($cat->image) }}"
+                                                                class="attachment-150x150 size-150x150"
+                                                                alt="{{ $cat->name }}"
+                                                                style="object-fit: cover; width: 150px; height: 150px;" />
+                                                            @else
+                                                            <img {{ $loop->index > 1 ? 'loading=lazy' : '' }} decoding="async" width="150" height="150"
                                                                 src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures.jpg.webp 256w"
-                                                                sizes="(max-width: 150px) 100vw, 150px" /> </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Figures </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category figures"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product"
-                                                data-loop="2">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Hats">
-
-                                                            <img decoding="async" width="150" height="150"
-                                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp') }}"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-hats.jpg.webp 256w"
-                                                                sizes="(max-width: 150px) 100vw, 150px" /> </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Hats </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category hats"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product"
-                                                data-loop="3">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Pins">
-
-                                                            <img decoding="async" width="150" height="150"
-                                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.web') }}"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-pins.jpg.webp 256w"
-                                                                sizes="(max-width: 150px) 100vw, 150px" /> </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Pins </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category pins"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product last"
-                                                data-loop="4">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Plushes">
-
-                                                            <img loading="lazy" decoding="async" width="150"
-                                                                height="150"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-plushes.jpg.webp 256w"
-                                                                sizes="auto, (max-width: 150px) 100vw, 150px" />
+                                                                class="attachment-150x150 size-150x150"
+                                                                alt="{{ $cat->name }}" />
+                                                            @endif
                                                         </a>
                                                     </div>
                                                     <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Plushes </h3>
-
+                                                        <h3 class="wd-entities-title">{{ $cat->name }}</h3>
                                                     </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category plushes"></a>
+                                                    <a class="wd-fill category-link"
+                                                        href="{{ route('category-products') }}?cat={{ $cat->slug }}"
+                                                        aria-label="Product category {{ strtolower($cat->name) }}"></a>
                                                 </div>
-
                                             </div>
                                         </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product first"
-                                                data-loop="5">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Posters">
-
-                                                            <img loading="lazy" decoding="async" width="150"
-                                                                height="150"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-posters.jpg.webp 256w"
-                                                                sizes="auto, (max-width: 150px) 100vw, 150px" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Posters </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category posters"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product"
-                                                data-loop="6">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Stickers">
-
-                                                            <img loading="lazy" decoding="async" width="150"
-                                                                height="150"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-stickers.jpg.webp 256w"
-                                                                sizes="auto, (max-width: 150px) 100vw, 150px" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Stickers </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category stickers"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product"
-                                                data-loop="7">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="Sweatshirts">
-
-                                                            <img loading="lazy" decoding="async" width="150"
-                                                                height="150"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-sweatshirts.jpg.webp 256w"
-                                                                sizes="auto, (max-width: 150px) 100vw, 150px" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            Sweatshirts </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category sweatshirts"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="wd-carousel-item">
-
-                                            <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product last"
-                                                data-loop="8">
-
-                                                <div class="wd-cat-inner wrapp-category">
-                                                    <div class="wd-cat-thumb category-image-wrapp">
-                                                        <a class="wd-cat-image category-image" href="products.html"
-                                                            aria-label="T-Shirts">
-
-                                                            <img loading="lazy" decoding="async" width="150"
-                                                                height="150"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp"
-                                                                class="attachment-150x150 size-150x150" alt=""
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-100x100.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt-130x130.jpg 130w, merchandise/wp-content/uploads/sites/31/2025/11/gms-category-t-shirt.jpg.webp 256w"
-                                                                sizes="auto, (max-width: 150px) 100vw, 150px" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-cat-content hover-mask">
-                                                        <h3 class="wd-entities-title">
-                                                            T-Shirts </h3>
-
-                                                    </div>
-
-                                                    <a class="wd-fill category-link" href="products.html"
-                                                        aria-label="Product category t-shirts"></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
 

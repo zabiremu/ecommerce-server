@@ -66,6 +66,10 @@ class SiteSettingController extends Controller
         'header' => [
             'announcement_text' => ['Announcement Bar Text', 'nullable|string|max:300'],
         ],
+        'homepage' => [
+            'home_hero_title'    => ['Hero Title',    'nullable|string|max:255'],
+            'home_hero_subtitle' => ['Hero Subtitle', 'nullable|string|max:500'],
+        ],
     ];
 
     public function edit()
