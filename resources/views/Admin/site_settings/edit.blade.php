@@ -367,7 +367,7 @@
                             <input type="text" name="mail_from_name"
                                    value="{{ old('mail_from_name', $settings['mail_from_name'] ?? '') }}"
                                    class="wp-input"
-                                   placeholder="NF Shop 24">
+                                   placeholder="ROVENTEX">
                         </div>
                     </div>
 

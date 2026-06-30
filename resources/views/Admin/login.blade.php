@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Login - NF Shop 24</title>
+    <title>Admin Login - ROVENTEX</title>
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fontawesome-all.min.css') }}">
     <style>
@@ -214,7 +214,7 @@
 
     <div class="admin-brand">
         <div class="brand-logo"><i class="fas fa-shield-halved"></i></div>
-        <h1>NF Shop 24 Admin</h1>
+        <h1>ROVENTEX Admin</h1>
         <p>Secure administrator access</p>
     </div>
 
@@ -281,7 +281,7 @@
     </div>
 
     <p class="admin-footer-note">
-        &copy; {{ date('Y') }} NF Shop 24. <a href="{{ route('home') }}">Back to site</a>
+        &copy; {{ date('Y') }} ROVENTEX. <a href="{{ route('home') }}">Back to site</a>
     </p>
 
 </div>

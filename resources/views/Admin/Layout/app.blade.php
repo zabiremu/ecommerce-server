@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') - NF Shop 24 Admin</title>
+    <title>@yield('title', 'Dashboard') - ROVENTEX Admin</title>
 
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fontawesome-all.min.css') }}">

@@ -5,7 +5,7 @@
     $email = \App\Models\SiteSetting::get('contact_email', '');
     $address = \App\Models\SiteSetting::get('contact_address', 'Bangladesh');
     $hours = \App\Models\SiteSetting::get('contact_hours', 'Sat – Thu: 9AM – 10PM');
-    $company = \App\Models\SiteSetting::get('company_name', 'NF Shop 24');
+    $company = \App\Models\SiteSetting::get('company_name', 'ROVENTEX');
 @endphp
 
 @section('title', 'Contact Us — ' . $company)

@@ -21,7 +21,7 @@ class WelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to ' . \App\Models\SiteSetting::get('company_name', 'NF Shop 24') . '! 🎉',
+            subject: 'Welcome to ' . \App\Models\SiteSetting::get('company_name', 'ROVENTEX') . '! 🎉',
         );
     }
 

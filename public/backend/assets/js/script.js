@@ -1828,7 +1828,7 @@ function initOrderComplete() {
     document.getElementById('ocContent').style.display = 'block';
     document.getElementById('ocEmpty').style.display = 'none';
 
-    document.title = 'Order ' + id + ' - NF Shop 24';
+    document.title = 'Order ' + id + ' - ROVENTEX';
     document.getElementById('ocOrderId').textContent = id;
     document.getElementById('ocDate').textContent = order.date;
     document.getElementById('ocEst').textContent = order.est;
@@ -1905,7 +1905,7 @@ function initProductDetails() {
     const catName = catMeta && catMeta[p.cat] ? catMeta[p.cat].name : p.cat;
     const brand = p.title.split(' ')[0];
 
-    document.title = p.title + ' - NF Shop 24';
+    document.title = p.title + ' - ROVENTEX';
 
     // Breadcrumb
     const bc = document.querySelector('.breadcrumb');

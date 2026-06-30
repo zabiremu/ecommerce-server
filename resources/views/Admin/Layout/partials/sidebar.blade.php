@@ -12,7 +12,7 @@
             <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center">
                 <i class="fas fa-bolt text-slate-900 text-[11px]"></i>
             </div>
-            <p class="font-semibold text-[13.5px] text-white tracking-tight">NF Shop 24</p>
+            <p class="font-semibold text-[13.5px] text-white tracking-tight">ROVENTEX</p>
         </a>
         <button @click="sidebarOpen = false" class="lg:hidden text-slate-400 hover:text-white">
             <i class="fas fa-xmark text-sm"></i>

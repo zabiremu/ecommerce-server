@@ -1,5 +1,5 @@
 @php
-    $shop    = \App\Models\SiteSetting::get('company_name', 'NF Shop 24');
+    $shop    = \App\Models\SiteSetting::get('company_name', 'ROVENTEX');
     $phone   = \App\Models\SiteSetting::get('contact_phone', '');
     $email   = \App\Models\SiteSetting::get('contact_email', '');
     $address = \App\Models\SiteSetting::get('contact_address', '');

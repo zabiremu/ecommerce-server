@@ -2000,14 +2000,14 @@
     </style>
     <style id='child-style-inline-css' type='text/css'>
         /*
-     Theme Name:   Woodmart Child
-     Description:  Woodmart Child Theme
-     Author:       XTemos
-     Author URI:   http://xtemos.com
-     Template:     woodmart
-     Version:      1.0.0
-     Text Domain:  woodmart
-    */
+             Theme Name:   Woodmart Child
+             Description:  Woodmart Child Theme
+             Author:       XTemos
+             Author URI:   http://xtemos.com
+             Template:     woodmart
+             Version:      1.0.0
+             Text Domain:  woodmart
+            */
 
         /**** WORDFANCE Fix login plugin notice ****/
 

@@ -17,7 +17,7 @@ class OrderConfirmationMail extends Mailable
 
     public function envelope(): Envelope
     {
-        $shop = \App\Models\SiteSetting::get('company_name', 'NF Shop 24');
+        $shop = \App\Models\SiteSetting::get('company_name', 'ROVENTEX');
         return new Envelope(
             subject: '✅ Order Confirmed #' . $this->order->order_no . ' — ' . $shop,
         );

@@ -23,7 +23,7 @@ class MailConfigService
         $password   = $s->get('mail_password')   ?: '';
         $encryption = $s->get('mail_encryption') ?: 'tls';
         $fromAddr   = $s->get('mail_from_address') ?: config('mail.from.address', '');
-        $fromName   = $s->get('mail_from_name')    ?: config('mail.from.name', 'NF Shop 24');
+        $fromName   = $s->get('mail_from_name')    ?: config('mail.from.name', 'ROVENTEX');
 
         Config::set('mail.default', $mailer);
         Config::set('mail.mailers.smtp.host',       $host);

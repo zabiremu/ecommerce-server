@@ -16,7 +16,7 @@
         <div class="auth-header">
             <div class="auth-icon"><i class="fas fa-user-circle"></i></div>
             <h1>Welcome Back</h1>
-            <p>Sign in to your NF Shop 24 account</p>
+            <p>Sign in to your ROVENTEX account</p>
         </div>
 
         @if ($errors->any())
