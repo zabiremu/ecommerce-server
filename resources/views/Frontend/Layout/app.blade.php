@@ -5,7 +5,9 @@
 
 <body
     class="home wp-singular page-template-default page page-id-591 logged-in wp-theme-woodmart wp-child-theme-woodmart-child theme-woodmart woocommerce-no-js wd wrapper-custom categories-accordion-on woodmart-ajax-shop-on sticky-toolbar-on">
-    <script type="text/javascript" id="wd-flicker-fix">// Flicker fix.</script>
+    <script type="text/javascript" id="wd-flicker-fix">
+        // Flicker fix.
+    </script>
     <div class="wd-skip-links wd-deferred">
         <a href="#menu-main-navigation" class="wd-skip-navigation btn">
             Skip to navigation </a>
@@ -23,11 +25,12 @@
                         <div class="whb-flex-row whb-general-header-inner">
                             <div class="whb-column whb-col-left whb-column8 whb-visible-lg">
                                 <div class="site-logo whb-vq6q7g5o9lxjza5urabd">
-                                    <a href="index.html" class="wd-logo wd-main-logo"
-                                        rel="home" aria-label="Site logo">
+                                    <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
+                                        aria-label="Site logo">
                                         <img width="201" height="32"
                                             src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
-                                            class="attachment-full size-full" alt="" style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
+                                            class="attachment-full size-full" alt=""
+                                            style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
                                             decoding="async" /> </a>
                                 </div>
 
@@ -38,16 +41,15 @@
                                         class="menu wd-nav wd-nav-header wd-nav-main wd-style-default wd-gap-s">
                                         <li id="menu-item-597"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-597 item-level-0 menu-simple-dropdown wd-event-hover">
-                                            <a href=""
-                                                class="woodmart-nav-link"><img
+                                            <a href="" class="woodmart-nav-link"><img
                                                     src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-star-1.svg') }}"
                                                     title="navigation-menu-star" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span class="nav-link-text">New In</span></a>
+                                                    width="18" height="18"><span class="nav-link-text">New
+                                                    In</span></a>
                                         </li>
                                         <li id="menu-item-598"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-598 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 660px;"><a
-                                                href="{{route('all-products')}}"
+                                            style="--wd-dropdown-width: 660px;"><a href="{{ route('all-products') }}"
                                                 class="woodmart-nav-link"><img
                                                     src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-t-shirt-1.svg') }}"
                                                     title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img"
@@ -81,8 +83,7 @@
                                                         <div id="wd-031995ad" class="wp-block-wd-column">
                                                             <ul id="wd-9b61e1e7"
                                                                 class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a
-                                                                        href="products.html">Apparel</a>
+                                                                <li><a href="products.html">Apparel</a>
                                                                     <ul class="sub-sub-menu">
                                                                         <li id="wd-acd8bcef"
                                                                             class="wp-block-wd-menu-list-item"><a
@@ -106,8 +107,7 @@
                                                         <div id="wd-7587334d" class="wp-block-wd-column">
                                                             <ul id="wd-f8f2dbe4"
                                                                 class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a
-                                                                        href="products.html">Accessories
+                                                                <li><a href="products.html">Accessories
                                                                         &amp; Arts</a>
                                                                     <ul class="sub-sub-menu">
                                                                         <li id="wd-40dda103"
@@ -132,8 +132,7 @@
                                                         <div id="wd-1b356779" class="wp-block-wd-column">
                                                             <ul id="wd-f692c60f"
                                                                 class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a
-                                                                        href="products.html">Collectibles</a>
+                                                                <li><a href="products.html">Collectibles</a>
                                                                     <ul class="sub-sub-menu">
                                                                         <li id="wd-ddccedde"
                                                                             class="wp-block-wd-menu-list-item"><a
@@ -156,13 +155,14 @@
                                         </li>
                                         <li id="menu-item-599"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-599 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 460px;"><a
-                                                href="products.html"
+                                            style="--wd-dropdown-width: 460px;"><a href="products.html"
                                                 class="woodmart-nav-link"><img
                                                     src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-d-pad-1.svg') }}"
                                                     title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span class="nav-link-text">Gaming</span></a>
-                                            <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                    width="18" height="18"><span
+                                                    class="nav-link-text">Gaming</span></a>
+                                            <div
+                                                class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
 
                                                 <div class="container wd-entry-content">
                                                     <link rel="stylesheet" id="wd-block-banner-css"
@@ -184,45 +184,42 @@
                                                         <div class="wp-block-wd-column wd-031995ad">
                                                             <ul
                                                                 class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented wd-6db0b3d5">
-                                                                <li><a
-                                                                        href="products.html">By
+                                                                <li><a href="products.html">By
                                                                         Popular Franchise</a>
                                                                     <ul class="sub-sub-menu">
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-fb7d01a3">
-                                                                            <a
-                                                                                href="products.html">Pokémon</a>
+                                                                            <a href="products.html">Pokémon</a>
                                                                         </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-f19bf746">
-                                                                            <a
-                                                                                href="products.html">The
-                                                                                Legend of Zelda</a></li>
+                                                                            <a href="products.html">The
+                                                                                Legend of Zelda</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-e9a1d265">
-                                                                            <a
-                                                                                href="products.html">Minecraft</a>
+                                                                            <a href="products.html">Minecraft</a>
                                                                         </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-7129857d">
-                                                                            <a
-                                                                                href="products.html">Astro
-                                                                                Bot</a></li>
+                                                                            <a href="products.html">Astro
+                                                                                Bot</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-2a1d89f1">
-                                                                            <a
-                                                                                href="products.html">The
-                                                                                Last of Us</a></li>
+                                                                            <a href="products.html">The
+                                                                                Last of Us</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-3f0e4ff1">
-                                                                            <a
-                                                                                href="products.html">Hollow
-                                                                                Knight</a></li>
+                                                                            <a href="products.html">Hollow
+                                                                                Knight</a>
+                                                                        </li>
                                                                     </ul>
                                                                 </li>
                                                             </ul>
@@ -236,7 +233,8 @@
                                                                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2.jpeg.webp') }}"
                                                                         class="wp-image-469" alt=""
                                                                         srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2.jpeg.webp') }} 700w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-263x300.jpeg.webp') }} 263w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-290x330.jpeg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-88x100.jpeg.webp') }} 88w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-600x686.jpeg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-150x171.jpeg') }} 150w"
-                                                                        sizes="(max-width: 700px) 100vw, 700px" /></div>
+                                                                        sizes="(max-width: 700px) 100vw, 700px" />
+                                                                </div>
                                                                 <a class="wd-block-cover-link wd-fill"
                                                                     href="product_details.html"
                                                                     aria-label="Cover link"></a>
@@ -253,14 +251,15 @@
                                         </li>
                                         <li id="menu-item-600"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 460px;"><a
-                                                href="products.html"
+                                            style="--wd-dropdown-width: 460px;"><a href="products.html"
                                                 class="woodmart-nav-link"><img
                                                     src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-movie-1.svg') }}"
                                                     title="navigation-menu-movie" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span class="nav-link-text">TV &amp;
+                                                    width="18" height="18"><span class="nav-link-text">TV
+                                                    &amp;
                                                     Movies</span></a>
-                                            <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                            <div
+                                                class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
 
                                                 <div class="container wd-entry-content">
                                                     <style id="wd-style-blocks-932-inline-css"
@@ -279,38 +278,35 @@
                                                         <div class="wp-block-wd-column wd-031995ad">
                                                             <ul
                                                                 class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented wd-81e218ad">
-                                                                <li><a
-                                                                        href="products.html">By
+                                                                <li><a href="products.html">By
                                                                         Popular Franchise</a>
                                                                     <ul class="sub-sub-menu">
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-4445b230">
-                                                                            <a
-                                                                                href="products.html">Marvel</a>
+                                                                            <a href="products.html">Marvel</a>
                                                                         </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-d360e0a9">
-                                                                            <a
-                                                                                href="products.html">Star
-                                                                                Wars</a></li>
+                                                                            <a href="products.html">Star
+                                                                                Wars</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-33340c50">
-                                                                            <a
-                                                                                href="products.html">The
-                                                                                Lord of the Rings</a></li>
+                                                                            <a href="products.html">The
+                                                                                Lord of the Rings</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-2a2552ad">
-                                                                            <a
-                                                                                href="products.html">Back
-                                                                                to the Future</a></li>
+                                                                            <a href="products.html">Back
+                                                                                to the Future</a>
+                                                                        </li>
 
                                                                         <li
                                                                             class="wp-block-wd-menu-list-item wd-a4ad5a63">
-                                                                            <a
-                                                                                href="products.html">Dune</a>
+                                                                            <a href="products.html">Dune</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -325,7 +321,8 @@
                                                                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2.jpeg.webp') }}"
                                                                         class="wp-image-465" alt=""
                                                                         srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2.jpeg.webp') }} 700w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-263x300.jpeg.webp') }} 263w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-290x330.jpeg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-88x100.jpeg.webp') }} 88w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-600x686.jpeg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-150x171.jpeg.webp') }} 150w"
-                                                                        sizes="(max-width: 700px) 100vw, 700px" /></div>
+                                                                        sizes="(max-width: 700px) 100vw, 700px" />
+                                                                </div>
                                                                 <a class="wd-block-cover-link wd-fill"
                                                                     href="product_details.html"
                                                                     aria-label="Cover link"></a>
@@ -350,19 +347,18 @@
                                     title="Search">
                                     <link rel="stylesheet" id="wd-header-search-css"
                                         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/header-el-search.css') }}"
-                                        type="text/css" media="all" /> <a href="#" rel="nofollow" aria-label="Search">
+                                        type="text/css" media="all" /> <a href="#" rel="nofollow"
+                                        aria-label="Search">
 
                                         <span class="wd-tools-icon">
                                         </span>
-
                                     </a>
-
                                 </div>
                             </div>
                             <div class="whb-column whb-col-right whb-column10 whb-visible-lg">
                                 <div
                                     class="wd-header-my-account wd-tools-element wd-event-hover wd-design-1 wd-style-icon whb-y2h188c83jht2ggqo16l">
-                                    <a href="account.html" title="My account">
+                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" title="My account">
 
                                         <span class="wd-tools-icon">
                                         </span>
@@ -372,54 +368,45 @@
                                     <div
                                         class="wd-dropdown wd-dropdown-menu wd-dropdown-my-account wd-design-default color-scheme-dark">
                                         <ul class="wd-sub-menu">
+                                            @auth('web')
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a
-                                                    href="account.html"><span>Dashboard</span></a>
+                                                <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                                <a
-                                                    href="account.html"><span>Orders</span></a>
+                                                <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
                                             </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads">
-                                                <a
-                                                    href="account.html"><span>Downloads</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address">
-                                                <a
-                                                    href="account.html"><span>Addresses</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                                <a
-                                                    href="account.html"><span>Account
-                                                        details</span></a></li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
-                                                <a
-                                                    href="wishtlist.html"><span>Wishlist</span></a>
+                                                <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                                <a
-                                                    href="#"><span>Logout</span></a>
+                                                <a href="#" onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
                                             </li>
+                                            @else
+                                            <li
+                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                <a href="{{ route('login') }}"><span>Login</span></a>
+                                            </li>
+                                            <li
+                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                                <a href="{{ route('register') }}"><span>Register</span></a>
+                                            </li>
+                                            @endauth
                                         </ul>
                                     </div>
                                 </div>
 
                                 <div class="wd-header-wishlist wd-tools-element wd-style-icon wd-with-count wd-design-2 whb-dqnrkzh3a42ivk0az8t6"
                                     title="My Wishlist">
-                                    <a href="wishtlist.html"
-                                        title="Wishlist products">
+                                    <a href="{{ route('wishlist') }}" title="Wishlist products">
 
                                         <span class="wd-tools-icon">
 
                                             <span class="wd-tools-count">
-                                                2 </span>
+                                                0 </span>
                                         </span>
 
                                     </a>
@@ -429,8 +416,8 @@
                                     class="wd-header-cart wd-tools-element wd-design-7 cart-widget-opener wd-style-text wd-with-wrap whb-25hasyb8l3nqyybphmhc">
                                     <link rel="stylesheet" id="wd-header-cart-css"
                                         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/header-el-cart.css') }}"
-                                        type="text/css" media="all" /> <a
-                                        href="{{route('cart')}}" title="Shopping cart">
+                                        type="text/css" media="all" /> <a href="{{ route('cart') }}"
+                                        title="Shopping cart">
                                         <span class="wd-tools-inner">
 
                                             <span class="wd-tools-icon wd-icon-alt">
@@ -460,18 +447,19 @@
                             </div>
                             <div class="whb-column whb-mobile-center whb-column_mobile3 whb-hidden-lg">
                                 <div class="site-logo whb-cqgb8qgsj8fpo4qz9frx">
-                                    <a href="index.html" class="wd-logo wd-main-logo"
-                                        rel="home" aria-label="Site logo">
+                                    <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
+                                        aria-label="Site logo">
                                         <img width="201" height="32"
                                             src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
-                                            class="attachment-full size-full" alt="" style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
+                                            class="attachment-full size-full" alt=""
+                                            style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
                                             decoding="async" /> </a>
                                 </div>
                             </div>
                             <div class="whb-column whb-mobile-right whb-column_mobile4 whb-hidden-lg">
                                 <div
                                     class="wd-header-my-account wd-tools-element wd-event-hover wd-design-1 wd-style-icon whb-eqxr5316rlpewvvrwqnr">
-                                    <a href="account.html" title="My account">
+                                    <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" title="My account">
 
                                         <span class="wd-tools-icon">
                                         </span>
@@ -481,41 +469,33 @@
                                     <div
                                         class="wd-dropdown wd-dropdown-menu wd-dropdown-my-account wd-design-default color-scheme-dark">
                                         <ul class="wd-sub-menu">
+                                            @auth('web')
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
-                                                <a
-                                                    href="account.html"><span>Dashboard</span></a>
+                                                <a href="{{ route('dashboard') }}"><span>Dashboard</span></a>
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                                <a
-                                                    href="account.html"><span>Orders</span></a>
+                                                <a href="{{ route('dashboard') }}#orders"><span>Orders</span></a>
                                             </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads">
-                                                <a
-                                                    href="account.html"><span>Downloads</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address">
-                                                <a
-                                                    href="account.html"><span>Addresses</span></a>
-                                            </li>
-                                            <li
-                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                                <a
-                                                    href="account.html"><span>Account
-                                                        details</span></a></li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
-                                                <a
-                                                    href="wishtlist.html"><span>Wishlist</span></a>
+                                                <a href="{{ route('wishlist') }}"><span>Wishlist</span></a>
                                             </li>
                                             <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                                <a
-                                                    href="#"><span>Logout</span></a>
+                                                <a href="#" onclick="event.preventDefault(); document.getElementById('header-logout-form').submit();"><span>Logout</span></a>
                                             </li>
+                                            @else
+                                            <li
+                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard">
+                                                <a href="{{ route('login') }}"><span>Login</span></a>
+                                            </li>
+                                            <li
+                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                                <a href="{{ route('register') }}"><span>Register</span></a>
+                                            </li>
+                                            @endauth
                                         </ul>
                                     </div>
                                 </div>
@@ -534,7 +514,8 @@
     <div class="wd-close-side wd-fill"></div>
     <link rel="stylesheet" id="wd-scroll-top-css"
         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/opt-scrolltotop.css') }}"
-        type="text/css" media="all" /> <a href="#" class="scrollToTop" aria-label="Scroll to top button"></a>
+        type="text/css" media="all" /> <a href="#" class="scrollToTop"
+        aria-label="Scroll to top button"></a>
     <div id="popup-1084" class="wd-popup-builder wd-popup wd-deferred wd-scroll-content"
         data-options="{&quot;animation&quot;:&quot;default&quot;,&quot;close_btn&quot;:&quot;1&quot;,&quot;close_btn_display&quot;:&quot;icon&quot;,&quot;close_by_overlay&quot;:&quot;1&quot;,&quot;close_by_esc&quot;:&quot;1&quot;,&quot;persistent_close&quot;:&quot;1&quot;}"
         data-triggers="{&quot;after_page_views&quot;:{&quot;value&quot;:&quot;2&quot;,&quot;show_once&quot;:&quot;1&quot;}}"
@@ -615,10 +596,10 @@
         </span>
 
         <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
-            action="index.html" data-thumbnail="1" data-price="1" data-post_type="product"
-            data-count="20" data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
-            <input type="text" class="s" placeholder="Search for products" value="" name="s" aria-label="Search"
-                title="Search for products" required />
+            action="index.html" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
+            data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
+            <input type="text" class="s" placeholder="Search for products" value="" name="s"
+                aria-label="Search" title="Search for products" required />
             <input type="hidden" name="post_type" value="product">
 
             <button type="submit" class="searchsubmit">
@@ -641,11 +622,10 @@
                 href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/wd-search-dropdown.css') }}"
                 type="text/css" media="all" />
             <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
-                action="index.html" data-thumbnail="1" data-price="1"
-                data-post_type="product" data-count="20" data-sku="0" data-symbols_count="3"
-                data-include_cat_search="no" autocomplete="off">
-                <input type="text" class="s" placeholder="Search for products" value="" name="s" aria-label="Search"
-                    title="Search for products" required />
+                action="index.html" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
+                data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
+                <input type="text" class="s" placeholder="Search for products" value=""
+                    name="s" aria-label="Search" title="Search for products" required />
                 <input type="hidden" name="post_type" value="product">
 
                 <span tabindex="0" aria-label="Clear search" class="wd-clear-search wd-role-btn wd-hide"></span>
@@ -669,13 +649,14 @@
             class="mobile-pages-menu menu wd-nav wd-nav-mobile wd-dis-hover wd-layout-drilldown wd-drilldown-slide wd-active">
             <li id="menu-item-1090"
                 class="xtemos-show-demos menu-item menu-item-type-custom menu-item-object-custom menu-item-1090 item-level-0">
-                <a href="#" class="woodmart-nav-link"><span class="nav-link-text">Demos</span></a></li>
+                <a href="#" class="woodmart-nav-link"><span class="nav-link-text">Demos</span></a>
+            </li>
             <li id="menu-item-935"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-935 item-level-0">
                 <a href="products.html" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-t-shirt-1.svg') }}"
-                        title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img" width="18" height="18"><span
-                        class="nav-link-text">Products</span></a>
+                        title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img" width="18"
+                        height="18"><span class="nav-link-text">Products</span></a>
                 <ul class="wd-sub-menu">
                     <li class="wd-drilldown-back">
                         <span class="wd-nav-opener"></span>
@@ -684,8 +665,7 @@
                     </li>
                     <li id="menu-item-937"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-937 item-level-1">
-                        <a href="products.html"
-                            class="woodmart-nav-link">Apparel</a>
+                        <a href="products.html" class="woodmart-nav-link">Apparel</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -694,22 +674,21 @@
                             </li>
                             <li id="menu-item-1008"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1008 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Hats</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Hats</a>
+                            </li>
                             <li id="menu-item-1009"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1009 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Sweatshirts</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Sweatshirts</a>
+                            </li>
                             <li id="menu-item-1010"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1010 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">T-Shirts</a></li>
+                                <a href="products.html" class="woodmart-nav-link">T-Shirts</a>
+                            </li>
                         </ul>
                     </li>
                     <li id="menu-item-936"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-936 item-level-1">
-                        <a href="products.html"
-                            class="woodmart-nav-link">Accessories &amp; Arts</a>
+                        <a href="products.html" class="woodmart-nav-link">Accessories &amp; Arts</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -718,22 +697,21 @@
                             </li>
                             <li id="menu-item-1005"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1005 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Pins</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Pins</a>
+                            </li>
                             <li id="menu-item-1006"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1006 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Posters</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Posters</a>
+                            </li>
                             <li id="menu-item-1007"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1007 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Stickers</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Stickers</a>
+                            </li>
                         </ul>
                     </li>
                     <li id="menu-item-938"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-938 item-level-1">
-                        <a href="products.html"
-                            class="woodmart-nav-link">Collectibles</a>
+                        <a href="products.html" class="woodmart-nav-link">Collectibles</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -742,12 +720,12 @@
                             </li>
                             <li id="menu-item-1011"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1011 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Figures</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Figures</a>
+                            </li>
                             <li id="menu-item-1012"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1012 item-level-2">
-                                <a href="products.html"
-                                    class="woodmart-nav-link">Plushes</a></li>
+                                <a href="products.html" class="woodmart-nav-link">Plushes</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -756,20 +734,20 @@
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-606 item-level-0"><a
                     href="about.html" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-movie-1.svg') }}"
-                        title="navigation-menu-movie" loading="lazy" class="wd-nav-img" width="18" height="18"><span
-                        class="nav-link-text">About Us</span></a></li>
+                        title="navigation-menu-movie" loading="lazy" class="wd-nav-img" width="18"
+                        height="18"><span class="nav-link-text">About Us</span></a></li>
             <li id="menu-item-607"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607 item-level-0"><a
                     href="contact.html" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-d-pad-1.svg') }}"
-                        title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img" width="18" height="18"><span
-                        class="nav-link-text">Contact Us</span></a></li>
+                        title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img" width="18"
+                        height="18"><span class="nav-link-text">Contact Us</span></a></li>
             <li id="menu-item-608"
-                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-608 item-level-0"><a href="#"
-                    class="woodmart-nav-link"><img
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-608 item-level-0"><a
+                    href="#" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-star-1.svg') }}"
-                        title="navigation-menu-star" loading="lazy" class="wd-nav-img" width="18" height="18"><span
-                        class="nav-link-text">F.A.Q.</span></a></li>
+                        title="navigation-menu-star" loading="lazy" class="wd-nav-img" width="18"
+                        height="18"><span class="nav-link-text">F.A.Q.</span></a></li>
         </ul>
     </div>
     <link rel="stylesheet" id="wd-widget-general-css"
@@ -805,7 +783,7 @@
             </a>
         </div>
         <div class="wd-header-cart wd-tools-element wd-design-5 cart-widget-opener" title="My cart">
-            <a href="cart.html">
+            <a href="{{ route('cart') }}">
                 <span class="wd-tools-icon wd-icon-alt">
                     <span class="wd-cart-number wd-tools-count">0 <span>items</span></span>
                 </span>
@@ -814,10 +792,10 @@
             </a>
         </div>
         <div class="wd-header-wishlist wd-tools-element wd-design-5" title="My wishlist">
-            <a href="wishtlist.html">
+            <a href="{{ route('wishlist') }}">
                 <span class="wd-tools-icon">
                     <span class="wd-tools-count">
-                        2 </span>
+                        0 </span>
                 </span>
                 <span class="wd-toolbar-label">
                     Wishlist </span>
@@ -908,8 +886,7 @@
     <script type="text/javascript"
         src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/menu/menuSetUp.min.js') }}"
         id="wd-menu-setup-js"></script>
-    <script type="text/javascript"
-        src="{{ asset('frontend/merchandise/wp-includes/js/imagesloaded.min.js') }}"
+    <script type="text/javascript" src="{{ asset('frontend/merchandise/wp-includes/js/imagesloaded.min.js') }}"
         id="imagesloaded-js"></script>
     <script type="text/javascript"
         src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/libs/magnific-popup.min.js') }}"
@@ -951,6 +928,9 @@
         src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/global/clearSearch.min.js') }}"
         id="wd-clear-search-js"></script>
     <script defer src="{{ asset('frontend/assets/gms-custom.js') }}"></script>
+    @auth('web')
+    <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+    @endauth
 </body>
 
 </html>
