@@ -188,45 +188,53 @@
                         <div class=" wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
                             style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
                             <div class="wd-carousel-wrap">
+                                @foreach($latestProducts as $product)
+                                @php
+                                    $hasSale = $product->sale_price && $product->sale_price < $product->selling_price;
+                                    $displayPrice = $hasSale ? $product->sale_price : $product->selling_price;
+                                    $avgRating = round($product->avg_rating ?? 0, 1);
+                                    $detailsUrl = route('product-details') . '?slug=' . $product->slug;
+                                    $resolveImage = function ($path) {
+                                        if (!$path) return null;
+                                        return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
+                                            ? Storage::url($path)
+                                            : asset($path);
+                                    };
+                                    $thumbUrl = $resolveImage($product->thumbnail);
+                                    $galleryFirst = $product->gallery[0] ?? null;
+                                    $hoverPath = is_array($galleryFirst) ? ($galleryFirst['path'] ?? null) : $galleryFirst;
+                                    $hoverUrl = $hoverPath ? $resolveImage($hoverPath) : null;
+                                @endphp
                                 <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-83 status-publish instock product_cat-t-shirts has-post-thumbnail featured shipping-taxable purchasable product-type-variable"
-                                        data-loop="1" data-id="83">
+                                    <div class="wd-product wd-hover-quick product-grid-item product type-product instock has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
+                                        data-loop="{{ $loop->iteration }}" data-id="{{ $product->id }}">
 
                                         <div class="wd-product-wrapper product-wrapper">
                                             <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
+                                                <a href="{{ $detailsUrl }}"
                                                     class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="Astro Bot T-Shirt">
+                                                    aria-label="{{ $product->name }}">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
+                                                        src="{{ $thumbUrl }}"
+                                                        class="attachment-263x300 size-263x300" alt="{{ $product->name }}" /> </a>
 
-                                                <link rel="stylesheet" id="wd-woo-mod-product-labels-default-css"
-                                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
-                                                    type="text/css" media="all" />
-                                                <link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-                                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
-                                                    type="text/css" media="all" />
+                                                @if($hasSale)
                                                 <div class="product-labels labels-rounded-sm">
-                                                    <span class="featured product-label wd-shape-round-sm">Hot</span>
+                                                    <span class="onsale product-label wd-shape-round-sm">Sale</span>
                                                 </div>
+                                                @endif
+                                                @if($hoverUrl)
                                                 <div class="wd-product-img-hover hover-img">
                                                     <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
+                                                        src="{{ $hoverUrl }}"
+                                                        class="attachment-263x300 size-263x300" alt="{{ $product->name }}" />
                                                 </div>
+                                                @endif
                                                 <div class="wd-buttons wd-pos-r-t">
-                                                    <link rel="stylesheet" id="wd-mod-animations-transform-css"
-                                                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css"
-                                                        type="text/css" media="all" />
                                                     <div
                                                         class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="83">
+                                                        <a href="{{ $detailsUrl }}" class="open-quick-view"
+                                                            rel="nofollow" data-id="{{ $product->id }}">
                                                             <span class="wd-action-icon"></span>
                                                             <span class="wd-action-text">
                                                                 Quick view </span>
@@ -234,8 +242,8 @@
                                                     </div>
                                                     <div
                                                         class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="83" rel="nofollow">
+                                                        <a class="" href="{{ route('wishlist') }}"
+                                                            data-product-id="{{ $product->id }}" rel="nofollow">
                                                             <span class="wd-action-icon">
                                                                 <span class="wd-check-icon"></span>
                                                             </span>
@@ -245,438 +253,40 @@
                                                 </div>
 
                                                 <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="product_details.html"
-                                                        aria-describedby="woocommerce_loop_add_to_cart_link_describedby_83"
-                                                        data-quantity="1"
-                                                        class="button product_type_variable add_to_cart_button add-to-cart-loop"
-                                                        data-product_id="83" data-product_sku="GM-T-08M"
-                                                        aria-label="Select options for &ldquo;Astro Bot T-Shirt&rdquo;"
+                                                    <a href="{{ $detailsUrl }}"
+                                                        class="button add_to_cart_button add-to-cart-loop"
+                                                        data-product_id="{{ $product->id }}"
+                                                        aria-label="View {{ $product->name }}"
                                                         rel="nofollow"><span class="wd-action-icon"><span
                                                                 class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Select options</span></a>
-                                                    <span id="woocommerce_loop_add_to_cart_link_describedby_83"
-                                                        class="screen-reader-text">
-                                                        This product has multiple variants. The options may be
-                                                        chosen on the product page </span>
+                                                            class="wd-action-text">{{ $product->type === 'variable' ? 'Select options' : 'Add to cart' }}</span></a>
                                                 </div>
                                             </div>
                                             <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">Astro
-                                                        Bot T-Shirt</a></h3>
+                                                <h3 class="wd-entities-title"><a href="{{ $detailsUrl }}">{{ $product->name }}</a></h3>
 
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
+                                                @if($avgRating > 0)
+                                                <div class="star-rating" role="img" aria-label="Rated {{ $avgRating }} out of 5">
+                                                    <span style="width:{{ $avgRating / 5 * 100 }}%">
+                                                        Rated <strong class="rating">{{ $avgRating }}</strong> out of 5
                                                     </span>
                                                 </div>
+                                                @endif
 
-                                                <span class="price"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,65</bdi></span></span>
+                                                <span class="price">
+                                                    @if($hasSale)
+                                                    <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($product->selling_price, 2) }}</bdi></span></del>
+                                                    <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span></ins>
+                                                    @else
+                                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span>
+                                                    @endif
+                                                </span>
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-86 status-publish instock product_cat-t-shirts has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                        data-loop="2" data-id="86">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="Back to the Future T-Shirt">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                                <div class="product-labels labels-rounded-sm">
-                                                    <span class="onsale product-label wd-shape-round-sm">-17%</span>
-                                                </div>
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-tshirt-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                </div>
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="86">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="86" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="/merchandise/?add-to-cart=86" data-quantity="1"
-                                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                        data-product_id="86" data-product_sku="GM-T-10"
-                                                        aria-label="Add to cart: &ldquo;Back to the Future T-Shirt&rdquo;"
-                                                        rel="nofollow"
-                                                        data-success_message="&ldquo;Back to the Future T-Shirt&rdquo; has been added to your cart"
-                                                        role="button"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Add to cart</span></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">Back
-                                                        to the Future T-Shirt</a></h3>
-
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
-                                                    </span>
-                                                </div>
-
-                                                <span class="price"><del aria-hidden="true"><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>27,90</bdi></span></del>
-                                                    <span class="screen-reader-text">Original price was:
-                                                        &#036;27,90.</span><ins aria-hidden="true"><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>23,25</bdi></span></ins><span
-                                                        class="screen-reader-text">Current price is:
-                                                        &#036;23,25.</span></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-160 status-publish last instock product_cat-hats has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                        data-loop="3" data-id="160">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="Dune Sun Cap">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-290x330.jpeg 290w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-88x100.jpeg 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-600x686.jpeg 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap.jpeg 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                                <div class="product-labels labels-rounded-sm">
-                                                    <span class="onsale product-label wd-shape-round-sm">-11%</span>
-                                                </div>
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-sun-cap-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                </div>
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="160">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="160" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="/merchandise/?add-to-cart=160" data-quantity="1"
-                                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                        data-product_id="160" data-product_sku="GM-H-2"
-                                                        aria-label="Add to cart: &ldquo;Dune Sun Cap&rdquo;"
-                                                        rel="nofollow"
-                                                        data-success_message="&ldquo;Dune Sun Cap&rdquo; has been added to your cart"
-                                                        role="button"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Add to cart</span></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">Dune
-                                                        Sun Cap</a></h3>
-
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
-                                                    </span>
-                                                </div>
-
-                                                <span class="price"><del aria-hidden="true"><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>20,48</bdi></span></del>
-                                                    <span class="screen-reader-text">Original price was:
-                                                        &#036;20,48.</span><ins aria-hidden="true"><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>18,25</bdi></span></ins><span
-                                                        class="screen-reader-text">Current price is:
-                                                        &#036;18,25.</span></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-198 status-publish first instock product_cat-hats has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                        data-loop="4" data-id="198">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="God of War Logo Blue Cap">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-88x100.jpeg 88w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/god-of-war-logo-blue-cap-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                </div>
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="198">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="198" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="/merchandise/?add-to-cart=198" data-quantity="1"
-                                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                        data-product_id="198" data-product_sku="GM-H-8"
-                                                        aria-label="Add to cart: &ldquo;God of War Logo Blue Cap&rdquo;"
-                                                        rel="nofollow"
-                                                        data-success_message="&ldquo;God of War Logo Blue Cap&rdquo; has been added to your cart"
-                                                        role="button"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Add to cart</span></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">God
-                                                        of War Logo Blue Cap</a></h3>
-
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
-                                                    </span>
-                                                </div>
-
-                                                <span class="price"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>21,86</bdi></span></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-156 status-publish instock product_cat-sweatshirts has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                        data-loop="5" data-id="156">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="Jinx Monkey Graffiti Sweatshirt">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/jinx-monkey-graffiti-sweatshirt-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                </div>
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="156">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="156" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="/merchandise/?add-to-cart=156" data-quantity="1"
-                                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                        data-product_id="156" data-product_sku="GM-SW-10"
-                                                        aria-label="Add to cart: &ldquo;Jinx Monkey Graffiti Sweatshirt&rdquo;"
-                                                        rel="nofollow"
-                                                        data-success_message="&ldquo;Jinx Monkey Graffiti Sweatshirt&rdquo; has been added to your cart"
-                                                        role="button"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Add to cart</span></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">Jinx
-                                                        Monkey Graffiti Sweatshirt</a></h3>
-
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
-                                                    </span>
-                                                </div>
-
-                                                <span class="price"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>36,00</bdi></span></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product post-123 status-publish instock product_cat-sweatshirts has-post-thumbnail shipping-taxable purchasable product-type-variable"
-                                        data-loop="6" data-id="123">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="product_details.html"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="Level UP Mushroom">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp"
-                                                        class="attachment-263x300 size-263x300" alt=""
-                                                        srcset="merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/level-up-mushroom-1.jpeg.webp 700w"
-                                                        sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                </div>
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="product_details.html" class="open-quick-view"
-                                                            rel="nofollow" data-id="123">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                            data-product-id="123" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-
-                                                    <a href="product_details.html"
-                                                        aria-describedby="woocommerce_loop_add_to_cart_link_describedby_123"
-                                                        data-quantity="1"
-                                                        class="button product_type_variable add_to_cart_button add-to-cart-loop"
-                                                        data-product_id="123" data-product_sku="GM-SW-03MW"
-                                                        aria-label="Select options for &ldquo;Level UP Mushroom&rdquo;"
-                                                        rel="nofollow"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">Select options</span></a>
-                                                    <span id="woocommerce_loop_add_to_cart_link_describedby_123"
-                                                        class="screen-reader-text">
-                                                        This product has multiple variants. The options may be
-                                                        chosen on the product page </span>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="product_details.html">Level
-                                                        UP Mushroom</a></h3>
-
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                        Rated <strong class="rating">5.00</strong> out of 5
-                                                    </span>
-                                                </div>
-
-                                                <span class="price"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>29,99</bdi></span></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
                         </div>
 
                         <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">

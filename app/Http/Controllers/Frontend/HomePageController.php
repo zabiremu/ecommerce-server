@@ -37,7 +37,12 @@ class HomePageController extends Controller
             ->orderBy('home_order')
             ->orderBy('name')
             ->get();
-        $latestProducts = Product::published()->orderByDesc('id')->limit(8)->get();
+        $latestProducts = Product::published()
+            ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
+            ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get();
         $allProducts = Product::published()->orderByDesc('id')->limit(8)->get();
         $dealsBanner = DealsBanner::where('status', true)->first();
         $latestCategories = Category::where('status', true)

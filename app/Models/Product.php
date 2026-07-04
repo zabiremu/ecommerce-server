@@ -106,4 +106,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductLandingPage::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 }
