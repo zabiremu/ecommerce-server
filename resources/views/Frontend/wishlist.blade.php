@@ -1783,510 +1783,108 @@
     </style>
 @endpush
 @section('content')
-    <div class="wd-page-content main-page-wrapper">
-
-
-        <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main">
-            <div class="wd-content-area site-content">
-                <div class="woocommerce entry-content">
-                    <link rel="stylesheet" id="wd-mod-nav-vertical-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-nav-vertical.css" type="text/css"
-                        media="all" />
-                    <link rel="stylesheet" id="wd-mod-nav-vertical-design-simple-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-nav-vertical-design-simple.css"
-                        type="text/css" media="all" />
-                    <style id="wd-style-blocks-1026-inline-css" data-type="wd-style-blocks-1026">
-                        #wd-8a5cc588 {
-                            margin-top: -40px;
-                            margin-bottom: 40px;
-                        }
-
-                        #wd-db34d310 {
-                            padding: 25px 30px 25px 30px;
-                            background-color: #f5f5f5;
-                            border-radius: 16px;
-                            align-self: start;
-                        }
-
-                        @media (min-width: 769px) {
-                            #wd-db34d310 {
-                                flex: 0 1 calc(25% - var(--wd-col-gap) * 1 / 2);
-                            }
-
-                            #wd-78bc329a {
-                                flex: 0 1 calc(75% - var(--wd-col-gap) * 1 / 2);
-                            }
-                        }
-
-                        @media (min-width: 769px) and (max-width: 1024px) {
-                            #wd-db34d310 {
-                                flex: 0 1 calc(35% - var(--wd-col-gap) * 1 / 2);
-                            }
-
-                            #wd-78bc329a {
-                                flex: 0 1 calc(65% - var(--wd-col-gap) * 1 / 2);
-                            }
-                        }
-
-                        @media (max-width: 768.98px) {
-                            #wd-db34d310 {
-                                padding: 15px 30px 15px 30px;
-                                border-width: 0px;
-                            }
-
-                            #wd-e3644b91 {
-                                --wd-col-gap: 20px;
-                            }
-                        }
-                    </style>
-                    <link rel="stylesheet" id="wd-el-page-title-builder-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/el-page-title-builder.css" type="text/css"
-                        media="all" />
-                    <div id="wd-8a5cc588" class="wd-page-title-el wd-8a5cc588 wd-stretched">
-                        <link rel="stylesheet" id="wd-page-title-css"
-                            href="merchandise/wp-content/themes/woodmart/css/parts/page-title.css" type="text/css"
-                            media="all" />
-                        <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
-                            style="">
-                            <div class="wd-page-title-bg wd-fill">
-                            </div>
-                            <div class="container">
-                                <h1 class="entry-title title">
-                                    Wishlist </h1>
-
-
-                                <nav class="wd-breadcrumbs"><a href="index.html">Home</a><span
-                                        class="wd-delimiter">/</span><span class="wd-last">Wishlist</span></nav>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div id="wd-e3644b91" class="wp-block-wd-row">
-                        <div id="wd-db34d310" class="wp-block-wd-column wd-align-s-start">
-                            <div id="wd-6aee5deb" class="wd-el-my-acc-nav wd-6aee5deb">
-
-                                <nav class="woocommerce-MyAccount-navigation" aria-label="Account pages">
-                                    <ul
-                                        class="wd-nav-my-acc wd-nav wd-nav-vertical wd-design-simple wd-gap-m wd-icon-left">
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard wd-my-acc-dashboard">
-                                            <a href="account.html" aria-current="page">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Dashboard </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders wd-my-acc-orders">
-                                            <a href="account.html">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Orders </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads wd-my-acc-downloads">
-                                            <a href="account.html">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Downloads </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address wd-my-acc-edit-address">
-                                            <a href="account.html">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Addresses </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account wd-my-acc-edit-account">
-                                            <a href="account.html">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Account details </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist is-active wd-my-acc-wishlist wd-active">
-                                            <a href="wishtlist.html">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Wishlist </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout wd-my-acc-customer-logout">
-                                            <a href="#">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Logout </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
-                            </div>
-                        </div>
-
-                        <div id="wd-78bc329a" class="wp-block-wd-column">
-                            <div id="wd-9020d6b2" class="wd-el-my-acc-content wd-9020d6b2 woocommerce-MyAccount-content">
-                                <div class="wd-wishlist-content">
-                                    <link rel="stylesheet" id="wd-page-wishlist-bulk-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-page-wishlist-bulk.css"
-                                        type="text/css" media="all" />
-                                    <div class="wd-wishlist-head">
-                                        <h4 class="title">
-                                            Your products wishlist </h4>
-
-                                        <div
-                                            class=" wd-social-icons wd-style-default wd-size-small social-share wd-shape-circle wd-layout-inline text-center">
-                                            <link rel="stylesheet" id="wd-social-icons-css"
-                                                href="merchandise/wp-content/themes/woodmart/css/parts/el-social-icons.css"
-                                                type="text/css" media="all" />
-                                            <span class="wd-label share-title">Share: </span>
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://www.facebook.com/sharer/sharer.php?u=wishtlist.html"
-                                                target="_blank" class=" wd-social-icon social-facebook"
-                                                aria-label="Facebook social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://x.com/share?url=wishtlist.html" target="_blank"
-                                                class=" wd-social-icon social-twitter" aria-label="X social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-
-
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://pinterest.com/pin/create/button/?url=wishtlist.html"
-                                                target="_blank" class=" wd-social-icon social-pinterest"
-                                                aria-label="Pinterest social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://www.linkedin.com/shareArticle?mini=true&#038;url=wishtlist.html"
-                                                target="_blank" class=" wd-social-icon social-linkedin"
-                                                aria-label="Linkedin social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://telegram.me/share/url?url=wishtlist.html" target="_blank"
-                                                class=" wd-social-icon social-tg" aria-label="Telegram social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-                                        </div>
-
-                                    </div>
-                                    <div class="wd-wishlist-bulk-action">
-                                        <div class="wd-wishlist-remove-action wd-action-btn wd-style-text wd-cross-icon">
-                                            <a href="#">
-                                                <span class="wd-action-icon"></span>
-                                                <span class="wd-action-text">
-                                                    Remove </span>
-                                            </a>
-                                        </div>
-                                        <div class="wd-wishlist-select-all wd-action-btn wd-style-text">
-                                            <a href="#">
-                                                <span class="wd-action-icon"></span>
-                                                <span class="wd-action-text wd-wishlist-text-select">Select
-                                                    all</span>
-                                                <span class="wd-action-text wd-wishlist-text-deselect">Deselect
-                                                    all</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <link rel="stylesheet" id="wd-woo-opt-title-limit-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-opt-stretch-cont-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-opt-stretch-cont-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-bordered-product-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-bordered-product-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css"
-                                        type="text/css" media="all" />
-                                    <div class="wd-products-element">
-
-
-                                        <link rel="stylesheet" id="wd-product-loop-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-product-loop-quick-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css"
-                                            type="text/css" media="all" />
-                                        <div class="products wd-products  grid-columns-3 elements-grid pagination-links wd-grid-g wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                                            data-paged="1"
-                                            data-atts="{&quot;post_type&quot;:&quot;ids&quot;,&quot;include&quot;:&quot;382,423&quot;,&quot;pagination&quot;:&quot;links&quot;,&quot;items_per_page&quot;:&quot;16&quot;,&quot;columns&quot;:3,&quot;products_bordered_grid&quot;:&quot;1&quot;,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;products_with_background&quot;:&quot;&quot;,&quot;products_shadow&quot;:&quot;&quot;,&quot;force_not_ajax&quot;:&quot;no&quot;,&quot;products_masonry&quot;:&quot;disable&quot;,&quot;products_different_sizes&quot;:&quot;disable&quot;,&quot;query_post_type&quot;:[&quot;product&quot;,&quot;product_variation&quot;],&quot;is_wishlist&quot;:&quot;yes&quot;}"
-                                            data-source="shortcode" data-columns="3"
-                                            style="--wd-col-lg:3;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
-                                            <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-382 status-publish instock product_cat-figures has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                                data-loop="1" data-id="382">
-                                                <div class="wd-wishlist-product-actions">
-                                                    <div
-                                                        class="wd-wishlist-product-remove wd-action-btn wd-style-text wd-cross-icon">
-                                                        <a href="#" class="wd-wishlist-remove"
-                                                            data-product-id="382">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Remove </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-wishlist-product-checkbox">
-                                                        <input type="checkbox" class="wd-wishlist-checkbox"
-                                                            data-product-id="382">
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-product-wrapper product-wrapper">
-                                                    <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                        <a href="product_details.html"
-                                                            class="wd-product-img-link product-image-link" tabindex="-1"
-                                                            aria-label="Alex Minecraft Figure">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" fetchpriority="high"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
-                                                                sizes="(max-width: 430px) 100vw, 430px" /> </a>
-
-                                                        <link rel="stylesheet" id="wd-woo-mod-product-labels-default-css"
-                                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
-                                                            type="text/css" media="all" />
-                                                        <link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-                                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
-                                                            type="text/css" media="all" />
-                                                        <div class="product-labels labels-rounded-sm">
-                                                            <span
-                                                                class="onsale product-label wd-shape-round-sm">-23%</span>
-                                                        </div>
-                                                        <div class="wd-product-img-hover hover-img">
-                                                            <img loading="lazy" width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </div>
-                                                        <div class="wd-buttons wd-pos-r-t">
-                                                            <link rel="stylesheet" id="wd-mod-animations-transform-css"
-                                                                href="merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css"
-                                                                type="text/css" media="all" />
-                                                            <div
-                                                                class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                <a href="product_details.html" class="open-quick-view"
-                                                                    rel="nofollow" data-id="382">
-                                                                    <span class="wd-action-icon"></span>
-                                                                    <span class="wd-action-text">
-                                                                        Quick view </span>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                <a class="" href="wishtlist.html"
-                                                                    data-key="d5b554e37e" data-product-id="382"
-                                                                    rel="nofollow">
-                                                                    <span class="wd-action-icon">
-                                                                        <span class="wd-check-icon"></span>
-                                                                    </span>
-                                                                    <span class="wd-action-text">Add to
-                                                                        wishlist</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="wd-add-btn wd-add-btn-replace">
-
-                                                            <a href="/merchandise/wishlist/?add-to-cart=382"
-                                                                data-quantity="1"
-                                                                class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                data-product_id="382" data-product_sku="GM-FG-4"
-                                                                aria-label="Add to cart: &ldquo;Alex Minecraft Figure&rdquo;"
-                                                                rel="nofollow"
-                                                                data-success_message="&ldquo;Alex Minecraft Figure&rdquo; has been added to your cart"
-                                                                role="button"><span class="wd-action-icon"><span
-                                                                        class="wd-check-icon"></span></span><span
-                                                                    class="wd-action-text">Add to cart</span></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-element-bottom">
-                                                        <h3 class="wd-entities-title"><a href="product_details.html">Alex
-                                                                Minecraft
-                                                                Figure</a></h3>
-
-                                                        <div class="star-rating" role="img"
-                                                            aria-label="Rated 5.00 out of 5">
-                                                            <span style="width:100%">
-                                                                Rated <strong class="rating">5.00</strong> out of 5
-                                                            </span>
-                                                        </div>
-
-
-
-                                                        <span class="price"><del aria-hidden="true"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>49,99</bdi></span></del>
-                                                            <span class="screen-reader-text">Original price was:
-                                                                &#036;49,99.</span><ins aria-hidden="true"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>38,25</bdi></span></ins><span
-                                                                class="screen-reader-text">Current price is:
-                                                                &#036;38,25.</span></span>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-423 status-publish instock product_cat-plushes has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                                data-loop="2" data-id="423">
-                                                <div class="wd-wishlist-product-actions">
-                                                    <div
-                                                        class="wd-wishlist-product-remove wd-action-btn wd-style-text wd-cross-icon">
-                                                        <a href="#" class="wd-wishlist-remove"
-                                                            data-product-id="423">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Remove </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-wishlist-product-checkbox">
-                                                        <input type="checkbox" class="wd-wishlist-checkbox"
-                                                            data-product-id="423">
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-product-wrapper product-wrapper">
-                                                    <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                        <a href="product_details.html"
-                                                            class="wd-product-img-link product-image-link" tabindex="-1"
-                                                            aria-label="Astro Bot Plush">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" loading="lazy"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </a>
-
-                                                        <div class="wd-product-img-hover hover-img">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" loading="lazy"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </div>
-                                                        <div class="wd-buttons wd-pos-r-t">
-                                                            <div
-                                                                class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                <a href="product_details.html" class="open-quick-view"
-                                                                    rel="nofollow" data-id="423">
-                                                                    <span class="wd-action-icon"></span>
-                                                                    <span class="wd-action-text">
-                                                                        Quick view </span>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                <a class="" href="wishtlist.html"
-                                                                    data-key="d5b554e37e" data-product-id="423"
-                                                                    rel="nofollow">
-                                                                    <span class="wd-action-icon">
-                                                                        <span class="wd-check-icon"></span>
-                                                                    </span>
-                                                                    <span class="wd-action-text">Add to
-                                                                        wishlist</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="wd-add-btn wd-add-btn-replace">
-
-                                                            <a href="/merchandise/wishlist/?add-to-cart=423"
-                                                                data-quantity="1"
-                                                                class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                data-product_id="423" data-product_sku="GM-PL-1"
-                                                                aria-label="Add to cart: &ldquo;Astro Bot Plush&rdquo;"
-                                                                rel="nofollow"
-                                                                data-success_message="&ldquo;Astro Bot Plush&rdquo; has been added to your cart"
-                                                                role="button"><span class="wd-action-icon"><span
-                                                                        class="wd-check-icon"></span></span><span
-                                                                    class="wd-action-text">Add to cart</span></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-element-bottom">
-                                                        <h3 class="wd-entities-title"><a href="product_details.html">Astro
-                                                                Bot Plush</a></h3>
-
-                                                        <div class="star-rating" role="img"
-                                                            aria-label="Rated 4.00 out of 5">
-                                                            <span style="width:80%">
-                                                                Rated <strong class="rating">4.00</strong> out of 5
-                                                            </span>
-                                                        </div>
-
-
-
-                                                        <span class="price"><span
-                                                                class="woocommerce-Price-amount amount"><bdi><span
-                                                                        class="woocommerce-Price-currencySymbol">&#36;</span>12,99</bdi></span></span>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
+<div class="wd-page-wrapper">
+    <div class="container" style="padding-top:24px;padding-bottom:60px;">
+
+        <div class="wd-breadcrumbs" style="margin-bottom:20px;font-size:13px;">
+            <a href="{{ route('home') }}">Home</a>
+            <span> / </span>
+            <span>Wishlist</span>
+        </div>
+
+        <h1 style="margin-bottom:20px;">My Wishlist</h1>
+
+        <div id="wl-empty" style="display:none;padding:40px 0;text-align:center;color:#777;">
+            <p>Your wishlist is empty.</p>
+            <a href="{{ route('all-products') }}" class="button alt"
+                style="display:inline-block;margin-top:10px;padding:10px 24px;background:#e5533d;color:#fff;border-radius:6px;text-decoration:none;">
+                Browse products
+            </a>
+        </div>
+
+        <div id="wl-loading" style="padding:40px 0;text-align:center;color:#777;">Loading your wishlist…</div>
+
+        <div id="wl-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;"></div>
     </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var ids = ShopCart.getWishlist();
+    var loading = document.getElementById('wl-loading');
+    var empty = document.getElementById('wl-empty');
+    var grid = document.getElementById('wl-grid');
+
+    function money(n) {
+        return '৳' + Number(n).toFixed(2);
+    }
+
+    function render(products) {
+        loading.style.display = 'none';
+
+        if (!products.length) {
+            empty.style.display = 'block';
+            return;
+        }
+
+        grid.style.display = 'grid';
+        grid.innerHTML = products.map(function (p) {
+            var priceHtml = p.old_price
+                ? '<del><span class="woocommerce-Price-amount amount">' + money(p.old_price) + '</span></del> ' +
+                  '<ins><span class="woocommerce-Price-amount amount">' + money(p.price) + '</span></ins>'
+                : '<span class="woocommerce-Price-amount amount">' + money(p.price) + '</span>';
+
+            return (
+                '<div class="wd-product wd-hover-quick product-grid-item" data-id="' + p.id + '">' +
+                    '<a href="' + p.url + '"><img src="' + (p.image || '') + '" alt="' + p.name + '" ' +
+                        'style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px;"></a>' +
+                    '<h3 class="wd-entities-title" style="font-size:14px;margin:8px 0 4px;"><a href="' + p.url + '">' + p.name + '</a></h3>' +
+                    '<span class="price">' + priceHtml + '</span>' +
+                    '<div style="display:flex;gap:8px;margin-top:8px;">' +
+                        '<button type="button" class="button add_to_cart_button wl-add-cart" data-id="' + p.id + '" ' +
+                            (p.stock <= 0 && p.type === 'physical' ? 'disabled' : '') +
+                            ' style="flex:1;padding:8px;background:#e5533d;color:#fff;border:none;border-radius:6px;cursor:pointer;">' +
+                            (p.stock <= 0 && p.type === 'physical' ? 'Out of stock' : 'Add to cart') +
+                        '</button>' +
+                        '<button type="button" class="wl-remove" data-id="' + p.id + '" ' +
+                            'style="padding:8px 12px;background:#f5f5f5;border:none;border-radius:6px;cursor:pointer;" ' +
+                            'aria-label="Remove from wishlist">&times;</button>' +
+                    '</div>' +
+                '</div>'
+            );
+        }).join('');
+
+        grid.querySelectorAll('.wl-add-cart').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = parseInt(btn.getAttribute('data-id'), 10);
+                ShopCart.addToCart(id, 1, null);
+                var original = btn.textContent;
+                btn.textContent = 'Added ✓';
+                setTimeout(function () { btn.textContent = original; }, 1200);
+            });
+        });
+
+        grid.querySelectorAll('.wl-remove').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = parseInt(btn.getAttribute('data-id'), 10);
+                ShopCart.removeFromWishlist(id);
+                btn.closest('[data-id]').remove();
+                if (ShopCart.getWishlist().length === 0) {
+                    grid.style.display = 'none';
+                    empty.style.display = 'block';
+                }
+            });
+        });
+    }
+
+    if (!ids.length) {
+        loading.style.display = 'none';
+        empty.style.display = 'block';
+    } else {
+        ShopCart.fetchProducts(ids).then(render).catch(function () {
+            loading.textContent = 'Could not load your wishlist. Please try again.';
+        });
+    }
+});
+</script>
 @endsection

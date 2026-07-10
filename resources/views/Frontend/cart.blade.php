@@ -2621,671 +2621,188 @@
 @endpush
 
 @section('content')
-    <div class="wd-page-content main-page-wrapper">
-
-
-        <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main">
-            <div class="wd-content-area site-content">
-                <div class="woocommerce entry-content">
-                    <style id="wd-style-blocks-918-inline-css" data-type="wd-style-blocks-918">
-                        #wd-8955a912 {
-                            margin-top: -40px;
-                            margin-bottom: 40px;
-                        }
-
-                        #wd-ea8d6ee0 {
-                            font-size: 32px;
-                        }
-
-                        #wd-b3cf90d8 {
-                            --wd-btn-align: var(--wd-stretch);
-                        }
-
-                        #wd-4838d8fb {
-                            padding: 30px;
-                            background-color: #f5f5f5;
-                            border-radius: 16px;
-                            align-self: start;
-                        }
-
-                        @media (min-width: 769px) {
-                            #wd-663e36db {
-                                flex: 0 1 calc(66.33% - var(--wd-col-gap) * 1 / 2);
-                            }
-
-                            #wd-4838d8fb {
-                                flex: 0 1 calc(33.33% - var(--wd-col-gap) * 1 / 2);
-                            }
-                        }
-
-                        @media (max-width: 1024px) {
-                            #wd-ea8d6ee0 {
-                                font-size: 28px;
-                            }
-                        }
-
-                        @media (min-width: 769px) and (max-width: 1024px) {
-                            #wd-663e36db {
-                                flex: 0 1 calc(100% - var(--wd-col-gap) * 0 / 1);
-                            }
-
-                            #wd-4838d8fb {
-                                flex: 0 1 calc(100% - var(--wd-col-gap) * 0 / 1);
-                            }
-                        }
-
-                        @media (max-width: 768.98px) {
-                            #wd-4838d8fb {
-                                padding: 20px;
-                            }
-                        }
-                    </style>
-                    <div id="wd-8955a912" class="wd-page-title-el wd-8955a912 wd-stretched">
-                        <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
-                            style="">
-                            <div class="wd-page-title-bg wd-fill">
-                            </div>
-                            <div class="container">
-                                <ul class="wd-checkout-steps">
-                                    <li class="step-cart step-active">
-                                        <a href="cart.html">
-                                            <span>Shopping cart</span>
-                                        </a>
-                                    </li>
-                                    <li class="step-checkout step-inactive">
-                                        <a href="{{route('checkout')}}">
-                                            <span>Checkout</span>
-                                        </a>
-                                    </li>
-                                    <li class="step-complete step-inactive">
-                                        <span>Order complete</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div id="wd-a6836805" class="wp-block-wd-row">
-                        <div id="wd-663e36db" class="wp-block-wd-column">
-                            <div id="wd-58b2d4e9" class="wd-wc-notices wd-58b2d4e9">
-                                <div class="woocommerce-notices-wrapper"></div>
-                            </div>
-
-
-                            <div id="wd-00ef76f2" class="wd-shipping-progress-bar wd-00ef76f2">
-                                <div class="wd-progress-bar wd-free-progress-bar">
-                                    <div class="progress-msg">
-                                        <p>Add <span class="woocommerce-Price-amount amount"><bdi><span
-                                                        class="woocommerce-Price-currencySymbol">&#36;</span>971,52</bdi></span>
-                                            to cart and get free shipping!</p>
-                                    </div>
-                                    <div class="progress-area">
-                                        <div class="progress-bar" style="width: 2%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div id="wd-498255fe" class="wd-cart-table wd-498255fe">
-                                <form class="woocommerce-cart-form" action="cart.html" method="post">
-
-
-                                    <table
-                                        class="shop_table shop_table_responsive cart woocommerce-cart-form__contents shop-table-with-img">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-remove">&nbsp;</th>
-                                                <th class="product-thumbnail">&nbsp;</th>
-                                                <th class="product-name">
-                                                    Product </th>
-                                                <th class="product-price">
-                                                    Price </th>
-                                                <th class="product-quantity">
-                                                    Quantity </th>
-                                                <th class="product-subtotal">
-                                                    Subtotal </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                            <tr class="woocommerce-cart-form__cart-item cart_item">
-
-                                                <td class="product-remove">
-                                                    <a href="cart.html" class="remove"
-                                                        aria-label="Remove Dune Desert Mouse Plush from cart"
-                                                        data-product_id="458" data-product_sku="GM-PL-8">&times;</a>
-                                                </td>
-
-                                                <td class="product-thumbnail">
-                                                    <a href="product_details.html"><img width="430" height="492"
-                                                            src="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp"
-                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                            alt="Dune Desert Mouse Plush" decoding="async"
-                                                            fetchpriority="high"
-                                                            srcset="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush.jpeg.webp 700w"
-                                                            sizes="(max-width: 430px) 100vw, 430px" /></a>
-                                                </td>
-
-                                                <td class="product-name" data-title="Product">
-                                                    <a href="product_details.html">Dune Desert Mouse Plush</a>
-                                                </td>
-
-                                                <td class="product-price" data-title="Price">
-
-                                                    <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
-                                                </td>
-
-                                                <td class="product-quantity" data-title="Quantity">
-
-                                                    <div class="quantity">
-
-                                                        <input type="button" value="-" class="minus btn"
-                                                            aria-label="Decrease quantity" />
-
-                                                        <label class="screen-reader-text" for="quantity_6a356ddc0aab4">Dune
-                                                            Desert Mouse Plush
-                                                            quantity</label>
-                                                        <input type="number" id="quantity_6a356ddc0aab4"
-                                                            class="input-text qty text" value="1"
-                                                            aria-label="Product quantity" min="0"
-                                                            name="cart[d07e70efcfab08731a97e7b91be644de][qty]"
-                                                            step="1" placeholder="" inputmode="numeric"
-                                                            autocomplete="off">
-
-                                                        <input type="button" value="+" class="plus btn"
-                                                            aria-label="Increase quantity" />
-
-                                                    </div>
-                                                </td>
-
-                                                <td class="product-subtotal" data-title="Subtotal">
-                                                    <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="wd-cart-action-row">
-                                                <td colspan="12" class="actions">
-                                                    <div class="cart-actions">
-                                                        <div class="coupon wd-coupon-form">
-                                                            <label for="coupon_code" class="screen-reader-text">
-                                                                Coupon: </label>
-                                                            <input type="text" name="coupon_code" class="input-text"
-                                                                id="coupon_code" value=""
-                                                                placeholder="Coupon code" />
-                                                            <button type="submit" class="button btn btn-accent"
-                                                                name="apply_coupon" value="Apply coupon">
-                                                                Apply coupon </button>
-                                                        </div>
-
-                                                        <button type="submit" class="button btn btn-default  wd-hide"
-                                                            name="update_cart" value="Update cart">
-                                                            Update cart </button>
-
-
-                                                        <input type="hidden" id="woocommerce-cart-nonce"
-                                                            name="woocommerce-cart-nonce" value="3c07133d57" /><input
-                                                            type="hidden" name="_wp_http_referer"
-                                                            value="/merchandise/cart/" />
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                </form>
-                            </div>
-                        </div>
-
-                        <div id="wd-4838d8fb" class="wp-block-wd-column wd-align-s-start">
-                            <h2 id="wd-ea8d6ee0" class="wp-block-wd-title title">Cart totals</h2>
-
-                            <div id="wd-b3cf90d8" class="wd-cart-totals wd-b3cf90d8">
-                                <div class="cart_totals ">
-
-                                    <div class="cart-totals-inner wd-set-mb reset-last-child wd-layout-1">
-                                        <h2>Cart totals</h2>
-
-                                        <table cellspacing="0" class="shop_table shop_table_responsive">
-
-                                            <tr class="cart-subtotal">
-                                                <th>Subtotal</th>
-                                                <td data-title="Subtotal"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
-                                                </td>
-                                            </tr>
-
-
-
-
-                                            <tr class="woocommerce-shipping-totals shipping">
-                                                <th>Shipment</th>
-                                                <td data-title="Shipment">
-                                                    <ul id="shipping_method" class="woocommerce-shipping-methods">
-                                                        <li>
-                                                            <input type="radio" name="shipping_method[0]"
-                                                                data-index="0" id="shipping_method_0_free_shipping1"
-                                                                value="free_shipping:1" class="shipping_method"
-                                                                checked='checked' /><label
-                                                                for="shipping_method_0_free_shipping1">Free
-                                                                shipping</label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" name="shipping_method[0]"
-                                                                data-index="0" id="shipping_method_0_flat_rate2"
-                                                                value="flat_rate:2" class="shipping_method" /><label
-                                                                for="shipping_method_0_flat_rate2">Flat rate: <span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>12,00</bdi></span></label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" name="shipping_method[0]"
-                                                                data-index="0" id="shipping_method_0_local_pickup3"
-                                                                value="local_pickup:3" class="shipping_method" /><label
-                                                                for="shipping_method_0_local_pickup3">Local pickup:
-                                                                <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>25,00</bdi></span></label>
-                                                        </li>
-                                                    </ul>
-                                                    <p class="woocommerce-shipping-destination">
-                                                        Shipping options will be updated during checkout. </p>
-
-
-
-                                                    <form class="woocommerce-shipping-calculator" action="cart.html"
-                                                        method="post">
-
-                                                        <a href="#" class="shipping-calculator-button"
-                                                            aria-expanded="false" aria-controls="shipping-calculator-form"
-                                                            role="button">Calculate shipping</a>
-                                                        <section class="shipping-calculator-form"
-                                                            id="shipping-calculator-form" style="display:none;">
-
-                                                            <p class="form-row form-row-wide"
-                                                                id="calc_shipping_country_field">
-                                                                <label for="calc_shipping_country">Country /
-                                                                    region</label>
-                                                                <select name="calc_shipping_country"
-                                                                    id="calc_shipping_country"
-                                                                    class="country_to_state country_select"
-                                                                    rel="calc_shipping_state">
-                                                                    <option value="default">Select a country /
-                                                                        region&hellip;</option>
-                                                                    <option value="AF">Afghanistan</option>
-                                                                    <option value="AX">Åland Islands</option>
-                                                                    <option value="AL">Albania</option>
-                                                                    <option value="DZ">Algeria</option>
-                                                                    <option value="AS">American Samoa</option>
-                                                                    <option value="AD">Andorra</option>
-                                                                    <option value="AO">Angola</option>
-                                                                    <option value="AI">Anguilla</option>
-                                                                    <option value="AQ">Antarctica</option>
-                                                                    <option value="AG">Antigua and Barbuda</option>
-                                                                    <option value="AR">Argentina</option>
-                                                                    <option value="AM">Armenia</option>
-                                                                    <option value="AW">Aruba</option>
-                                                                    <option value="AU">Australia</option>
-                                                                    <option value="AT">Austria</option>
-                                                                    <option value="AZ">Azerbaijan</option>
-                                                                    <option value="BS">Bahamas</option>
-                                                                    <option value="BH">Bahrain</option>
-                                                                    <option value="BD">Bangladesh</option>
-                                                                    <option value="BB">Barbados</option>
-                                                                    <option value="BY">Belarus</option>
-                                                                    <option value="PW">Belau</option>
-                                                                    <option value="BE">Belgium</option>
-                                                                    <option value="BZ">Belize</option>
-                                                                    <option value="BJ">Benin</option>
-                                                                    <option value="BM">Bermuda</option>
-                                                                    <option value="BT">Bhutan</option>
-                                                                    <option value="BO">Bolivia</option>
-                                                                    <option value="BQ">Bonaire, Saint Eustatius and
-                                                                        Saba</option>
-                                                                    <option value="BA">Bosnia and Herzegovina
-                                                                    </option>
-                                                                    <option value="BW">Botswana</option>
-                                                                    <option value="BV">Bouvet Island</option>
-                                                                    <option value="BR">Brazil</option>
-                                                                    <option value="IO">British Indian Ocean
-                                                                        Territory</option>
-                                                                    <option value="BN">Brunei</option>
-                                                                    <option value="BG">Bulgaria</option>
-                                                                    <option value="BF">Burkina Faso</option>
-                                                                    <option value="BI">Burundi</option>
-                                                                    <option value="KH">Cambodia</option>
-                                                                    <option value="CM">Cameroon</option>
-                                                                    <option value="CA">Canada</option>
-                                                                    <option value="CV">Cape Verde</option>
-                                                                    <option value="KY">Cayman Islands</option>
-                                                                    <option value="CF">Central African Republic
-                                                                    </option>
-                                                                    <option value="TD">Chad</option>
-                                                                    <option value="CL">Chile</option>
-                                                                    <option value="CN">China</option>
-                                                                    <option value="CX">Christmas Island</option>
-                                                                    <option value="CC">Cocos (Keeling) Islands
-                                                                    </option>
-                                                                    <option value="CO">Colombia</option>
-                                                                    <option value="KM">Comoros</option>
-                                                                    <option value="CG">Congo (Brazzaville)</option>
-                                                                    <option value="CD">Congo (Kinshasa)</option>
-                                                                    <option value="CK">Cook Islands</option>
-                                                                    <option value="CR">Costa Rica</option>
-                                                                    <option value="HR">Croatia</option>
-                                                                    <option value="CU">Cuba</option>
-                                                                    <option value="CW">Cura&ccedil;ao</option>
-                                                                    <option value="CY">Cyprus</option>
-                                                                    <option value="CZ">Czech Republic</option>
-                                                                    <option value="DK">Denmark</option>
-                                                                    <option value="DJ">Djibouti</option>
-                                                                    <option value="DM">Dominica</option>
-                                                                    <option value="DO">Dominican Republic</option>
-                                                                    <option value="EC">Ecuador</option>
-                                                                    <option value="EG">Egypt</option>
-                                                                    <option value="SV">El Salvador</option>
-                                                                    <option value="GQ">Equatorial Guinea</option>
-                                                                    <option value="ER">Eritrea</option>
-                                                                    <option value="EE">Estonia</option>
-                                                                    <option value="SZ">Eswatini</option>
-                                                                    <option value="ET">Ethiopia</option>
-                                                                    <option value="FK">Falkland Islands</option>
-                                                                    <option value="FO">Faroe Islands</option>
-                                                                    <option value="FJ">Fiji</option>
-                                                                    <option value="FI">Finland</option>
-                                                                    <option value="FR">France</option>
-                                                                    <option value="GF">French Guiana</option>
-                                                                    <option value="PF">French Polynesia</option>
-                                                                    <option value="TF">French Southern Territories
-                                                                    </option>
-                                                                    <option value="GA">Gabon</option>
-                                                                    <option value="GM">Gambia</option>
-                                                                    <option value="GE">Georgia</option>
-                                                                    <option value="DE" selected='selected'>Germany
-                                                                    </option>
-                                                                    <option value="GH">Ghana</option>
-                                                                    <option value="GI">Gibraltar</option>
-                                                                    <option value="GR">Greece</option>
-                                                                    <option value="GL">Greenland</option>
-                                                                    <option value="GD">Grenada</option>
-                                                                    <option value="GP">Guadeloupe</option>
-                                                                    <option value="GU">Guam</option>
-                                                                    <option value="GT">Guatemala</option>
-                                                                    <option value="GG">Guernsey</option>
-                                                                    <option value="GN">Guinea</option>
-                                                                    <option value="GW">Guinea-Bissau</option>
-                                                                    <option value="GY">Guyana</option>
-                                                                    <option value="HT">Haiti</option>
-                                                                    <option value="HM">Heard Island and McDonald
-                                                                        Islands</option>
-                                                                    <option value="HN">Honduras</option>
-                                                                    <option value="HK">Hong Kong</option>
-                                                                    <option value="HU">Hungary</option>
-                                                                    <option value="IS">Iceland</option>
-                                                                    <option value="IN">India</option>
-                                                                    <option value="ID">Indonesia</option>
-                                                                    <option value="IR">Iran</option>
-                                                                    <option value="IQ">Iraq</option>
-                                                                    <option value="IE">Ireland</option>
-                                                                    <option value="IM">Isle of Man</option>
-                                                                    <option value="IL">Israel</option>
-                                                                    <option value="IT">Italy</option>
-                                                                    <option value="CI">Ivory Coast</option>
-                                                                    <option value="JM">Jamaica</option>
-                                                                    <option value="JP">Japan</option>
-                                                                    <option value="JE">Jersey</option>
-                                                                    <option value="JO">Jordan</option>
-                                                                    <option value="KZ">Kazakhstan</option>
-                                                                    <option value="KE">Kenya</option>
-                                                                    <option value="KI">Kiribati</option>
-                                                                    <option value="XK">Kosovo</option>
-                                                                    <option value="KW">Kuwait</option>
-                                                                    <option value="KG">Kyrgyzstan</option>
-                                                                    <option value="LA">Laos</option>
-                                                                    <option value="LV">Latvia</option>
-                                                                    <option value="LB">Lebanon</option>
-                                                                    <option value="LS">Lesotho</option>
-                                                                    <option value="LR">Liberia</option>
-                                                                    <option value="LY">Libya</option>
-                                                                    <option value="LI">Liechtenstein</option>
-                                                                    <option value="LT">Lithuania</option>
-                                                                    <option value="LU">Luxembourg</option>
-                                                                    <option value="MO">Macao</option>
-                                                                    <option value="MG">Madagascar</option>
-                                                                    <option value="MW">Malawi</option>
-                                                                    <option value="MY">Malaysia</option>
-                                                                    <option value="MV">Maldives</option>
-                                                                    <option value="ML">Mali</option>
-                                                                    <option value="MT">Malta</option>
-                                                                    <option value="MH">Marshall Islands</option>
-                                                                    <option value="MQ">Martinique</option>
-                                                                    <option value="MR">Mauritania</option>
-                                                                    <option value="MU">Mauritius</option>
-                                                                    <option value="YT">Mayotte</option>
-                                                                    <option value="MX">Mexico</option>
-                                                                    <option value="FM">Micronesia</option>
-                                                                    <option value="MD">Moldova</option>
-                                                                    <option value="MC">Monaco</option>
-                                                                    <option value="MN">Mongolia</option>
-                                                                    <option value="ME">Montenegro</option>
-                                                                    <option value="MS">Montserrat</option>
-                                                                    <option value="MA">Morocco</option>
-                                                                    <option value="MZ">Mozambique</option>
-                                                                    <option value="MM">Myanmar</option>
-                                                                    <option value="NA">Namibia</option>
-                                                                    <option value="NR">Nauru</option>
-                                                                    <option value="NP">Nepal</option>
-                                                                    <option value="NL">Netherlands</option>
-                                                                    <option value="NC">New Caledonia</option>
-                                                                    <option value="NZ">New Zealand</option>
-                                                                    <option value="NI">Nicaragua</option>
-                                                                    <option value="NE">Niger</option>
-                                                                    <option value="NG">Nigeria</option>
-                                                                    <option value="NU">Niue</option>
-                                                                    <option value="NF">Norfolk Island</option>
-                                                                    <option value="KP">North Korea</option>
-                                                                    <option value="MK">North Macedonia</option>
-                                                                    <option value="MP">Northern Mariana Islands
-                                                                    </option>
-                                                                    <option value="NO">Norway</option>
-                                                                    <option value="OM">Oman</option>
-                                                                    <option value="PK">Pakistan</option>
-                                                                    <option value="PS">Palestinian Territory
-                                                                    </option>
-                                                                    <option value="PA">Panama</option>
-                                                                    <option value="PG">Papua New Guinea</option>
-                                                                    <option value="PY">Paraguay</option>
-                                                                    <option value="PE">Peru</option>
-                                                                    <option value="PH">Philippines</option>
-                                                                    <option value="PN">Pitcairn</option>
-                                                                    <option value="PL">Poland</option>
-                                                                    <option value="PT">Portugal</option>
-                                                                    <option value="PR">Puerto Rico</option>
-                                                                    <option value="QA">Qatar</option>
-                                                                    <option value="RE">Reunion</option>
-                                                                    <option value="RO">Romania</option>
-                                                                    <option value="RU">Russia</option>
-                                                                    <option value="RW">Rwanda</option>
-                                                                    <option value="ST">S&atilde;o Tom&eacute; and
-                                                                        Pr&iacute;ncipe</option>
-                                                                    <option value="BL">Saint Barth&eacute;lemy
-                                                                    </option>
-                                                                    <option value="SH">Saint Helena</option>
-                                                                    <option value="KN">Saint Kitts and Nevis
-                                                                    </option>
-                                                                    <option value="LC">Saint Lucia</option>
-                                                                    <option value="SX">Saint Martin (Dutch part)
-                                                                    </option>
-                                                                    <option value="MF">Saint Martin (French part)
-                                                                    </option>
-                                                                    <option value="PM">Saint Pierre and Miquelon
-                                                                    </option>
-                                                                    <option value="VC">Saint Vincent and the
-                                                                        Grenadines</option>
-                                                                    <option value="WS">Samoa</option>
-                                                                    <option value="SM">San Marino</option>
-                                                                    <option value="SA">Saudi Arabia</option>
-                                                                    <option value="SN">Senegal</option>
-                                                                    <option value="RS">Serbia</option>
-                                                                    <option value="SC">Seychelles</option>
-                                                                    <option value="SL">Sierra Leone</option>
-                                                                    <option value="SG">Singapore</option>
-                                                                    <option value="SK">Slovakia</option>
-                                                                    <option value="SI">Slovenia</option>
-                                                                    <option value="SB">Solomon Islands</option>
-                                                                    <option value="SO">Somalia</option>
-                                                                    <option value="ZA">South Africa</option>
-                                                                    <option value="GS">South Georgia/Sandwich
-                                                                        Islands</option>
-                                                                    <option value="KR">South Korea</option>
-                                                                    <option value="SS">South Sudan</option>
-                                                                    <option value="ES">Spain</option>
-                                                                    <option value="LK">Sri Lanka</option>
-                                                                    <option value="SD">Sudan</option>
-                                                                    <option value="SR">Suriname</option>
-                                                                    <option value="SJ">Svalbard and Jan Mayen
-                                                                    </option>
-                                                                    <option value="SE">Sweden</option>
-                                                                    <option value="CH">Switzerland</option>
-                                                                    <option value="SY">Syria</option>
-                                                                    <option value="TW">Taiwan</option>
-                                                                    <option value="TJ">Tajikistan</option>
-                                                                    <option value="TZ">Tanzania</option>
-                                                                    <option value="TH">Thailand</option>
-                                                                    <option value="TL">Timor-Leste</option>
-                                                                    <option value="TG">Togo</option>
-                                                                    <option value="TK">Tokelau</option>
-                                                                    <option value="TO">Tonga</option>
-                                                                    <option value="TT">Trinidad and Tobago</option>
-                                                                    <option value="TN">Tunisia</option>
-                                                                    <option value="TR">Türkiye</option>
-                                                                    <option value="TM">Turkmenistan</option>
-                                                                    <option value="TC">Turks and Caicos Islands
-                                                                    </option>
-                                                                    <option value="TV">Tuvalu</option>
-                                                                    <option value="UG">Uganda</option>
-                                                                    <option value="UA">Ukraine</option>
-                                                                    <option value="AE">United Arab Emirates</option>
-                                                                    <option value="GB">United Kingdom (UK)</option>
-                                                                    <option value="US">United States (US)</option>
-                                                                    <option value="UM">United States (US) Minor
-                                                                        Outlying Islands</option>
-                                                                    <option value="UY">Uruguay</option>
-                                                                    <option value="UZ">Uzbekistan</option>
-                                                                    <option value="VU">Vanuatu</option>
-                                                                    <option value="VA">Vatican</option>
-                                                                    <option value="VE">Venezuela</option>
-                                                                    <option value="VN">Vietnam</option>
-                                                                    <option value="VG">Virgin Islands (British)
-                                                                    </option>
-                                                                    <option value="VI">Virgin Islands (US)</option>
-                                                                    <option value="WF">Wallis and Futuna</option>
-                                                                    <option value="EH">Western Sahara</option>
-                                                                    <option value="YE">Yemen</option>
-                                                                    <option value="ZM">Zambia</option>
-                                                                    <option value="ZW">Zimbabwe</option>
-                                                                </select>
-                                                            </p>
-
-                                                            <p class="form-row form-row-wide"
-                                                                id="calc_shipping_state_field">
-                                                                <span>
-                                                                    <label for="calc_shipping_state">State /
-                                                                        County</label>
-                                                                    <select name="calc_shipping_state"
-                                                                        class="state_select" id="calc_shipping_state">
-                                                                        <option value="">Select an option&hellip;
-                                                                        </option>
-                                                                        <option value="DE-BW">Baden-Württemberg
-                                                                        </option>
-                                                                        <option value="DE-BY">Bavaria</option>
-                                                                        <option value="DE-BE" selected='selected'>
-                                                                            Berlin</option>
-                                                                        <option value="DE-BB">Brandenburg</option>
-                                                                        <option value="DE-HB">Bremen</option>
-                                                                        <option value="DE-HH">Hamburg</option>
-                                                                        <option value="DE-HE">Hesse</option>
-                                                                        <option value="DE-MV">Mecklenburg-Vorpommern
-                                                                        </option>
-                                                                        <option value="DE-NI">Lower Saxony</option>
-                                                                        <option value="DE-NW">North Rhine-Westphalia
-                                                                        </option>
-                                                                        <option value="DE-RP">Rhineland-Palatinate
-                                                                        </option>
-                                                                        <option value="DE-SL">Saarland</option>
-                                                                        <option value="DE-SN">Saxony</option>
-                                                                        <option value="DE-ST">Saxony-Anhalt</option>
-                                                                        <option value="DE-SH">Schleswig-Holstein
-                                                                        </option>
-                                                                        <option value="DE-TH">Thuringia</option>
-                                                                    </select>
-                                                                </span>
-                                                            </p>
-
-                                                            <p class="form-row form-row-wide"
-                                                                id="calc_shipping_city_field">
-                                                                <label for="calc_shipping_city">City:</label>
-                                                                <input type="text" class="input-text" value=""
-                                                                    name="calc_shipping_city" id="calc_shipping_city" />
-                                                            </p>
-
-                                                            <p class="form-row form-row-wide"
-                                                                id="calc_shipping_postcode_field">
-                                                                <label for="calc_shipping_postcode">Postcode /
-                                                                    ZIP:</label>
-                                                                <input type="text" class="input-text" value=""
-                                                                    name="calc_shipping_postcode"
-                                                                    id="calc_shipping_postcode" />
-                                                            </p>
-
-                                                            <p><button type="submit" name="calc_shipping" value="1"
-                                                                    class="button">Update</button></p>
-                                                            <input type="hidden"
-                                                                id="woocommerce-shipping-calculator-nonce"
-                                                                name="woocommerce-shipping-calculator-nonce"
-                                                                value="81db97dfd8" /><input type="hidden"
-                                                                name="_wp_http_referer" value="/merchandise/cart/" />
-                                                        </section>
-                                                    </form>
-
-                                                </td>
-                                            </tr>
-
-
-
-
-
-
-                                            <tr class="order-total">
-                                                <th>Total</th>
-                                                <td data-title="Total"><strong><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span></strong>
-                                                </td>
-                                            </tr>
-
-
-                                        </table>
-
-                                        <div class="wc-proceed-to-checkout">
-
-                                            <a href="checkout.html" class="checkout-button button alt wc-forward">
-                                                Proceed to checkout</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="wd-page-content main-page-wrapper">
+    <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main" style="padding-top:24px;padding-bottom:60px;">
+
+        <ul class="wd-checkout-steps" style="display:flex;gap:20px;list-style:none;padding:0;margin-bottom:30px;font-weight:600;">
+            <li class="step-cart step-active"><a href="{{ route('cart') }}"><span>Shopping cart</span></a></li>
+            <li class="step-checkout step-inactive"><a href="{{ route('checkout') }}"><span>Checkout</span></a></li>
+            <li class="step-complete step-inactive"><span>Order complete</span></li>
+        </ul>
+
+        <h1 style="margin-bottom:24px;">Shopping Cart</h1>
+
+        <div id="cart-empty" style="display:none;padding:40px 0;text-align:center;color:#777;">
+            <p>Your cart is empty.</p>
+            <a href="{{ route('all-products') }}" class="button alt"
+                style="display:inline-block;margin-top:10px;padding:10px 24px;background:#e5533d;color:#fff;border-radius:6px;text-decoration:none;">
+                Browse products
+            </a>
+        </div>
+
+        <div id="cart-loading" style="padding:40px 0;text-align:center;color:#777;">Loading your cart…</div>
+
+        <div id="cart-wrap" style="display:none;gap:30px;flex-wrap:wrap;" class="wd-cart-wrap">
+            <div style="flex:2 1 500px;min-width:280px;">
+                <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" style="width:100%;border-collapse:collapse;">
+                    <thead>
+                        <tr style="border-bottom:2px solid #eee;text-align:left;">
+                            <th style="padding:10px 0;">Product</th>
+                            <th style="padding:10px 0;">Price</th>
+                            <th style="padding:10px 0;">Quantity</th>
+                            <th style="padding:10px 0;">Subtotal</th>
+                            <th style="padding:10px 0;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-body"></tbody>
+                </table>
             </div>
-        </main>
 
-    </div>
+            <div style="flex:1 1 300px;min-width:260px;padding:24px;background:#f5f5f5;border-radius:12px;align-self:start;">
+                <h3 style="margin-bottom:16px;">Cart totals</h3>
+
+                <div class="wd-coupon-form" style="display:flex;gap:8px;margin-bottom:20px;">
+                    <input type="text" id="cart-coupon-input" placeholder="Coupon code"
+                        style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                    <button type="button" id="cart-coupon-apply" class="button btn btn-accent"
+                        style="padding:10px 16px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer;">Apply</button>
+                </div>
+                <p id="cart-coupon-msg" style="display:none;font-size:13px;margin-top:-12px;margin-bottom:16px;"></p>
+
+                <table style="width:100%;">
+                    <tr><td style="padding:6px 0;">Subtotal</td><td style="text-align:right;" id="cart-subtotal">৳0.00</td></tr>
+                    <tr id="cart-discount-row" style="display:none;"><td style="padding:6px 0;">Discount</td><td style="text-align:right;color:#16a34a;" id="cart-discount">-৳0.00</td></tr>
+                    <tr><td style="padding:6px 0;">Shipping</td><td style="text-align:right;" id="cart-shipping">৳0.00</td></tr>
+                    <tr style="border-top:1px solid #ddd;font-weight:700;font-size:16px;">
+                        <td style="padding:10px 0;">Total</td><td style="text-align:right;" id="cart-total">৳0.00</td>
+                    </tr>
+                </table>
+
+                <a href="{{ route('checkout') }}" class="checkout-button button alt wc-forward"
+                    style="display:block;text-align:center;margin-top:16px;padding:14px;background:#e5533d;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;">
+                    Proceed to checkout
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var loading = document.getElementById('cart-loading');
+    var empty = document.getElementById('cart-empty');
+    var wrap = document.getElementById('cart-wrap');
+    var body = document.getElementById('cart-items-body');
+
+    function money(n) { return '৳' + Number(n).toFixed(2); }
+
+    function loadCart() {
+        var cartItems = ShopCart.getCart();
+
+        if (!cartItems.length) {
+            loading.style.display = 'none';
+            empty.style.display = 'block';
+            wrap.style.display = 'none';
+            return;
+        }
+
+        var ids = cartItems.map(function (i) { return i.id; });
+        ShopCart.fetchProducts(ids).then(function (products) {
+            var byId = {};
+            products.forEach(function (p) { byId[p.id] = p; });
+
+            loading.style.display = 'none';
+            wrap.style.display = 'flex';
+
+            body.innerHTML = cartItems.map(function (item) {
+                var p = byId[item.id];
+                if (!p) return '';
+                var lineTotal = p.price * item.qty;
+                return (
+                    '<tr data-id="' + item.id + '" data-variant="' + (item.variant_id || '') + '" style="border-bottom:1px solid #eee;">' +
+                        '<td style="padding:14px 0;display:flex;gap:12px;align-items:center;">' +
+                            '<img src="' + (p.image || '') + '" style="width:60px;height:60px;object-fit:cover;border-radius:6px;">' +
+                            '<a href="' + p.url + '" style="font-weight:600;">' + p.name + '</a>' +
+                        '</td>' +
+                        '<td>' + money(p.price) + '</td>' +
+                        '<td>' +
+                            '<div style="display:flex;align-items:center;border:1px solid #ddd;border-radius:6px;width:fit-content;">' +
+                                '<button type="button" class="cart-qty-minus" style="padding:6px 10px;border:none;background:#f9f9f9;cursor:pointer;">−</button>' +
+                                '<input type="number" class="cart-qty-input" value="' + item.qty + '" min="1" style="width:44px;border:none;text-align:center;">' +
+                                '<button type="button" class="cart-qty-plus" style="padding:6px 10px;border:none;background:#f9f9f9;cursor:pointer;">+</button>' +
+                            '</div>' +
+                        '</td>' +
+                        '<td class="cart-line-total">' + money(lineTotal) + '</td>' +
+                        '<td><button type="button" class="cart-remove" aria-label="Remove" style="border:none;background:none;font-size:18px;cursor:pointer;">&times;</button></td>' +
+                    '</tr>'
+                );
+            }).join('');
+
+            wireRowEvents();
+            refreshQuote();
+        });
+    }
+
+    function wireRowEvents() {
+        body.querySelectorAll('tr[data-id]').forEach(function (row) {
+            var id = parseInt(row.getAttribute('data-id'), 10);
+            var variantId = row.getAttribute('data-variant') || null;
+            var input = row.querySelector('.cart-qty-input');
+
+            row.querySelector('.cart-qty-minus').addEventListener('click', function () {
+                input.value = Math.max(1, parseInt(input.value, 10) - 1);
+                input.dispatchEvent(new Event('change'));
+            });
+            row.querySelector('.cart-qty-plus').addEventListener('click', function () {
+                input.value = parseInt(input.value, 10) + 1;
+                input.dispatchEvent(new Event('change'));
+            });
+            input.addEventListener('change', function () {
+                ShopCart.updateQty(id, variantId, input.value);
+                loadCart();
+            });
+            row.querySelector('.cart-remove').addEventListener('click', function () {
+                ShopCart.removeFromCart(id, variantId);
+                loadCart();
+            });
+        });
+    }
+
+    function refreshQuote() {
+        var coupon = localStorage.getItem('gms_coupon') || '';
+        document.getElementById('cart-coupon-input').value = coupon;
+
+        ShopCart.fetchQuote(ShopCart.getCart(), coupon).then(function (quote) {
+            document.getElementById('cart-subtotal').textContent = money(quote.subtotal);
+            document.getElementById('cart-shipping').textContent = quote.shipping > 0 ? money(quote.shipping) : 'Free';
+            document.getElementById('cart-total').textContent = money(quote.total);
+
+            var discountRow = document.getElementById('cart-discount-row');
+            if (quote.discount > 0) {
+                discountRow.style.display = '';
+                document.getElementById('cart-discount').textContent = '-' + money(quote.discount);
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            var msg = document.getElementById('cart-coupon-msg');
+            if (quote.coupon_message) {
+                msg.style.display = 'block';
+                msg.style.color = quote.coupon_valid ? 'green' : 'red';
+                msg.textContent = quote.coupon_message;
+            } else {
+                msg.style.display = 'none';
+            }
+        });
+    }
+
+    document.getElementById('cart-coupon-apply').addEventListener('click', function () {
+        var code = document.getElementById('cart-coupon-input').value.trim();
+        localStorage.setItem('gms_coupon', code);
+        refreshQuote();
+    });
+
+    loadCart();
+});
+</script>
 @endsection

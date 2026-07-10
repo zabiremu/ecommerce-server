@@ -1,5 +1,6 @@
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preload" as="font" href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2') }}"
         type="font/woff2"
         crossorigin>

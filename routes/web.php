@@ -34,6 +34,7 @@ use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\CartSyncController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UddoktaPayController;
+use App\Http\Controllers\Frontend\ShopApiController;
 use App\Http\Controllers\Admin\AbandonedCartController as AdminAbandonedCartController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -45,7 +46,6 @@ use App\Http\Controllers\Frontend\LandingPageController as FrontendLandingPageCo
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/product-detail', 'Frontend.product-details');
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/about', [HomePageController::class, 'about'])->name('about');
 Route::get('/all-products', [HomePageController::class, 'allProducts'])->name('all-products');
@@ -55,6 +55,8 @@ Route::get('/checkout', [HomePageController::class, 'checkout'])->name('checkout
 Route::post('/orders', [FrontendOrderController::class, 'store'])->name('orders.store');
 Route::post('/cart/sync', [CartSyncController::class, 'sync'])->name('cart.sync');
 Route::post('/cart/contact', [CartSyncController::class, 'contact'])->name('cart.contact');
+Route::get('/api/products', [ShopApiController::class, 'products'])->name('api.products');
+Route::post('/api/cart/quote', [ShopApiController::class, 'quote'])->name('api.cart.quote');
 Route::post('/api/steadfast/webhook', [AdminSteadfastController::class, 'webhook'])->name('steadfast.webhook')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 Route::get('/uddoktapay/callback', [UddoktaPayController::class, 'callback'])->name('uddoktapay.callback');
 Route::get('/uddoktapay/cancel',   [UddoktaPayController::class, 'cancel'])->name('uddoktapay.cancel');

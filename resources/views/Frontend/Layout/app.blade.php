@@ -932,6 +932,7 @@
         src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/global/clearSearch.min.js') }}"
         id="wd-clear-search-js"></script>
     <script defer src="{{ asset('frontend/assets/gms-custom.js') }}"></script>
+    <script defer src="{{ asset('frontend/assets/js/shop-cart.js') }}"></script>
     @auth('web')
         <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
     @endauth
