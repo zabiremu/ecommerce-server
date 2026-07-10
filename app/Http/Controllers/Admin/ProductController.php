@@ -133,11 +133,11 @@ class ProductController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             $thumb = $request->file('thumbnail');
-            $thumbName = 'thumb_' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumbName = 'thumb_' . uniqid() . '.webp';
             $thumbPath = 'products/thumbnails/' . $thumbName;
             $image = $manager->read($thumb);
             $image->resize(300, 300);
-            Storage::disk('public')->put($thumbPath, $image->encode());
+            Storage::disk('public')->put($thumbPath, $image->toWebp(85));
             $data['thumbnail'] = $thumbPath;
         }
 
@@ -146,13 +146,13 @@ class ProductController extends Controller
             foreach ($request->gallery_items as $item) {
                 $galleryEntry = ['color' => $item['color'] ?? null, 'path' => null];
                 if (isset($item['file']) && $item['file'] instanceof \Illuminate\Http\UploadedFile) {
-                    $galName = 'gal_' . uniqid() . '.' . $item['file']->getClientOriginalExtension();
+                    $galName = 'gal_' . uniqid() . '.webp';
                     $galPath = 'products/gallery/' . $galName;
                     $image = $manager->read($item['file']);
                     $image->resize(800, 800, function ($constraint) {
                         $constraint->aspectRatio();
                     });
-                    Storage::disk('public')->put($galPath, $image->encode());
+                    Storage::disk('public')->put($galPath, $image->toWebp(85));
                     $galleryEntry['path'] = $galPath;
                 }
                 if ($galleryEntry['path']) {
@@ -284,11 +284,11 @@ class ProductController extends Controller
                 Storage::disk('public')->delete($product->thumbnail);
             }
             $thumb = $request->file('thumbnail');
-            $thumbName = 'thumb_' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumbName = 'thumb_' . uniqid() . '.webp';
             $thumbPath = 'products/thumbnails/' . $thumbName;
             $image = $manager->read($thumb);
             $image->resize(300, 300);
-            Storage::disk('public')->put($thumbPath, $image->encode());
+            Storage::disk('public')->put($thumbPath, $image->toWebp(85));
             $data['thumbnail'] = $thumbPath;
         }
 
@@ -308,13 +308,13 @@ class ProductController extends Controller
         if ($request->has('gallery_items')) {
             foreach ($request->gallery_items as $item) {
                 if (isset($item['file']) && $item['file'] instanceof \Illuminate\Http\UploadedFile) {
-                    $galName = 'gal_' . uniqid() . '.' . $item['file']->getClientOriginalExtension();
+                    $galName = 'gal_' . uniqid() . '.webp';
                     $galPath = 'products/gallery/' . $galName;
                     $image = $manager->read($item['file']);
                     $image->resize(800, 800, function ($constraint) {
                         $constraint->aspectRatio();
                     });
-                    Storage::disk('public')->put($galPath, $image->encode());
+                    Storage::disk('public')->put($galPath, $image->toWebp(85));
                     $existingGallery[] = [
                         'path' => $galPath,
                         'color' => $item['color'] ?? null,

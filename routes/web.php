@@ -33,6 +33,8 @@ use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\CartSyncController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\UddoktaPayController;
 use App\Http\Controllers\Admin\AbandonedCartController as AdminAbandonedCartController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -76,6 +78,8 @@ Route::get('/order-complete', [HomePageController::class, 'orderComplete'])->nam
 Route::get('/privacy-policy', [HomePageController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/product-details', [HomePageController::class, 'productDetails'])->name('product-details');
 Route::post('/product-reviews', [ReviewController::class, 'store'])->name('product-reviews.store');
+Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
 Route::get('/refund-policy', [HomePageController::class, 'refundPolicy'])->name('refund-policy');
 Route::get('/register', [HomePageController::class, 'register'])->name('register');
 Route::post('/register', [HomePageController::class, 'registerSubmit'])->name('register.submit');

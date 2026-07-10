@@ -630,3 +630,79 @@ input[type="submit"],
   overflow: hidden;
   border-radius: var(--gms-radius) var(--gms-radius) 0 0;
 }
+
+/* ============================================================
+   10. SEARCH SUGGESTIONS DROPDOWN
+   ============================================================ */
+.gms-search-heading {
+  padding: 10px 15px 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  opacity: .6;
+}
+.gms-search-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gms-search-item a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: inherit;
+}
+.gms-search-item a:hover {
+  background: rgba(0, 0, 0, .04);
+}
+.gms-search-item img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: var(--gms-radius-sm, 6px);
+  flex-shrink: 0;
+}
+.gms-search-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.gms-search-item-title {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gms-search-item-price {
+  font-size: 13px;
+  opacity: .7;
+}
+.gms-search-empty {
+  padding: 15px;
+  opacity: .6;
+  font-size: 14px;
+}
+
+/* ============================================================
+   11. MOBILE — reduce homepage length / tighten spacing
+   ============================================================ */
+@media (max-width: 768.98px) {
+  .wd-hide-mobile-insta {
+    display: none !important;
+  }
+  .wd-trust-strip,
+  .wd-home-reviews,
+  .wd-deals-banner,
+  .wd-newsletter-section {
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+  .wd-deals-banner {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}

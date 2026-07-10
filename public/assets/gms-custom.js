@@ -408,6 +408,115 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   /* ==========================================================
+     9. SEARCH SUGGESTIONS / AUTOCOMPLETE
+     ========================================================== */
+  (function initSearchSuggestions() {
+    var forms = document.querySelectorAll('.searchform.woodmart-ajax-search');
+    if (forms.length === 0) return;
+
+    function renderResults(container, data) {
+      if (!data.products || data.products.length === 0) {
+        container.innerHTML = '<div class="gms-search-empty">No products found.</div>';
+        return;
+      }
+
+      var heading = data.popular ? 'Popular searches' : 'Search results';
+      var html = '<div class="gms-search-heading">' + heading + '</div><ul class="gms-search-list">';
+      data.products.forEach(function (p) {
+        html +=
+          '<li class="gms-search-item">' +
+            '<a href="' + p.url + '">' +
+              (p.img ? '<img src="' + p.img + '" alt="" loading="lazy">' : '') +
+              '<span class="gms-search-item-info">' +
+                '<span class="gms-search-item-title">' + p.title + '</span>' +
+                '<span class="gms-search-item-price">$' + p.price.toFixed(2) + '</span>' +
+              '</span>' +
+            '</a>' +
+          '</li>';
+      });
+      html += '</ul>';
+      container.innerHTML = html;
+    }
+
+    forms.forEach(function (form) {
+      var input = form.querySelector('.s');
+      if (!input) return;
+
+      var resultsBox = form.parentNode.querySelector('.wd-search-results');
+      if (!resultsBox) return;
+      var target = resultsBox.querySelector('.wd-scroll-content') || resultsBox;
+
+      var timer = null;
+
+      function runSearch(q) {
+        fetch('/search/suggestions?q=' + encodeURIComponent(q))
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) renderResults(target, data);
+          })
+          .catch(function () {});
+      }
+
+      input.addEventListener('focus', function () {
+        if (input.value.trim() === '') runSearch('');
+      });
+
+      input.addEventListener('input', function () {
+        clearTimeout(timer);
+        var q = input.value.trim();
+        timer = setTimeout(function () { runSearch(q); }, 250);
+      });
+    });
+  })();
+
+  /* ==========================================================
+     10. NEWSLETTER SIGNUP
+     ========================================================== */
+  (function initNewsletterForm() {
+    var form = document.getElementById('newsletter-form');
+    if (!form) return;
+
+    var msgBox = form.querySelector('.newsletter-message');
+    var tokenInput = form.querySelector('input[name="_token"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var email = form.querySelector('#newsletter-email').value.trim();
+      if (!email) return;
+
+      msgBox.textContent = 'Subscribing…';
+      msgBox.style.color = '';
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': tokenInput ? tokenInput.value : ''
+        },
+        body: JSON.stringify({ email: email })
+      })
+        .then(function (res) { return res.json().then(function (data) { return { status: res.status, data: data }; }); })
+        .then(function (result) {
+          if (result.status >= 200 && result.status < 300) {
+            msgBox.style.color = '#2f8f4e';
+            msgBox.textContent = result.data.message || 'Thanks for subscribing!';
+            form.reset();
+          } else {
+            msgBox.style.color = '#c9401d';
+            var errors = result.data.errors ? Object.values(result.data.errors).flat().join(' ') : null;
+            msgBox.textContent = errors || result.data.message || 'Something went wrong. Please try again.';
+          }
+        })
+        .catch(function () {
+          msgBox.style.color = '#c9401d';
+          msgBox.textContent = 'Something went wrong. Please try again.';
+        });
+    });
+  })();
+
+  /* ==========================================================
      8c. LAZY LOAD IMAGES — add loading="lazy" + decoding="async"
      ========================================================== */
   (function initLazyLoad() {

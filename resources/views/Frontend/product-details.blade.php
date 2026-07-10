@@ -2834,95 +2834,53 @@
 											<div class="wd-reviews-heading">
 												<div class="wd-reviews-tools">
 													<h2 class="woocommerce-Reviews-title">
-														1 review for <span>8 Bit Hearts Cap</span> </h2>
-
+														{{ $totalReviews }} {{ Str::plural('review', $totalReviews) }} for <span>{{ $product->name }}</span> </h2>
 												</div>
-
 											</div>
 
 											<div class="wd-reviews-content">
+												@if($reviews->isEmpty())
+													<p>Be the first to review &ldquo;{{ $product->name }}&rdquo;.</p>
+												@else
 												<ol class="commentlist wd-grid-g wd-active wd-in wd-review-style-1"
 													style="--wd-col-lg: 1;--wd-col-md: 1;--wd-col-sm: 1;"
 													data-reviews-columns="{&quot;reviews_columns&quot;:1,&quot;reviews_columns_tablet&quot;:1,&quot;reviews_columns_mobile&quot;:1}">
-													<li class="review even thread-even depth-1 wd-col"
-														id="li-comment-8">
-
-														<div id="comment-8" class="comment_container">
-
-															<img alt=''
-																src='https://secure.gravatar.com/avatar/c3d98c4ddad266735ddd6f3202c36988e348194fac17d2d6f8bdffbe46db6f49?s=60&#038;d=mm&#038;r=g'
-																srcset='https://secure.gravatar.com/avatar/c3d98c4ddad266735ddd6f3202c36988e348194fac17d2d6f8bdffbe46db6f49?s=120&#038;d=mm&#038;r=g 2x'
-																class='avatar avatar-60 photo' height='60' width='60'
-																loading='lazy' decoding='async' />
+													@foreach($reviews as $review)
+													<li class="review depth-1 wd-col" id="li-comment-{{ $review->id }}">
+														<div id="comment-{{ $review->id }}" class="comment_container">
 															<div class="comment-text">
-
-
 																<p class="meta">
-																	<strong class="woocommerce-review__author">Ema
-																		Norton </strong>
-																	<span
-																		class="woocommerce-review__dash">&ndash;</span>
-																	<time class="woocommerce-review__published-date"
-																		datetime="2025-11-11T12:06:01+00:00">November
-																		11, 2025</time>
+																	<strong class="woocommerce-review__author">{{ $review->name }}</strong>
+																	<span class="woocommerce-review__dash">&ndash;</span>
+																	<time class="woocommerce-review__published-date">{{ $review->created_at->format('F j, Y') }}</time>
 																</p>
 
-																<div class="star-rating" role="img"
-																	aria-label="Rated 4 out of 5"><span
-																		style="width:80%">Rated <strong
-																			class="rating">4</strong> out of 5</span>
+																<div class="star-rating" role="img" aria-label="Rated {{ $review->rating }} out of 5">
+																	<span style="width:{{ $review->rating / 5 * 100 }}%">Rated <strong
+																			class="rating">{{ $review->rating }}</strong> out of 5</span>
 																</div>
 																<div class="description">
-																	<p>I recently purchased an Astro Bot T-shirt and am
-																		very happy with it! As a big fan of the Astro
-																		Bot series and a proud owner of a PS5, this
-																		T-shirt was a must-have addition to my wardrobe
-																	</p>
+																	<p>{{ $review->comment }}</p>
 																</div>
+																@if(!empty($review->photos))
+																	<div class="wd-review-photos" style="display:flex;gap:6px;margin-top:8px;">
+																		@foreach($review->photos as $photo)
+																			<img src="{{ Storage::url($photo) }}" alt="Customer photo" loading="lazy"
+																				width="72" height="72" style="width:72px;height:72px;object-fit:cover;border-radius:6px;" />
+																		@endforeach
+																	</div>
+																@endif
 															</div>
 														</div>
-														<ul class="children">
-															<li class="comment byuser comment-author-zakhar odd alt depth-2 wd-col"
-																id="li-comment-29">
-
-																<div id="comment-29" class="comment_container">
-
-																	<img alt=''
-																		src='https://secure.gravatar.com/avatar/2772a622478b29286f1cacd8ff038c7fefa5d12038bca3c619a9f4fd571267a2?s=60&#038;d=mm&#038;r=g'
-																		srcset='https://secure.gravatar.com/avatar/2772a622478b29286f1cacd8ff038c7fefa5d12038bca3c619a9f4fd571267a2?s=120&#038;d=mm&#038;r=g 2x'
-																		class='avatar avatar-60 photo' height='60'
-																		width='60' loading='lazy' decoding='async' />
-																	<div class="comment-text">
-
-
-																		<p class="meta">
-																			<strong
-																				class="woocommerce-review__author">Mr.
-																				Mackay </strong>
-																			<span
-																				class="woocommerce-review__dash">&ndash;</span>
-																			<time
-																				class="woocommerce-review__published-date"
-																				datetime="2025-11-11T12:16:00+00:00">November
-																				11, 2025</time>
-																		</p>
-
-																		<div class="description">
-																			<p>That’s awesome! You made a great
-																				choice—it really is a must-have for any
-																				PS5 owner. Thanks for the feedback!</p>
-																		</div>
-																	</div>
-																</div>
-															</li><!-- #comment-## -->
-														</ul><!-- .children -->
-													</li><!-- #comment-## -->
+													</li>
+													@endforeach
 												</ol>
-
+												@endif
 											</div>
 
 											<div class="wd-loader-overlay wd-fill"></div>
 										</div>
+
 
 										<div id="review_form_wrapper">
 											<div id="review_form">
@@ -2932,8 +2890,15 @@
 																rel="nofollow" id="cancel-comment-reply-link"
 																href="/merchandise/product/8-bit-hearts-cap/#respond"
 																style="display:none;">Cancel reply</a></small></span>
-													<form action="#" method="post" id="commentform"
-														class="comment-form">
+													<form action="{{ route('product-reviews.store') }}" method="post" id="commentform"
+														class="comment-form" enctype="multipart/form-data">
+														@csrf
+														<input type="hidden" name="product_id" value="{{ $product->id }}" />
+														<p class="comment-form-author"><label for="review-name">Your name&nbsp;<span
+																	class="required">*</span></label>
+															<input id="review-name" name="name" type="text" required /></p>
+														<p class="comment-form-email"><label for="review-email">Your email</label>
+															<input id="review-email" name="email" type="email" /></p>
 														<div class="comment-form-rating"><label for="rating"
 																id="comment-form-rating-label">Your rating&nbsp;<span
 																	class="required">*</span></label><select
@@ -2950,12 +2915,10 @@
 																	class="required">*</span></label><textarea
 																id="comment" name="comment" cols="45" rows="8"
 																required></textarea></p>
+														<p class="comment-form-photos"><label for="review-photos">Add photos (up to 4)</label>
+															<input id="review-photos" name="photos[]" type="file" accept="image/*" multiple /></p>
 														<p class="form-submit"><input name="submit" type="submit"
-																id="submit" class="submit" value="Submit" /> <input
-																type='hidden' name='comment_post_ID' value='201'
-																id='comment_post_ID' />
-															<input type='hidden' name='comment_parent'
-																id='comment_parent' value='0' />
+																id="submit" class="submit" value="Submit" />
 														</p>
 													</form>
 												</div><!-- #respond -->
@@ -3001,492 +2964,16 @@
 								<div id="carousel-165"
 									class="wd-carousel-container  wd-fd8e9148 wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins title-line-one">
 
+									<h2 class="wp-block-wd-title title wd-ba40f768">You may also like&#8230;</h2>
 
-									<h2 class="wp-block-wd-title title wd-ba40f768">You may also like…</h2>
-
-
-
+									@if($related->isNotEmpty())
 									<div class="wd-carousel-inner">
 										<div class=" wd-carousel wd-grid" data-scroll_per_page="yes"
 											style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
 											<div class="wd-carousel-wrap">
-												<div class="wd-carousel-item">
-													<div class="wd-product wd-hover-quick product-grid-item product type-product post-201 status-publish instock product_cat-hats has-post-thumbnail shipping-taxable purchasable product-type-simple"
-														data-loop="1" data-id="201">
-
-														<div class="wd-product-wrapper product-wrapper">
-															<div
-																class="wd-product-thumb product-element-top wd-quick-shop">
-																<a href="product_details.html"
-																	class="wd-product-img-link product-image-link"
-																	tabindex="-1" aria-label="8 Bit Hearts Cap">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</a>
-
-																<div class="wd-product-img-hover hover-img">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</div>
-																<div class="wd-buttons wd-pos-r-t">
-																	<div
-																		class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-																		<a href="product_details.html"
-																			class="open-quick-view" rel="nofollow"
-																			data-id="201">
-																			<span class="wd-action-icon"></span>
-																			<span class="wd-action-text">
-																				Quick view </span>
-																		</a>
-																	</div>
-																	<div
-																		class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-																		<a class="" href="wishtlist.html"
-																			data-key="d5b554e37e" data-product-id="201"
-																			rel="nofollow">
-																			<span class="wd-action-icon">
-																				<span class="wd-check-icon"></span>
-																			</span>
-																			<span class="wd-action-text">Add to
-																				wishlist</span>
-																		</a>
-																	</div>
-																</div>
-
-																<div class="wd-add-btn wd-add-btn-replace">
-
-																	<a href="/merchandise/product/8-bit-hearts-cap/?add-to-cart=201"
-																		data-quantity="1"
-																		class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-																		data-product_id="201" data-product_sku="GM-H-11"
-																		aria-label="Add to cart: &ldquo;8 Bit Hearts Cap&rdquo;"
-																		rel="nofollow"
-																		data-success_message="&ldquo;8 Bit Hearts Cap&rdquo; has been added to your cart"
-																		role="button"><span class="wd-action-icon"><span
-																				class="wd-check-icon"></span></span><span
-																			class="wd-action-text">Add to
-																			cart</span></a>
-																</div>
-															</div>
-															<div class="product-element-bottom">
-																<h3 class="wd-entities-title"><a
-																		href="product_details.html">8 Bit Hearts Cap</a>
-																</h3>
-
-																<div class="star-rating" role="img"
-																	aria-label="Rated 4.00 out of 5">
-																	<span style="width:80%">
-																		Rated <strong class="rating">4.00</strong> out
-																		of 5 </span>
-																</div>
-
-
-
-																<span class="price"><span
-																		class="woocommerce-Price-amount amount"><bdi><span
-																				class="woocommerce-Price-currencySymbol">&#36;</span>22,60</bdi></span></span>
-
-
-
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="wd-carousel-item">
-													<div class="wd-product wd-hover-quick product-grid-item product type-product post-382 status-publish instock product_cat-figures has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-														data-loop="2" data-id="382">
-
-														<div class="wd-product-wrapper product-wrapper">
-															<div
-																class="wd-product-thumb product-element-top wd-quick-shop">
-																<a href="product_details.html"
-																	class="wd-product-img-link product-image-link"
-																	tabindex="-1" aria-label="Alex Minecraft Figure">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</a>
-
-																<link rel="stylesheet"
-																	id="wd-woo-mod-product-labels-default-css"
-																	href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
-																	type="text/css" media="all" />
-																<link rel="stylesheet"
-																	id="wd-woo-mod-product-labels-css"
-																	href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
-																	type="text/css" media="all" />
-																<div class="product-labels labels-rounded-sm">
-																	<span
-																		class="onsale product-label wd-shape-round-sm">-23%</span>
-																</div>
-																<div class="wd-product-img-hover hover-img">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</div>
-																<div class="wd-buttons wd-pos-r-t">
-																	<div
-																		class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-																		<a href="product_details.html"
-																			class="open-quick-view" rel="nofollow"
-																			data-id="382">
-																			<span class="wd-action-icon"></span>
-																			<span class="wd-action-text">
-																				Quick view </span>
-																		</a>
-																	</div>
-																	<div
-																		class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-																		<a class="" href="wishtlist.html"
-																			data-key="d5b554e37e" data-product-id="382"
-																			rel="nofollow">
-																			<span class="wd-action-icon">
-																				<span class="wd-check-icon"></span>
-																			</span>
-																			<span class="wd-action-text">Add to
-																				wishlist</span>
-																		</a>
-																	</div>
-																</div>
-
-																<div class="wd-add-btn wd-add-btn-replace">
-
-																	<a href="/merchandise/product/8-bit-hearts-cap/?add-to-cart=382"
-																		data-quantity="1"
-																		class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-																		data-product_id="382" data-product_sku="GM-FG-4"
-																		aria-label="Add to cart: &ldquo;Alex Minecraft Figure&rdquo;"
-																		rel="nofollow"
-																		data-success_message="&ldquo;Alex Minecraft Figure&rdquo; has been added to your cart"
-																		role="button"><span class="wd-action-icon"><span
-																				class="wd-check-icon"></span></span><span
-																			class="wd-action-text">Add to
-																			cart</span></a>
-																</div>
-															</div>
-															<div class="product-element-bottom">
-																<h3 class="wd-entities-title"><a
-																		href="product_details.html">Alex Minecraft
-																		Figure</a></h3>
-
-																<div class="star-rating" role="img"
-																	aria-label="Rated 5.00 out of 5">
-																	<span style="width:100%">
-																		Rated <strong class="rating">5.00</strong> out
-																		of 5 </span>
-																</div>
-
-
-
-																<span class="price"><del aria-hidden="true"><span
-																			class="woocommerce-Price-amount amount"><bdi><span
-																					class="woocommerce-Price-currencySymbol">&#36;</span>49,99</bdi></span></del>
-																	<span class="screen-reader-text">Original price was:
-																		&#036;49,99.</span><ins aria-hidden="true"><span
-																			class="woocommerce-Price-amount amount"><bdi><span
-																					class="woocommerce-Price-currencySymbol">&#36;</span>38,25</bdi></span></ins><span
-																		class="screen-reader-text">Current price is:
-																		&#036;38,25.</span></span>
-
-
-
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="wd-carousel-item">
-													<div class="wd-product wd-hover-quick product-grid-item product type-product post-423 status-publish last instock product_cat-plushes has-post-thumbnail shipping-taxable purchasable product-type-simple"
-														data-loop="3" data-id="423">
-
-														<div class="wd-product-wrapper product-wrapper">
-															<div
-																class="wd-product-thumb product-element-top wd-quick-shop">
-																<a href="product_details.html"
-																	class="wd-product-img-link product-image-link"
-																	tabindex="-1" aria-label="Astro Bot Plush">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</a>
-
-																<div class="wd-product-img-hover hover-img">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</div>
-																<div class="wd-buttons wd-pos-r-t">
-																	<div
-																		class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-																		<a href="product_details.html"
-																			class="open-quick-view" rel="nofollow"
-																			data-id="423">
-																			<span class="wd-action-icon"></span>
-																			<span class="wd-action-text">
-																				Quick view </span>
-																		</a>
-																	</div>
-																	<div
-																		class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-																		<a class="" href="wishtlist.html"
-																			data-key="d5b554e37e" data-product-id="423"
-																			rel="nofollow">
-																			<span class="wd-action-icon">
-																				<span class="wd-check-icon"></span>
-																			</span>
-																			<span class="wd-action-text">Add to
-																				wishlist</span>
-																		</a>
-																	</div>
-																</div>
-
-																<div class="wd-add-btn wd-add-btn-replace">
-
-																	<a href="/merchandise/product/8-bit-hearts-cap/?add-to-cart=423"
-																		data-quantity="1"
-																		class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-																		data-product_id="423" data-product_sku="GM-PL-1"
-																		aria-label="Add to cart: &ldquo;Astro Bot Plush&rdquo;"
-																		rel="nofollow"
-																		data-success_message="&ldquo;Astro Bot Plush&rdquo; has been added to your cart"
-																		role="button"><span class="wd-action-icon"><span
-																				class="wd-check-icon"></span></span><span
-																			class="wd-action-text">Add to
-																			cart</span></a>
-																</div>
-															</div>
-															<div class="product-element-bottom">
-																<h3 class="wd-entities-title"><a
-																		href="product_details.html">Astro Bot Plush</a>
-																</h3>
-
-																<div class="star-rating" role="img"
-																	aria-label="Rated 4.00 out of 5">
-																	<span style="width:80%">
-																		Rated <strong class="rating">4.00</strong> out
-																		of 5 </span>
-																</div>
-
-
-
-																<span class="price"><span
-																		class="woocommerce-Price-amount amount"><bdi><span
-																				class="woocommerce-Price-currencySymbol">&#36;</span>12,99</bdi></span></span>
-
-
-
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="wd-carousel-item">
-													<div class="wd-product wd-hover-quick product-grid-item product type-product post-83 status-publish first instock product_cat-t-shirts has-post-thumbnail featured shipping-taxable purchasable product-type-variable"
-														data-loop="4" data-id="83">
-
-														<div class="wd-product-wrapper product-wrapper">
-															<div
-																class="wd-product-thumb product-element-top wd-quick-shop">
-																<a href="product_details.html"
-																	class="wd-product-img-link product-image-link"
-																	tabindex="-1" aria-label="Astro Bot T-Shirt">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</a>
-
-																<div class="product-labels labels-rounded-sm">
-																	<span
-																		class="featured product-label wd-shape-round-sm">Hot</span>
-																</div>
-																<div class="wd-product-img-hover hover-img">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</div>
-																<div class="wd-buttons wd-pos-r-t">
-																	<div
-																		class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-																		<a href="product_details.html"
-																			class="open-quick-view" rel="nofollow"
-																			data-id="83">
-																			<span class="wd-action-icon"></span>
-																			<span class="wd-action-text">
-																				Quick view </span>
-																		</a>
-																	</div>
-																	<div
-																		class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-																		<a class="" href="wishtlist.html"
-																			data-key="d5b554e37e" data-product-id="83"
-																			rel="nofollow">
-																			<span class="wd-action-icon">
-																				<span class="wd-check-icon"></span>
-																			</span>
-																			<span class="wd-action-text">Add to
-																				wishlist</span>
-																		</a>
-																	</div>
-																</div>
-
-																<div class="wd-add-btn wd-add-btn-replace">
-
-																	<a href="product_details.html"
-																		aria-describedby="woocommerce_loop_add_to_cart_link_describedby_83"
-																		data-quantity="1"
-																		class="button product_type_variable add_to_cart_button add-to-cart-loop"
-																		data-product_id="83" data-product_sku="GM-T-08M"
-																		aria-label="Select options for &ldquo;Astro Bot T-Shirt&rdquo;"
-																		rel="nofollow"><span
-																			class="wd-action-icon"><span
-																				class="wd-check-icon"></span></span><span
-																			class="wd-action-text">Select
-																			options</span></a> <span
-																		id="woocommerce_loop_add_to_cart_link_describedby_83"
-																		class="screen-reader-text">
-																		This product has multiple variants. The options
-																		may be chosen on the product page </span>
-																</div>
-															</div>
-															<div class="product-element-bottom">
-																<h3 class="wd-entities-title"><a
-																		href="product_details.html">Astro Bot
-																		T-Shirt</a></h3>
-
-																<div class="star-rating" role="img"
-																	aria-label="Rated 5.00 out of 5">
-																	<span style="width:100%">
-																		Rated <strong class="rating">5.00</strong> out
-																		of 5 </span>
-																</div>
-
-
-
-																<span class="price"><span
-																		class="woocommerce-Price-amount amount"><bdi><span
-																				class="woocommerce-Price-currencySymbol">&#36;</span>28,65</bdi></span></span>
-
-
-
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="wd-carousel-item">
-													<div class="wd-product wd-hover-quick product-grid-item product type-product post-208 status-publish instock product_cat-pins has-post-thumbnail shipping-taxable purchasable product-type-simple"
-														data-loop="5" data-id="208">
-
-														<div class="wd-product-wrapper product-wrapper">
-															<div
-																class="wd-product-thumb product-element-top wd-quick-shop">
-																<a href="product_details.html"
-																	class="wd-product-img-link product-image-link"
-																	tabindex="-1"
-																	aria-label="Back to the Future Enamel Pin Badge">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</a>
-
-																<div class="wd-product-img-hover hover-img">
-																	<img width="430" height="492"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1-600x686.jpeg.webp"
-																		class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-																		alt="" decoding="async" loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-enamel-pin-badge-1.jpeg.webp 700w"
-																		sizes="auto, (max-width: 430px) 100vw, 430px" />
-																</div>
-																<div class="wd-buttons wd-pos-r-t">
-																	<div
-																		class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-																		<a href="product_details.html"
-																			class="open-quick-view" rel="nofollow"
-																			data-id="208">
-																			<span class="wd-action-icon"></span>
-																			<span class="wd-action-text">
-																				Quick view </span>
-																		</a>
-																	</div>
-																	<div
-																		class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-																		<a class="" href="wishtlist.html"
-																			data-key="d5b554e37e" data-product-id="208"
-																			rel="nofollow">
-																			<span class="wd-action-icon">
-																				<span class="wd-check-icon"></span>
-																			</span>
-																			<span class="wd-action-text">Add to
-																				wishlist</span>
-																		</a>
-																	</div>
-																</div>
-
-																<div class="wd-add-btn wd-add-btn-replace">
-
-																	<a href="/merchandise/product/8-bit-hearts-cap/?add-to-cart=208"
-																		data-quantity="1"
-																		class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-																		data-product_id="208" data-product_sku="GM-P-6"
-																		aria-label="Add to cart: &ldquo;Back to the Future Enamel Pin Badge&rdquo;"
-																		rel="nofollow"
-																		data-success_message="&ldquo;Back to the Future Enamel Pin Badge&rdquo; has been added to your cart"
-																		role="button"><span class="wd-action-icon"><span
-																				class="wd-check-icon"></span></span><span
-																			class="wd-action-text">Add to
-																			cart</span></a>
-																</div>
-															</div>
-															<div class="product-element-bottom">
-																<h3 class="wd-entities-title"><a
-																		href="product_details.html">Back to the Future
-																		Enamel Pin Badge</a></h3>
-
-																<div class="star-rating" role="img"
-																	aria-label="Rated 5.00 out of 5">
-																	<span style="width:100%">
-																		Rated <strong class="rating">5.00</strong> out
-																		of 5 </span>
-																</div>
-
-
-
-																<span class="price"><span
-																		class="woocommerce-Price-amount amount"><bdi><span
-																				class="woocommerce-Price-currencySymbol">&#36;</span>7,99</bdi></span></span>
-
-
-
-															</div>
-														</div>
-													</div>
-												</div>
+												@foreach($related as $relatedProduct)
+													@include('Frontend.partials.product-card', ['product' => $relatedProduct])
+												@endforeach
 											</div>
 										</div>
 
@@ -3499,7 +2986,7 @@
 											</div>
 										</div>
 									</div>
-
+									@endif
 								</div>
 							</div>
 						</div>

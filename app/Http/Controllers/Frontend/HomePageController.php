@@ -43,19 +43,33 @@ class HomePageController extends Controller
             ->orderByDesc('id')
             ->limit(8)
             ->get();
-        $allProducts = Product::published()->orderByDesc('id')->limit(8)->get();
-        $dealsBanner = DealsBanner::where('status', true)->first();
-        $latestCategories = Category::where('status', true)
-            ->whereNull('parent_id')
+        $bestSellers = Product::published()
+            ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
+            ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
+            ->withCount('orderItems as sold_count')
+            ->orderByDesc('sold_count')
             ->orderByDesc('id')
-            ->limit(5)
+            ->limit(8)
+            ->get();
+        $bestSellerIds = $bestSellers->pluck('id')->all();
+        $allProducts = Product::published()
+            ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
+            ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get();
+        $dealsBanner = DealsBanner::where('status', true)->first();
+        $homeReviews = ProductReview::approved()
+            ->with('product:id,name,slug')
+            ->latest()
+            ->limit(6)
             ->get();
         $brands = Brand::where('status', true)
             ->whereNotNull('icon')
             ->orderBy('name')
             ->limit(8)
             ->get();
-        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'allProducts', 'dealsBanner', 'latestCategories', 'brands'));
+        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'bestSellers', 'bestSellerIds', 'allProducts', 'dealsBanner', 'homeReviews', 'brands'));
     }
 
     public function about()

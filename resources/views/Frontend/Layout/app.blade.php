@@ -600,11 +600,10 @@
         </span>
 
         <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
-            action="index.html" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
+            action="{{ route('all-products') }}" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
             data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
-            <input type="text" class="s" placeholder="Search for products" value="" name="s"
+            <input type="text" class="s" placeholder="Search for products" value="" name="q"
                 aria-label="Search" title="Search for products" required />
-            <input type="hidden" name="post_type" value="product">
 
             <button type="submit" class="searchsubmit">
                 <span>
@@ -626,11 +625,10 @@
                 href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/wd-search-dropdown.css') }}"
                 type="text/css" media="all" />
             <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
-                action="index.html" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
+                action="{{ route('all-products') }}" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
                 data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
                 <input type="text" class="s" placeholder="Search for products" value=""
-                    name="s" aria-label="Search" title="Search for products" required />
-                <input type="hidden" name="post_type" value="product">
+                    name="q" aria-label="Search" title="Search for products" required />
 
                 <span tabindex="0" aria-label="Clear search" class="wd-clear-search wd-role-btn wd-hide"></span>
 

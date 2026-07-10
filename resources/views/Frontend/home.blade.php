@@ -25,7 +25,7 @@
                                 <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
                                     style="--wd-col-lg:5;--wd-col-md:5;--wd-col-sm:3;--wd-gap-lg:20px;--wd-gap-sm:10px;">
                                     <div class="wd-carousel-wrap">
-                                        @foreach($latestCategories as $cat)
+                                        @foreach($homeCategories as $cat)
                                         <div class="wd-carousel-item">
                                             <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product {{ $loop->first ? 'first' : '' }} {{ $loop->last ? 'last' : '' }}"
                                                 data-loop="{{ $loop->iteration }}">
@@ -50,6 +50,9 @@
                                                     </div>
                                                     <div class="wd-cat-content hover-mask">
                                                         <h3 class="wd-entities-title">{{ $cat->name }}</h3>
+                                                        @if(($cat->products_count ?? 0) > 0)
+                                                            <span class="wd-cat-count" style="font-size:11px;opacity:.75">{{ $cat->products_count }} products</span>
+                                                        @endif
                                                     </div>
                                                     <a class="wd-fill category-link"
                                                         href="{{ route('category-products') }}?cat={{ $cat->slug }}"
@@ -74,6 +77,44 @@
                         </div>
                     </div>
                 </div>
+
+                @if($trustItems->isNotEmpty())
+                <div class="wp-block-wd-carousel wd-carousel-container wd-trust-strip wd-090647c4">
+                    <div class="wd-carousel-inner">
+                        <div class="wd-carousel wd-grid scroll-init"
+                            style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:1;--wd-gap-lg:20px;--wd-gap-sm:10px"
+                            data-scroll_per_page="yes">
+                            <div class="wd-carousel-wrap">
+                                @foreach($trustItems as $item)
+                                <div class="wp-block-wd-carousel-item wd-carousel-item">
+                                    <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
+                                        @if($item->icon)
+                                            @php $trustIconClass = str_contains($item->icon, ' ') ? $item->icon : 'fas ' . $item->icon; @endphp
+                                            <div class="wp-block-wd-icon"><i class="{{ $trustIconClass }}" style="font-size:28px"></i></div>
+                                        @endif
+                                        <div class="wp-block-wd-container wd-dir-col">
+                                            <h2 class="wp-block-wd-title title">{{ $item->title }}</h2>
+                                            @if($item->description)
+                                                <p class="wp-block-wd-paragraph">{{ $item->description }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">
+                            <div class="wd-btn-arrow wd-prev">
+                                <div class="wd-arrow-inner"></div>
+                            </div>
+                            <div class="wd-btn-arrow wd-next">
+                                <div class="wd-arrow-inner"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wd-nav-scroll wd-hide-lg"></div>
+                </div>
+                @endif
 
                 <div class="wp-block-wd-slider wd-slider wd-carousel-container wd-anim-slide wd-autoplay-on wd-14565c68">
                     <div class="wd-carousel-inner">
@@ -140,10 +181,10 @@
                 </div>
 
                 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
-                    <h2 class="wp-block-wd-title title wd-8155d366">What&#8217;s New</h2>
+                    <h2 class="wp-block-wd-title title wd-8155d366">Best Sellers</h2>
 
                     <a class="wp-block-wd-button btn btn-style-default btn-size-default btn-shape-semi-round btn-icon-pos-right wd-12db7e54"
-                        href="products.html"><span>View more</span>
+                        href="{{ route('all-products') }}"><span>View more</span>
                         <div class="wp-block-wd-icon wd-56c1d5ff"><img loading="lazy" decoding="async" width="16"
                                 height="17" class="wp-image-1013"
                                 src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
@@ -188,104 +229,8 @@
                         <div class=" wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
                             style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
                             <div class="wd-carousel-wrap">
-                                @foreach($latestProducts as $product)
-                                @php
-                                    $hasSale = $product->sale_price && $product->sale_price < $product->selling_price;
-                                    $displayPrice = $hasSale ? $product->sale_price : $product->selling_price;
-                                    $avgRating = round($product->avg_rating ?? 0, 1);
-                                    $detailsUrl = route('product-details') . '?slug=' . $product->slug;
-                                    $resolveImage = function ($path) {
-                                        if (!$path) return null;
-                                        return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
-                                            ? Storage::url($path)
-                                            : asset($path);
-                                    };
-                                    $thumbUrl = $resolveImage($product->thumbnail);
-                                    $galleryFirst = $product->gallery[0] ?? null;
-                                    $hoverPath = is_array($galleryFirst) ? ($galleryFirst['path'] ?? null) : $galleryFirst;
-                                    $hoverUrl = $hoverPath ? $resolveImage($hoverPath) : null;
-                                @endphp
-                                <div class="wd-carousel-item">
-                                    <div class="wd-product wd-hover-quick product-grid-item product type-product instock has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
-                                        data-loop="{{ $loop->iteration }}" data-id="{{ $product->id }}">
-
-                                        <div class="wd-product-wrapper product-wrapper">
-                                            <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                <a href="{{ $detailsUrl }}"
-                                                    class="wd-product-img-link product-image-link" tabindex="-1"
-                                                    aria-label="{{ $product->name }}">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ $thumbUrl }}"
-                                                        class="attachment-263x300 size-263x300" alt="{{ $product->name }}" /> </a>
-
-                                                @if($hasSale)
-                                                <div class="product-labels labels-rounded-sm">
-                                                    <span class="onsale product-label wd-shape-round-sm">Sale</span>
-                                                </div>
-                                                @endif
-                                                @if($hoverUrl)
-                                                <div class="wd-product-img-hover hover-img">
-                                                    <img loading="lazy" decoding="async" width="263" height="300"
-                                                        src="{{ $hoverUrl }}"
-                                                        class="attachment-263x300 size-263x300" alt="{{ $product->name }}" />
-                                                </div>
-                                                @endif
-                                                <div class="wd-buttons wd-pos-r-t">
-                                                    <div
-                                                        class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                        <a href="{{ $detailsUrl }}" class="open-quick-view"
-                                                            rel="nofollow" data-id="{{ $product->id }}">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Quick view </span>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                        <a class="" href="{{ route('wishlist') }}"
-                                                            data-product-id="{{ $product->id }}" rel="nofollow">
-                                                            <span class="wd-action-icon">
-                                                                <span class="wd-check-icon"></span>
-                                                            </span>
-                                                            <span class="wd-action-text">Add to wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-add-btn wd-add-btn-replace">
-                                                    <a href="{{ $detailsUrl }}"
-                                                        class="button add_to_cart_button add-to-cart-loop"
-                                                        data-product_id="{{ $product->id }}"
-                                                        aria-label="View {{ $product->name }}"
-                                                        rel="nofollow"><span class="wd-action-icon"><span
-                                                                class="wd-check-icon"></span></span><span
-                                                            class="wd-action-text">{{ $product->type === 'variable' ? 'Select options' : 'Add to cart' }}</span></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-element-bottom">
-                                                <h3 class="wd-entities-title"><a href="{{ $detailsUrl }}">{{ $product->name }}</a></h3>
-
-                                                @if($avgRating > 0)
-                                                <div class="star-rating" role="img" aria-label="Rated {{ $avgRating }} out of 5">
-                                                    <span style="width:{{ $avgRating / 5 * 100 }}%">
-                                                        Rated <strong class="rating">{{ $avgRating }}</strong> out of 5
-                                                    </span>
-                                                </div>
-                                                @endif
-
-                                                <span class="price">
-                                                    @if($hasSale)
-                                                    <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($product->selling_price, 2) }}</bdi></span></del>
-                                                    <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span></ins>
-                                                    @else
-                                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span>
-                                                    @endif
-                                                </span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @foreach($bestSellers as $product)
+                                    @include('Frontend.partials.product-card', ['product' => $product, 'bestSellerIds' => $bestSellerIds])
                                 @endforeach
                         </div>
 
@@ -302,921 +247,54 @@
                     <div class="wd-nav-scroll"></div>
                 </div>
 
-                <div class="wp-block-wd-section wd-a9f0276a">
-                    <div class="wp-block-wd-row wd-992e7564">
-                        <div class="wp-block-wd-column wd-dcd1f159">
-                            <div class="wp-block-wd-image wd-block-image wd-7b572e8c"><img loading="lazy"
-                                    decoding="async" width="203" height="35" class="wp-image-731"
-                                    src="merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp"
-                                    alt=""
-                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo.png.webp 203w, merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-100x17.png.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-cubes-logo-150x26.png.webp 150w"
-                                    sizes="auto, (max-width: 203px) 100vw, 203px" /></div>
-
-                            <h2 class="wp-block-wd-title title wd-b0b336a8 wd-custom-width">Apparel &amp;
-                                collectibles inspired by the blocky world you love!</h2>
-
-                            <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round wd-669acf7c"
-                                href="products.html"><span>Shop
-                                    now</span></a>
-                        </div>
-
-                        <div class="wp-block-wd-column wd-a01cba50">
-                            <link rel="stylesheet" id="wd-woo-opt-products-bg-css"
-                                href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-products-bg.css"
-                                type="text/css" media="all" />
-                            <div id="carousel-836"
-                                class="wd-carousel-container  wd-6b34d997 wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm wd-products-with-bg title-line-one">
-
-                                <div class="wd-carousel-inner">
-                                    <div class=" wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
-                                        style="--wd-col-lg:3;--wd-col-md:2;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
-                                        <div class="wd-carousel-wrap">
-                                            <div class="wd-carousel-item">
-                                                <div class="wd-product wd-hover-quick product-grid-item product type-product post-201 status-publish instock product_cat-hats has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                                    data-loop="1" data-id="201">
-
-                                                    <div class="wd-product-wrapper product-wrapper">
-                                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                            <a href="product_details.html"
-                                                                class="wd-product-img-link product-image-link"
-                                                                tabindex="-1" aria-label="8 Bit Hearts Cap">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300" alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </a>
-
-                                                            <div class="wd-product-img-hover hover-img">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300" alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </div>
-                                                            <div class="wd-buttons wd-pos-r-t">
-                                                                <div
-                                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                    <a href="product_details.html" class="open-quick-view"
-                                                                        rel="nofollow" data-id="201">
-                                                                        <span class="wd-action-icon"></span>
-                                                                        <span class="wd-action-text">
-                                                                            Quick view </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div
-                                                                    class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                    <a class="" href="wishtlist.html"
-                                                                        data-key="755a40176b" data-product-id="201"
-                                                                        rel="nofollow">
-                                                                        <span class="wd-action-icon">
-                                                                            <span class="wd-check-icon"></span>
-                                                                        </span>
-                                                                        <span class="wd-action-text">Add to
-                                                                            wishlist</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                                <a href="/merchandise/?add-to-cart=201"
-                                                                    data-quantity="1"
-                                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                    data-product_id="201" data-product_sku="GM-H-11"
-                                                                    aria-label="Add to cart: &ldquo;8 Bit Hearts Cap&rdquo;"
-                                                                    rel="nofollow"
-                                                                    data-success_message="&ldquo;8 Bit Hearts Cap&rdquo; has been added to your cart"
-                                                                    role="button"><span class="wd-action-icon"><span
-                                                                            class="wd-check-icon"></span></span><span
-                                                                        class="wd-action-text">Add to
-                                                                        cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-element-bottom">
-                                                            <h3 class="wd-entities-title"><a
-                                                                    href="product_details.html">8
-                                                                    Bit Hearts Cap</a></h3>
-
-                                                            <div class="star-rating" role="img"
-                                                                aria-label="Rated 4.00 out of 5">
-                                                                <span style="width:80%">
-                                                                    Rated <strong class="rating">4.00</strong>
-                                                                    out of 5 </span>
-                                                            </div>
-
-                                                            <span class="price"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>22,60</bdi></span></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-carousel-item">
-                                                <div class="wd-product wd-hover-quick product-grid-item product type-product post-382 status-publish instock product_cat-figures has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                                    data-loop="2" data-id="382">
-
-                                                    <div class="wd-product-wrapper product-wrapper">
-                                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                            <a href="product_details.html"
-                                                                class="wd-product-img-link product-image-link"
-                                                                tabindex="-1" aria-label="Alex Minecraft Figure">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </a>
-
-                                                            <div class="product-labels labels-rounded-sm">
-                                                                <span
-                                                                    class="onsale product-label wd-shape-round-sm">-23%</span>
-                                                            </div>
-                                                            <div class="wd-product-img-hover hover-img">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </div>
-                                                            <div class="wd-buttons wd-pos-r-t">
-                                                                <div
-                                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                    <a href="product_details.html"
-                                                                        class="open-quick-view" rel="nofollow"
-                                                                        data-id="382">
-                                                                        <span class="wd-action-icon"></span>
-                                                                        <span class="wd-action-text">
-                                                                            Quick view </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div
-                                                                    class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                    <a class="" href="wishtlist.html"
-                                                                        data-key="755a40176b" data-product-id="382"
-                                                                        rel="nofollow">
-                                                                        <span class="wd-action-icon">
-                                                                            <span class="wd-check-icon"></span>
-                                                                        </span>
-                                                                        <span class="wd-action-text">Add to
-                                                                            wishlist</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                                <a href="/merchandise/?add-to-cart=382"
-                                                                    data-quantity="1"
-                                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                    data-product_id="382" data-product_sku="GM-FG-4"
-                                                                    aria-label="Add to cart: &ldquo;Alex Minecraft Figure&rdquo;"
-                                                                    rel="nofollow"
-                                                                    data-success_message="&ldquo;Alex Minecraft Figure&rdquo; has been added to your cart"
-                                                                    role="button"><span class="wd-action-icon"><span
-                                                                            class="wd-check-icon"></span></span><span
-                                                                        class="wd-action-text">Add to
-                                                                        cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-element-bottom">
-                                                            <h3 class="wd-entities-title"><a
-                                                                    href="product_details.html">Alex
-                                                                    Minecraft Figure</a></h3>
-
-                                                            <div class="star-rating" role="img"
-                                                                aria-label="Rated 5.00 out of 5">
-                                                                <span style="width:100%">
-                                                                    Rated <strong class="rating">5.00</strong>
-                                                                    out of 5 </span>
-                                                            </div>
-
-                                                            <span class="price"><del aria-hidden="true"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>49,99</bdi></span></del>
-                                                                <span class="screen-reader-text">Original price
-                                                                    was: &#036;49,99.</span><ins aria-hidden="true"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>38,25</bdi></span></ins><span
-                                                                    class="screen-reader-text">Current price is:
-                                                                    &#036;38,25.</span></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-carousel-item">
-                                                <div class="wd-product wd-hover-quick product-grid-item product type-product post-203 status-publish last instock product_cat-pins has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                                    data-loop="3" data-id="203">
-
-                                                    <div class="wd-product-wrapper product-wrapper">
-                                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                            <a href="product_details.html"
-                                                                class="wd-product-img-link product-image-link"
-                                                                tabindex="-1"
-                                                                aria-label="Minecraft &#8211; 4 Pack Pins">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-263x300.jpeg 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </a>
-
-                                                            <div class="wd-product-img-hover hover-img">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/minecraft--4-pack-pins-1.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </div>
-                                                            <div class="wd-buttons wd-pos-r-t">
-                                                                <div
-                                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                    <a href="product_details.html"
-                                                                        class="open-quick-view" rel="nofollow"
-                                                                        data-id="203">
-                                                                        <span class="wd-action-icon"></span>
-                                                                        <span class="wd-action-text">
-                                                                            Quick view </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div
-                                                                    class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                    <a class="" href="wishtlist.html"
-                                                                        data-key="755a40176b" data-product-id="203"
-                                                                        rel="nofollow">
-                                                                        <span class="wd-action-icon">
-                                                                            <span class="wd-check-icon"></span>
-                                                                        </span>
-                                                                        <span class="wd-action-text">Add to
-                                                                            wishlist</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                                <a href="/merchandise/?add-to-cart=203"
-                                                                    data-quantity="1"
-                                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                    data-product_id="203" data-product_sku="GM-P-1"
-                                                                    aria-label="Add to cart: &ldquo;Minecraft - 4 Pack Pins&rdquo;"
-                                                                    rel="nofollow"
-                                                                    data-success_message="&ldquo;Minecraft - 4 Pack Pins&rdquo; has been added to your cart"
-                                                                    role="button"><span class="wd-action-icon"><span
-                                                                            class="wd-check-icon"></span></span><span
-                                                                        class="wd-action-text">Add to
-                                                                        cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-element-bottom">
-                                                            <h3 class="wd-entities-title"><a
-                                                                    href="product_details.html">Minecraft
-                                                                    &#8211; 4 Pack Pins</a></h3>
-
-                                                            <div class="star-rating" role="img"
-                                                                aria-label="Rated 4.00 out of 5">
-                                                                <span style="width:80%">
-                                                                    Rated <strong class="rating">4.00</strong>
-                                                                    out of 5 </span>
-                                                            </div>
-
-                                                            <span class="price"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>9,00</bdi></span></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-carousel-item">
-                                                <div class="wd-product wd-hover-quick product-grid-item product type-product post-82 status-publish first instock product_cat-t-shirts has-post-thumbnail sale featured shipping-taxable purchasable product-type-simple"
-                                                    data-loop="4" data-id="82">
-
-                                                    <div class="wd-product-wrapper product-wrapper">
-                                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                            <a href="product_details.html"
-                                                                class="wd-product-img-link product-image-link"
-                                                                tabindex="-1" aria-label="Pig Unisex T-Shirt">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-290x330.jpeg 290w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </a>
-
-                                                            <div class="product-labels labels-rounded-sm">
-                                                                <span
-                                                                    class="onsale product-label wd-shape-round-sm">-13%</span>
-                                                                <span
-                                                                    class="featured product-label wd-shape-round-sm">Hot</span>
-                                                            </div>
-                                                            <div class="wd-product-img-hover hover-img">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pig-unisex-tshirt-1.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </div>
-                                                            <div class="wd-buttons wd-pos-r-t">
-                                                                <div
-                                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                    <a href="product_details.html"
-                                                                        class="open-quick-view" rel="nofollow"
-                                                                        data-id="82">
-                                                                        <span class="wd-action-icon"></span>
-                                                                        <span class="wd-action-text">
-                                                                            Quick view </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div
-                                                                    class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                    <a class="" href="wishtlist.html"
-                                                                        data-key="755a40176b" data-product-id="82"
-                                                                        rel="nofollow">
-                                                                        <span class="wd-action-icon">
-                                                                            <span class="wd-check-icon"></span>
-                                                                        </span>
-                                                                        <span class="wd-action-text">Add to
-                                                                            wishlist</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                                <a href="/merchandise/?add-to-cart=82" data-quantity="1"
-                                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                    data-product_id="82" data-product_sku="GM-T-07"
-                                                                    aria-label="Add to cart: &ldquo;Pig Unisex T-Shirt&rdquo;"
-                                                                    rel="nofollow"
-                                                                    data-success_message="&ldquo;Pig Unisex T-Shirt&rdquo; has been added to your cart"
-                                                                    role="button"><span class="wd-action-icon"><span
-                                                                            class="wd-check-icon"></span></span><span
-                                                                        class="wd-action-text">Add to
-                                                                        cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-element-bottom">
-                                                            <h3 class="wd-entities-title"><a
-                                                                    href="product_details.html">Pig
-                                                                    Unisex T-Shirt</a></h3>
-
-                                                            <div class="star-rating" role="img"
-                                                                aria-label="Rated 5.00 out of 5">
-                                                                <span style="width:100%">
-                                                                    Rated <strong class="rating">5.00</strong>
-                                                                    out of 5 </span>
-                                                            </div>
-
-                                                            <span class="price"><del aria-hidden="true"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>45,95</bdi></span></del>
-                                                                <span class="screen-reader-text">Original price
-                                                                    was: &#036;45,95.</span><ins aria-hidden="true"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>39,99</bdi></span></ins><span
-                                                                    class="screen-reader-text">Current price is:
-                                                                    &#036;39,99.</span></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-carousel-item">
-                                                <div class="wd-product wd-hover-quick product-grid-item product type-product post-195 status-publish instock product_cat-hats has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                                    data-loop="5" data-id="195">
-
-                                                    <div class="wd-product-wrapper product-wrapper">
-                                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                            <a href="product_details.html"
-                                                                class="wd-product-img-link product-image-link"
-                                                                tabindex="-1" aria-label="Pixel Axolotl Cap">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </a>
-
-                                                            <div class="wd-product-img-hover hover-img">
-                                                                <img loading="lazy" decoding="async" width="263"
-                                                                    height="300"
-                                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp"
-                                                                    class="attachment-263x300 size-263x300"
-                                                                    alt=""
-                                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/pixel-axolotl-cap-1.jpeg.webp 700w"
-                                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                                            </div>
-                                                            <div class="wd-buttons wd-pos-r-t">
-                                                                <div
-                                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                    <a href="product_details.html"
-                                                                        class="open-quick-view" rel="nofollow"
-                                                                        data-id="195">
-                                                                        <span class="wd-action-icon"></span>
-                                                                        <span class="wd-action-text">
-                                                                            Quick view </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div
-                                                                    class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                    <a class="" href="wishtlist.html"
-                                                                        data-key="755a40176b" data-product-id="195"
-                                                                        rel="nofollow">
-                                                                        <span class="wd-action-icon">
-                                                                            <span class="wd-check-icon"></span>
-                                                                        </span>
-                                                                        <span class="wd-action-text">Add to
-                                                                            wishlist</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                                <a href="/merchandise/?add-to-cart=195"
-                                                                    data-quantity="1"
-                                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                    data-product_id="195" data-product_sku="GM-H-5"
-                                                                    aria-label="Add to cart: &ldquo;Pixel Axolotl Cap&rdquo;"
-                                                                    rel="nofollow"
-                                                                    data-success_message="&ldquo;Pixel Axolotl Cap&rdquo; has been added to your cart"
-                                                                    role="button"><span class="wd-action-icon"><span
-                                                                            class="wd-check-icon"></span></span><span
-                                                                        class="wd-action-text">Add to
-                                                                        cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-element-bottom">
-                                                            <h3 class="wd-entities-title"><a
-                                                                    href="product_details.html">Pixel
-                                                                    Axolotl Cap</a></h3>
-
-                                                            <div class="star-rating" role="img"
-                                                                aria-label="Rated 4.00 out of 5">
-                                                                <span style="width:80%">
-                                                                    Rated <strong class="rating">4.00</strong>
-                                                                    out of 5 </span>
-                                                            </div>
-
-                                                            <span class="price"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>21,86</bdi></span></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">
-                                        <div class="wd-btn-arrow wd-prev wd-disabled">
-                                            <div class="wd-arrow-inner"></div>
-                                        </div>
-                                        <div class="wd-btn-arrow wd-next">
-                                            <div class="wd-arrow-inner"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                @if($dealsBanner && $dealsBanner->title)
+                <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-deals-banner"
+                    style="background:#111;color:#fff;border-radius:12px;padding:24px 28px;margin:24px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <div>
+                        @if($dealsBanner->emoji)
+                            <span style="font-size:22px;margin-right:8px">{{ $dealsBanner->emoji }}</span>
+                        @endif
+                        <strong style="font-size:20px">{{ $dealsBanner->title }}</strong>
+                        @if($dealsBanner->title_highlight)
+                            <span style="color:#ffb020;font-weight:700"> {{ $dealsBanner->title_highlight }}</span>
+                        @endif
+                        @if($dealsBanner->description)
+                            <p style="margin:6px 0 0;opacity:.85">{{ $dealsBanner->description }}</p>
+                        @endif
                     </div>
+                    @if($dealsBanner->button_text)
+                        <a class="btn btn-style-default btn-color-primary btn-size-default btn-shape-semi-round"
+                            href="{{ $dealsBanner->button_link ?: route('all-products') }}"><span>{{ $dealsBanner->button_text }}</span></a>
+                    @endif
+                </div>
+                @endif
+
+                @if($latestProducts->isNotEmpty())
+                <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
+                    <h2 class="wp-block-wd-title title">New Arrivals</h2>
+
+                    <a class="wp-block-wd-button btn btn-style-default btn-size-default btn-shape-semi-round btn-icon-pos-right"
+                        href="{{ route('all-products') }}"><span>View more</span>
+                        <div class="wp-block-wd-icon"><img loading="lazy" decoding="async" width="16"
+                                height="17"
+                                src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
+                                alt="" /></div>
+                    </a>
                 </div>
 
-                <div class="wp-block-wd-products-tabs wd-tabs wd-products-tabs tabs-design-alt wd-309bab9b">
-                    <div class="wp-block-wd-products-tabs-header wd-tabs-header wd-7b62efb2">
-                        <div class="tabs-name title">Bestsellers</div>
-                        <div class="wd-nav-wrapper wd-nav-tabs-wrapper wd-mb-action-swipe">
-                            <ul class="wd-nav wd-nav-tabs products-tabs-title wd-icon-pos-start wd-style-underline">
-                                <li class="wp-block-wd-products-tabs-tab wd-baec4169"
-                                    data-atts="{&quot;items_per_page&quot;:&quot;4&quot;,&quot;products_bordered_grid&quot;:true,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;img_size&quot;:&quot;custom&quot;,&quot;wrapper_classes&quot;:&quot;wd-baec4169&quot;}">
-                                    <a href="#" class="wd-nav-link"><span class="tab-label nav-link-text">All
-                                            products</span></a>
-                                </li>
-
-                                <li class="wp-block-wd-products-tabs-tab wd-22f0bb88"
-                                    data-atts="{&quot;categoriesIds&quot;:&quot;19&quot;,&quot;items_per_page&quot;:&quot;4&quot;,&quot;products_bordered_grid&quot;:true,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;img_size&quot;:&quot;custom&quot;,&quot;taxonomies&quot;:&quot;19,&quot;,&quot;wrapper_classes&quot;:&quot;wd-22f0bb88&quot;}">
-                                    <a href="#" class="wd-nav-link"><span
-                                            class="tab-label nav-link-text">Apparel</span></a>
-                                </li>
-
-                                <li class="wp-block-wd-products-tabs-tab wd-ed4d3013"
-                                    data-atts="{&quot;categoriesIds&quot;:&quot;55&quot;,&quot;items_per_page&quot;:&quot;4&quot;,&quot;products_bordered_grid&quot;:true,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;img_size&quot;:&quot;custom&quot;,&quot;taxonomies&quot;:&quot;55,&quot;,&quot;wrapper_classes&quot;:&quot;wd-ed4d3013&quot;}">
-                                    <a href="#" class="wd-nav-link"><span
-                                            class="tab-label nav-link-text">Accessories</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div id="" class="wd-tabs-content-wrapper wd-3f2e11bb">
-                        <div class="wd-sticky-loader wd-deferred"><span class="wd-loader"></span></div>
-
-                        <div class="wd-products-element wd-tab-content wd-active wd-in">
-
-                            <div class="products wd-products  grid-columns-4 elements-grid wd-grid-g wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                                data-paged="1"
-                                data-atts="{&quot;speed&quot;:5000,&quot;wrap&quot;:&quot;no&quot;,&quot;hide_pagination_control_tablet&quot;:&quot;no&quot;,&quot;hide_pagination_control_mobile&quot;:&quot;no&quot;,&quot;hide_prev_next_buttons&quot;:&quot;no&quot;,&quot;hide_prev_next_buttons_tablet&quot;:&quot;no&quot;,&quot;hide_prev_next_buttons_mobile&quot;:&quot;no&quot;,&quot;spacing&quot;:&quot;20&quot;,&quot;items_per_page&quot;:&quot;4&quot;,&quot;products_bordered_grid&quot;:true,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;img_size&quot;:&quot;custom&quot;,&quot;products_different_sizes&quot;:&quot;disable&quot;,&quot;wrapper_classes&quot;:&quot; wd-tab-content wd-active wd-in&quot;,&quot;force_not_ajax&quot;:&quot;no&quot;}"
-                                data-source="shortcode" data-columns="4"
-                                style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
-                                <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-201 status-publish instock product_cat-hats has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                    data-loop="1" data-id="201">
-
-                                    <div class="wd-product-wrapper product-wrapper">
-                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                            <a href="product_details.html"
-                                                class="wd-product-img-link product-image-link" tabindex="-1"
-                                                aria-label="8 Bit Hearts Cap">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                            <div class="wd-product-img-hover hover-img">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                            </div>
-                                            <div class="wd-buttons wd-pos-r-t">
-                                                <div
-                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                    <a href="product_details.html" class="open-quick-view"
-                                                        rel="nofollow" data-id="201">
-                                                        <span class="wd-action-icon"></span>
-                                                        <span class="wd-action-text">
-                                                            Quick view </span>
-                                                    </a>
-                                                </div>
-                                                <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                    <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                        data-product-id="201" rel="nofollow">
-                                                        <span class="wd-action-icon">
-                                                            <span class="wd-check-icon"></span>
-                                                        </span>
-                                                        <span class="wd-action-text">Add to wishlist</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                <a href="/merchandise/?add-to-cart=201" data-quantity="1"
-                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                    data-product_id="201" data-product_sku="GM-H-11"
-                                                    aria-label="Add to cart: &ldquo;8 Bit Hearts Cap&rdquo;"
-                                                    rel="nofollow"
-                                                    data-success_message="&ldquo;8 Bit Hearts Cap&rdquo; has been added to your cart"
-                                                    role="button"><span class="wd-action-icon"><span
-                                                            class="wd-check-icon"></span></span><span
-                                                        class="wd-action-text">Add to cart</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-element-bottom">
-                                            <h3 class="wd-entities-title"><a href="product_details.html">8
-                                                    Bit Hearts Cap</a></h3>
-
-                                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5">
-                                                <span style="width:80%">
-                                                    Rated <strong class="rating">4.00</strong> out of 5 </span>
-                                            </div>
-
-                                            <span class="price"><span
-                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span>22,60</bdi></span></span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-382 status-publish instock product_cat-figures has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                    data-loop="2" data-id="382">
-
-                                    <div class="wd-product-wrapper product-wrapper">
-                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                            <a href="product_details.html"
-                                                class="wd-product-img-link product-image-link" tabindex="-1"
-                                                aria-label="Alex Minecraft Figure">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                            <div class="product-labels labels-rounded-sm">
-                                                <span class="onsale product-label wd-shape-round-sm">-23%</span>
-                                            </div>
-                                            <div class="wd-product-img-hover hover-img">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                            </div>
-                                            <div class="wd-buttons wd-pos-r-t">
-                                                <div
-                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                    <a href="product_details.html" class="open-quick-view"
-                                                        rel="nofollow" data-id="382">
-                                                        <span class="wd-action-icon"></span>
-                                                        <span class="wd-action-text">
-                                                            Quick view </span>
-                                                    </a>
-                                                </div>
-                                                <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                    <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                        data-product-id="382" rel="nofollow">
-                                                        <span class="wd-action-icon">
-                                                            <span class="wd-check-icon"></span>
-                                                        </span>
-                                                        <span class="wd-action-text">Add to wishlist</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                <a href="/merchandise/?add-to-cart=382" data-quantity="1"
-                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                    data-product_id="382" data-product_sku="GM-FG-4"
-                                                    aria-label="Add to cart: &ldquo;Alex Minecraft Figure&rdquo;"
-                                                    rel="nofollow"
-                                                    data-success_message="&ldquo;Alex Minecraft Figure&rdquo; has been added to your cart"
-                                                    role="button"><span class="wd-action-icon"><span
-                                                            class="wd-check-icon"></span></span><span
-                                                        class="wd-action-text">Add to cart</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-element-bottom">
-                                            <h3 class="wd-entities-title"><a href="product_details.html">Alex
-                                                    Minecraft Figure</a></h3>
-
-                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                <span style="width:100%">
-                                                    Rated <strong class="rating">5.00</strong> out of 5 </span>
-                                            </div>
-
-                                            <span class="price"><del aria-hidden="true"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>49,99</bdi></span></del>
-                                                <span class="screen-reader-text">Original price was:
-                                                    &#036;49,99.</span><ins aria-hidden="true"><span
-                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>38,25</bdi></span></ins><span
-                                                    class="screen-reader-text">Current price is:
-                                                    &#036;38,25.</span></span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-423 status-publish last instock product_cat-plushes has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                    data-loop="3" data-id="423">
-
-                                    <div class="wd-product-wrapper product-wrapper">
-                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                            <a href="product_details.html"
-                                                class="wd-product-img-link product-image-link" tabindex="-1"
-                                                aria-label="Astro Bot Plush">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                            <div class="wd-product-img-hover hover-img">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                            </div>
-                                            <div class="wd-buttons wd-pos-r-t">
-                                                <div
-                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                    <a href="product_details.html" class="open-quick-view"
-                                                        rel="nofollow" data-id="423">
-                                                        <span class="wd-action-icon"></span>
-                                                        <span class="wd-action-text">
-                                                            Quick view </span>
-                                                    </a>
-                                                </div>
-                                                <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                    <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                        data-product-id="423" rel="nofollow">
-                                                        <span class="wd-action-icon">
-                                                            <span class="wd-check-icon"></span>
-                                                        </span>
-                                                        <span class="wd-action-text">Add to wishlist</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                <a href="/merchandise/?add-to-cart=423" data-quantity="1"
-                                                    class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                    data-product_id="423" data-product_sku="GM-PL-1"
-                                                    aria-label="Add to cart: &ldquo;Astro Bot Plush&rdquo;"
-                                                    rel="nofollow"
-                                                    data-success_message="&ldquo;Astro Bot Plush&rdquo; has been added to your cart"
-                                                    role="button"><span class="wd-action-icon"><span
-                                                            class="wd-check-icon"></span></span><span
-                                                        class="wd-action-text">Add to cart</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-element-bottom">
-                                            <h3 class="wd-entities-title"><a href="product_details.html">Astro
-                                                    Bot Plush</a></h3>
-
-                                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5">
-                                                <span style="width:80%">
-                                                    Rated <strong class="rating">4.00</strong> out of 5 </span>
-                                            </div>
-
-                                            <span class="price"><span
-                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span>12,99</bdi></span></span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-83 status-publish first instock product_cat-t-shirts has-post-thumbnail featured shipping-taxable purchasable product-type-variable"
-                                    data-loop="4" data-id="83">
-
-                                    <div class="wd-product-wrapper product-wrapper">
-                                        <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                            <a href="product_details.html"
-                                                class="wd-product-img-link product-image-link" tabindex="-1"
-                                                aria-label="Astro Bot T-Shirt">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" /> </a>
-
-                                            <div class="product-labels labels-rounded-sm">
-                                                <span class="featured product-label wd-shape-round-sm">Hot</span>
-                                            </div>
-                                            <div class="wd-product-img-hover hover-img">
-                                                <img loading="lazy" decoding="async" width="263" height="300"
-                                                    src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp"
-                                                    class="attachment-263x300 size-263x300" alt=""
-                                                    srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-tshirt-1.jpeg.webp 700w"
-                                                    sizes="auto, (max-width: 263px) 100vw, 263px" />
-                                            </div>
-                                            <div class="wd-buttons wd-pos-r-t">
-                                                <div
-                                                    class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                    <a href="product_details.html" class="open-quick-view"
-                                                        rel="nofollow" data-id="83">
-                                                        <span class="wd-action-icon"></span>
-                                                        <span class="wd-action-text">
-                                                            Quick view </span>
-                                                    </a>
-                                                </div>
-                                                <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                    <a class="" href="wishtlist.html" data-key="755a40176b"
-                                                        data-product-id="83" rel="nofollow">
-                                                        <span class="wd-action-icon">
-                                                            <span class="wd-check-icon"></span>
-                                                        </span>
-                                                        <span class="wd-action-text">Add to wishlist</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="wd-add-btn wd-add-btn-replace">
-
-                                                <a href="product_details.html"
-                                                    aria-describedby="woocommerce_loop_add_to_cart_link_describedby_83"
-                                                    data-quantity="1"
-                                                    class="button product_type_variable add_to_cart_button add-to-cart-loop"
-                                                    data-product_id="83" data-product_sku="GM-T-08M"
-                                                    aria-label="Select options for &ldquo;Astro Bot T-Shirt&rdquo;"
-                                                    rel="nofollow"><span class="wd-action-icon"><span
-                                                            class="wd-check-icon"></span></span><span
-                                                        class="wd-action-text">Select options</span></a> <span
-                                                    id="woocommerce_loop_add_to_cart_link_describedby_83"
-                                                    class="screen-reader-text">
-                                                    This product has multiple variants. The options may be
-                                                    chosen on the product page </span>
-                                            </div>
-                                        </div>
-                                        <div class="product-element-bottom">
-                                            <h3 class="wd-entities-title"><a href="product_details.html">Astro
-                                                    Bot T-Shirt</a></h3>
-
-                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                <span style="width:100%">
-                                                    Rated <strong class="rating">5.00</strong> out of 5 </span>
-                                            </div>
-
-                                            <span class="price"><span
-                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span>28,65</bdi></span></span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="wp-block-wd-carousel wd-carousel-container wd-090647c4">
+                <div id="carousel-new-arrivals"
+                    class="wd-carousel-container wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins title-line-one">
                     <div class="wd-carousel-inner">
-                        <div class="wd-carousel wd-grid scroll-init"
-                            style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:1;--wd-gap-lg:20px;--wd-gap-sm:10px"
-                            data-scroll_per_page="yes">
+                        <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
+                            style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
                             <div class="wd-carousel-wrap">
-                                <div class="wp-block-wd-carousel-item wd-carousel-item wd-c020cd16">
-                                    <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-23aea4a6">
-                                        <div class="wp-block-wd-icon wd-9d7b892a"><img loading="lazy" decoding="async"
-                                                width="32" height="32" class="wp-image-1016"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-rocket-1.svg"
-                                                alt="" /></div>
-
-                                        <div class="wp-block-wd-container wd-dir-col wd-d4863966">
-                                            <h2 class="wp-block-wd-title title wd-b1e12cec">Fast Shipping</h2>
-
-                                            <p class="wp-block-wd-paragraph wd-e5334d67">Get your gear delivered
-                                                quickly with our express shipping options!</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wp-block-wd-carousel-item wd-carousel-item wd-2e710a3b">
-                                    <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-537a081e">
-                                        <div class="wp-block-wd-icon wd-0da377f0"><img loading="lazy" decoding="async"
-                                                width="32" height="32" class="wp-image-1017"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-star-1.svg"
-                                                alt="" /></div>
-
-                                        <div class="wp-block-wd-container wd-dir-col wd-3edf8750">
-                                            <h2 class="wp-block-wd-title title wd-eb1803de">100% Authentic</h2>
-
-                                            <p class="wp-block-wd-paragraph wd-cf910214">Officially licensed
-                                                merchandise from your favorite games.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wp-block-wd-carousel-item wd-carousel-item wd-bdd43ee0">
-                                    <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-39af9d48">
-                                        <div class="wp-block-wd-icon wd-5c1d0fd4"><img loading="lazy" decoding="async"
-                                                width="32" height="32" class="wp-image-1018"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-question-1.svg"
-                                                alt="" /></div>
-
-                                        <div class="wp-block-wd-container wd-dir-col wd-eb316032">
-                                            <h2 class="wp-block-wd-title title wd-034f199a">24/7 Support</h2>
-
-                                            <p class="wp-block-wd-paragraph wd-bb7c8f76">Need help? Our support
-                                                team is here for you anytime, anywhere.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wp-block-wd-carousel-item wd-carousel-item wd-913cee8e">
-                                    <div class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top wd-245259dd">
-                                        <div class="wp-block-wd-icon wd-afd3b010"><img loading="lazy" decoding="async"
-                                                width="32" height="32" class="wp-image-1019"
-                                                src="merchandise/wp-content/uploads/sites/31/2025/11/gms-sale-1.svg"
-                                                alt="" /></div>
-
-                                        <div class="wp-block-wd-container wd-dir-col wd-5809a874">
-                                            <h2 class="wp-block-wd-title title wd-53543541">Best Deals</h2>
-
-                                            <p class="wp-block-wd-paragraph wd-4ed153df">Save big with exclusive
-                                                discounts and unbeatable prices!</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @foreach($latestProducts as $product)
+                                    @include('Frontend.partials.product-card', ['product' => $product, 'bestSellerIds' => $bestSellerIds])
+                                @endforeach
                             </div>
                         </div>
                         <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">
-                            <div class="wd-btn-arrow wd-prev">
+                            <div class="wd-btn-arrow wd-prev wd-disabled">
                                 <div class="wd-arrow-inner"></div>
                             </div>
                             <div class="wd-btn-arrow wd-next">
@@ -1224,10 +302,83 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wd-nav-scroll wd-hide-lg"></div>
+                    <div class="wd-nav-scroll"></div>
+                </div>
+                @endif
+
+                @if($homeReviews->isNotEmpty())
+                <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
+                    <h2 class="wp-block-wd-title title">What Our Customers Say</h2>
+                </div>
+                <div class="wd-carousel-container wd-home-reviews"
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:24px;">
+                    @foreach($homeReviews as $review)
+                        <div class="wd-review-card"
+                            style="border:1px solid #e5e5e5;border-radius:10px;padding:18px;">
+                            <div class="star-rating" role="img" aria-label="Rated {{ $review->rating }} out of 5">
+                                <span style="width:{{ $review->rating / 5 * 100 }}%">
+                                    Rated <strong class="rating">{{ $review->rating }}</strong> out of 5
+                                </span>
+                            </div>
+                            <p style="margin:10px 0">{{ \Illuminate\Support\Str::limit($review->comment, 160) }}</p>
+                            @if(!empty($review->photos))
+                                <div class="wd-review-photos" style="display:flex;gap:6px;margin-bottom:10px;">
+                                    @foreach(array_slice($review->photos, 0, 4) as $photo)
+                                        <img src="{{ \Illuminate\Support\Facades\Storage::url($photo) }}" alt="Customer photo"
+                                            loading="lazy" width="56" height="56"
+                                            style="width:56px;height:56px;object-fit:cover;border-radius:6px;" />
+                                    @endforeach
+                                </div>
+                            @endif
+                            <strong>{{ $review->name }}</strong>
+                            @if($review->product)
+                                <div style="font-size:12px;opacity:.7">on
+                                    <a href="{{ route('product-details') }}?slug={{ $review->product->slug }}">{{ $review->product->name }}</a>
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                @endif
+
+                @if($allProducts->isNotEmpty())
+                <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
+                    <h2 class="wp-block-wd-title title">Featured Products</h2>
+
+                    <a class="wp-block-wd-button btn btn-style-default btn-size-default btn-shape-semi-round btn-icon-pos-right"
+                        href="{{ route('all-products') }}"><span>View more</span>
+                        <div class="wp-block-wd-icon"><img loading="lazy" decoding="async" width="16"
+                                height="17"
+                                src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
+                                alt="" /></div>
+                    </a>
                 </div>
 
-                <div class="wp-block-wd-container wd-dir-col wd-align wd-066a5243">
+                <div id="carousel-featured"
+                    class="wd-carousel-container wd-products-element wd-products products wd-loop-builder-off wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins title-line-one">
+                    <div class="wd-carousel-inner">
+                        <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
+                            style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
+                            <div class="wd-carousel-wrap">
+                                @foreach($allProducts as $product)
+                                    @include('Frontend.partials.product-card', ['product' => $product, 'bestSellerIds' => $bestSellerIds])
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">
+                            <div class="wd-btn-arrow wd-prev wd-disabled">
+                                <div class="wd-arrow-inner"></div>
+                            </div>
+                            <div class="wd-btn-arrow wd-next">
+                                <div class="wd-arrow-inner"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wd-nav-scroll"></div>
+                </div>
+                @endif
+
+                <div class="wp-block-wd-container wd-dir-col wd-align wd-066a5243 wd-newsletter-section">
                     <div class="wp-block-wd-image wd-block-image wd-9e91bcf0"><img loading="lazy" decoding="async"
                             width="48" height="48" class="wp-image-1021"
                             src="merchandise/wp-content/uploads/sites/31/2025/11/gms-mail-1.svg" alt="" /></div>
@@ -1236,21 +387,20 @@
                         purchase</h2>
 
                     <p class="wp-block-wd-paragraph wd-a5b20c44">Will be used in accordance with our&nbsp;<a
-                            href="#"><span class="wd-highlight">Privacy Policy</span></a></p>
+                            href="{{ route('privacy-policy') }}"><span class="wd-highlight">Privacy Policy</span></a></p>
 
-                    <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-763  wd-9b3568f9 wd-custom-width"
-                        method="post" data-id="763" data-name="Newsletter form">
-                        <div class="mc4wp-form-fields">
-                            <div class="wd-grid-f-stretch" style="--wd-gap: 10px">
-                                <div class="wd-col"><input type="email" name="EMAIL"
-                                        placeholder="Your email address" required /></div>
-                                <div class="wd-col-auto"><input type="submit" value="Sign up" /></div>
-                            </div>
+                    <form id="newsletter-form" class="wd-custom-width" method="post" action="{{ route('newsletter.subscribe') }}">
+                        @csrf
+                        <div class="wd-grid-f-stretch" style="--wd-gap: 10px">
+                            <div class="wd-col"><input type="email" name="email" id="newsletter-email"
+                                    placeholder="Your email address" required /></div>
+                            <div class="wd-col-auto"><input type="submit" value="Sign up" /></div>
                         </div>
+                        <div class="newsletter-message" style="margin-top:8px;font-size:14px;"></div>
                     </form>
                 </div>
 
-                <div class="wp-block-wd-container wd-dir-col wd-align wd-cdd11e25">
+                <div class="wp-block-wd-container wd-dir-col wd-align wd-cdd11e25 wd-hide-mobile-insta">
                     <h2 class="wp-block-wd-title title wd-ac487a7f">Connect to our Instagram</h2>
 
                     <p class="wp-block-wd-paragraph wd-1bfa0982">Follow us on Instagram, keep up to date with
