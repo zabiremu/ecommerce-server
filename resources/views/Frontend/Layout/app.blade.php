@@ -933,6 +933,26 @@
     @auth('web')
         <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
     @endauth
+
+    <div class="gms-quick-view-overlay" id="gms-quick-view-overlay">
+        <div class="gms-quick-view" role="dialog" aria-modal="true" aria-label="Quick view">
+            <button type="button" class="gms-quick-view-close" id="gms-quick-view-close" aria-label="Close">&times;</button>
+            <div class="gms-quick-view-image">
+                <img src="" alt="" id="gms-quick-view-img">
+            </div>
+            <div class="gms-quick-view-body">
+                <div class="gms-quick-view-badges" id="gms-quick-view-badges"></div>
+                <h3 id="gms-quick-view-title"></h3>
+                <div class="star-rating" id="gms-quick-view-rating" role="img"></div>
+                <span class="price" id="gms-quick-view-price"></span>
+                <span class="wd-stock-status" id="gms-quick-view-stock"></span>
+                <p class="gms-quick-view-desc" id="gms-quick-view-desc"></p>
+                <a href="#" class="btn btn-style-default btn-color-primary btn-size-default btn-shape-semi-round" id="gms-quick-view-link">
+                    <span>View Full Details</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

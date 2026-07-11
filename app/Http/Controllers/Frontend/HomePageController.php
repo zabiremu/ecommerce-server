@@ -5,18 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\NewContactMessage;
 use App\Services\MailConfigService;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\Customer;
-use App\Models\DealsBanner;
+use App\Models\InstagramPost;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\Page;
 use App\Models\SiteSetting;
 use App\Models\Slider;
-use App\Models\TrustItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,18 +28,11 @@ class HomePageController extends Controller
     public function index()
     {
         $sliders = Slider::active()->orderByDesc('id')->get();
-        $trustItems = TrustItem::active()->orderBy('sort_order')->orderByDesc('id')->get();
         $homeCategories = Category::where('status', true)
             ->where('home_visible', true)
             ->withCount(['products' => fn ($q) => $q->where('publish_status', 'published')])
             ->orderBy('home_order')
             ->orderBy('name')
-            ->get();
-        $latestProducts = Product::published()
-            ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
-            ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
-            ->orderByDesc('id')
-            ->limit(8)
             ->get();
         $bestSellers = Product::published()
             ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
@@ -58,18 +49,13 @@ class HomePageController extends Controller
             ->orderByDesc('id')
             ->limit(8)
             ->get();
-        $dealsBanner = DealsBanner::where('status', true)->first();
         $homeReviews = ProductReview::approved()
             ->with('product:id,name,slug')
             ->latest()
             ->limit(6)
             ->get();
-        $brands = Brand::where('status', true)
-            ->whereNotNull('icon')
-            ->orderBy('name')
-            ->limit(8)
-            ->get();
-        return view('Frontend.home', compact('sliders', 'trustItems', 'homeCategories', 'latestProducts', 'bestSellers', 'bestSellerIds', 'allProducts', 'dealsBanner', 'homeReviews', 'brands'));
+        $instagramPosts = InstagramPost::active()->orderBy('sort_order')->orderByDesc('id')->get();
+        return view('Frontend.home', compact('sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts'));
     }
 
     public function about()
@@ -89,6 +75,60 @@ class HomePageController extends Controller
             ->get(['id', 'name', 'slug']);
 
         return view('Frontend.all-products', compact('products', 'filterCategories'));
+    }
+
+    public function productQuickView(Product $product)
+    {
+        $hasSale = $product->sale_price && $product->sale_price < $product->selling_price;
+        $displayPrice = (float) ($hasSale ? $product->sale_price : $product->selling_price);
+        $stock = (float) ($product->stock ?? 0);
+        $alertQty = (float) ($product->alert_quantity ?? 0);
+        $outOfStock = $stock <= 0;
+        $lowStock = !$outOfStock && $alertQty > 0 && $stock <= $alertQty;
+
+        $isNew = $product->created_at && $product->created_at->gt(now()->subDays(14));
+        $bestSellerIds = Product::published()
+            ->withCount('orderItems as sold_count')
+            ->orderByDesc('sold_count')
+            ->orderByDesc('id')
+            ->limit(8)
+            ->pluck('id')
+            ->all();
+        $isBestSeller = in_array($product->id, $bestSellerIds, true);
+
+        $badges = [];
+        if ($hasSale) $badges[] = ['label' => 'Sale', 'class' => 'onsale'];
+        if ($isNew) $badges[] = ['label' => 'New', 'class' => 'new'];
+        if ($isBestSeller) $badges[] = ['label' => 'Bestseller', 'class' => 'bestseller'];
+        if ($lowStock) $badges[] = ['label' => 'Limited', 'class' => 'limited'];
+
+        if ($outOfStock) {
+            $stockStatus = ['text' => 'Out of stock', 'class' => 'out-of-stock'];
+        } elseif ($lowStock) {
+            $stockStatus = ['text' => 'Only ' . rtrim(rtrim(number_format($stock, 2), '0'), '.') . ' left', 'class' => 'low-stock'];
+        } else {
+            $stockStatus = ['text' => 'In stock', 'class' => 'in-stock'];
+        }
+
+        $avgRating = round($product->reviews()->approved()->avg('rating') ?? 0, 1);
+        $reviewsCount = $product->reviews()->approved()->count();
+
+        return response()->json([
+            'name'           => $product->name,
+            'slug'           => $product->slug,
+            'url'            => route('product-details') . '?slug=' . $product->slug,
+            'image'          => $product->thumbnail ? Storage::url($product->thumbnail) : '',
+            'price'          => [
+                'current' => $displayPrice,
+                'old'     => (float) $product->selling_price,
+                'hasSale' => $hasSale,
+            ],
+            'avgRating'      => $avgRating,
+            'reviewsCount'   => $reviewsCount,
+            'stockStatus'    => $stockStatus,
+            'badges'         => $badges,
+            'shortDescription' => $product->short_description,
+        ]);
     }
 
     protected function publishedProductsForJs()

@@ -39,15 +39,13 @@
                         <span class="onsale product-label wd-shape-round-sm">Sale</span>
                     @endif
                     @if($isNew)
-                        <span class="product-label wd-shape-round-sm" style="background:#2f8f4e">New</span>
+                        <span class="product-label wd-shape-round-sm new">New</span>
                     @endif
                     @if($isBestSeller)
-                        <span class="product-label wd-shape-round-sm" style="background:#c98a1d">Bestseller</span>
+                        <span class="product-label wd-shape-round-sm bestseller">Bestseller</span>
                     @endif
-                    @if($outOfStock)
-                        <span class="product-label wd-shape-round-sm" style="background:#8a8a8a">Out of stock</span>
-                    @elseif($lowStock)
-                        <span class="product-label wd-shape-round-sm" style="background:#c9401d">Limited</span>
+                    @if($lowStock)
+                        <span class="product-label wd-shape-round-sm limited">Limited</span>
                     @endif
                 </div>
 
@@ -59,7 +57,8 @@
                 @endif
                 <div class="wd-buttons wd-pos-r-t">
                     <div class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                        <a href="{{ $detailsUrl }}" class="open-quick-view" rel="nofollow" data-id="{{ $product->id }}">
+                        <a href="{{ $detailsUrl }}" class="open-quick-view" rel="nofollow" data-id="{{ $product->id }}"
+                            data-quick-view-url="{{ route('product.quick-view', $product) }}">
                             <span class="wd-action-icon"></span>
                             <span class="wd-action-text">Quick view</span>
                         </a>
@@ -110,6 +109,14 @@
                                     class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span>
                     @endif
                 </span>
+
+                @if($outOfStock)
+                    <span class="wd-stock-status out-of-stock">Out of stock</span>
+                @elseif($lowStock)
+                    <span class="wd-stock-status low-stock">Only {{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} left</span>
+                @else
+                    <span class="wd-stock-status in-stock">In stock</span>
+                @endif
             </div>
         </div>
     </div>

@@ -240,6 +240,130 @@ a.wp-block-wd-button.btn-color-primary:hover {
   color: #FFF !important;
 }
 
+/* Product badges */
+.product-label.new {
+  background-color: #2f8f4e !important;
+  color: #FFF !important;
+}
+.product-label.bestseller {
+  background-color: #c98a1d !important;
+  color: #FFF !important;
+}
+.product-label.limited {
+  background-color: #c9401d !important;
+  color: #FFF !important;
+}
+
+/* Stock status */
+.wd-stock-status {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.wd-stock-status.in-stock { color: #2f8f4e; }
+.wd-stock-status.low-stock { color: #c9401d; }
+.wd-stock-status.out-of-stock { color: var(--gms-text); }
+
+/* ==========================================================
+   QUICK VIEW MODAL
+   ========================================================== */
+.gms-quick-view-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.gms-quick-view-overlay.gms-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.gms-quick-view {
+  background: var(--gms-bg);
+  border-radius: var(--gms-radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+  max-width: 720px;
+  width: 92%;
+  max-height: 86vh;
+  overflow-y: auto;
+  padding: 32px;
+  position: relative;
+  transform: translateY(20px) scale(.96);
+  transition: transform .3s ease;
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.gms-quick-view-overlay.gms-visible .gms-quick-view {
+  transform: translateY(0) scale(1);
+}
+.gms-quick-view-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--gms-text);
+  line-height: 1;
+  padding: 4px;
+  transition: color var(--gms-ease);
+}
+.gms-quick-view-close:hover { color: var(--gms-ink); }
+.gms-quick-view-image {
+  flex: 1 1 240px;
+  max-width: 280px;
+}
+.gms-quick-view-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--gms-radius-sm);
+  object-fit: cover;
+}
+.gms-quick-view-body {
+  flex: 1 1 320px;
+  min-width: 240px;
+}
+.gms-quick-view-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gms-title);
+  margin: 0 0 8px;
+}
+.gms-quick-view-body .price {
+  display: block;
+  margin: 8px 0;
+  font-size: 18px;
+}
+.gms-quick-view-body p.gms-quick-view-desc {
+  font-size: 14px;
+  color: var(--gms-text);
+  line-height: 1.5;
+  margin: 12px 0;
+}
+.gms-quick-view-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.gms-quick-view-body .gms-quick-view-badges .product-label {
+  position: static;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
 /* ==========================================================
    4. PRICE FILTER (range slider)
    ========================================================== */

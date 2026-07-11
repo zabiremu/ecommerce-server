@@ -531,4 +531,97 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  /* ==========================================================
+     9. QUICK VIEW MODAL
+     ========================================================== */
+  (function initQuickView() {
+    var overlay = document.getElementById('gms-quick-view-overlay');
+    if (!overlay) return;
+
+    var closeBtn = document.getElementById('gms-quick-view-close');
+    var imgEl = document.getElementById('gms-quick-view-img');
+    var badgesEl = document.getElementById('gms-quick-view-badges');
+    var titleEl = document.getElementById('gms-quick-view-title');
+    var ratingEl = document.getElementById('gms-quick-view-rating');
+    var priceEl = document.getElementById('gms-quick-view-price');
+    var stockEl = document.getElementById('gms-quick-view-stock');
+    var descEl = document.getElementById('gms-quick-view-desc');
+    var linkEl = document.getElementById('gms-quick-view-link');
+
+    function openModal() {
+      overlay.classList.add('gms-visible');
+    }
+
+    function closeModal() {
+      overlay.classList.remove('gms-visible');
+    }
+
+    function renderProduct(data) {
+      imgEl.src = data.image || '';
+      imgEl.alt = data.name || '';
+      titleEl.textContent = data.name || '';
+      linkEl.href = data.url || '#';
+
+      badgesEl.innerHTML = '';
+      (data.badges || []).forEach(function (badge) {
+        var span = document.createElement('span');
+        span.className = 'product-label wd-shape-round-sm ' + badge.class;
+        span.textContent = badge.label;
+        badgesEl.appendChild(span);
+      });
+
+      if (data.avgRating > 0) {
+        ratingEl.innerHTML = '<span style="width:' + (data.avgRating / 5 * 100) + '%">Rated ' +
+          '<strong class="rating">' + data.avgRating + '</strong> out of 5</span>' +
+          (data.reviewsCount > 0 ? ' <span style="font-size:12px;color:#888">(' + data.reviewsCount + ')</span>' : '');
+        ratingEl.style.display = '';
+      } else {
+        ratingEl.innerHTML = '';
+        ratingEl.style.display = 'none';
+      }
+
+      if (data.price) {
+        if (data.price.hasSale) {
+          priceEl.innerHTML = '<del>$' + Number(data.price.old).toFixed(2) + '</del> <ins>$' + Number(data.price.current).toFixed(2) + '</ins>';
+        } else {
+          priceEl.innerHTML = '$' + Number(data.price.current).toFixed(2);
+        }
+      }
+
+      if (data.stockStatus) {
+        stockEl.textContent = data.stockStatus.text;
+        stockEl.className = 'wd-stock-status ' + data.stockStatus.class;
+      }
+
+      descEl.textContent = data.shortDescription || '';
+    }
+
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('.open-quick-view');
+      if (!trigger) return;
+      var url = trigger.getAttribute('data-quick-view-url');
+      if (!url) return;
+
+      e.preventDefault();
+
+      fetch(url, { headers: { 'Accept': 'application/json' } })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          renderProduct(data);
+          openModal();
+        })
+        .catch(function () {
+          window.location.href = trigger.getAttribute('href');
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  })();
+
 });

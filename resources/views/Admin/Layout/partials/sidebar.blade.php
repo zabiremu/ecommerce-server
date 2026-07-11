@@ -164,8 +164,8 @@
             @endif
 
             {{-- ── CONTENT ── --}}
-            @if($_admin->hasPermission('sliders.view') || $_admin->hasPermission('trust_items.view') || $_admin->hasPermission('deals_banner.view') || $_admin->hasPermission('landings.view') || $_admin->hasPermission('about_page.view'))
-            @php($homePageActive = request()->routeIs('admin.sliders.*') || request()->routeIs('admin.trust-items.*') || request()->routeIs('admin.deals-banner.*'))
+            @if($_admin->hasPermission('sliders.view') || $_admin->hasPermission('trust_items.view') || $_admin->hasPermission('deals_banner.view') || $_admin->hasPermission('instagram_posts.view') || $_admin->hasPermission('landings.view') || $_admin->hasPermission('about_page.view'))
+            @php($homePageActive = request()->routeIs('admin.sliders.*') || request()->routeIs('admin.trust-items.*') || request()->routeIs('admin.deals-banner.*') || request()->routeIs('admin.instagram-posts.*'))
             <div>
                 <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Content</p>
                 <ul class="space-y-0.5">
@@ -175,7 +175,7 @@
                     </a></li>
                     @endif
 
-                    @if($_admin->hasPermission('sliders.view') || $_admin->hasPermission('trust_items.view') || $_admin->hasPermission('deals_banner.view'))
+                    @if($_admin->hasPermission('sliders.view') || $_admin->hasPermission('trust_items.view') || $_admin->hasPermission('deals_banner.view') || $_admin->hasPermission('instagram_posts.view'))
                     <li x-data="{ open: {{ $homePageActive ? 'true' : 'false' }} }">
                         <button @click="open = !open" type="button" class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ $homePageActive ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
                             <i class="fas fa-house w-4 text-[12px] {{ $homePageActive ? 'text-accent-400' : '' }}"></i>
@@ -196,6 +196,11 @@
                             @if($_admin->hasPermission('deals_banner.view'))
                             <li><a href="{{ route('admin.deals-banner.edit') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.deals-banner.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
                                 <i class="fas fa-fire w-4 text-[12px] {{ request()->routeIs('admin.deals-banner.*') ? 'text-accent-400' : '' }}"></i><span>Deals Banner</span>
+                            </a></li>
+                            @endif
+                            @if($_admin->hasPermission('instagram_posts.view'))
+                            <li><a href="{{ route('admin.instagram-posts.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.instagram-posts.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                                <i class="fas fa-camera w-4 text-[12px] {{ request()->routeIs('admin.instagram-posts.*') ? 'text-accent-400' : '' }}"></i><span>Instagram Feed</span>
                             </a></li>
                             @endif
                         </ul>

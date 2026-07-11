@@ -50,6 +50,7 @@ class Role extends Model
                 'sliders'      => ['view', 'create', 'edit', 'delete'],
                 'trust_items'  => ['view', 'create', 'edit', 'delete'],
                 'deals_banner' => ['view', 'edit'],
+                'instagram_posts' => ['view', 'create', 'edit', 'delete'],
                 'landings'     => ['view', 'create', 'edit', 'delete'],
                 'about_page'   => ['view', 'edit'],
             ],

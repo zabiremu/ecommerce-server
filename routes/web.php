@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingControll
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\TrustItemController as AdminTrustItemController;
 use App\Http\Controllers\Admin\DealsBannerController as AdminDealsBannerController;
+use App\Http\Controllers\Admin\InstagramPostController as AdminInstagramPostController;
 use App\Http\Controllers\Admin\AboutPageController as AdminAboutPageController;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -77,6 +78,7 @@ Route::post('/logout', [HomePageController::class, 'logoutCustomer'])->name('log
 Route::get('/order-complete', [HomePageController::class, 'orderComplete'])->name('order-complete');
 Route::get('/privacy-policy', [HomePageController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/product-details', [HomePageController::class, 'productDetails'])->name('product-details');
+Route::get('/product-quick-view/{product}', [HomePageController::class, 'productQuickView'])->name('product.quick-view');
 Route::post('/product-reviews', [ReviewController::class, 'store'])->name('product-reviews.store');
 Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
@@ -251,6 +253,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Deals Banner
         Route::get('/deals-banner', [AdminDealsBannerController::class, 'edit'])->name('deals-banner.edit');
         Route::put('/deals-banner', [AdminDealsBannerController::class, 'update'])->name('deals-banner.update');
+
+        // Instagram Feed
+        Route::get('/instagram-posts', [AdminInstagramPostController::class, 'index'])->name('instagram-posts.index');
+        Route::get('/instagram-posts/create', [AdminInstagramPostController::class, 'create'])->name('instagram-posts.create');
+        Route::post('/instagram-posts', [AdminInstagramPostController::class, 'store'])->name('instagram-posts.store');
+        Route::get('/instagram-posts/{instagramPost}/edit', [AdminInstagramPostController::class, 'edit'])->name('instagram-posts.edit');
+        Route::put('/instagram-posts/{instagramPost}', [AdminInstagramPostController::class, 'update'])->name('instagram-posts.update');
+        Route::patch('/instagram-posts/{instagramPost}/toggle-status', [AdminInstagramPostController::class, 'toggleStatus'])->name('instagram-posts.toggle-status');
+        Route::delete('/instagram-posts/{instagramPost}', [AdminInstagramPostController::class, 'destroy'])->name('instagram-posts.destroy');
 
         // About Page
         Route::get('/about-page', [AdminAboutPageController::class, 'edit'])->name('about-page.edit');
