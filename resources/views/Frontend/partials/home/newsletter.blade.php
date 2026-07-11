@@ -3,8 +3,7 @@
             width="48" height="48" class="wp-image-1021"
             src="merchandise/wp-content/uploads/sites/31/2025/11/gms-mail-1.svg" alt="" /></div>
 
-    <h2 class="wp-block-wd-title title wd-29c12066">Subscribe and get 10% off your first
-        purchase</h2>
+    <h2 class="wp-block-wd-title title wd-29c12066">Get 10% Off Your First Order</h2>
 
     <p class="wp-block-wd-paragraph wd-a5b20c44">Will be used in accordance with our&nbsp;<a
             href="{{ route('privacy-policy') }}"><span class="wd-highlight">Privacy Policy</span></a></p>
