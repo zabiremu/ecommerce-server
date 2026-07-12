@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ProductReview;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -12,8 +13,6 @@ class ReviewController extends Controller
     {
         $data = $request->validate([
             'product_id' => 'required|integer|exists:products,id',
-            'name'       => 'required|string|max:100',
-            'email'      => 'nullable|email|max:150',
             'rating'     => 'required|integer|min:1|max:5',
             'comment'    => 'required|string|max:1000',
             'photos'     => 'nullable|array|max:4',
@@ -25,10 +24,12 @@ class ReviewController extends Controller
             $photoPaths[] = $photo->store('reviews', 'public');
         }
 
+        $customer = Auth::guard('web')->user();
+
         $review = ProductReview::create([
             'product_id' => $data['product_id'],
-            'name'       => $data['name'],
-            'email'      => $data['email'] ?? null,
+            'name'       => $customer->name,
+            'email'      => $customer->email,
             'rating'     => $data['rating'],
             'comment'    => $data['comment'],
             'photos'     => $photoPaths ?: null,

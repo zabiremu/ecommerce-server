@@ -79,7 +79,7 @@ Route::get('/order-complete', [HomePageController::class, 'orderComplete'])->nam
 Route::get('/privacy-policy', [HomePageController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/product-details', [HomePageController::class, 'productDetails'])->name('product-details');
 Route::get('/product-quick-view/{product}', [HomePageController::class, 'productQuickView'])->name('product.quick-view');
-Route::post('/product-reviews', [ReviewController::class, 'store'])->name('product-reviews.store');
+Route::middleware('auth:web')->post('/product-reviews', [ReviewController::class, 'store'])->name('product-reviews.store');
 Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
 Route::get('/refund-policy', [HomePageController::class, 'refundPolicy'])->name('refund-policy');

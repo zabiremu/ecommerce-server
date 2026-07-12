@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
               (p.img ? '<img src="' + p.img + '" alt="" loading="lazy">' : '') +
               '<span class="gms-search-item-info">' +
                 '<span class="gms-search-item-title">' + p.title + '</span>' +
-                '<span class="gms-search-item-price">$' + p.price.toFixed(2) + '</span>' +
+                '<span class="gms-search-item-price">৳' + Number(p.price).toLocaleString() + '</span>' +
               '</span>' +
             '</a>' +
           '</li>';

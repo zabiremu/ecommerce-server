@@ -74,7 +74,11 @@ class HomePageController extends Controller
             ->orderBy('name')
             ->get(['id', 'name', 'slug']);
 
-        return view('Frontend.all-products', compact('products', 'filterCategories'));
+        $filterBrands = \App\Models\Brand::where('status', true)
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug']);
+
+        return view('Frontend.all-products', compact('products', 'filterCategories', 'filterBrands'));
     }
 
     public function productQuickView(Product $product)
@@ -134,7 +138,7 @@ class HomePageController extends Controller
     protected function publishedProductsForJs()
     {
         return Product::published()
-            ->with('category:id,slug')
+            ->with('category:id,slug', 'brand:id,slug')
             ->orderByDesc('id')
             ->get()
             ->map(function (Product $p) {
@@ -148,6 +152,7 @@ class HomePageController extends Controller
                     'old'   => (float) $p->selling_price,
                     'stock' => (int) ($p->stock ?? 0),
                     'cat'   => $p->category?->slug ?? '',
+                    'brand' => $p->brand?->slug ?? '',
                     'url'   => route('product-details') . '?slug=' . $p->slug,
                 ];
             });
@@ -470,7 +475,45 @@ class HomePageController extends Controller
         $avgRating  = $reviews->isNotEmpty() ? round($reviews->avg('rating'), 1) : 0;
         $totalReviews = $reviews->count();
 
-        return view('Frontend.product-details', compact('product', 'related', 'reviews', 'avgRating', 'totalReviews'));
+        $hasSale = $product->sale_price && $product->sale_price < $product->selling_price;
+        $displayPrice = (float) ($hasSale ? $product->sale_price : $product->selling_price);
+        $stock = (float) ($product->stock ?? 0);
+        $alertQty = (float) ($product->alert_quantity ?? 0);
+        $outOfStock = $stock <= 0;
+        $lowStock = !$outOfStock && $alertQty > 0 && $stock <= $alertQty;
+
+        $resolveImage = function (?string $path) {
+            if (!$path) return null;
+            return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
+                ? \Illuminate\Support\Facades\Storage::url($path)
+                : asset($path);
+        };
+
+        $galleryImages = collect([$product->thumbnail])
+            ->merge($product->gallery ?? [])
+            ->filter()
+            ->unique()
+            ->values()
+            ->map(fn ($path) => ['path' => $path, 'url' => $resolveImage($path)]);
+
+        $previousProduct = Product::published()
+            ->where('id', '<', $product->id)
+            ->orderByDesc('id')
+            ->first(['id', 'name', 'slug', 'thumbnail', 'selling_price', 'sale_price']);
+
+        $nextProduct = Product::published()
+            ->where('id', '>', $product->id)
+            ->orderBy('id')
+            ->first(['id', 'name', 'slug', 'thumbnail', 'selling_price', 'sale_price']);
+
+        $colors = $product->variants->pluck('color')->filter()->unique()->values();
+        $sizes  = $product->variants->pluck('size')->filter()->unique()->values();
+
+        return view('Frontend.product-details', compact(
+            'product', 'related', 'reviews', 'avgRating', 'totalReviews',
+            'hasSale', 'displayPrice', 'stock', 'outOfStock', 'lowStock',
+            'galleryImages', 'previousProduct', 'nextProduct', 'colors', 'sizes', 'resolveImage'
+        ));
     }
 
     public function refundPolicy()

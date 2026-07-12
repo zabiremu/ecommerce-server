@@ -37,306 +37,70 @@
                                 <div class="whb-space-element whb-nhk1nrs4bqpvtm7wjy76 " style="width:120px;"></div>
                                 <nav class="wd-header-nav wd-header-main-nav text-left whb-d3ki4iaou697ll19rjk8"
                                     role="navigation" aria-label="Main navigation">
+                                    @php
+                                        $navCategories = \App\Models\Category::where('status', true)
+                                            ->whereNull('parent_id')
+                                            ->with(['children' => fn($q) => $q->where('status', true)
+                                                ->with(['children' => fn($q2) => $q2->where('status', true)->orderBy('name')])
+                                                ->orderBy('name')])
+                                            ->latest()
+                                            ->limit(4)
+                                            ->get();
+                                    @endphp
                                     <ul id="menu-main-navigation"
                                         class="menu wd-nav wd-nav-header wd-nav-main wd-style-default wd-gap-s">
-                                        <li id="menu-item-597"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-597 item-level-0 menu-simple-dropdown wd-event-hover">
-                                            <a href="" class="woodmart-nav-link"><img
-                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-star-1.svg') }}"
-                                                    title="navigation-menu-star" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span class="nav-link-text">New
-                                                    In</span></a>
-                                        </li>
-                                        <li id="menu-item-598"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-598 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 660px;"><a href="{{ route('all-products') }}"
-                                                class="woodmart-nav-link"><img
-                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-t-shirt-1.svg') }}"
-                                                    title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span
-                                                    class="nav-link-text">Products</span></a>
-                                            <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
 
-                                                <div class="container wd-entry-content">
-                                                    <link rel="stylesheet" id="wd-block-menu-list-css"
-                                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
-                                                        type="text/css" media="all" />
-                                                    <style id="wd-style-blocks-926-inline-css"
-                                                        data-type="wd-style-blocks-926">
-                                                        #wd-9b61e1e7>li>a {
-                                                            font-size: 16px;
-                                                            text-transform: none;
-                                                        }
-
-                                                        #wd-f8f2dbe4>li>a {
-                                                            font-size: 16px;
-                                                            text-transform: none;
-                                                        }
-
-                                                        #wd-f692c60f>li>a {
-                                                            font-size: 16px;
-                                                            text-transform: none;
-                                                        }
-                                                    </style>
-
-                                                    <div id="wd-28b315b8" class="wp-block-wd-row">
-                                                        <div id="wd-031995ad" class="wp-block-wd-column">
-                                                            <ul id="wd-9b61e1e7"
-                                                                class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a href="products.html">Apparel</a>
-                                                                    <ul class="sub-sub-menu">
-                                                                        <li id="wd-acd8bcef"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">T-Shirts</a>
-                                                                        </li>
-
-                                                                        <li id="wd-2a0a1f52"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Sweatshirts</a>
-                                                                        </li>
-
-                                                                        <li id="wd-c7e15832"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Hats</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
-                                                        <div id="wd-7587334d" class="wp-block-wd-column">
-                                                            <ul id="wd-f8f2dbe4"
-                                                                class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a href="products.html">Accessories
-                                                                        &amp; Arts</a>
-                                                                    <ul class="sub-sub-menu">
-                                                                        <li id="wd-40dda103"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Pins</a>
-                                                                        </li>
-
-                                                                        <li id="wd-d517b118"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Stickers</a>
-                                                                        </li>
-
-                                                                        <li id="wd-b322c279"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Posters</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
-                                                        <div id="wd-1b356779" class="wp-block-wd-column">
-                                                            <ul id="wd-f692c60f"
-                                                                class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                <li><a href="products.html">Collectibles</a>
-                                                                    <ul class="sub-sub-menu">
-                                                                        <li id="wd-ddccedde"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Figures</a>
-                                                                        </li>
-
-                                                                        <li id="wd-79ab0113"
-                                                                            class="wp-block-wd-menu-list-item"><a
-                                                                                href="products.html">Plushes</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </li>
-                                        <li id="menu-item-599"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-599 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 460px;"><a href="products.html"
-                                                class="woodmart-nav-link"><img
-                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-d-pad-1.svg') }}"
-                                                    title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span
-                                                    class="nav-link-text">Gaming</span></a>
-                                            <div
-                                                class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
-
-                                                <div class="container wd-entry-content">
-                                                    <link rel="stylesheet" id="wd-block-banner-css"
-                                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-banner.css') }}"
-                                                        type="text/css" media="all" />
-                                                    <style id="wd-style-blocks-931-inline-css"
-                                                        data-type="wd-style-blocks-931">
-                                                        .wd.wd .wd-6db0b3d5>li>a {
-                                                            font-size: 16px;
-                                                            text-transform: none;
-                                                        }
-
-                                                        .wd.wd .wd-e2c94a84 {
-                                                            height: 240px;
-                                                        }
-                                                    </style>
-
-                                                    <div class="wp-block-wd-row wd-28b315b8">
-                                                        <div class="wp-block-wd-column wd-031995ad">
-                                                            <ul
-                                                                class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented wd-6db0b3d5">
-                                                                <li><a href="products.html">By
-                                                                        Popular Franchise</a>
-                                                                    <ul class="sub-sub-menu">
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-fb7d01a3">
-                                                                            <a href="products.html">Pokémon</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-f19bf746">
-                                                                            <a href="products.html">The
-                                                                                Legend of Zelda</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-e9a1d265">
-                                                                            <a href="products.html">Minecraft</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-7129857d">
-                                                                            <a href="products.html">Astro
-                                                                                Bot</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-2a1d89f1">
-                                                                            <a href="products.html">The
-                                                                                Last of Us</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-3f0e4ff1">
-                                                                            <a href="products.html">Hollow
-                                                                                Knight</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
-                                                        <div class="wp-block-wd-column wd-7587334d">
-                                                            <div
-                                                                class="wp-block-wd-cover wd-hover-parent wd-hover-zoom-in wd-e2c94a84">
-                                                                <div class="wd-block-cover-img"><img decoding="async"
-                                                                        width="700" height="800"
-                                                                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2.jpeg.webp') }}"
-                                                                        class="wp-image-469" alt=""
-                                                                        srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2.jpeg.webp') }} 700w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-263x300.jpeg.webp') }} 263w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-290x330.jpeg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-88x100.jpeg.webp') }} 88w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-600x686.jpeg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/red-dead-redemption-2-art-poster-2-150x171.jpeg') }} 150w"
-                                                                        sizes="(max-width: 700px) 100vw, 700px" />
-                                                                </div>
-                                                                <a class="wd-block-cover-link wd-fill"
-                                                                    href="product_details.html"
-                                                                    aria-label="Cover link"></a>
-                                                                <div
-                                                                    class="wp-block-wd-container wd-dir-col wd-80c5a4cb">
-                                                                </div>
+                                        @foreach($navCategories as $navCat)
+                                            @if($navCat->children->isEmpty())
+                                                <li id="menu-item-cat-{{ $navCat->id }}"
+                                                    class="menu-item item-level-0 menu-simple-dropdown wd-event-hover">
+                                                    <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
+                                                       class="woodmart-nav-link">
+                                                        <span class="nav-link-text">{{ $navCat->name }}</span>
+                                                    </a>
+                                                </li>
+                                            @else
+                                                @php
+                                                    $colCount = $navCat->children->count();
+                                                    $dropdownWidth = min(660, max(220, $colCount * 220));
+                                                @endphp
+                                                <li id="menu-item-cat-{{ $navCat->id }}"
+                                                    class="menu-item item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
+                                                    style="--wd-dropdown-width: {{ $dropdownWidth }}px;">
+                                                    <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
+                                                       class="woodmart-nav-link">
+                                                        <span class="nav-link-text">{{ $navCat->name }}</span>
+                                                    </a>
+                                                    <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                        <div class="container wd-entry-content">
+                                                            <link rel="stylesheet"
+                                                                  href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
+                                                                  type="text/css" media="all"/>
+                                                            <div class="wp-block-wd-row">
+                                                                @foreach($navCat->children as $child)
+                                                                    <div class="wp-block-wd-column">
+                                                                        <ul class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
+                                                                            <li>
+                                                                                <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $child->name }}</a>
+                                                                                @if($child->children->isNotEmpty())
+                                                                                    <ul class="sub-sub-menu">
+                                                                                        @foreach($child->children as $grandchild)
+                                                                                            <li class="wp-block-wd-menu-list-item">
+                                                                                                <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                @endif
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                </div>
-
-                                            </div>
-                                        </li>
-                                        <li id="menu-item-600"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                            style="--wd-dropdown-width: 460px;"><a href="products.html"
-                                                class="woodmart-nav-link"><img
-                                                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-movie-1.svg') }}"
-                                                    title="navigation-menu-movie" loading="lazy" class="wd-nav-img"
-                                                    width="18" height="18"><span class="nav-link-text">TV
-                                                    &amp;
-                                                    Movies</span></a>
-                                            <div
-                                                class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
-
-                                                <div class="container wd-entry-content">
-                                                    <style id="wd-style-blocks-932-inline-css"
-                                                        data-type="wd-style-blocks-932">
-                                                        .wd.wd .wd-81e218ad>li>a {
-                                                            font-size: 16px;
-                                                            text-transform: none;
-                                                        }
-
-                                                        .wd.wd .wd-53f6c8d2 {
-                                                            height: 220px;
-                                                        }
-                                                    </style>
-
-                                                    <div class="wp-block-wd-row wd-28b315b8">
-                                                        <div class="wp-block-wd-column wd-031995ad">
-                                                            <ul
-                                                                class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented wd-81e218ad">
-                                                                <li><a href="products.html">By
-                                                                        Popular Franchise</a>
-                                                                    <ul class="sub-sub-menu">
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-4445b230">
-                                                                            <a href="products.html">Marvel</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-d360e0a9">
-                                                                            <a href="products.html">Star
-                                                                                Wars</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-33340c50">
-                                                                            <a href="products.html">The
-                                                                                Lord of the Rings</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-2a2552ad">
-                                                                            <a href="products.html">Back
-                                                                                to the Future</a>
-                                                                        </li>
-
-                                                                        <li
-                                                                            class="wp-block-wd-menu-list-item wd-a4ad5a63">
-                                                                            <a href="products.html">Dune</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
-                                                        <div class="wp-block-wd-column wd-7587334d">
-                                                            <div
-                                                                class="wp-block-wd-cover wd-hover-parent wd-hover-zoom-in wd-53f6c8d2">
-                                                                <div class="wd-block-cover-img"><img decoding="async"
-                                                                        width="700" height="800"
-                                                                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2.jpeg.webp') }}"
-                                                                        class="wp-image-465" alt=""
-                                                                        srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2.jpeg.webp') }} 700w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-263x300.jpeg.webp') }} 263w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-290x330.jpeg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-88x100.jpeg.webp') }} 88w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-600x686.jpeg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/back-to-the-future-poster-2-150x171.jpeg.webp') }} 150w"
-                                                                        sizes="(max-width: 700px) 100vw, 700px" />
-                                                                </div>
-                                                                <a class="wd-block-cover-link wd-fill"
-                                                                    href="product_details.html"
-                                                                    aria-label="Cover link"></a>
-                                                                <div
-                                                                    class="wp-block-wd-container wd-dir-col wd-1d06bd66">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </li>
+                                                </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </nav>
 
@@ -349,7 +113,6 @@
                                         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/header-el-search.css') }}"
                                         type="text/css" media="all" /> <a href="#" rel="nofollow"
                                         aria-label="Search">
-
                                         <span class="wd-tools-icon">
                                         </span>
                                     </a>
@@ -602,7 +365,7 @@
         <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
             action="{{ route('all-products') }}" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
             data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
-            <input type="text" class="s" placeholder="Search for products" value="" name="q"
+            <input type="text" class="s" placeholder="Search for products" value="{{ request()->query('q') }}" name="q"
                 aria-label="Search" title="Search for products" required />
 
             <button type="submit" class="searchsubmit">
@@ -627,7 +390,7 @@
             <form role="search" method="get" class="searchform  wd-style-default woodmart-ajax-search"
                 action="{{ route('all-products') }}" data-thumbnail="1" data-price="1" data-post_type="product" data-count="20"
                 data-sku="0" data-symbols_count="3" data-include_cat_search="no" autocomplete="off">
-                <input type="text" class="s" placeholder="Search for products" value=""
+                <input type="text" class="s" placeholder="Search for products" value="{{ request()->query('q') }}"
                     name="q" aria-label="Search" title="Search for products" required />
 
                 <span tabindex="0" aria-label="Clear search" class="wd-clear-search wd-role-btn wd-hide"></span>

@@ -2241,16 +2241,18 @@
 									href="merchandise/wp-content/themes/woodmart/css/parts/mod-breadcrumbs-no-wrap.css"
 									type="text/css" media="all" />
 								<div class="wd-el-breadcrumbs wd-8a950701 wd-nowrap-md">
-									<nav class="wd-breadcrumbs woocommerce-breadcrumb" aria-label="Breadcrumb"> <a
-											href="index.htmlmerchandise">
-											Home </a>
-										<span class="wd-delimiter">/</span> <a href="products.html">
-											Apparel </a>
-										<span class="wd-delimiter">/</span> <a href="products.html"
-											class="wd-last-link">
-											Hats </a>
-										<span class="wd-delimiter">/</span> <span class="wd-last">
-											8 Bit Hearts Cap </span>
+									<nav class="wd-breadcrumbs woocommerce-breadcrumb" aria-label="Breadcrumb">
+										<a href="{{ route('home') }}">Home</a>
+										<span class="wd-delimiter">/</span>
+										<a href="{{ route('all-products') }}">All Products</a>
+										@if($product->category)
+											<span class="wd-delimiter">/</span>
+											<a href="{{ route('category-products') }}?cat={{ $product->category->slug }}" class="wd-last-link">
+												{{ $product->category->name }}
+											</a>
+										@endif
+										<span class="wd-delimiter">/</span>
+										<span class="wd-last">{{ $product->name }}</span>
 									</nav>
 								</div>
 
@@ -2261,65 +2263,70 @@
 										type="text/css" media="all" />
 									<div class="wd-products-nav">
 										<div class="wd-event-hover">
-											<a class="wd-product-nav-btn wd-btn-prev" href="product_details.html"
-												aria-label="Previous product"></a>
+											@if($previousProduct)
+												<a class="wd-product-nav-btn wd-btn-prev"
+													href="{{ route('product-details') }}?slug={{ $previousProduct->slug }}"
+													aria-label="Previous product"></a>
 
-											<div class="wd-dropdown">
-												<a href="product_details.html" class="wd-product-nav-thumb">
-													<img loading="lazy" width="150" height="150"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/video-games-rot-your-brains-cap-150x150.jpeg.webp"
-														class="attachment-thumbnail size-thumbnail"
-														alt="Video Games Rot Your Brains Cap" decoding="async"
-														srcset="merchandise/wp-content/uploads/sites/31/2025/11/video-games-rot-your-brains-cap-150x150.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/video-games-rot-your-brains-cap-300x300.jpeg.webp 300w"
-														sizes="auto, (max-width: 150px) 100vw, 150px" /> </a>
+												<div class="wd-dropdown">
+													<a href="{{ route('product-details') }}?slug={{ $previousProduct->slug }}" class="wd-product-nav-thumb">
+														<img loading="lazy" width="150" height="150"
+															src="{{ $resolveImage($previousProduct->thumbnail) }}"
+															class="attachment-thumbnail size-thumbnail"
+															alt="{{ $previousProduct->name }}" decoding="async" />
+													</a>
 
-												<div class="wd-product-nav-desc">
-													<a href="product_details.html" class="wd-entities-title">
-														Video Games Rot Your Brains Cap </a>
+													<div class="wd-product-nav-desc">
+														<a href="{{ route('product-details') }}?slug={{ $previousProduct->slug }}" class="wd-entities-title">
+															{{ $previousProduct->name }} </a>
 
-													<span class="price">
-														<del aria-hidden="true"><span
-																class="woocommerce-Price-amount amount"><bdi><span
-																		class="woocommerce-Price-currencySymbol">&#36;</span>19,99</bdi></span></del>
-														<span class="screen-reader-text">Original price was:
-															&#036;19,99.</span><ins aria-hidden="true"><span
-																class="woocommerce-Price-amount amount"><bdi><span
-																		class="woocommerce-Price-currencySymbol">&#36;</span>15,45</bdi></span></ins><span
-															class="screen-reader-text">Current price is:
-															&#036;15,45.</span> </span>
+														<span class="price">
+															@if($previousProduct->sale_price && $previousProduct->sale_price < $previousProduct->selling_price)
+																<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($previousProduct->selling_price, 0) }}</bdi></span></del>
+																<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($previousProduct->sale_price, 0) }}</bdi></span></ins>
+															@else
+																<span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($previousProduct->selling_price, 0) }}</bdi></span>
+															@endif
+														</span>
+													</div>
 												</div>
-											</div>
+											@endif
 										</div>
 
-										<a href="products.html" class="wd-product-nav-btn wd-btn-back wd-tooltip">
+										<a href="{{ route('all-products') }}" class="wd-product-nav-btn wd-btn-back wd-tooltip">
 											<span>
 												Back to products </span>
 										</a>
 
 										<div class="wd-event-hover">
-											<a class="wd-product-nav-btn wd-btn-next" href="product_details.html"
-												aria-label="Next product"></a>
+											@if($nextProduct)
+												<a class="wd-product-nav-btn wd-btn-next"
+													href="{{ route('product-details') }}?slug={{ $nextProduct->slug }}"
+													aria-label="Next product"></a>
 
-											<div class="wd-dropdown">
-												<a href="product_details.html" class="wd-product-nav-thumb">
-													<img loading="lazy" width="150" height="150"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/stardew-valley-dog-sleeping-zzz-bucket-hat-150x150.jpeg.webp"
-														class="attachment-thumbnail size-thumbnail"
-														alt="Stardew Valley Dog sleeping zzz Bucket Hat"
-														decoding="async"
-														srcset="merchandise/wp-content/uploads/sites/31/2025/11/stardew-valley-dog-sleeping-zzz-bucket-hat-150x150.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/stardew-valley-dog-sleeping-zzz-bucket-hat-300x300.jpeg.webp 300w"
-														sizes="auto, (max-width: 150px) 100vw, 150px" /> </a>
+												<div class="wd-dropdown">
+													<a href="{{ route('product-details') }}?slug={{ $nextProduct->slug }}" class="wd-product-nav-thumb">
+														<img loading="lazy" width="150" height="150"
+															src="{{ $resolveImage($nextProduct->thumbnail) }}"
+															class="attachment-thumbnail size-thumbnail"
+															alt="{{ $nextProduct->name }}" decoding="async" />
+													</a>
 
-												<div class="wd-product-nav-desc">
-													<a href="product_details.html" class="wd-entities-title">
-														Stardew Valley Dog sleeping zzz Bucket Hat </a>
+													<div class="wd-product-nav-desc">
+														<a href="{{ route('product-details') }}?slug={{ $nextProduct->slug }}" class="wd-entities-title">
+															{{ $nextProduct->name }} </a>
 
-													<span class="price">
-														<span class="woocommerce-Price-amount amount"><bdi><span
-																	class="woocommerce-Price-currencySymbol">&#36;</span>20,48</bdi></span>
-													</span>
+														<span class="price">
+															@if($nextProduct->sale_price && $nextProduct->sale_price < $nextProduct->selling_price)
+																<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($nextProduct->selling_price, 0) }}</bdi></span></del>
+																<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($nextProduct->sale_price, 0) }}</bdi></span></ins>
+															@else
+																<span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($nextProduct->selling_price, 0) }}</bdi></span>
+															@endif
+														</span>
+													</div>
 												</div>
-											</div>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -2344,91 +2351,28 @@
 												<figure class="woocommerce-product-gallery__wrapper wd-carousel wd-grid"
 													style="--wd-col-lg:1;--wd-col-md:1;--wd-col-sm:1;">
 													<div class="wd-carousel-wrap">
-
-														<div class="wd-carousel-item">
-															<figure
-																data-thumb="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg"
-																data-thumb-alt="8 Bit Hearts Cap - Image 1"
-																class="woocommerce-product-gallery__image"><a
-																	data-elementor-open-lightbox="no"
-																	href="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg"><img
-																		width="700" height="800"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp"
-																		class="wp-post-image wp-post-image"
-																		alt="8 Bit Hearts Cap - Image 1"
-																		title="8-bit-hearts-cap.jpeg" data-caption=""
-																		data-src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg"
-																		data-large_image="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg"
-																		data-large_image_width="700"
-																		data-large_image_height="800" decoding="async"
-																		fetchpriority="high"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w"
-																		sizes="(max-width: 700px) 100vw, 700px" /></a>
-															</figure>
-														</div>
-														<div class="wd-carousel-item">
-															<figure
-																data-thumb="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg"
-																data-thumb-alt="8 Bit Hearts Cap - Image 2"
-																class="woocommerce-product-gallery__image">
-																<a data-elementor-open-lightbox="no"
-																	href="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg">
-																	<img width="700" height="800"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp"
-																		class="" alt="8 Bit Hearts Cap - Image 2"
-																		title="8-bit-hearts-cap-1.jpeg" data-caption=""
-																		data-src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg"
-																		data-large_image="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg"
-																		data-large_image_width="700"
-																		data-large_image_height="800" decoding="async"
-																		loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w"
-																		sizes="auto, (max-width: 700px) 100vw, 700px" />
-																</a>
-															</figure>
-														</div>
-														<div class="wd-carousel-item">
-															<figure
-																data-thumb="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-150x171.jpeg"
-																data-thumb-alt="8 Bit Hearts Cap - Image 3"
-																class="woocommerce-product-gallery__image">
-																<a data-elementor-open-lightbox="no"
-																	href="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg">
-																	<img width="700" height="800"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg.webp"
-																		class="" alt="8 Bit Hearts Cap - Image 3"
-																		title="8-bit-hearts-cap-2.jpeg" data-caption=""
-																		data-src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg"
-																		data-large_image="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg"
-																		data-large_image_width="700"
-																		data-large_image_height="800" decoding="async"
-																		loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg.webp 700w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-150x171.jpeg.webp 150w"
-																		sizes="auto, (max-width: 700px) 100vw, 700px" />
-																</a>
-															</figure>
-														</div>
-														<div class="wd-carousel-item">
-															<figure
-																data-thumb="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-150x171.jpeg"
-																data-thumb-alt="8 Bit Hearts Cap - Image 4"
-																class="woocommerce-product-gallery__image">
-																<a data-elementor-open-lightbox="no"
-																	href="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg">
-																	<img width="700" height="800"
-																		src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg.webp"
-																		class="" alt="8 Bit Hearts Cap - Image 4"
-																		title="8-bit-hearts-cap-3.jpeg" data-caption=""
-																		data-src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg"
-																		data-large_image="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg"
-																		data-large_image_width="700"
-																		data-large_image_height="800" decoding="async"
-																		loading="lazy"
-																		srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg.webp 700w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-150x171.jpeg 150w"
-																		sizes="auto, (max-width: 700px) 100vw, 700px" />
-																</a>
-															</figure>
-														</div>
+														@forelse($galleryImages as $i => $image)
+															<div class="wd-carousel-item">
+																<figure data-thumb="{{ $image['url'] }}"
+																	data-thumb-alt="{{ $product->name }} - Image {{ $i + 1 }}"
+																	class="woocommerce-product-gallery__image">
+																	<a data-elementor-open-lightbox="no" href="{{ $image['url'] }}">
+																		<img width="700" height="800" src="{{ $image['url'] }}"
+																			class="{{ $i === 0 ? 'wp-post-image' : '' }}"
+																			alt="{{ $product->name }} - Image {{ $i + 1 }}"
+																			decoding="async"
+																			@if($i === 0) fetchpriority="high" @else loading="lazy" @endif />
+																	</a>
+																</figure>
+															</div>
+														@empty
+															<div class="wd-carousel-item">
+																<figure class="woocommerce-product-gallery__image">
+																	<img width="700" height="800" src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}"
+																		alt="{{ $product->name }}" decoding="async" />
+																</figure>
+															</div>
+														@endforelse
 													</div>
 												</figure>
 
@@ -2466,41 +2410,14 @@
 												<div class="wd-carousel wd-grid"
 													style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:3;">
 													<div class="wd-carousel-wrap">
-														<div class="wd-carousel-item ">
-															<img width="150" height="171"
-																src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp"
-																class="attachment-150x0 size-150x0"
-																alt="8 Bit Hearts Cap" decoding="async" loading="lazy"
-																srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap.jpeg.webp 700w"
-																sizes="auto, (max-width: 150px) 100vw, 150px" />
-														</div>
-														<div class="wd-carousel-item ">
-															<img width="150" height="171"
-																src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp"
-																class="attachment-150x0 size-150x0"
-																alt="8 Bit Hearts Cap - Image 2" decoding="async"
-																loading="lazy"
-																srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-1.jpeg.webp 700w"
-																sizes="auto, (max-width: 150px) 100vw, 150px" />
-														</div>
-														<div class="wd-carousel-item ">
-															<img width="150" height="171"
-																src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-150x171.jpeg.webp"
-																class="attachment-150x0 size-150x0"
-																alt="8 Bit Hearts Cap - Image 3" decoding="async"
-																loading="lazy"
-																srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-2.jpeg.webp 700w"
-																sizes="auto, (max-width: 150px) 100vw, 150px" />
-														</div>
-														<div class="wd-carousel-item ">
-															<img width="150" height="171"
-																src="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-150x171.jpeg"
-																class="attachment-150x0 size-150x0"
-																alt="8 Bit Hearts Cap - Image 4" decoding="async"
-																loading="lazy"
-																srcset="merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-290x330.jpeg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/8-bit-hearts-cap-3.jpeg.webp 700w"
-																sizes="auto, (max-width: 150px) 100vw, 150px" />
-														</div>
+														@foreach($galleryImages as $i => $image)
+															<div class="wd-carousel-item ">
+																<img width="150" height="171" src="{{ $image['url'] }}"
+																	class="attachment-150x0 size-150x0"
+																	alt="{{ $product->name }} - Image {{ $i + 1 }}"
+																	decoding="async" loading="lazy" />
+															</div>
+														@endforeach
 													</div>
 												</div>
 
@@ -2535,44 +2452,51 @@
 
 										<h1 class="product_title entry-title wd-entities-title">
 
-											8 Bit Hearts Cap
+											{{ $product->name }}
 										</h1>
 									</div>
 
+									@if($product->category)
+										<div class="wd-single-attrs wd-f798e673 wd-layout-grid wd-style-bordered">
 
-									<div class="wd-single-attrs wd-f798e673 wd-layout-grid wd-style-bordered">
-
-										<link rel="stylesheet" id="wd-woo-mod-shop-attributes-builder-css"
-											href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-shop-attributes-builder.css"
-											type="text/css" media="all" />
-										<table class="woocommerce-product-attributes shop_attributes"
-											aria-label="Product Details">
-											<tr
-												class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_franchise">
-												<td class="woocommerce-product-attributes-item__value"><a
-														class="wd-term" href="products.html" rel="tag"><img
-															decoding="async"
-															src="merchandise/wp-content/uploads/sites/31/2025/11/gms-franchise-logo-retro-consoles.jpg"
-															class="wd-term-img" alt="Retro Consoles"></a></td>
-											</tr>
-										</table>
-									</div>
+											<link rel="stylesheet" id="wd-woo-mod-shop-attributes-builder-css"
+												href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-shop-attributes-builder.css"
+												type="text/css" media="all" />
+											<table class="woocommerce-product-attributes shop_attributes"
+												aria-label="Product Details">
+												<tr class="woocommerce-product-attributes-item">
+													<td class="woocommerce-product-attributes-item__value">
+														<a class="wd-term" href="{{ route('category-products') }}?cat={{ $product->category->slug }}" rel="tag">
+															<span class="wd-term-name">{{ $product->category->name }}</span>
+														</a>
+													</td>
+												</tr>
+											</table>
+										</div>
+									@endif
 								</div>
 
 								<div class="wd-single-rating wd-d7d53994">
 									<div class="woocommerce-product-rating">
-										<div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span
-												style="width:80%">Rated <strong class="rating">4.00</strong> out of 5
-												based on <span class="rating">1</span> customer rating</span></div>
+										<div class="star-rating" role="img" aria-label="Rated {{ $avgRating }} out of 5">
+											<span style="width:{{ $avgRating / 5 * 100 }}%">Rated <strong class="rating">{{ number_format($avgRating, 2) }}</strong> out of 5
+												based on <span class="rating">{{ $totalReviews }}</span> customer rating{{ $totalReviews === 1 ? '' : 's' }}</span>
+										</div>
 										<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span
-												class="count">1</span> customer review)</a>
+												class="count">{{ $totalReviews }}</span> customer review{{ $totalReviews === 1 ? '' : 's' }})</a>
 									</div>
 								</div>
 
 
 								<div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-58f3a64c">
 									<div class="wd-single-stock-status wd-8fed514f">
-										<p class="stock in-stock wd-style-default">399 in stock</p>
+										@if($outOfStock)
+											<p class="stock out-of-stock wd-style-default">Out of stock</p>
+										@elseif($lowStock)
+											<p class="stock low-stock wd-style-default">Only {{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} left in stock</p>
+										@else
+											<p class="stock in-stock wd-style-default">{{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} in stock</p>
+										@endif
 									</div>
 
 
@@ -2585,7 +2509,7 @@
 												<span class="meta-label">
 													SKU: </span>
 												<span class="sku">
-													GM-H-11 </span>
+													{{ $product->sku }} </span>
 											</span>
 
 
@@ -2595,53 +2519,63 @@
 									</div>
 								</div>
 
-								<div class="wd-single-short-desc wd-b3d227b8">
-									<div class="woocommerce-product-details__short-description">
-										<p>Show your love for retro gaming with this adorable cap featuring 8-bit heart
-											icons! Perfect for gamers who grew up on pixelated adventures, this
-											adjustable cap combines nostalgia and style for everyday wear.</p>
+								@if($product->short_description)
+									<div class="wd-single-short-desc wd-b3d227b8">
+										<div class="woocommerce-product-details__short-description">
+											<p>{{ $product->short_description }}</p>
+										</div>
 									</div>
-								</div>
+								@endif
 
 
 								<div class="wd-single-price wd-8e733563">
-									<p class="price"><span class="woocommerce-Price-amount amount"><bdi><span
-													class="woocommerce-Price-currencySymbol">&#36;</span>22,60</bdi></span>
+									<p class="price">
+										@if($hasSale)
+											<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($product->selling_price, 0) }}</bdi></span></del>
+											<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($displayPrice, 0) }}</bdi></span></ins>
+										@else
+											<span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($displayPrice, 0) }}</bdi></span>
+										@endif
 									</p>
 								</div>
 
 
 								<div
 									class="wd-single-add-cart wd-ec82c100 wd-btn-design-full wd-design-default wd-swatch-layout-default wd-stock-status-off">
-									<p class="stock in-stock wd-style-default">399 in stock</p>
+									@if($outOfStock)
+										<p class="stock out-of-stock wd-style-default">Out of stock</p>
+									@else
+										<p class="stock in-stock wd-style-default">{{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} in stock</p>
+									@endif
 
 
-									<form class="cart" action="product_details.html" method="post"
-										enctype='multipart/form-data'>
-
+									<form class="cart" method="post" data-product-id="{{ $product->id }}"
+										data-product-name="{{ $product->name }}" data-product-price="{{ $displayPrice }}"
+										data-product-img="{{ $galleryImages->first()['url'] ?? '' }}"
+										data-product-url="{{ route('product-details') }}?slug={{ $product->slug }}">
 
 										<div class="quantity">
 
 											<input type="button" value="-" class="minus btn"
 												aria-label="Decrease quantity" />
 
-											<label class="screen-reader-text" for="quantity_6a3565def4008">8 Bit Hearts
-												Cap quantity</label>
-											<input type="number" id="quantity_6a3565def4008" class="input-text qty text"
-												value="1" aria-label="Product quantity" min="1" max="399"
+											<label class="screen-reader-text" for="quantity_{{ $product->id }}">{{ $product->name }}
+												quantity</label>
+											<input type="number" id="quantity_{{ $product->id }}" class="input-text qty text"
+												value="1" aria-label="Product quantity" min="1" max="{{ max((int) $stock, 1) }}"
 												name="quantity" step="1" placeholder="" inputmode="numeric"
-												autocomplete="off">
+												autocomplete="off" {{ $outOfStock ? 'disabled' : '' }}>
 
 											<input type="button" value="+" class="plus btn"
 												aria-label="Increase quantity" />
 
 										</div>
 
-										<button type="submit" name="add-to-cart" value="201"
-											class="single_add_to_cart_button button alt">Add to cart</button>
+										<button type="submit" name="add-to-cart" value="{{ $product->id }}"
+											class="single_add_to_cart_button button alt" {{ $outOfStock ? 'disabled' : '' }}>Add to cart</button>
 
-										<button id="wd-add-to-cart" type="submit" name="wd-add-to-cart" value="201"
-											class="wd-buy-now-btn btn button alt btn-accent">
+										<button id="wd-add-to-cart" type="submit" name="wd-add-to-cart" value="{{ $product->id }}"
+											class="wd-buy-now-btn btn button alt btn-accent" {{ $outOfStock ? 'disabled' : '' }}>
 											Buy now </button>
 									</form>
 
@@ -2654,8 +2588,8 @@
 									class="wp-block-wd-container wd-dir-row wd-dir-row-sm wd-align-is-lg-center wd-align-is-sm-start wd-d6cacb3f">
 									<div class="wd-single-action-btn wd-single-wishlist-btn wd-d8042f3f">
 										<div class="wd-wishlist-btn wd-action-btn wd-wishlist-icon wd-style-text">
-											<a class="" href="wishtlist.html" data-key="d5b554e37e"
-												data-product-id="201" rel="nofollow">
+											<a class="" href="{{ route('wishlist') }}"
+												data-product-id="{{ $product->id }}" rel="nofollow">
 												<span class="wd-action-icon">
 													<span class="wd-check-icon"></span>
 												</span>
@@ -2775,42 +2709,42 @@
 									</div>
 								</div>
 
-								<div class="wd-single-attrs wd-ca100415 wd-layout-list wd-style-bordered">
+								@if($colors->isNotEmpty() || $sizes->isNotEmpty())
+									<div class="wd-single-attrs wd-ca100415 wd-layout-list wd-style-bordered">
 
-									<table class="woocommerce-product-attributes shop_attributes"
-										aria-label="Product Details">
-										<tr
-											class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
-											<th class="woocommerce-product-attributes-item__label" scope="row"><span
-													class="wd-attr-label"><span class="wd-attr-name">Color</span></span>
-											</th>
-											<td class="woocommerce-product-attributes-item__value"><span
-													class="wd-term"><span class="wd-term-name">Gray</span></span></td>
-										</tr>
-										<tr
-											class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_product-type">
-											<th class="woocommerce-product-attributes-item__label" scope="row"><span
-													class="wd-attr-label"><span class="wd-attr-name">Type</span></span>
-											</th>
-											<td class="woocommerce-product-attributes-item__value"><a class="wd-term"
-													href="products.html" rel="tag"><span
-														class="wd-term-name">Gaming</span></a></td>
-										</tr>
-									</table>
-								</div>
-
-
-								<div class="wd-single-meta wd-45069eb1">
-
-									<div class="product_meta wd-layout-justify">
-
-
-
-
-										<span class="posted_in"><span class="meta-label">Brand: </span><a
-												href="products.html" rel="tag">8-Bit Legends</a></span>
+										<table class="woocommerce-product-attributes shop_attributes"
+											aria-label="Product Details">
+											@if($colors->isNotEmpty())
+												<tr class="woocommerce-product-attributes-item">
+													<th class="woocommerce-product-attributes-item__label" scope="row"><span
+															class="wd-attr-label"><span class="wd-attr-name">Color</span></span>
+													</th>
+													<td class="woocommerce-product-attributes-item__value"><span
+															class="wd-term"><span class="wd-term-name">{{ $colors->implode(', ') }}</span></span></td>
+												</tr>
+											@endif
+											@if($sizes->isNotEmpty())
+												<tr class="woocommerce-product-attributes-item">
+													<th class="woocommerce-product-attributes-item__label" scope="row"><span
+															class="wd-attr-label"><span class="wd-attr-name">Size</span></span>
+													</th>
+													<td class="woocommerce-product-attributes-item__value"><span
+															class="wd-term"><span class="wd-term-name">{{ $sizes->implode(', ') }}</span></span></td>
+												</tr>
+											@endif
+										</table>
 									</div>
-								</div>
+								@endif
+
+								@if($product->brand)
+									<div class="wd-single-meta wd-45069eb1">
+
+										<div class="product_meta wd-layout-justify">
+											<span class="posted_in"><span class="meta-label">Brand: </span><a
+													href="{{ route('all-products') }}?brand={{ $product->brand->slug }}" rel="tag">{{ $product->brand->name }}</a></span>
+										</div>
+									</div>
+								@endif
 							</div>
 						</div>
 
@@ -2886,41 +2820,40 @@
 											<div id="review_form">
 												<div id="respond" class="comment-respond">
 													<span id="reply-title" class="comment-reply-title title"
-														role="heading" aria-level="3">Add a review <small><a
-																rel="nofollow" id="cancel-comment-reply-link"
-																href="/merchandise/product/8-bit-hearts-cap/#respond"
-																style="display:none;">Cancel reply</a></small></span>
-													<form action="{{ route('product-reviews.store') }}" method="post" id="commentform"
-														class="comment-form" enctype="multipart/form-data">
-														@csrf
-														<input type="hidden" name="product_id" value="{{ $product->id }}" />
-														<p class="comment-form-author"><label for="review-name">Your name&nbsp;<span
-																	class="required">*</span></label>
-															<input id="review-name" name="name" type="text" required /></p>
-														<p class="comment-form-email"><label for="review-email">Your email</label>
-															<input id="review-email" name="email" type="email" /></p>
-														<div class="comment-form-rating"><label for="rating"
-																id="comment-form-rating-label">Your rating&nbsp;<span
-																	class="required">*</span></label><select
-																name="rating" id="rating" required>
-																<option value="">Rate&hellip;</option>
-																<option value="5">Perfect</option>
-																<option value="4">Good</option>
-																<option value="3">Average</option>
-																<option value="2">Not that bad</option>
-																<option value="1">Very poor</option>
-															</select></div>
-														<p class="comment-form-comment"><label for="comment">Your
-																review&nbsp;<span
-																	class="required">*</span></label><textarea
-																id="comment" name="comment" cols="45" rows="8"
-																required></textarea></p>
-														<p class="comment-form-photos"><label for="review-photos">Add photos (up to 4)</label>
-															<input id="review-photos" name="photos[]" type="file" accept="image/*" multiple /></p>
-														<p class="form-submit"><input name="submit" type="submit"
-																id="submit" class="submit" value="Submit" />
+														role="heading" aria-level="3">Add a review</span>
+
+													@auth('web')
+														<form action="{{ route('product-reviews.store') }}" method="post" id="commentform"
+															class="comment-form" enctype="multipart/form-data">
+															@csrf
+															<input type="hidden" name="product_id" value="{{ $product->id }}" />
+															<div class="comment-form-rating"><label for="rating"
+																	id="comment-form-rating-label">Your rating&nbsp;<span
+																		class="required">*</span></label><select
+																	name="rating" id="rating" required>
+																	<option value="">Rate&hellip;</option>
+																	<option value="5">Perfect</option>
+																	<option value="4">Good</option>
+																	<option value="3">Average</option>
+																	<option value="2">Not that bad</option>
+																	<option value="1">Very poor</option>
+																</select></div>
+															<p class="comment-form-comment"><label for="comment">Your
+																	review&nbsp;<span
+																		class="required">*</span></label><textarea
+																	id="comment" name="comment" cols="45" rows="8"
+																	required></textarea></p>
+															<p class="comment-form-photos"><label for="review-photos">Add photos (up to 4)</label>
+																<input id="review-photos" name="photos[]" type="file" accept="image/*" multiple /></p>
+															<p class="form-submit"><input name="submit" type="submit"
+																	id="submit" class="submit" value="Submit" />
+															</p>
+														</form>
+													@else
+														<p>
+															<a href="{{ route('login') }}">Log in</a> to leave a review for this product.
 														</p>
-													</form>
+													@endauth
 												</div><!-- #respond -->
 											</div>
 										</div>
@@ -3157,4 +3090,56 @@
 			</main>
 
 		</div>
+
+		<script>
+		(function () {
+			const form = document.querySelector('form.cart[data-product-id]');
+			if (!form) return;
+
+			const productId    = Number(form.dataset.productId);
+			const productName  = form.dataset.productName;
+			const productPrice = Number(form.dataset.productPrice);
+			const productImg   = form.dataset.productImg;
+			const productUrl   = form.dataset.productUrl;
+			const qtyInput     = form.querySelector('input[name="quantity"]');
+
+			form.querySelector('.minus')?.addEventListener('click', function () {
+				qtyInput.value = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
+			});
+			form.querySelector('.plus')?.addEventListener('click', function () {
+				const max = parseInt(qtyInput.max, 10) || Infinity;
+				qtyInput.value = Math.min(max, (parseInt(qtyInput.value, 10) || 1) + 1);
+			});
+
+			function addToCart(qty) {
+				let cart = JSON.parse(localStorage.getItem('gms_cart') || '[]');
+				const existing = cart.find(c => c.id === productId);
+				existing ? existing.qty += qty : cart.push({
+					id: productId, title: productName, img: productImg,
+					price: productPrice, qty: qty, url: productUrl,
+				});
+				localStorage.setItem('gms_cart', JSON.stringify(cart));
+				window.dispatchEvent(new Event('gms:cart-updated'));
+			}
+
+			form.addEventListener('submit', function (e) {
+				e.preventDefault();
+				const qty = parseInt(qtyInput.value, 10) || 1;
+				addToCart(qty);
+
+				if (document.activeElement && document.activeElement.id === 'wd-add-to-cart') {
+					window.location.href = "{{ route('checkout') }}";
+				}
+			});
+
+			document.querySelector('.wd-single-wishlist-btn a[data-product-id]')?.addEventListener('click', function (e) {
+				e.preventDefault();
+				let wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]');
+				if (!wl.includes(productId)) {
+					wl.push(productId);
+					localStorage.setItem('gms_wishlist', JSON.stringify(wl));
+				}
+			});
+		})();
+		</script>
 @endsection
