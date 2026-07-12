@@ -4,6 +4,9 @@
 <link rel="stylesheet" id="wd-categories-loop-css"
     href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
     type="text/css" media="all" />
+<div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
+    <h2 class="wp-block-wd-title title">Shop by Category</h2>
+</div>
 <div class="products wd-carousel-container wd-cats-element  wd-37bdf58d wd-img-width wd-cats">
     <div class="wd-carousel-inner">
         <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"

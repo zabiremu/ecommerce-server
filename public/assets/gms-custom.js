@@ -414,15 +414,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var forms = document.querySelectorAll('.searchform.woodmart-ajax-search');
     if (forms.length === 0) return;
 
-    function renderResults(container, data) {
-      if (!data.products || data.products.length === 0) {
-        container.innerHTML = '<div class="gms-search-empty">No products found.</div>';
-        return;
-      }
-
-      var heading = data.popular ? 'Popular searches' : 'Search results';
+    function renderProductList(heading, products) {
       var html = '<div class="gms-search-heading">' + heading + '</div><ul class="gms-search-list">';
-      data.products.forEach(function (p) {
+      products.forEach(function (p) {
         html +=
           '<li class="gms-search-item">' +
             '<a href="' + p.url + '">' +
@@ -435,7 +429,50 @@ document.addEventListener('DOMContentLoaded', function () {
           '</li>';
       });
       html += '</ul>';
+      return html;
+    }
+
+    function renderResults(container, data, input) {
+      var hasTerms = data.popular && data.popularTerms && data.popularTerms.length > 0;
+      var hasProducts = data.products && data.products.length > 0;
+
+      if (!hasTerms && !hasProducts) {
+        container.innerHTML = '<div class="gms-search-empty">No products found.</div>';
+        return;
+      }
+
+      var html = '';
+
+      if (hasTerms) {
+        html += '<div class="gms-search-heading">Popular searches</div><div class="gms-search-terms">';
+        data.popularTerms.forEach(function (term) {
+          html += '<button type="button" class="gms-search-term">' + term + '</button>';
+        });
+        html += '</div>';
+      }
+
+      if (hasProducts) {
+        html += renderProductList(data.popular ? 'Trending products' : 'Search results', data.products);
+      }
+
       container.innerHTML = html;
+
+      container.querySelectorAll('.gms-search-term').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var term = btn.textContent;
+          input.value = term;
+          runSearchFor(input, container, term);
+        });
+      });
+    }
+
+    function runSearchFor(input, container, q) {
+      fetch('/search/suggestions?q=' + encodeURIComponent(q))
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) renderResults(container, data, input);
+        })
+        .catch(function () {});
     }
 
     forms.forEach(function (form) {
@@ -449,12 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var timer = null;
 
       function runSearch(q) {
-        fetch('/search/suggestions?q=' + encodeURIComponent(q))
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.success) renderResults(target, data);
-          })
-          .catch(function () {});
+        runSearchFor(input, target, q);
       }
 
       input.addEventListener('focus', function () {

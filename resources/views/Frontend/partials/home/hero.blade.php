@@ -1,6 +1,7 @@
 <div class="wp-block-wd-row wd-7ae8bcf1">
     <div class="wp-block-wd-column wd-1083b687">
-        <h2 class="wp-block-wd-title title wd-47de8d1e">{{ \App\Models\SiteSetting::get('home_hero_title', 'Level Up Your Gear!') }}</h2>
+        <span class="gms-section-eyebrow">{{ \App\Models\SiteSetting::get('home_hero_eyebrow', "Today's Offer") }}</span>
+        <h2 class="wp-block-wd-title title wd-47de8d1e gms-heading-tier-1">{{ \App\Models\SiteSetting::get('home_hero_title', 'Level Up Your Gear!') }}</h2>
 
         <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">{{ \App\Models\SiteSetting::get('home_hero_subtitle', 'Official Merch for Every Gamer – Shop Hoodies, Collectibles, Posters, and More!') }}</h2>
     </div>

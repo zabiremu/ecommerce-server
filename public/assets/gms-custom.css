@@ -803,6 +803,26 @@ input[type="submit"],
   font-size: 13px;
   opacity: .7;
 }
+.gms-search-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 15px 12px;
+}
+.gms-search-term {
+  background: var(--gms-bg-soft);
+  border: 1px solid var(--gms-line);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  color: var(--gms-title);
+  cursor: pointer;
+  transition: background var(--gms-ease), border-color var(--gms-ease);
+}
+.gms-search-term:hover {
+  background: var(--gms-line);
+  border-color: var(--gms-text);
+}
 .gms-search-empty {
   padding: 15px;
   opacity: .6;
@@ -810,7 +830,34 @@ input[type="submit"],
 }
 
 /* ============================================================
-   11. MOBILE — reduce homepage length / tighten spacing
+   11. HOMEPAGE VISUAL HIERARCHY
+   ============================================================ */
+.gms-section-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gms-red);
+  margin-bottom: 6px;
+}
+.gms-heading-tier-1.wp-block-wd-title.title {
+  font-size: 2.4em !important;
+  font-weight: 800 !important;
+}
+.gms-heading-tier-2.wp-block-wd-title.title {
+  font-size: 1.9em !important;
+  font-weight: 700 !important;
+}
+.gms-section-priority-2 {
+  background: var(--gms-bg-soft);
+  border-radius: var(--gms-radius);
+  padding: 28px 24px;
+  margin: 24px 0;
+}
+
+/* ============================================================
+   12. MOBILE — reduce homepage length / tighten spacing
    ============================================================ */
 @media (max-width: 768.98px) {
   .wd-hide-mobile-insta {
