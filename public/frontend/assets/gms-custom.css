@@ -507,6 +507,35 @@ input[type="submit"] {
   z-index: 1;
 }
 
+/* ==========================================================
+   10. PRODUCT GALLERY — CSS for main-image swap on thumb click
+   ========================================================== */
+.wd-single-gallery .wd-gallery-images .wd-carousel-wrap {
+  display: block !important;
+  position: relative;
+}
+.wd-single-gallery .wd-gallery-images .wd-carousel-item {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  display: block !important;
+  pointer-events: none;
+}
+.wd-single-gallery .wd-gallery-images .wd-carousel-item.gms-gallery-active {
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+.wd-single-gallery .wd-gallery-thumb .wd-carousel-item.gms-active-thumb {
+  outline: 2px solid var(--gms-primary, #333);
+  outline-offset: -2px;
+}
+
 /* Slider prev/next buttons */
 .gms-slider-nav {
   position: absolute;

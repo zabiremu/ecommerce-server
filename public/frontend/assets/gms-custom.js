@@ -2,6 +2,11 @@
    GMS Custom Scripts — Vanilla JS, no jQuery dependency
    ============================================================ */
 
+/* --- Shared price formatter: mirrors App\Support\Money::format() --- */
+window.formatPrice = function (n) {
+  return '৳' + Number(n || 0).toFixed(2);
+};
+
 /* --- CONFIG: all editable values in one place --- */
 const GMS_CONFIG = {
   whatsapp: '1234567890',            // WhatsApp number (digits only)
@@ -614,9 +619,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (data.price) {
         if (data.price.hasSale) {
-          priceEl.innerHTML = '<del>$' + Number(data.price.old).toFixed(2) + '</del> <ins>$' + Number(data.price.current).toFixed(2) + '</ins>';
+          priceEl.innerHTML = '<del>' + window.formatPrice(data.price.old) + '</del> <ins>' + window.formatPrice(data.price.current) + '</ins>';
         } else {
-          priceEl.innerHTML = '$' + Number(data.price.current).toFixed(2);
+          priceEl.innerHTML = window.formatPrice(data.price.current);
         }
       }
 
@@ -654,6 +659,39 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeModal();
     });
+  })();
+
+  /* ==========================================================
+     10. PRODUCT GALLERY — swap main image on thumbnail click
+     ========================================================== */
+  (function initProductGallery() {
+    var gallery = document.querySelector('.wd-single-gallery');
+    if (!gallery) return;
+
+    var mainWrap = gallery.querySelector('.wd-gallery-images');
+    var thumbWrap = gallery.querySelector('.wd-gallery-thumb');
+    if (!mainWrap || !thumbWrap) return;
+
+    var mainItems = mainWrap.querySelectorAll('.wd-carousel-item');
+    var thumbItems = thumbWrap.querySelectorAll('.wd-carousel-item');
+
+    function showSlide(index) {
+      mainItems.forEach(function (item, i) {
+        item.classList.toggle('gms-gallery-active', i === index);
+      });
+      thumbItems.forEach(function (item, i) {
+        item.classList.toggle('gms-active-thumb', i === index);
+      });
+    }
+
+    thumbItems.forEach(function (item, index) {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function () {
+        showSlide(index);
+      });
+    });
+
+    if (mainItems.length) showSlide(0);
   })();
 
 });
