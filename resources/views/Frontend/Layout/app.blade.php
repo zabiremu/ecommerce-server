@@ -336,7 +336,7 @@
                 <p class="wp-block-wd-paragraph wd-5d530d95">Dont's miss out – quantities are limited</p>
 
                 <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-default btn-shape-round wd-d42f539c"
-                    href="products.html"><span>Shop now</span></a>
+                    href="{{ route('all-products') }}"><span>Shop now</span></a>
             </div>
         </div>
     </div>
@@ -418,7 +418,7 @@
             </li>
             <li id="menu-item-935"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-935 item-level-0">
-                <a href="products.html" class="woodmart-nav-link"><img
+                <a href="{{ route('all-products') }}" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-t-shirt-1.svg') }}"
                         title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img" width="18"
                         height="18"><span class="nav-link-text">Products</span></a>
@@ -430,7 +430,7 @@
                     </li>
                     <li id="menu-item-937"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-937 item-level-1">
-                        <a href="products.html" class="woodmart-nav-link">Apparel</a>
+                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Apparel</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -439,21 +439,21 @@
                             </li>
                             <li id="menu-item-1008"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1008 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Hats</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Hats</a>
                             </li>
                             <li id="menu-item-1009"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1009 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Sweatshirts</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Sweatshirts</a>
                             </li>
                             <li id="menu-item-1010"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1010 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">T-Shirts</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">T-Shirts</a>
                             </li>
                         </ul>
                     </li>
                     <li id="menu-item-936"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-936 item-level-1">
-                        <a href="products.html" class="woodmart-nav-link">Accessories &amp; Arts</a>
+                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Accessories &amp; Arts</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -462,21 +462,21 @@
                             </li>
                             <li id="menu-item-1005"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1005 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Pins</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Pins</a>
                             </li>
                             <li id="menu-item-1006"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1006 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Posters</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Posters</a>
                             </li>
                             <li id="menu-item-1007"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1007 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Stickers</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Stickers</a>
                             </li>
                         </ul>
                     </li>
                     <li id="menu-item-938"
                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-938 item-level-1">
-                        <a href="products.html" class="woodmart-nav-link">Collectibles</a>
+                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Collectibles</a>
                         <ul class="sub-sub-menu">
                             <li class="wd-drilldown-back">
                                 <span class="wd-nav-opener"></span>
@@ -485,11 +485,11 @@
                             </li>
                             <li id="menu-item-1011"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1011 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Figures</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Figures</a>
                             </li>
                             <li id="menu-item-1012"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1012 item-level-2">
-                                <a href="products.html" class="woodmart-nav-link">Plushes</a>
+                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Plushes</a>
                             </li>
                         </ul>
                     </li>
@@ -497,13 +497,13 @@
             </li>
             <li id="menu-item-606"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-606 item-level-0"><a
-                    href="about.html" class="woodmart-nav-link"><img
+                    href="{{ route('about') }}" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-movie-1.svg') }}"
                         title="navigation-menu-movie" loading="lazy" class="wd-nav-img" width="18"
                         height="18"><span class="nav-link-text">About Us</span></a></li>
             <li id="menu-item-607"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607 item-level-0"><a
-                    href="contact.html" class="woodmart-nav-link"><img
+                    href="{{ route('contact') }}" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-d-pad-1.svg') }}"
                         title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img" width="18"
                         height="18"><span class="nav-link-text">Contact Us</span></a></li>

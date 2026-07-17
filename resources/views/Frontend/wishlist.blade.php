@@ -1855,7 +1855,7 @@
                                     Wishlist </h1>
 
 
-                                <nav class="wd-breadcrumbs"><a href="index.html">Home</a><span
+                                <nav class="wd-breadcrumbs"><a href="{{ route('home') }}">Home</a><span
                                         class="wd-delimiter">/</span><span class="wd-last">Wishlist</span></nav>
                             </div>
                         </div>
@@ -1871,7 +1871,7 @@
                                         class="wd-nav-my-acc wd-nav wd-nav-vertical wd-design-simple wd-gap-m wd-icon-left">
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard wd-my-acc-dashboard">
-                                            <a href="account.html" aria-current="page">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" aria-current="page">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Dashboard </span>
@@ -1879,7 +1879,7 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders wd-my-acc-orders">
-                                            <a href="account.html">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard').'#orders' : route('login') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Orders </span>
@@ -1887,7 +1887,7 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads wd-my-acc-downloads">
-                                            <a href="account.html">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Downloads </span>
@@ -1895,7 +1895,7 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address wd-my-acc-edit-address">
-                                            <a href="account.html">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Addresses </span>
@@ -1903,7 +1903,7 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account wd-my-acc-edit-account">
-                                            <a href="account.html">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Account details </span>
@@ -1911,7 +1911,7 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist is-active wd-my-acc-wishlist wd-active">
-                                            <a href="wishtlist.html">
+                                            <a href="{{ route('wishlist') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Wishlist </span>
@@ -1949,14 +1949,14 @@
                                             <span class="wd-label share-title">Share: </span>
 
                                             <a rel="noopener noreferrer nofollow"
-                                                href="https://www.facebook.com/sharer/sharer.php?u=wishtlist.html"
+                                                href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('wishlist')) }}"
                                                 target="_blank" class=" wd-social-icon social-facebook"
                                                 aria-label="Facebook social link">
                                                 <span class="wd-icon"></span>
                                             </a>
 
                                             <a rel="noopener noreferrer nofollow"
-                                                href="https://x.com/share?url=wishtlist.html" target="_blank"
+                                                href="https://x.com/share?url={{ urlencode(route('wishlist')) }}" target="_blank"
                                                 class=" wd-social-icon social-twitter" aria-label="X social link">
                                                 <span class="wd-icon"></span>
                                             </a>
@@ -1967,7 +1967,7 @@
 
 
                                             <a rel="noopener noreferrer nofollow"
-                                                href="https://pinterest.com/pin/create/button/?url=wishtlist.html"
+                                                href="https://pinterest.com/pin/create/button/?url={{ urlencode(route('wishlist')) }}"
                                                 target="_blank" class=" wd-social-icon social-pinterest"
                                                 aria-label="Pinterest social link">
                                                 <span class="wd-icon"></span>
@@ -1975,7 +1975,7 @@
 
 
                                             <a rel="noopener noreferrer nofollow"
-                                                href="https://www.linkedin.com/shareArticle?mini=true&#038;url=wishtlist.html"
+                                                href="https://www.linkedin.com/shareArticle?mini=true&#038;url={{ urlencode(route('wishlist')) }}"
                                                 target="_blank" class=" wd-social-icon social-linkedin"
                                                 aria-label="Linkedin social link">
                                                 <span class="wd-icon"></span>
@@ -1996,7 +1996,7 @@
 
 
                                             <a rel="noopener noreferrer nofollow"
-                                                href="https://telegram.me/share/url?url=wishtlist.html" target="_blank"
+                                                href="https://telegram.me/share/url?url={{ urlencode(route('wishlist')) }}" target="_blank"
                                                 class=" wd-social-icon social-tg" aria-label="Telegram social link">
                                                 <span class="wd-icon"></span>
                                             </a>

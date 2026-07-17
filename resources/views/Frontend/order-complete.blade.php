@@ -2772,21 +2772,15 @@
 @section('content')
     <div class="wd-page-content main-page-wrapper">
 
-        <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
-            style="">
-            <div class="wd-page-title-bg wd-fill">
-            </div>
+        <div class="wd-page-title page-title page-title-default title-size-small title-design-centered color-scheme-default">
+            <div class="wd-page-title-bg wd-fill"></div>
             <div class="container">
                 <ul class="wd-checkout-steps">
                     <li class="step-cart step-inactive">
-                        <a href="cart.html">
-                            <span>Shopping cart</span>
-                        </a>
+                        <a href="{{ route('cart') }}"><span>Shopping cart</span></a>
                     </li>
                     <li class="step-checkout step-inactive">
-                        <a href="checkout.html">
-                            <span>Checkout</span>
-                        </a>
+                        <a href="{{ route('checkout') }}"><span>Checkout</span></a>
                     </li>
                     <li class="step-complete step-active">
                         <span>Order complete</span>
@@ -2796,165 +2790,150 @@
         </div>
 
         <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-off" role="main">
-
-
             <div class="wd-content-area site-content">
-                <article id="post-10" class="entry-content post-10 page type-page status-publish hentry">
+                <article class="entry-content page type-page status-publish hentry">
                     <div class="woocommerce">
                         <div class="woocommerce-order">
 
+                            @if(!$order)
+                                <div style="padding:60px 20px;text-align:center;">
+                                    <i class="fas fa-circle-exclamation" style="font-size:48px;color:var(--gms-line,#ececec);margin-bottom:16px;display:block;"></i>
+                                    <h3 style="margin-bottom:8px;">Order not found</h3>
+                                    <p style="margin-bottom:20px;color:#777;">We couldn't find an order matching that ID. Please check your order confirmation email or contact us.</p>
+                                    <a href="{{ route('all-products') }}" class="button btn btn-accent">Continue shopping</a>
+                                </div>
+                            @else
+                                @php
+                                    $paymentLabels = [
+                                        'cod'        => 'Cash on Delivery',
+                                        'bkash'      => 'bKash',
+                                        'nagad'      => 'Nagad',
+                                        'rocket'     => 'Rocket',
+                                        'bank'       => 'Bank Transfer',
+                                        'uddoktapay' => 'Online Payment',
+                                    ];
+                                    $placedAt = $order->placed_at ?? $order->created_at;
+                                @endphp
 
+                                <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
+                                    Thank you. Your order has been received.
+                                </p>
 
+                                <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+                                    <li class="woocommerce-order-overview__order order">
+                                        <span>Order number:</span>
+                                        <strong>{{ $order->order_no }}</strong>
+                                    </li>
 
+                                    <li class="woocommerce-order-overview__date date">
+                                        <span>Date:</span>
+                                        <strong>{{ optional($placedAt)->format('F j, Y') }}</strong>
+                                    </li>
 
+                                    @if($order->shipping_email)
+                                        <li class="woocommerce-order-overview__email email">
+                                            <span>Email:</span>
+                                            <strong>{{ $order->shipping_email }}</strong>
+                                        </li>
+                                    @endif
 
-                            <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
-                                Thank you. Your order has been received.</p>
+                                    <li class="woocommerce-order-overview__total total">
+                                        <span>Total:</span>
+                                        <strong><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($order->total) }}</span></strong>
+                                    </li>
 
-                            <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
-                                <li class="woocommerce-order-overview__order order">
-                                    <span>Order number:</span>
-                                    <strong>1132</strong>
-                                </li>
+                                    <li class="woocommerce-order-overview__payment-method method">
+                                        <span>Payment method:</span>
+                                        <strong>{{ $paymentLabels[$order->payment_method] ?? $order->payment_method }}</strong>
+                                    </li>
+                                </ul>
 
-                                <li class="woocommerce-order-overview__date date">
-                                    <span>Date:</span>
-                                    <strong>June 19, 2026</strong>
-                                </li>
+                                <section class="woocommerce-order-details">
+                                    <h2 class="woocommerce-order-details__title">Order details</h2>
 
-                                <li class="woocommerce-order-overview__email email">
-                                    <span>Email:</span>
-                                    <strong>zawaduxo@mailinator.com</strong>
-                                </li>
+                                    <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+                                        <thead>
+                                            <tr>
+                                                <th class="woocommerce-table__product-name product-name">Product</th>
+                                                <th class="woocommerce-table__product-table product-total">Total</th>
+                                            </tr>
+                                        </thead>
 
-                                <li class="woocommerce-order-overview__total total">
-                                    <span>Total:</span>
-                                    <strong><span class="woocommerce-Price-amount amount"><bdi><span
-                                                    class="woocommerce-Price-currencySymbol">&#36;</span>8.458,56</bdi></span></strong>
-                                </li>
+                                        <tbody>
+                                            @foreach($order->items as $item)
+                                                <tr class="woocommerce-table__line-item order_item">
+                                                    <td class="woocommerce-table__product-name product-name">
+                                                        {{ $item->product_name }}{{ $item->variant_label ? ' — '.$item->variant_label : '' }}
+                                                        <strong class="product-quantity">&times;&nbsp;{{ (int) $item->quantity }}</strong>
+                                                    </td>
+                                                    <td class="woocommerce-table__product-total product-total">
+                                                        <span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($item->total) }}</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
 
-                                <li class="woocommerce-order-overview__payment-method method">
-                                    <span>Payment method:</span>
-                                    <strong>Direct bank transfer</strong>
-                                </li>
-                            </ul>
+                                        <tfoot>
+                                            <tr>
+                                                <th scope="row">Subtotal:</th>
+                                                <td><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($order->subtotal) }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Shipping:</th>
+                                                <td>{{ (float) $order->shipping_charge > 0 ? \App\Support\Money::format($order->shipping_charge) : 'Free shipping' }}</td>
+                                            </tr>
+                                            @if((float) $order->discount > 0)
+                                                <tr>
+                                                    <th scope="row">Discount:</th>
+                                                    <td>-{{ \App\Support\Money::format($order->discount) }}</td>
+                                                </tr>
+                                            @endif
+                                            <tr>
+                                                <th scope="row">Total:</th>
+                                                <td><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($order->total) }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Payment method:</th>
+                                                <td>{{ $paymentLabels[$order->payment_method] ?? $order->payment_method }}</td>
+                                            </tr>
+                                            @if($order->notes)
+                                                <tr>
+                                                    <th>Note:</th>
+                                                    <td>{{ $order->notes }}</td>
+                                                </tr>
+                                            @endif
+                                        </tfoot>
+                                    </table>
+                                </section>
 
-
-
-                            <section class="woocommerce-order-details">
-
-                                <h2 class="woocommerce-order-details__title">Order details</h2>
-
-                                <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
-
-                                    <thead>
-                                        <tr>
-                                            <th class="woocommerce-table__product-name product-name">Product</th>
-                                            <th class="woocommerce-table__product-table product-total">Total</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr class="woocommerce-table__line-item order_item">
-
-                                            <td class="woocommerce-table__product-name product-name">
-                                                <a href="product_details.html">Dune
-                                                    Desert Mouse Plush</a> <strong
-                                                    class="product-quantity">&times;&nbsp;297</strong>
-                                            </td>
-
-                                            <td class="woocommerce-table__product-total product-total">
-                                                <span class="woocommerce-Price-amount amount"><bdi><span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span>8.458,56</bdi></span>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
-
-                                    <tfoot>
-                                        <tr>
-                                            <th scope="row">Subtotal:</th>
-                                            <td><span class="woocommerce-Price-amount amount"><span
-                                                        class="woocommerce-Price-currencySymbol">&#036;</span>8.458,56</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Shipping:</th>
-                                            <td>Free shipping</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Total:</th>
-                                            <td><span class="woocommerce-Price-amount amount"><span
-                                                        class="woocommerce-Price-currencySymbol">&#036;</span>8.458,56</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Payment method:</th>
-                                            <td>Direct bank transfer</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Note:</th>
-                                            <td>
-                                                Accusamus eius in in </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-
-                            </section>
-
-                            <section class="woocommerce-customer-details">
-
-
-                                <section
-                                    class="woocommerce-columns woocommerce-columns--2 woocommerce-columns--addresses col2-set addresses">
-                                    <div
-                                        class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
-
-
-                                        <h2 class="woocommerce-column__title">Billing address</h2>
-
-                                        <address>
-                                            Cameron Cotton<br />20 East Hague Avenue<br />Ut cum aut sunt
-                                            eos<br />67578<br />Congo (Kinshasa)
-                                            <p class="woocommerce-customer-details--phone">+1 (451) 553-2326</p>
-
-                                            <p class="woocommerce-customer-details--email">zawaduxo@mailinator.com
-                                            </p>
-
-                                        </address>
-
-
-                                    </div><!-- /.col-1 -->
-
-                                    <div
-                                        class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address col-2">
-                                        <h2 class="woocommerce-column__title">Shipping address</h2>
-                                        <address>
-                                            Cameron Cotton<br />20 East Hague Avenue<br />Ut cum aut sunt
-                                            eos<br />67578<br />Congo (Kinshasa)
-
-                                        </address>
-                                    </div><!-- /.col-2 -->
-
-                                </section><!-- /.col2-set -->
-
-
-
-                            </section>
-
+                                <section class="woocommerce-customer-details">
+                                    <section class="woocommerce-columns woocommerce-columns--2 woocommerce-columns--addresses col2-set addresses">
+                                        <div class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
+                                            <h2 class="woocommerce-column__title">Shipping details</h2>
+                                            <address>
+                                                {{ $order->shipping_name }}<br />
+                                                {{ $order->shipping_address }}<br />
+                                                {{ trim(($order->shipping_area ? $order->shipping_area.', ' : '').($order->shipping_city ?? ''), ', ') }}
+                                                <p class="woocommerce-customer-details--phone">{{ $order->shipping_phone }}</p>
+                                                @if($order->shipping_email)
+                                                    <p class="woocommerce-customer-details--email">{{ $order->shipping_email }}</p>
+                                                @endif
+                                            </address>
+                                        </div>
+                                    </section>
+                                </section>
+                            @endif
 
                         </div>
                     </div>
-
-
                 </article>
-
-
-
             </div>
-
         </main>
 
     </div>
+
+<script>
+    localStorage.removeItem('gms_cart');
+    window.dispatchEvent(new Event('gms:cart-updated'));
+</script>
 @endsection

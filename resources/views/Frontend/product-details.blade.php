@@ -2531,10 +2531,10 @@
 								<div class="wd-single-price wd-8e733563">
 									<p class="price">
 										@if($hasSale)
-											<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($product->selling_price, 0) }}</bdi></span></del>
-											<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($displayPrice, 0) }}</bdi></span></ins>
+											<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($product->selling_price) }}</bdi></span></del>
+											<ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span></ins>
 										@else
-											<span class="woocommerce-Price-amount amount"><bdi>৳{{ number_format($displayPrice, 0) }}</bdi></span>
+											<span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span>
 										@endif
 									</p>
 								</div>

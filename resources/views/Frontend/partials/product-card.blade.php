@@ -100,13 +100,10 @@
 
                 <span class="price">
                     @if($hasSale)
-                        <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span
-                                        class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($product->selling_price, 2) }}</bdi></span></del>
-                        <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span
-                                        class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span></ins>
+                        <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($product->selling_price) }}</bdi></span></del>
+                        <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span></ins>
                     @else
-                        <span class="woocommerce-Price-amount amount"><bdi><span
-                                    class="woocommerce-Price-currencySymbol">&#36;</span>{{ number_format($displayPrice, 2) }}</bdi></span>
+                        <span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span>
                     @endif
                 </span>
 

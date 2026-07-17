@@ -367,8 +367,8 @@ window.NF_CATEGORIES = @json($categories);
         const hasSale = p.old && p.old > p.cur;
         const img = p.img || '{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}';
         const priceHtml = hasSale
-            ? `<span class="price"><del><span class="woocommerce-Price-amount amount"><bdi>৳${Number(p.old).toLocaleString()}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>৳${Number(p.cur).toLocaleString()}</bdi></span></ins></span>`
-            : `<span class="price"><span class="woocommerce-Price-amount amount"><bdi>৳${Number(p.cur).toLocaleString()}</bdi></span></span>`;
+            ? `<span class="price"><del><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.old)}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></ins></span>`
+            : `<span class="price"><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></span>`;
         const saleLabel = hasSale ? `<span class="product-label onsale">Sale</span>` : '';
         return `
 <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product status-publish instock has-post-thumbnail purchasable product-type-simple">

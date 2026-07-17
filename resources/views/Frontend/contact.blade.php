@@ -19,7 +19,7 @@
         <div class="container">
             <h1 class="entry-title title">
                 Contact us </h1>
-            <nav class="wd-breadcrumbs"><a href="index.html">Home</a><span class="wd-delimiter">/</span><span
+            <nav class="wd-breadcrumbs"><a href="{{ route('home') }}">Home</a><span class="wd-delimiter">/</span><span
                     class="wd-last">Contact us</span></nav>
         </div>
     </div>

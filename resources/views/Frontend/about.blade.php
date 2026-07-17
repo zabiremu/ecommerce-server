@@ -2290,7 +2290,7 @@
 						About us </h1>
 
 
-					<nav class="wd-breadcrumbs"><a href="index.html">Home</a><span class="wd-delimiter">/</span><span
+					<nav class="wd-breadcrumbs"><a href="{{ route('home') }}">Home</a><span class="wd-delimiter">/</span><span
 							class="wd-last">About us</span></nav>
 				</div>
 			</div>

@@ -105,7 +105,7 @@
 
           <div class="wp-block-wd-row wd-5231162e">
               <div class="wp-block-wd-column wd-c6cd3918">
-                  <div class="wp-block-wd-image wd-block-image wd-35aff150 wd-custom-width"><a href="index.html"
+                  <div class="wp-block-wd-image wd-block-image wd-35aff150 wd-custom-width"><a href="{{ route('home') }}"
                           class="wd-block-image-link"><img loading="lazy" decoding="async" width="201" height="32"
                               class="wp-image-996" style="filter: brightness(0.45) contrast(1.8) saturate(3);"
                               src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
@@ -250,7 +250,7 @@
           </div>
 
           <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-7c5e9f7c">
-              <p class="wp-block-wd-paragraph wd-aae3cee5"><a href="index.html">Roventex</a>
+              <p class="wp-block-wd-paragraph wd-aae3cee5"><a href="{{ route('home') }}">Roventex</a>
                   © 2026 <a href="#">Roventex</a>.</p>
 
               <div class="wp-block-wd-image wd-block-image wd-8a15097a"><img loading="lazy" decoding="async"
