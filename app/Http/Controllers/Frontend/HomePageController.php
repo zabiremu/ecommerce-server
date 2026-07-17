@@ -18,6 +18,7 @@ use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -548,6 +549,43 @@ class HomePageController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('dashboard');
+    }
+
+    public function dashboardUpdateAccount(Request $request)
+    {
+        $user = Auth::guard('web')->user();
+
+        $data = $request->validate([
+            'name'             => 'required|string|max:255',
+            'email'            => 'required|email|max:255|unique:users,email,'.$user->id,
+            'phone'            => 'nullable|string|max:30',
+            'current_password' => 'nullable|required_with:new_password|string',
+            'new_password'     => 'nullable|string|min:6|confirmed',
+        ]);
+
+        if (!empty($data['new_password'])) {
+            if (!Hash::check($data['current_password'], $user->password)) {
+                throw ValidationException::withMessages([
+                    'current_password' => 'The current password is incorrect.',
+                ]);
+            }
+            $user->password = $data['new_password'];
+        }
+
+        $user->name  = $data['name'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'] ?? null;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Account details updated.',
+            'user'    => [
+                'name'  => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+            ],
+        ]);
     }
 
     public function resetPassword()

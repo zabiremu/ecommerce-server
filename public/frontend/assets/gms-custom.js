@@ -694,4 +694,79 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mainItems.length) showSlide(0);
   })();
 
+  /* ==========================================================
+     11. WISHLIST — shared add/remove/toggle + badge & button sync
+     ========================================================== */
+  (function initWishlist() {
+    function getWishlist() {
+      var wl = [];
+      try { wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]'); } catch (e) { wl = []; }
+      return Array.isArray(wl) ? wl : [];
+    }
+
+    function setWishlist(wl) {
+      localStorage.setItem('gms_wishlist', JSON.stringify(wl));
+      window.dispatchEvent(new Event('gms:wishlist-updated'));
+    }
+
+    window.nfIsInWishlist = function (id) {
+      return getWishlist().indexOf(id) !== -1;
+    };
+
+    window.nfAddToWishlist = function (id) {
+      var wl = getWishlist();
+      if (wl.indexOf(id) === -1) {
+        wl.push(id);
+        setWishlist(wl);
+      }
+    };
+
+    window.nfRemoveFromWishlist = function (id) {
+      setWishlist(getWishlist().filter(function (x) { return x !== id; }));
+    };
+
+    // Adds id if absent, removes it if present. Returns the new membership state.
+    window.nfToggleWishlist = function (id) {
+      var wl = getWishlist();
+      var idx = wl.indexOf(id);
+      if (idx === -1) {
+        wl.push(id);
+        setWishlist(wl);
+        return true;
+      }
+      wl.splice(idx, 1);
+      setWishlist(wl);
+      return false;
+    };
+
+    window.nfWishlistClick = function (e, id) {
+      if (e) e.preventDefault();
+      var active = window.nfToggleWishlist(id);
+      var btn = e && e.currentTarget ? e.currentTarget.closest('.wd-wishlist-btn') : null;
+      if (btn) {
+        btn.classList.toggle('wd-active', active);
+        var text = btn.querySelector('.wd-action-text');
+        if (text) text.textContent = active ? 'Remove from wishlist' : 'Add to wishlist';
+      }
+    };
+
+    function syncButtons() {
+      var wl = getWishlist();
+      document.querySelectorAll('.wd-wishlist-btn a[data-product-id]').forEach(function (a) {
+        var id = parseInt(a.getAttribute('data-product-id'), 10);
+        var active = wl.indexOf(id) !== -1;
+        var btn = a.closest('.wd-wishlist-btn');
+        if (btn) btn.classList.toggle('wd-active', active);
+        var text = a.querySelector('.wd-action-text');
+        if (text) text.textContent = active ? 'Remove from wishlist' : 'Add to wishlist';
+      });
+
+      var countEl = document.querySelector('.wd-header-wishlist .wd-tools-count');
+      if (countEl) countEl.textContent = wl.length;
+    }
+
+    window.addEventListener('gms:wishlist-updated', syncButtons);
+    syncButtons();
+  })();
+
 });

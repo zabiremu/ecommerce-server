@@ -1871,7 +1871,7 @@
                                         class="wd-nav-my-acc wd-nav wd-nav-vertical wd-design-simple wd-gap-m wd-icon-left">
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard wd-my-acc-dashboard">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}" aria-current="page">
+                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Dashboard </span>
@@ -1886,32 +1886,8 @@
                                             </a>
                                         </li>
                                         <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads wd-my-acc-downloads">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Downloads </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address wd-my-acc-edit-address">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Addresses </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account wd-my-acc-edit-account">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Account details </span>
-                                            </a>
-                                        </li>
-                                        <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist is-active wd-my-acc-wishlist wd-active">
-                                            <a href="{{ route('wishlist') }}">
+                                            <a href="{{ route('wishlist') }}" aria-current="page">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Wishlist </span>
@@ -1919,11 +1895,12 @@
                                         </li>
                                         <li
                                             class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout wd-my-acc-customer-logout">
-                                            <a href="#">
+                                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <span class="wd-nav-icon"></span>
                                                 <span class="nav-link-text">
                                                     Logout </span>
                                             </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
                                         </li>
                                     </ul>
                                 </nav>
@@ -2005,21 +1982,12 @@
                                         </div>
 
                                     </div>
-                                    <div class="wd-wishlist-bulk-action">
+                                    <div id="gmsWishlistBulkAction" class="wd-wishlist-bulk-action" style="display:none;">
                                         <div class="wd-wishlist-remove-action wd-action-btn wd-style-text wd-cross-icon">
-                                            <a href="#">
+                                            <a href="#" onclick="gmsClearWishlist(event)">
                                                 <span class="wd-action-icon"></span>
                                                 <span class="wd-action-text">
-                                                    Remove </span>
-                                            </a>
-                                        </div>
-                                        <div class="wd-wishlist-select-all wd-action-btn wd-style-text">
-                                            <a href="#">
-                                                <span class="wd-action-icon"></span>
-                                                <span class="wd-action-text wd-wishlist-text-select">Select
-                                                    all</span>
-                                                <span class="wd-action-text wd-wishlist-text-deselect">Deselect
-                                                    all</span>
+                                                    Clear wishlist </span>
                                             </a>
                                         </div>
                                     </div>
@@ -2038,247 +2006,32 @@
                                     <link rel="stylesheet" id="wd-bordered-product-predefined-css"
                                         href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css"
                                         type="text/css" media="all" />
+                                    <link rel="stylesheet" id="wd-product-loop-css"
+                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css') }}"
+                                        type="text/css" media="all" />
+                                    <link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
+                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css') }}"
+                                        type="text/css" media="all" />
+                                    <link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
+                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css') }}"
+                                        type="text/css" media="all" />
+                                    <link rel="stylesheet" id="wd-product-loop-quick-css"
+                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css') }}"
+                                        type="text/css" media="all" />
+                                    <link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
+                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css') }}"
+                                        type="text/css" media="all" />
                                     <div class="wd-products-element">
 
-
-                                        <link rel="stylesheet" id="wd-product-loop-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-product-loop-quick-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css"
-                                            type="text/css" media="all" />
-                                        <link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
-                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css"
-                                            type="text/css" media="all" />
-                                        <div class="products wd-products  grid-columns-3 elements-grid pagination-links wd-grid-g wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                                            data-paged="1"
-                                            data-atts="{&quot;post_type&quot;:&quot;ids&quot;,&quot;include&quot;:&quot;382,423&quot;,&quot;pagination&quot;:&quot;links&quot;,&quot;items_per_page&quot;:&quot;16&quot;,&quot;columns&quot;:3,&quot;products_bordered_grid&quot;:&quot;1&quot;,&quot;products_bordered_grid_style&quot;:&quot;inside&quot;,&quot;products_with_background&quot;:&quot;&quot;,&quot;products_shadow&quot;:&quot;&quot;,&quot;force_not_ajax&quot;:&quot;no&quot;,&quot;products_masonry&quot;:&quot;disable&quot;,&quot;products_different_sizes&quot;:&quot;disable&quot;,&quot;query_post_type&quot;:[&quot;product&quot;,&quot;product_variation&quot;],&quot;is_wishlist&quot;:&quot;yes&quot;}"
-                                            data-source="shortcode" data-columns="3"
-                                            style="--wd-col-lg:3;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
-                                            <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-382 status-publish instock product_cat-figures has-post-thumbnail sale shipping-taxable purchasable product-type-simple"
-                                                data-loop="1" data-id="382">
-                                                <div class="wd-wishlist-product-actions">
-                                                    <div
-                                                        class="wd-wishlist-product-remove wd-action-btn wd-style-text wd-cross-icon">
-                                                        <a href="#" class="wd-wishlist-remove"
-                                                            data-product-id="382">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Remove </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-wishlist-product-checkbox">
-                                                        <input type="checkbox" class="wd-wishlist-checkbox"
-                                                            data-product-id="382">
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-product-wrapper product-wrapper">
-                                                    <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                        <a href="product_details.html"
-                                                            class="wd-product-img-link product-image-link" tabindex="-1"
-                                                            aria-label="Alex Minecraft Figure">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" fetchpriority="high"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure.jpeg.webp 700w"
-                                                                sizes="(max-width: 430px) 100vw, 430px" /> </a>
-
-                                                        <link rel="stylesheet" id="wd-woo-mod-product-labels-default-css"
-                                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-default.css"
-                                                            type="text/css" media="all" />
-                                                        <link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-                                                            href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.css"
-                                                            type="text/css" media="all" />
-                                                        <div class="product-labels labels-rounded-sm">
-                                                            <span
-                                                                class="onsale product-label wd-shape-round-sm">-23%</span>
-                                                        </div>
-                                                        <div class="wd-product-img-hover hover-img">
-                                                            <img loading="lazy" width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/alex-minecraft-figure-1.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </div>
-                                                        <div class="wd-buttons wd-pos-r-t">
-                                                            <link rel="stylesheet" id="wd-mod-animations-transform-css"
-                                                                href="merchandise/wp-content/themes/woodmart/css/parts/mod-animations-transform.css"
-                                                                type="text/css" media="all" />
-                                                            <div
-                                                                class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                <a href="product_details.html" class="open-quick-view"
-                                                                    rel="nofollow" data-id="382">
-                                                                    <span class="wd-action-icon"></span>
-                                                                    <span class="wd-action-text">
-                                                                        Quick view </span>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                <a class="" href="wishtlist.html"
-                                                                    data-key="d5b554e37e" data-product-id="382"
-                                                                    rel="nofollow">
-                                                                    <span class="wd-action-icon">
-                                                                        <span class="wd-check-icon"></span>
-                                                                    </span>
-                                                                    <span class="wd-action-text">Add to
-                                                                        wishlist</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="wd-add-btn wd-add-btn-replace">
-
-                                                            <a href="/merchandise/wishlist/?add-to-cart=382"
-                                                                data-quantity="1"
-                                                                class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                data-product_id="382" data-product_sku="GM-FG-4"
-                                                                aria-label="Add to cart: &ldquo;Alex Minecraft Figure&rdquo;"
-                                                                rel="nofollow"
-                                                                data-success_message="&ldquo;Alex Minecraft Figure&rdquo; has been added to your cart"
-                                                                role="button"><span class="wd-action-icon"><span
-                                                                        class="wd-check-icon"></span></span><span
-                                                                    class="wd-action-text">Add to cart</span></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-element-bottom">
-                                                        <h3 class="wd-entities-title"><a href="product_details.html">Alex
-                                                                Minecraft
-                                                                Figure</a></h3>
-
-                                                        <div class="star-rating" role="img"
-                                                            aria-label="Rated 5.00 out of 5">
-                                                            <span style="width:100%">
-                                                                Rated <strong class="rating">5.00</strong> out of 5
-                                                            </span>
-                                                        </div>
-
-
-
-                                                        <span class="price"><del aria-hidden="true"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>49,99</bdi></span></del>
-                                                            <span class="screen-reader-text">Original price was:
-                                                                &#036;49,99.</span><ins aria-hidden="true"><span
-                                                                    class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>38,25</bdi></span></ins><span
-                                                                class="screen-reader-text">Current price is:
-                                                                &#036;38,25.</span></span>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wd-product wd-col wd-hover-quick product-grid-item product type-product post-423 status-publish instock product_cat-plushes has-post-thumbnail shipping-taxable purchasable product-type-simple"
-                                                data-loop="2" data-id="423">
-                                                <div class="wd-wishlist-product-actions">
-                                                    <div
-                                                        class="wd-wishlist-product-remove wd-action-btn wd-style-text wd-cross-icon">
-                                                        <a href="#" class="wd-wishlist-remove"
-                                                            data-product-id="423">
-                                                            <span class="wd-action-icon"></span>
-                                                            <span class="wd-action-text">
-                                                                Remove </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="wd-wishlist-product-checkbox">
-                                                        <input type="checkbox" class="wd-wishlist-checkbox"
-                                                            data-product-id="423">
-                                                    </div>
-                                                </div>
-
-                                                <div class="wd-product-wrapper product-wrapper">
-                                                    <div class="wd-product-thumb product-element-top wd-quick-shop">
-                                                        <a href="product_details.html"
-                                                            class="wd-product-img-link product-image-link" tabindex="-1"
-                                                            aria-label="Astro Bot Plush">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" loading="lazy"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-150x171.jpeg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </a>
-
-                                                        <div class="wd-product-img-hover hover-img">
-                                                            <img width="430" height="492"
-                                                                src="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="" decoding="async" loading="lazy"
-                                                                srcset="merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-600x686.jpeg.webp 600w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-263x300.jpeg.webp 263w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-88x100.jpeg.webp 88w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1-150x171.jpeg 150w, merchandise/wp-content/uploads/sites/31/2025/11/astro-bot-plush-1.jpeg.webp 700w"
-                                                                sizes="auto, (max-width: 430px) 100vw, 430px" />
-                                                        </div>
-                                                        <div class="wd-buttons wd-pos-r-t">
-                                                            <div
-                                                                class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
-                                                                <a href="product_details.html" class="open-quick-view"
-                                                                    rel="nofollow" data-id="423">
-                                                                    <span class="wd-action-icon"></span>
-                                                                    <span class="wd-action-text">
-                                                                        Quick view </span>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                                                                <a class="" href="wishtlist.html"
-                                                                    data-key="d5b554e37e" data-product-id="423"
-                                                                    rel="nofollow">
-                                                                    <span class="wd-action-icon">
-                                                                        <span class="wd-check-icon"></span>
-                                                                    </span>
-                                                                    <span class="wd-action-text">Add to
-                                                                        wishlist</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="wd-add-btn wd-add-btn-replace">
-
-                                                            <a href="/merchandise/wishlist/?add-to-cart=423"
-                                                                data-quantity="1"
-                                                                class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop"
-                                                                data-product_id="423" data-product_sku="GM-PL-1"
-                                                                aria-label="Add to cart: &ldquo;Astro Bot Plush&rdquo;"
-                                                                rel="nofollow"
-                                                                data-success_message="&ldquo;Astro Bot Plush&rdquo; has been added to your cart"
-                                                                role="button"><span class="wd-action-icon"><span
-                                                                        class="wd-check-icon"></span></span><span
-                                                                    class="wd-action-text">Add to cart</span></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-element-bottom">
-                                                        <h3 class="wd-entities-title"><a href="product_details.html">Astro
-                                                                Bot Plush</a></h3>
-
-                                                        <div class="star-rating" role="img"
-                                                            aria-label="Rated 4.00 out of 5">
-                                                            <span style="width:80%">
-                                                                Rated <strong class="rating">4.00</strong> out of 5
-                                                            </span>
-                                                        </div>
-
-
-
-                                                        <span class="price"><span
-                                                                class="woocommerce-Price-amount amount"><bdi><span
-                                                                        class="woocommerce-Price-currencySymbol">&#36;</span>12,99</bdi></span></span>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div id="gmsWishlistEmpty" class="wd-empty-wishlist" style="display:none;padding:60px 20px;text-align:center;">
+                                            <i class="fas fa-heart" style="font-size:48px;color:var(--gms-line,#ececec);margin-bottom:16px;display:block;"></i>
+                                            <h3 style="margin-bottom:8px;">Your wishlist is empty</h3>
+                                            <p style="margin-bottom:20px;color:#777;">Save products you love by clicking the wishlist icon on any product.</p>
+                                            <a href="{{ route('all-products') }}" class="button btn btn-accent">Continue shopping</a>
                                         </div>
+
+                                        <div id="gmsWishlistGrid" class="products wd-products grid-columns-3 elements-grid wd-grid-g wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
+                                            style="--wd-col-lg:3;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -2289,4 +2042,103 @@
         </main>
 
     </div>
+
+<script>
+window.NF_PRODUCTS = @json($products);
+
+(function () {
+    function getWishlist() {
+        let wl = [];
+        try { wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]'); } catch (e) { wl = []; }
+        return Array.isArray(wl) ? wl : [];
+    }
+
+    function findProduct(id) {
+        return (window.NF_PRODUCTS || []).find(p => p.id === id);
+    }
+
+    function buildCard(p) {
+        const hasSale = p.old && p.old > p.cur;
+        const img = p.img || '{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}';
+        const priceHtml = hasSale
+            ? `<span class="price"><del><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.old)}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></ins></span>`
+            : `<span class="price"><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></span>`;
+        const saleLabel = hasSale ? `<span class="product-label onsale">Sale</span>` : '';
+        return `
+<div class="wd-product wd-col wd-hover-quick product-grid-item product type-product status-publish instock has-post-thumbnail purchasable product-type-simple" data-id="${p.id}">
+  <div class="wd-product-wrapper product-wrapper">
+    <div class="wd-product-thumb product-element-top wd-quick-shop">
+      ${saleLabel}
+      <a href="${p.url}" class="wd-product-img-link product-image-link" tabindex="-1" aria-label="${p.title}">
+        <img src="${img}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="${p.title}" loading="lazy" style="width:100%;aspect-ratio:430/492;object-fit:cover;"/>
+      </a>
+      <div class="wd-buttons wd-pos-r-t">
+        <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+          <a href="#" rel="nofollow" data-product-id="${p.id}" onclick="nfWishlistClick(event,${p.id})">
+            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
+            <span class="wd-action-text">Remove from wishlist</span>
+          </a>
+        </div>
+      </div>
+      <div class="wd-add-btn wd-add-btn-replace">
+        <a href="#" class="button product_type_simple add_to_cart_button add-to-cart-loop" onclick="addToCart(event,${p.id})" role="button">
+          <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
+          <span class="wd-action-text">Add to cart</span>
+        </a>
+      </div>
+    </div>
+    <div class="product-element-bottom">
+      <h3 class="wd-entities-title"><a href="${p.url}">${p.title}</a></h3>
+      ${priceHtml}
+    </div>
+  </div>
+</div>`;
+    }
+
+    function addToCart(e, id) {
+        e.preventDefault();
+        if (typeof window.nfAddToCart === 'function') { window.nfAddToCart(id); return; }
+        const p = findProduct(id);
+        if (!p) return;
+        let cart = JSON.parse(localStorage.getItem('gms_cart') || '[]');
+        const ex = cart.find(c => c.id === id);
+        ex ? ex.qty++ : cart.push({ id, title: p.title, img: p.img, price: p.cur, qty: 1, url: p.url });
+        localStorage.setItem('gms_cart', JSON.stringify(cart));
+        window.dispatchEvent(new Event('gms:cart-updated'));
+    }
+    window.addToCart = addToCart;
+
+    window.gmsClearWishlist = function (e) {
+        e.preventDefault();
+        getWishlist().slice().forEach(id => window.nfRemoveFromWishlist(id));
+    };
+
+    function render() {
+        const ids = getWishlist();
+        const products = ids.map(findProduct).filter(Boolean);
+
+        const gridEl = document.getElementById('gmsWishlistGrid');
+        const emptyEl = document.getElementById('gmsWishlistEmpty');
+        const bulkEl = document.getElementById('gmsWishlistBulkAction');
+
+        if (products.length === 0) {
+            gridEl.style.display = 'none';
+            emptyEl.style.display = '';
+            bulkEl.style.display = 'none';
+            gridEl.innerHTML = '';
+            return;
+        }
+
+        gridEl.style.display = '';
+        emptyEl.style.display = 'none';
+        bulkEl.style.display = '';
+        gridEl.innerHTML = products.map(buildCard).join('');
+    }
+
+    window.addEventListener('gms:wishlist-updated', render);
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+    else render();
+})();
+</script>
 @endsection

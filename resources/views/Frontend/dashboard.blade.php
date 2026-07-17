@@ -2000,6 +2000,14 @@
                                                 </a>
                                             </li>
                                             <li
+                                                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account wd-my-acc-edit-account">
+                                                <a href="{{ route('dashboard') }}#account-details">
+                                                    <span class="wd-nav-icon"></span>
+                                                    <span class="nav-link-text">
+                                                        Account details </span>
+                                                </a>
+                                            </li>
+                                            <li
                                                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist wd-my-acc-wishlist">
                                                 <a href="{{ route('wishlist') }}">
                                                     <span class="wd-nav-icon"></span>
@@ -2080,6 +2088,48 @@
                                         </div>
                                     </div>
 
+                                    {{-- Account Details --}}
+                                    <div id="account-details" style="margin-top: 40px; max-width: 480px;">
+                                        <h3 style="margin-bottom: 15px;">Account Details</h3>
+                                        <div id="account-details-msg" style="display:none; margin-bottom: 15px; padding: 12px 16px; border-radius: 8px; font-size: 14px;"></div>
+                                        <form id="account-details-form">
+                                            @csrf
+                                            <p class="form-row form-row-first">
+                                                <label for="acc-name">Name <span class="required">*</span></label>
+                                                <input type="text" class="input-text" id="acc-name" name="name" value="{{ $authUser->name ?? '' }}" required />
+                                            </p>
+                                            <p class="form-row form-row-last">
+                                                <label for="acc-email">Email address <span class="required">*</span></label>
+                                                <input type="email" class="input-text" id="acc-email" name="email" value="{{ $authUser->email ?? '' }}" required />
+                                            </p>
+                                            <p class="form-row form-row-wide">
+                                                <label for="acc-phone">Phone</label>
+                                                <input type="text" class="input-text" id="acc-phone" name="phone" value="{{ $authUser->phone ?? '' }}" />
+                                            </p>
+
+                                            <fieldset style="border: none; padding: 0; margin: 25px 0 0;">
+                                                <legend style="font-size: 15px; font-weight: 600; margin-bottom: 10px; padding: 0;">Password change</legend>
+                                                <p style="color:#767676; font-size:13px; margin-bottom:15px;">Leave blank to keep your current password.</p>
+                                                <p class="form-row form-row-first">
+                                                    <label for="acc-current-password">Current password</label>
+                                                    <input type="password" class="input-text" id="acc-current-password" name="current_password" autocomplete="current-password" />
+                                                </p>
+                                                <p class="form-row form-row-last">
+                                                    <label for="acc-new-password">New password</label>
+                                                    <input type="password" class="input-text" id="acc-new-password" name="new_password" autocomplete="new-password" />
+                                                </p>
+                                                <p class="form-row form-row-wide">
+                                                    <label for="acc-new-password-confirm">Confirm new password</label>
+                                                    <input type="password" class="input-text" id="acc-new-password-confirm" name="new_password_confirmation" autocomplete="new-password" />
+                                                </p>
+                                            </fieldset>
+
+                                            <p class="form-row">
+                                                <button type="submit" id="account-details-submit" class="button btn btn-accent">Save changes</button>
+                                            </p>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -2143,6 +2193,79 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(() => {
         document.getElementById('orders-loading').textContent = 'Failed to load data.';
+    });
+
+    // ── Account details form ──────────────────────────────────────
+    const accForm   = document.getElementById('account-details-form');
+    const accMsg    = document.getElementById('account-details-msg');
+    const accSubmit = document.getElementById('account-details-submit');
+
+    function showAccMsg(text, ok) {
+        accMsg.textContent = text;
+        accMsg.style.display = 'block';
+        accMsg.style.background = ok ? '#e9f7ef' : '#fdecea';
+        accMsg.style.color = ok ? '#1e7e34' : '#c9401d';
+    }
+
+    function clearFieldErrors() {
+        accForm.querySelectorAll('.gms-field-error').forEach(el => el.remove());
+    }
+
+    function showFieldErrors(errors) {
+        clearFieldErrors();
+        Object.keys(errors).forEach(field => {
+            const input = accForm.querySelector(`[name="${field}"]`);
+            if (!input) return;
+            const small = document.createElement('small');
+            small.className = 'gms-field-error';
+            small.style.color = '#c9401d';
+            small.style.display = 'block';
+            small.style.marginTop = '4px';
+            small.textContent = errors[field][0];
+            input.insertAdjacentElement('afterend', small);
+        });
+    }
+
+    accForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearFieldErrors();
+        accMsg.style.display = 'none';
+        accSubmit.disabled = true;
+        accSubmit.textContent = 'Saving...';
+
+        const fd = new FormData(accForm);
+        const payload = Object.fromEntries(fd.entries());
+
+        fetch("{{ route('dashboard.account.update') }}", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(async res => {
+            const data = await res.json();
+            if (!res.ok) {
+                if (res.status === 422 && data.errors) {
+                    showFieldErrors(data.errors);
+                    showAccMsg('Please fix the errors below.', false);
+                } else {
+                    showAccMsg(data.message || 'Something went wrong.', false);
+                }
+                return;
+            }
+            showAccMsg(data.message || 'Account details updated.', true);
+            accForm.querySelector('#acc-current-password').value = '';
+            accForm.querySelector('#acc-new-password').value = '';
+            accForm.querySelector('#acc-new-password-confirm').value = '';
+        })
+        .catch(() => showAccMsg('Something went wrong. Please try again.', false))
+        .finally(() => {
+            accSubmit.disabled = false;
+            accSubmit.textContent = 'Save changes';
+        });
     });
 });
 </script>

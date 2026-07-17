@@ -64,7 +64,8 @@
                         </a>
                     </div>
                     <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-                        <a class="" href="{{ route('wishlist') }}" data-product-id="{{ $product->id }}" rel="nofollow">
+                        <a class="" href="{{ route('wishlist') }}" data-product-id="{{ $product->id }}" rel="nofollow"
+                            onclick="nfWishlistClick(event, {{ $product->id }})">
                             <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
                             <span class="wd-action-text">Add to wishlist</span>
                         </a>

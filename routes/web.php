@@ -68,6 +68,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', [HomePageController::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard/data', [HomePageController::class, 'dashboardData'])->name('dashboard.data');
     Route::put('/dashboard/profile', [HomePageController::class, 'dashboardUpdateProfile'])->name('dashboard.profile');
+    Route::put('/dashboard/account', [HomePageController::class, 'dashboardUpdateAccount'])->name('dashboard.account.update');
 });
 
 

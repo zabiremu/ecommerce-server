@@ -336,7 +336,8 @@ window.NF_CATEGORIES = @json($categories);
 
 (function () {
     const PER_PAGE = 12;
-    let catSlug    = new URLSearchParams(location.search).get('cat') || '';
+    const catParams = new URLSearchParams(location.search);
+    let catSlug    = catParams.get('cat') || catParams.get('slug') || '';
     let priceMin   = 0;
     let priceMax   = Infinity;
     let currentPage = 1;
@@ -380,7 +381,7 @@ window.NF_CATEGORIES = @json($categories);
       </a>
       <div class="wd-buttons wd-pos-r-t">
         <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-          <a href="{{ route('wishlist') }}" rel="nofollow" onclick="addToWishlist(event,${p.id})">
+          <a href="{{ route('wishlist') }}" rel="nofollow" data-product-id="${p.id}" onclick="nfWishlistClick(event,${p.id})">
             <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
             <span class="wd-action-text">Add to wishlist</span>
           </a>
@@ -422,6 +423,7 @@ window.NF_CATEGORIES = @json($categories);
             grid.innerHTML = slice.map(buildCard).join('');
         }
 
+        window.dispatchEvent(new Event('gms:wishlist-updated'));
         renderPagination(pages);
     };
 
@@ -487,14 +489,6 @@ window.NF_CATEGORIES = @json($categories);
                 localStorage.setItem('gms_cart', JSON.stringify(cart));
                 window.dispatchEvent(new Event('gms:cart-updated'));
             }
-        }
-    };
-    window.addToWishlist = function (e, id) {
-        e.preventDefault();
-        if (typeof window.nfAddToWishlist === 'function') window.nfAddToWishlist(id);
-        else {
-            let wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]');
-            if (!wl.includes(id)) { wl.push(id); localStorage.setItem('gms_wishlist', JSON.stringify(wl)); }
         }
     };
 

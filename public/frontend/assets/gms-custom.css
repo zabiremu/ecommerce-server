@@ -484,6 +484,27 @@ input[type="submit"] {
   box-shadow: var(--gms-shadow);
 }
 
+/* Wishlist button — filled heart + checkmark badge once added */
+.wd-wishlist-btn .wd-action-icon:before {
+  transition: color .2s ease, transform .2s ease;
+}
+.wd-wishlist-btn.wd-active .wd-action-icon:before {
+  color: var(--wd-primary-color, #e63946);
+  transform: scale(1.15);
+}
+.wd-wishlist-btn.wd-active .wd-check-icon {
+  display: flex !important;
+}
+
+/* The wishlist page's own leftover theme CSS force-hides/disables .wd-wishlist-btn
+   inside its product grid (it originally used a separate remove-checkbox UI instead).
+   We reuse the same heart button as the remove action there, so re-enable it. */
+#gmsWishlistGrid .wd-wishlist-btn {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
 /* ==========================================================
    7. SLIDER AUTOPLAY — CSS for fade transitions
    ========================================================== */

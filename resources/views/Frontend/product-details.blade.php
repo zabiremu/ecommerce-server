@@ -3133,12 +3133,7 @@
 			});
 
 			document.querySelector('.wd-single-wishlist-btn a[data-product-id]')?.addEventListener('click', function (e) {
-				e.preventDefault();
-				let wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]');
-				if (!wl.includes(productId)) {
-					wl.push(productId);
-					localStorage.setItem('gms_wishlist', JSON.stringify(wl));
-				}
+				window.nfWishlistClick(e, productId);
 			});
 		})();
 		</script>
