@@ -2899,7 +2899,7 @@ window.NF_COUPONS  = @json($coupons);
     function computeDiscount(subtotal) {
         if (!appliedCoupon || subtotal <= 0) return 0;
         if (appliedCoupon.minimum_spend > 0 && subtotal < appliedCoupon.minimum_spend) return 0;
-        let discount = appliedCoupon.type === 'percent' ? (subtotal * appliedCoupon.amount / 100) : appliedCoupon.amount;
+        let discount = appliedCoupon.type === 'percentage' ? (subtotal * appliedCoupon.amount / 100) : appliedCoupon.amount;
         if (appliedCoupon.maximum_discount > 0) discount = Math.min(discount, appliedCoupon.maximum_discount);
         return Math.min(discount, subtotal);
     }

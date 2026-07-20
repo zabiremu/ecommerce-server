@@ -1863,6 +1863,7 @@
 
 
                     <div id="wd-e3644b91" class="wp-block-wd-row">
+                        @auth
                         <div id="wd-db34d310" class="wp-block-wd-column wd-align-s-start">
                             <div id="wd-6aee5deb" class="wd-el-my-acc-nav wd-6aee5deb">
 
@@ -1907,7 +1908,7 @@
 
                             </div>
                         </div>
-
+                        @endauth
                         <div id="wd-78bc329a" class="wp-block-wd-column">
                             <div id="wd-9020d6b2" class="wd-el-my-acc-content wd-9020d6b2 woocommerce-MyAccount-content">
                                 <div class="wd-wishlist-content">

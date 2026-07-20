@@ -23,6 +23,10 @@ class UddoktaPayService
 
     public function createCharge(Order $order): array
     {
+        if ($this->apiKey === '') {
+            throw new \RuntimeException('UddoktaPay API key is not configured. Set it in Admin > Site Settings.');
+        }
+
         $email = $order->shipping_email
             ?: preg_replace('/[^a-z0-9]/', '', strtolower($order->shipping_phone)) . '@customer.nfshop24.com';
 
@@ -55,11 +59,25 @@ class UddoktaPayService
             throw new \RuntimeException('UddoktaPay payment initiation failed: ' . $response->body());
         }
 
-        return $response->json();
+        $data = $response->json();
+        if (!is_array($data)) {
+            Log::error('UddoktaPay createCharge returned a non-JSON response', [
+                'status' => $response->status(),
+                'body'   => $response->body(),
+                'order'  => $order->order_no,
+            ]);
+            throw new \RuntimeException('UddoktaPay returned an unexpected response. Please try again or contact support.');
+        }
+
+        return $data;
     }
 
     public function verifyPayment(string $invoiceId): array
     {
+        if ($this->apiKey === '') {
+            throw new \RuntimeException('UddoktaPay API key is not configured. Set it in Admin > Site Settings.');
+        }
+
         $response = Http::withHeaders([
             'RT-UDDOKTAPAY-API-KEY' => $this->apiKey,
             'Content-Type'          => 'application/json',
@@ -77,6 +95,16 @@ class UddoktaPayService
             throw new \RuntimeException('UddoktaPay payment verification failed.');
         }
 
-        return $response->json();
+        $data = $response->json();
+        if (!is_array($data)) {
+            Log::error('UddoktaPay verifyPayment returned a non-JSON response', [
+                'invoice_id' => $invoiceId,
+                'status'     => $response->status(),
+                'body'       => $response->body(),
+            ]);
+            throw new \RuntimeException('UddoktaPay returned an unexpected response while verifying payment.');
+        }
+
+        return $data;
     }
 }

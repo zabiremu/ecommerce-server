@@ -769,4 +769,74 @@ document.addEventListener('DOMContentLoaded', function () {
     syncButtons();
   })();
 
+  /* ==========================================================
+     12. CART — shared add helper + header badge sync
+     ========================================================== */
+  (function initCart() {
+    function getCart() {
+      var cart = [];
+      try { cart = JSON.parse(localStorage.getItem('gms_cart') || '[]'); } catch (e) { cart = []; }
+      return Array.isArray(cart) ? cart : [];
+    }
+
+    function setCart(cart) {
+      localStorage.setItem('gms_cart', JSON.stringify(cart));
+      window.dispatchEvent(new Event('gms:cart-updated'));
+    }
+
+    window.gmsAddToCart = function (item, qty) {
+      qty = qty || 1;
+      var cart = getCart();
+      var existing = cart.find(function (c) { return c.id === item.id; });
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ id: item.id, title: item.title, img: item.img, price: item.price, qty: qty, url: item.url });
+      }
+      setCart(cart);
+    };
+
+    function syncBadge() {
+      var cart = getCart();
+      var count = cart.reduce(function (sum, c) { return sum + (c.qty || 0); }, 0);
+      var subtotal = cart.reduce(function (sum, c) { return sum + (c.qty || 0) * (Number(c.price) || 0); }, 0);
+
+      document.querySelectorAll('.wd-cart-number').forEach(function (el) {
+        el.innerHTML = count + ' <span>' + (count === 1 ? 'item' : 'items') + '</span>';
+      });
+
+      document.querySelectorAll('.wd-cart-subtotal').forEach(function (el) {
+        el.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(subtotal) + '</bdi></span>';
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cart-add]');
+      if (!btn) return;
+      e.preventDefault();
+
+      window.gmsAddToCart({
+        id: parseInt(btn.getAttribute('data-cart-add'), 10),
+        title: btn.getAttribute('data-title') || '',
+        img: btn.getAttribute('data-img') || '',
+        price: parseFloat(btn.getAttribute('data-price')) || 0,
+        url: btn.getAttribute('data-url') || '',
+      });
+
+      var textEl = btn.querySelector('.wd-action-text');
+      if (textEl) {
+        var original = textEl.textContent;
+        btn.classList.add('added');
+        textEl.textContent = 'Added!';
+        setTimeout(function () {
+          btn.classList.remove('added');
+          textEl.textContent = original;
+        }, 1500);
+      }
+    });
+
+    window.addEventListener('gms:cart-updated', syncBadge);
+    syncBadge();
+  })();
+
 });

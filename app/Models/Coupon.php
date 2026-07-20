@@ -87,7 +87,7 @@ class Coupon extends Model
      */
     public function discountFor(float $subtotal): float
     {
-        if ($this->minimum_spend && $subtotal < (float) $this->minimum_spend) {
+        if ((float) $this->minimum_spend > 0 && $subtotal < (float) $this->minimum_spend) {
             return 0;
         }
 
@@ -95,7 +95,7 @@ class Coupon extends Model
             ? round($subtotal * ((float) $this->amount / 100), 2)
             : (float) $this->amount;
 
-        if ($this->maximum_discount && $discount > (float) $this->maximum_discount) {
+        if ((float) $this->maximum_discount > 0 && $discount > (float) $this->maximum_discount) {
             $discount = (float) $this->maximum_discount;
         }
 

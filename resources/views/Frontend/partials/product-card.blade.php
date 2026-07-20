@@ -76,11 +76,22 @@
                     @if($outOfStock)
                         <span class="button add-to-cart-loop wd-disabled" aria-disabled="true"><span
                                 class="wd-action-text">Out of stock</span></span>
-                    @else
+                    @elseif($product->type === 'variable')
                         <a href="{{ $detailsUrl }}" class="button add_to_cart_button add-to-cart-loop"
                             data-product_id="{{ $product->id }}" aria-label="View {{ $product->name }}" rel="nofollow">
                             <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-                            <span class="wd-action-text">{{ $product->type === 'variable' ? 'Select options' : 'Add to cart' }}</span>
+                            <span class="wd-action-text">Select options</span>
+                        </a>
+                    @else
+                        <a href="#" class="button add_to_cart_button add-to-cart-loop" rel="nofollow"
+                            aria-label="Add {{ $product->name }} to cart"
+                            data-cart-add="{{ $product->id }}"
+                            data-title="{{ $product->name }}"
+                            data-price="{{ $displayPrice }}"
+                            data-img="{{ $thumbUrl }}"
+                            data-url="{{ $detailsUrl }}">
+                            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
+                            <span class="wd-action-text">Add to cart</span>
                         </a>
                     @endif
                 </div>
