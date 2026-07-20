@@ -1,6 +1,6 @@
 @extends('Frontend.Layout.app')
 
-@section('title', 'About Us')
+@section('title', $page?->meta_title ?: ($page?->title ?? 'About Us'))
 
 @push('styles')
     <style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
@@ -2287,11 +2287,11 @@
 				</div>
 				<div class="container">
 					<h1 class="entry-title title">
-						About us </h1>
+						{{ $page?->title ?? 'About us' }} </h1>
 
 
 					<nav class="wd-breadcrumbs"><a href="{{ route('home') }}">Home</a><span class="wd-delimiter">/</span><span
-							class="wd-last">About us</span></nav>
+							class="wd-last">{{ $page?->title ?? 'About us' }}</span></nav>
 				</div>
 			</div>
 
@@ -2337,198 +2337,40 @@
 							</div>
 						</div>
 
-						<h2 id="wd-edf56ef8" class="wp-block-wd-title title">Born from a Passion for Gaming</h2>
+						@if ($page?->subtitle)
+							<h2 id="wd-edf56ef8" class="wp-block-wd-title title">{{ $page->subtitle }}</h2>
+						@else
+							<h2 id="wd-edf56ef8" class="wp-block-wd-title title">Born from a Passion for Gaming</h2>
+						@endif
 
-						<div id="wd-d03d3c89" class="wp-block-wd-row">
-							<div id="wd-534516a1" class="wp-block-wd-column">
-								<p id="wd-3bc0284c" class="wp-block-wd-paragraph">At [Merchandise], we’re more than just
-									a store—we’re gamers like you, driven by a shared passion for the world of video
-									games. Our journey began with a simple yet powerful idea: to create a place where
-									gamers can find high-quality, officially licensed merchandise that truly reflects
-									their love for gaming. Whether you’re reliving the nostalgia of retro classics or
-									immersing yourself in the worlds of the latest blockbusters, we believe that every
-									fan deserves merch that feels authentic, unique, and meaningful.</p>
-							</div>
-
-							<div id="wd-99339827" class="wp-block-wd-column">
-								<p id="wd-d68718e2" class="wp-block-wd-paragraph">We’re proud to be your go-to
-									destination for gamer merch, and we’re excited to keep growing, innovating, and
-									leveling up with you on this journey. Whether you’re here for a collectible that
-									completes your setup or an apparel piece that speaks to your inner gamer, we’re here
-									to make sure you find exactly what you’re looking for. Happy gaming!</p>
-							</div>
-						</div>
-
-						<div id="wd-090647c4" class="wp-block-wd-carousel wd-carousel-container">
-							<div class="wd-carousel-inner">
-								<div class="wd-carousel wd-grid"
-									style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:1;--wd-gap-lg:20px;--wd-gap-sm:10px"
-									data-scroll_per_page="yes">
-									<div class="wd-carousel-wrap">
-										<div id="wd-c020cd16" class="wp-block-wd-carousel-item wd-carousel-item">
-											<div id="wd-23aea4a6"
-												class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
-												<div id="wd-9d7b892a" class="wp-block-wd-icon"><img loading="lazy"
-														decoding="async" width="68" height="68" class="wp-image-839"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gamepad.jpg.webp"
-														alt="" /></div>
-
-												<div id="wd-d4863966" class="wp-block-wd-container wd-dir-col">
-													<h2 id="wd-b1e12cec" class="wp-block-wd-title title">Apparel &amp;
-														Accessories</h2>
-
-													<p id="wd-e5334d67" class="wp-block-wd-paragraph">Show off your
-														favorite gaming franchises in style, both in and out of the game
-													</p>
-												</div>
-											</div>
-										</div>
-
-										<div id="wd-2e710a3b" class="wp-block-wd-carousel-item wd-carousel-item">
-											<div id="wd-537a081e"
-												class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
-												<div id="wd-0da377f0" class="wp-block-wd-icon"><img loading="lazy"
-														decoding="async" width="68" height="68" class="wp-image-840"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-puzzle.jpg.webp"
-														alt="" /></div>
-
-												<div id="wd-3edf8750" class="wp-block-wd-container wd-dir-col">
-													<h2 id="wd-eb1803de" class="wp-block-wd-title title">Collectibles
-														&amp; Decor</h2>
-
-													<p id="wd-cf910214" class="wp-block-wd-paragraph">Bring your
-														favorite game worlds to life with high-quality collectibles and
-														home decor</p>
-												</div>
-											</div>
-										</div>
-
-										<div id="wd-bdd43ee0" class="wp-block-wd-carousel-item wd-carousel-item">
-											<div id="wd-39af9d48"
-												class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
-												<div id="wd-5c1d0fd4" class="wp-block-wd-icon"><img loading="lazy"
-														decoding="async" width="68" height="68" class="wp-image-841"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-art.jpg.webp"
-														alt="" /></div>
-
-												<div id="wd-eb316032" class="wp-block-wd-container wd-dir-col">
-													<h2 id="wd-034f199a" class="wp-block-wd-title title">Posters &amp;
-														Art Prints</h2>
-
-													<p id="wd-bb7c8f76" class="wp-block-wd-paragraph">Decorate your
-														walls with posters and art prints featuring iconic characters
-													</p>
-												</div>
-											</div>
-										</div>
-
-										<div id="wd-913cee8e" class="wp-block-wd-carousel-item wd-carousel-item">
-											<div id="wd-245259dd"
-												class="wp-block-wd-infobox wd-hover-parent wd-align wd-icon-top">
-												<div id="wd-afd3b010" class="wp-block-wd-icon"><img loading="lazy"
-														decoding="async" width="68" height="68" class="wp-image-842"
-														src="merchandise/wp-content/uploads/sites/31/2025/11/gms-inbx-gift.jpg.webp"
-														alt="" /></div>
-
-												<div id="wd-5809a874" class="wp-block-wd-container wd-dir-col">
-													<h2 id="wd-53543541" class="wp-block-wd-title title">Unique Gifts
-														&amp; Bundles</h2>
-
-													<p id="wd-4ed153df" class="wp-block-wd-paragraph">Find the perfect
-														gift for gamers with our exclusive bundles and unique merch</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="wd-nav-arrows wd-pos-sep wd-hover-1 wd-icon-1">
-									<div class="wd-btn-arrow wd-prev">
-										<div class="wd-arrow-inner"></div>
-									</div>
-									<div class="wd-btn-arrow wd-next">
-										<div class="wd-arrow-inner"></div>
-									</div>
+						@if ($page?->content)
+							<div id="wd-d03d3c89" class="wp-block-wd-row">
+								<div id="wd-534516a1" class="wp-block-wd-column">
+									{!! $page->content !!}
 								</div>
 							</div>
-							<div class="wd-nav-scroll wd-hide-lg"></div>
-						</div>
-
-						<div id="wd-984402e3"
-							class="wp-block-wd-accordion wd-accordion wd-style-default wd-titles-start wd-opener-style-plus wd-opener-pos-end"
-							data-state="all">
-							<div id="wd-5bb70873" class="wp-block-wd-accordion-pane wd-accordion-item">
-								<div class="wd-accordion-title wd-role-btn" tabindex="0">
-									<div class="wd-accordion-title-text"><span>What types of products do you
-											offer?</span></div><span class="wd-accordion-opener"></span>
+						@else
+							<div id="wd-d03d3c89" class="wp-block-wd-row">
+								<div id="wd-534516a1" class="wp-block-wd-column">
+									<p id="wd-3bc0284c" class="wp-block-wd-paragraph">At [Merchandise], we’re more than just
+										a store—we’re gamers like you, driven by a shared passion for the world of video
+										games. Our journey began with a simple yet powerful idea: to create a place where
+										gamers can find high-quality, officially licensed merchandise that truly reflects
+										their love for gaming. Whether you’re reliving the nostalgia of retro classics or
+										immersing yourself in the worlds of the latest blockbusters, we believe that every
+										fan deserves merch that feels authentic, unique, and meaningful.</p>
 								</div>
-								<div class="wd-accordion-content">
-									<div class="wd-accordion-content-inner">
-										<p id="wd-a339f8d6" class="wp-block-wd-paragraph">Keep the product in its
-											original packaging along with all documents confirming the purchase and
-											refund. You will need this for further communication with the seller and the
-											payment system.</p>
-									</div>
+
+								<div id="wd-99339827" class="wp-block-wd-column">
+									<p id="wd-d68718e2" class="wp-block-wd-paragraph">We’re proud to be your go-to
+										destination for gamer merch, and we’re excited to keep growing, innovating, and
+										leveling up with you on this journey. Whether you’re here for a collectible that
+										completes your setup or an apparel piece that speaks to your inner gamer, we’re here
+										to make sure you find exactly what you’re looking for. Happy gaming!</p>
 								</div>
 							</div>
+						@endif
 
-							<div id="wd-cf961f5b" class="wp-block-wd-accordion-pane wd-accordion-item">
-								<div class="wd-accordion-title wd-role-btn" tabindex="0">
-									<div class="wd-accordion-title-text"><span>Do you sell officially licensed
-											merchandise?</span></div><span class="wd-accordion-opener"></span>
-								</div>
-								<div class="wd-accordion-content">
-									<div class="wd-accordion-content-inner">
-										<p id="wd-61db26da" class="wp-block-wd-paragraph">Check the email you received
-											after placing your order. It should contain information about the status of
-											your order and the expected delivery date.</p>
-									</div>
-								</div>
-							</div>
-
-							<div id="wd-64820e43" class="wp-block-wd-accordion-pane wd-accordion-item">
-								<div class="wd-accordion-title wd-role-btn" tabindex="0">
-									<div class="wd-accordion-title-text"><span>How long does shipping take?</span></div>
-									<span class="wd-accordion-opener"></span>
-								</div>
-								<div class="wd-accordion-content">
-									<div class="wd-accordion-content-inner">
-										<p id="wd-b8c6d5ac" class="wp-block-wd-paragraph">Keep the product in its
-											original packaging along with all documents confirming the purchase and
-											refund. You will need this for further communication with the seller and the
-											payment system.</p>
-									</div>
-								</div>
-							</div>
-
-							<div id="wd-a744194b" class="wp-block-wd-accordion-pane wd-accordion-item">
-								<div class="wd-accordion-title wd-role-btn" tabindex="0">
-									<div class="wd-accordion-title-text"><span>What is your return policy?</span></div>
-									<span class="wd-accordion-opener"></span>
-								</div>
-								<div class="wd-accordion-content">
-									<div class="wd-accordion-content-inner">
-										<p id="wd-06e7df84" class="wp-block-wd-paragraph">If the contents of the parcel
-											are suspicious to customs officers (for example, many identical goods), it
-											may be further checked.</p>
-									</div>
-								</div>
-							</div>
-
-							<div id="wd-88c1cfa7" class="wp-block-wd-accordion-pane wd-accordion-item">
-								<div class="wd-accordion-title wd-role-btn" tabindex="0">
-									<div class="wd-accordion-title-text"><span>Do you offer discounts or special
-											deals?</span></div><span class="wd-accordion-opener"></span>
-								</div>
-								<div class="wd-accordion-content">
-									<div class="wd-accordion-content-inner">
-										<p id="wd-a99b7635" class="wp-block-wd-paragraph">Keep the product in its
-											original packaging along with all documents confirming the purchase and
-											refund. You will need this for further communication with the seller and the
-											payment system.</p>
-									</div>
-								</div>
-							</div>
-						</div>
 
 
 					</article>

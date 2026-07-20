@@ -130,24 +130,7 @@
                 </div>
             </div>
 
-            <!-- Homepage Content -->
-            <div class="wp-panel">
-                <div class="wp-panel-h"><i class="fas fa-home mr-1.5 text-slate-400"></i> Homepage Content</div>
-                <div class="wp-panel-body">
-                    <div class="wp-field">
-                        <label>{{ $fields['homepage']['home_hero_title'][0] }}</label>
-                        <input type="text" name="home_hero_title" value="{{ old('home_hero_title', $settings['home_hero_title'] ?? '') }}" class="wp-input"
-                               placeholder="Level Up Your Gear!">
-                        <p class="wp-help">Homepage এর hero section এর main title।</p>
-                    </div>
-                    <div class="wp-field">
-                        <label>{{ $fields['homepage']['home_hero_subtitle'][0] }}</label>
-                        <textarea name="home_hero_subtitle" class="wp-input" rows="2"
-                                  placeholder="Official Merch for Every Gamer – Shop Hoodies, Collectibles, Posters, and More!">{{ old('home_hero_subtitle', $settings['home_hero_subtitle'] ?? '') }}</textarea>
-                        <p class="wp-help">Homepage এর hero section এর subtitle/description।</p>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Steadfast Courier API -->
             <div class="wp-panel border-l-4 border-[#1a6b1a]">

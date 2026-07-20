@@ -563,6 +563,13 @@
                     Wishlist </span>
             </a>
         </div>
+        <div class="wd-header-my-account wd-tools-element wd-design-5" title="My account">
+            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
+                <span class="wd-tools-icon"></span>
+                <span class="wd-toolbar-label">
+                    Account </span>
+            </a>
+        </div>
     </div>
     <link rel='stylesheet' id='wd-style-base-deferred-css'
         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/base-deferred.css') }}"

@@ -118,7 +118,7 @@
    ========================================================== */
 .gms-dm-wrap {
   position: fixed;
-  bottom: 24px;
+  bottom: 64px;
   right: 24px;
   z-index: 9999;
   font-family: 'Lexend Deca', sans-serif;
