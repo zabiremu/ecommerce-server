@@ -29,6 +29,8 @@ class SiteSettingController extends Controller
             'social_youtube'   => ['YouTube URL',    'nullable|string|max:500'],
             'social_whatsapp'  => ['WhatsApp URL',   'nullable|string|max:500'],
             'social_instagram' => ['Instagram URL',  'nullable|string|max:500'],
+            'social_twitter'   => ['X (Twitter) URL', 'nullable|string|max:500'],
+            'social_discord'   => ['Discord URL',    'nullable|string|max:500'],
         ],
         'credit' => [
             'developer_name'  => ['Developer Name',  'nullable|string|max:100'],
@@ -67,8 +69,11 @@ class SiteSettingController extends Controller
             'announcement_text' => ['Announcement Bar Text', 'nullable|string|max:300'],
         ],
         'homepage' => [
-            'home_hero_title'    => ['Hero Title',    'nullable|string|max:255'],
-            'home_hero_subtitle' => ['Hero Subtitle', 'nullable|string|max:500'],
+            'home_hero_eyebrow'        => ['Hero Eyebrow',        'nullable|string|max:100'],
+            'home_hero_title'          => ['Hero Title',          'nullable|string|max:255'],
+            'home_hero_subtitle'       => ['Hero Subtitle',       'nullable|string|max:500'],
+            'home_newsletter_title'    => ['Newsletter Title',    'nullable|string|max:255'],
+            'home_newsletter_subtitle' => ['Newsletter Subtitle', 'nullable|string|max:500'],
         ],
     ];
 

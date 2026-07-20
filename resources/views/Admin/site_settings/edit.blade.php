@@ -36,6 +36,24 @@
     <div class="grid grid-cols-12 gap-5 mt-3">
         <div class="col-span-12 lg:col-span-8 space-y-5">
 
+            <!-- Homepage -->
+            <div class="wp-panel">
+                <div class="wp-panel-h"><i class="fas fa-house mr-1.5 text-slate-400"></i> Homepage</div>
+                <div class="wp-panel-body">
+                    @foreach ($fields['homepage'] as $key => [$label, $rule])
+                        <div class="wp-field">
+                            <label>{{ $label }}</label>
+                            @if (str_contains($key, 'subtitle'))
+                                <textarea name="{{ $key }}" rows="2" class="wp-input">{{ old($key, $settings[$key] ?? '') }}</textarea>
+                            @else
+                                <input type="text" name="{{ $key }}" value="{{ old($key, $settings[$key] ?? '') }}" class="wp-input">
+                            @endif
+                        </div>
+                    @endforeach
+                    <p class="wp-help">Controls the homepage hero banner and the newsletter signup section text.</p>
+                </div>
+            </div>
+
             <!-- Company -->
             <div class="wp-panel">
                 <div class="wp-panel-h"><i class="fas fa-building mr-1.5 text-slate-400"></i> Company</div>
@@ -84,6 +102,8 @@
                                     'social_youtube'   => 'fab fa-youtube',
                                     'social_whatsapp'  => 'fab fa-whatsapp',
                                     'social_instagram' => 'fab fa-instagram',
+                                    'social_twitter'   => 'fab fa-x-twitter',
+                                    'social_discord'   => 'fab fa-discord',
                                 ];
                             @endphp
                             <div class="wp-field">

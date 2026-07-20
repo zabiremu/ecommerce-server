@@ -7,6 +7,8 @@ use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\User;
+use App\Mail\AccountCreatedMail;
 use App\Mail\OrderConfirmationMail;
 use App\Mail\WelcomeMail;
 use Carbon\Carbon;
@@ -15,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 /**
  * Shared order placement used by the normal checkout (Frontend\OrderController)
@@ -131,13 +134,40 @@ class OrderService
         $customerEmail = $order->shipping_email
             ?: optional($order->customer)->email;
 
+        $newAccount = null;
+        $newAccountPassword = null;
+        if ($customerEmail) {
+            try {
+                if (!User::where('email', $customerEmail)->exists()) {
+                    $newAccountPassword = Str::password(12, symbols: false);
+                    $newAccount = User::create([
+                        'name'     => $order->shipping_name,
+                        'email'    => $customerEmail,
+                        'phone'    => $order->shipping_phone,
+                        'password' => $newAccountPassword,
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                Log::warning('Auto account creation failed for #' . $order->order_no . ': ' . $e->getMessage());
+                $newAccount = null;
+                $newAccountPassword = null;
+            }
+        }
+
         if ($customerEmail) {
             try {
                 MailConfigService::apply();
                 $order->loadMissing('items');
 
-                // Order confirmation — every order
+                // Order confirmation (invoice) — every order
                 Mail::to($customerEmail)->send(new OrderConfirmationMail($order));
+
+                // Account credentials — only when we just created the account
+                if ($newAccount) {
+                    Mail::to($customerEmail)->send(
+                        new AccountCreatedMail($newAccount, $newAccountPassword, $order->order_no)
+                    );
+                }
 
                 // Welcome — only first-time customers
                 if (optional($order->customer)->total_orders <= 1) {

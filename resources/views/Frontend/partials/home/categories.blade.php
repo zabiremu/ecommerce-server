@@ -4,6 +4,37 @@
 <link rel="stylesheet" id="wd-categories-loop-css"
     href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
     type="text/css" media="all" />
+<style>
+    .wd-cats .wd-cat-thumb {
+        border-radius: 50% !important;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        width: 110px;
+        height: 110px;
+    }
+    .wd-cats .wd-cat-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 0 !important;
+    }
+    .wd-cats .wd-cat-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0 !important;
+    }
+    .wd-cats .wd-cat-image,
+    .wd-cats .wd-cat-image img,
+    .wd-cats .category-grid-item:hover .wd-cat-image,
+    .wd-cats .category-grid-item .wd-cat-inner,
+    .wd-cats .category-grid-item .wd-cat-thumb {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+</style>
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
     <h2 class="wp-block-wd-title title">Shop by Category</h2>
 </div>

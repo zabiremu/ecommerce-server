@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Page;
 use App\Models\SiteSetting;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
@@ -41,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
                 ->orderBy('name')
                 ->limit(6)
                 ->get(['id', 'name', 'slug', 'icon']));
+
+            $view->with('footerLegalPages', Page::whereIn('slug', ['refund-policy', 'terms-conditions', 'privacy-policy'])
+                ->get(['slug', 'title'])
+                ->keyBy('slug'));
         });
 
         if (Schema::hasTable('site_settings')) {

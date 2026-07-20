@@ -173,16 +173,12 @@
                                   <li>
                                       <ul class="sub-sub-menu">
                                           <li class="wp-block-wd-menu-list-item wd-5d841a65"><a
-                                                  href="#">Refund</a></li>
+                                                  href="{{ route('refund-policy') }}">{{ $footerLegalPages['refund-policy']->title ?? 'Refund' }}</a></li>
 
-                                          <li class="wp-block-wd-menu-list-item wd-ee97d4b6"><a
-                                                  href="#">Cookies</a></li>
-
-                                          <li class="wp-block-wd-menu-list-item wd-caa0f6e7"><a href="#">Terms of
-                                                  Use</a></li>
+                                          <li class="wp-block-wd-menu-list-item wd-caa0f6e7"><a href="{{ route('terms-conditions') }}">{{ $footerLegalPages['terms-conditions']->title ?? 'Terms of Use' }}</a></li>
 
                                           <li class="wp-block-wd-menu-list-item wd-10807e3e"><a
-                                                  href="#">Privacy</a></li>
+                                                  href="{{ route('privacy-policy') }}">{{ $footerLegalPages['privacy-policy']->title ?? 'Privacy' }}</a></li>
                                       </ul>
                                   </li>
                               </ul>
@@ -208,40 +204,42 @@
 
                       <div class="wp-block-wd-toggle-content wd-toggle-content wd-5bf3b905">
                           <div class="wd-toggle-content-inner">
+                              @php
+                                  $socialLinks = [
+                                      [
+                                          'label' => 'Instagram',
+                                          'url'   => \App\Models\SiteSetting::get('social_instagram'),
+                                          'icon'  => 'instagram-brands-1.svg',
+                                      ],
+                                      [
+                                          'label' => 'X',
+                                          'url'   => \App\Models\SiteSetting::get('social_twitter'),
+                                          'icon'  => 'twitter-brands-1.svg',
+                                      ],
+                                      [
+                                          'label' => 'Discord',
+                                          'url'   => \App\Models\SiteSetting::get('social_discord'),
+                                          'icon'  => 'discord-brands-1.svg',
+                                      ],
+                                      [
+                                          'label' => 'Facebook',
+                                          'url'   => \App\Models\SiteSetting::get('social_facebook'),
+                                          'icon'  => 'facebook-f-brands-1.svg',
+                                      ],
+                                  ];
+                                  $socialLinks = array_values(array_filter($socialLinks, fn ($link) => !empty($link['url'])));
+                              @endphp
                               <ul class="wp-block-wd-list wd-list wd-type-image wd-style-default wd-a75bb30e">
-                                  <li class="wp-block-wd-list-item wd-4b631b21">
-                                      <div class="wd-icon"><img loading="lazy" decoding="async" width="20"
-                                              height="20"
-                                              src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/instagram-brands-1.svg') }}"
-                                              alt="" class="wp-image-997" /></div><span
-                                          class="wd-list-content"><a
-                                              href="https://www.instagram.com/xtemos.studio/">Instagram</a></span>
-                                  </li>
-
-                                  <li class="wp-block-wd-list-item wd-06b349fe">
-                                      <div class="wd-icon"><img loading="lazy" decoding="async" width="20"
-                                              height="20"
-                                              src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/twitter-brands-1.svg') }}"
-                                              alt="" class="wp-image-998" /></div><span
-                                          class="wd-list-content"><a href="https://x.com/xtemos_studio">X</a></span>
-                                  </li>
-
-                                  <li class="wp-block-wd-list-item wd-a4173f95">
-                                      <div class="wd-icon"><img loading="lazy" decoding="async" width="20"
-                                              height="20"
-                                              src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/discord-brands-1.svg') }}"
-                                              alt="" class="wp-image-999" /></div><span
-                                          class="wd-list-content"><a href="#">Discord</a></span>
-                                  </li>
-
-                                  <li class="wp-block-wd-list-item wd-c651d214">
-                                      <div class="wd-icon"><img loading="lazy" decoding="async" width="20"
-                                              height="20"
-                                              src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/facebook-f-brands-1.svg') }}"
-                                              alt="" class="wp-image-1000" /></div><span
-                                          class="wd-list-content"><a
-                                              href="https://www.facebook.com/xtemos.studio">Facebook</a></span>
-                                  </li>
+                                  @foreach ($socialLinks as $link)
+                                      <li class="wp-block-wd-list-item">
+                                          <div class="wd-icon"><img loading="lazy" decoding="async" width="20"
+                                                  height="20"
+                                                  src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/' . $link['icon']) }}"
+                                                  alt="" /></div><span
+                                              class="wd-list-content"><a href="{{ $link['url'] }}" target="_blank"
+                                                  rel="noopener noreferrer">{{ $link['label'] }}</a></span>
+                                      </li>
+                                  @endforeach
                               </ul>
                           </div>
                       </div>
@@ -249,16 +247,11 @@
               </div>
           </div>
 
-          <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-7c5e9f7c">
-              <p class="wp-block-wd-paragraph wd-aae3cee5"><a href="{{ route('home') }}">Roventex</a>
+          <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-7c5e9f7c ">
+              <p class="wp-block-wd-paragraph text-center    wd-aae3cee5"><a href="{{ route('home') }}">Roventex</a>
                   © 2026 <a href="#">Roventex</a>.</p>
 
-              <div class="wp-block-wd-image wd-block-image wd-8a15097a"><img loading="lazy" decoding="async"
-                      width="240" height="31" class="wp-image-992"
-                      src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/payments-opt.jpg.webp') }}"
-                      alt=""
-                      srcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/payments-opt.jpg.webp') }} 240w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/payments-opt-100x13.jpg') }} 100w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/payments-opt-150x19.jpg') }} 150w"
-                      sizes="auto, (max-width: 240px) 100vw, 240px" /></div>
+
           </div>
       </div>
   </footer>

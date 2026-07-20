@@ -563,6 +563,58 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   /* ==========================================================
+     10b. CONTACT FORM
+     ========================================================== */
+  (function initContactForm() {
+    var form = document.getElementById('gms-contact-form');
+    if (!form) return;
+
+    var msgBox = form.querySelector('.gms-contact-form-message');
+    var tokenInput = form.querySelector('input[name="_token"]');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      msgBox.style.display = 'none';
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': tokenInput ? tokenInput.value : ''
+        },
+        body: new FormData(form)
+      })
+        .then(function (res) { return res.json().then(function (data) { return { status: res.status, data: data }; }); })
+        .then(function (result) {
+          msgBox.style.display = 'block';
+          if (result.status >= 200 && result.status < 300) {
+            msgBox.style.color = '#2f8f4e';
+            msgBox.textContent = result.data.message || 'Thanks! Your message has been sent.';
+            form.reset();
+          } else {
+            msgBox.style.color = '#c9401d';
+            var errors = result.data.errors ? Object.values(result.data.errors).flat().join(' ') : null;
+            msgBox.textContent = errors || result.data.message || 'Something went wrong. Please try again.';
+          }
+        })
+        .catch(function () {
+          msgBox.style.display = 'block';
+          msgBox.style.color = '#c9401d';
+          msgBox.textContent = 'Something went wrong. Please try again.';
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        });
+    });
+  })();
+
+  /* ==========================================================
      8c. LAZY LOAD IMAGES — add loading="lazy" + decoding="async"
      ========================================================== */
   (function initLazyLoad() {
