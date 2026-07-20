@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<div class="gms-popup">' +
         '<button class="gms-popup-close" aria-label="Close">&times;</button>' +
         '<div class="gms-popup-icon">🎉</div>' +
-        '<h2>Exclusive Discount!</h2>' +
+        '<h2>Exclusive Discount1!</h2>' +
         '<p>Use the code below at checkout and enjoy <strong>' + GMS_CONFIG.couponDiscount + '</strong> your order.</p>' +
         '<div class="gms-coupon-code">' + GMS_CONFIG.couponCode + '</div><br>' +
         '<a href="' + GMS_CONFIG.ctaLink + '" class="gms-popup-cta">Shop Now</a>' +

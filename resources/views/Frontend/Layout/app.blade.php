@@ -412,10 +412,7 @@
         </div>
         <ul id="menu-mobile-navigation"
             class="mobile-pages-menu menu wd-nav wd-nav-mobile wd-dis-hover wd-layout-drilldown wd-drilldown-slide wd-active">
-            <li id="menu-item-1090"
-                class="xtemos-show-demos menu-item menu-item-type-custom menu-item-object-custom menu-item-1090 item-level-0">
-                <a href="#" class="woodmart-nav-link"><span class="nav-link-text">Demos</span></a>
-            </li>
+
             <li id="menu-item-935"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-935 item-level-0">
                 <a href="{{ route('all-products') }}" class="woodmart-nav-link"><img
@@ -692,6 +689,19 @@
     <script type="text/javascript"
         src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/global/clearSearch.min.js') }}"
         id="wd-clear-search-js"></script>
+    <script>
+        window.GMS_SHOP_URL = @json(route('all-products'));
+        window.GMS_COUPON = @if($popupCoupon ?? null)
+            {
+                code: @json($popupCoupon->code),
+                type: @json($popupCoupon->type),
+                amount: {{ (float) $popupCoupon->amount }},
+                minimumSpend: {{ (float) ($popupCoupon->minimum_spend ?? 0) }},
+            }
+        @else
+            null
+        @endif;
+    </script>
     <script defer src="{{ asset('frontend/assets/gms-custom.js') }}"></script>
     @auth('web')
         <form id="header-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>

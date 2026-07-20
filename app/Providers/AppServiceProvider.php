@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\SiteSetting;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -46,5 +48,24 @@ class AppServiceProvider extends ServiceProvider
         } else {
             View::share('siteSettings', []);
         }
+
+        View::composer('Frontend.Layout.app', function ($view) {
+            $today = Carbon::today();
+
+            $coupon = Coupon::active()
+                ->where(function ($q) use ($today) {
+                    $q->whereNull('starts_at')->orWhere('starts_at', '<=', $today);
+                })
+                ->where(function ($q) use ($today) {
+                    $q->whereNull('expires_at')->orWhere('expires_at', '>=', $today);
+                })
+                ->where(function ($q) {
+                    $q->whereNull('usage_limit')->orWhereColumn('used_count', '<', 'usage_limit');
+                })
+                ->orderByDesc('amount')
+                ->first();
+
+            $view->with('popupCoupon', $coupon);
+        });
     }
 }

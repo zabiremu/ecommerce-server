@@ -11,8 +11,6 @@ window.formatPrice = function (n) {
 const GMS_CONFIG = {
   whatsapp: '1234567890',            // WhatsApp number (digits only)
   messenger: 'YourPageName',         // Facebook Messenger m.me/ slug
-  couponCode: 'SAVE15',             // Discount popup coupon code
-  couponDiscount: '15% OFF',        // Discount text shown in popup
   ctaLink: 'products.html',         // CTA button destination
   popupDelay: 1500,                 // ms before popup shows
   popupFrequency: 'session',        // 'session' or 'daily'
@@ -25,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
      1. DISCOUNT POPUP
      ========================================================== */
   (function initDiscountPopup() {
+    var coupon = window.GMS_COUPON;
+    if (!coupon || !coupon.code) return;
+
     var storageKey = 'gms_popup_shown';
     var shouldShow = false;
 
@@ -38,6 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!shouldShow) return;
 
+    var discountText = coupon.type === 'percentage'
+      ? coupon.amount + '% OFF'
+      : window.formatPrice(coupon.amount) + ' OFF';
+
+    var minSpendText = coupon.minimumSpend > 0
+      ? ' on orders over ' + window.formatPrice(coupon.minimumSpend)
+      : '';
+
     var overlay = document.createElement('div');
     overlay.className = 'gms-popup-overlay';
     overlay.innerHTML =
@@ -45,9 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
         '<button class="gms-popup-close" aria-label="Close">&times;</button>' +
         '<div class="gms-popup-icon">🎉</div>' +
         '<h2>Exclusive Discount!</h2>' +
-        '<p>Use the code below at checkout and enjoy <strong>' + GMS_CONFIG.couponDiscount + '</strong> your order.</p>' +
-        '<div class="gms-coupon-code">' + GMS_CONFIG.couponCode + '</div><br>' +
-        '<a href="' + GMS_CONFIG.ctaLink + '" class="gms-popup-cta">Shop Now</a>' +
+        '<p>Use the code below at checkout and enjoy <strong>' + discountText + '</strong>' + minSpendText + '.</p>' +
+        '<div class="gms-coupon-code">' + coupon.code + '</div><br>' +
+        '<a href="' + (window.GMS_SHOP_URL || GMS_CONFIG.ctaLink) + '" class="gms-popup-cta">Shop Now</a>' +
       '</div>';
 
     document.body.appendChild(overlay);

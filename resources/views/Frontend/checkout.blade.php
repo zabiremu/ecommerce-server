@@ -2802,18 +2802,7 @@
                                             <li class="wc_payment_method payment_method_cod">
                                                 <label><input type="radio" name="payment_method" value="cod" checked /> Cash on delivery</label>
                                             </li>
-                                            <li class="wc_payment_method payment_method_bkash">
-                                                <label><input type="radio" name="payment_method" value="bkash" /> bKash</label>
-                                            </li>
-                                            <li class="wc_payment_method payment_method_nagad">
-                                                <label><input type="radio" name="payment_method" value="nagad" /> Nagad</label>
-                                            </li>
-                                            <li class="wc_payment_method payment_method_rocket">
-                                                <label><input type="radio" name="payment_method" value="rocket" /> Rocket</label>
-                                            </li>
-                                            <li class="wc_payment_method payment_method_bank">
-                                                <label><input type="radio" name="payment_method" value="bank" /> Bank transfer</label>
-                                            </li>
+
                                             <li class="wc_payment_method payment_method_uddoktapay">
                                                 <label><input type="radio" name="payment_method" value="uddoktapay" /> Pay online (bKash / Nagad / Card via UddoktaPay)</label>
                                             </li>

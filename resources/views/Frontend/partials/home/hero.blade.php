@@ -17,7 +17,7 @@
                 <div
                     class="wp-block-wd-slider-item wd-slide wd-carousel-item {{ $loop->even ? 'color-scheme-dark' : 'color-scheme-light' }}">
                     <div class="wd-slide-container">
-                        <h2 class="wp-block-wd-title title wd-custom-width">{{ $slider->title }}</h2>
+                        <h2 class="wp-block-wd-title title wd-custom-width text-center">{{ $slider->title }}</h2>
 
                         @if($slider->subtitle)
                         <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->subtitle }}</p>
@@ -27,9 +27,7 @@
                         <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->description }}</p>
                         @endif
 
-                        <a class="wp-block-wd-button btn btn-style-default btn-color-primary btn-size-large btn-shape-semi-round"
-                            href="{{ route('all-products') }}"><span>Shop
-                                now</span></a>
+
                     </div>
                     <div class="wd-slide-bg wd-fill"><img decoding="async" width="1294" height="600"
                             src="{{ Storage::url($slider->image) }}" alt="{{ $slider->title }}" /></div>
