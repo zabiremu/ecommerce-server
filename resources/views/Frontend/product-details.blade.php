@@ -2542,17 +2542,56 @@
 
 								<div
 									class="wd-single-add-cart wd-ec82c100 wd-btn-design-full wd-design-default wd-swatch-layout-default wd-stock-status-off">
-									@if($outOfStock)
-										<p class="stock out-of-stock wd-style-default">Out of stock</p>
-									@else
-										<p class="stock in-stock wd-style-default">{{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} in stock</p>
-									@endif
+									<p id="gmsStockText" class="stock {{ $outOfStock ? 'out-of-stock' : 'in-stock' }} wd-style-default">
+										@if($outOfStock)
+											Out of stock
+										@else
+											{{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} in stock
+										@endif
+									</p>
 
+									@if($colors->isNotEmpty() || $sizes->isNotEmpty())
+										<style>
+											.gms-variant-group{margin:0 0 16px}
+											.gms-variant-group__label{font-size:13px;font-weight:700;color:#1e293b;margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em}
+											.gms-variant-options{display:flex;flex-wrap:wrap;gap:8px}
+											.gms-variant-option{cursor:pointer;padding:8px 16px;border:1px solid #d8dde3;border-radius:6px;font-size:13px;background:#fff;color:#334155;transition:all .15s}
+											.gms-variant-option:hover{border-color:#5E2590}
+											.gms-variant-option.is-selected{border-color:#5E2590;background:#5E2590;color:#fff}
+											.gms-variant-option.is-disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+											.gms-variant-msg{font-size:12px;color:#c9401d;margin:0 0 12px;display:none}
+										</style>
+										<div id="gmsVariantWrap" data-product-id="{{ $product->id }}">
+											@if($colors->isNotEmpty())
+												<div class="gms-variant-group">
+													<p class="gms-variant-group__label">Color</p>
+													<div class="gms-variant-options" data-attr="color">
+														@foreach($colors as $color)
+															<span class="gms-variant-option" data-value="{{ $color }}">{{ $color }}</span>
+														@endforeach
+													</div>
+												</div>
+											@endif
+											@if($sizes->isNotEmpty())
+												<div class="gms-variant-group">
+													<p class="gms-variant-group__label">Size</p>
+													<div class="gms-variant-options" data-attr="size">
+														@foreach($sizes as $size)
+															<span class="gms-variant-option" data-value="{{ $size }}">{{ $size }}</span>
+														@endforeach
+													</div>
+												</div>
+											@endif
+											<p id="gmsVariantMsg" class="gms-variant-msg">Please select an option above.</p>
+										</div>
+									@endif
 
 									<form class="cart" method="post" data-product-id="{{ $product->id }}"
 										data-product-name="{{ $product->name }}" data-product-price="{{ $displayPrice }}"
 										data-product-img="{{ $galleryImages->first()['url'] ?? '' }}"
 										data-product-url="{{ route('product-details') }}?slug={{ $product->slug }}">
+
+										<input type="hidden" name="variant_id" id="gmsVariantId" value="">
 
 										<div class="quantity">
 
@@ -3091,17 +3130,92 @@
 
 		</div>
 
+		@php
+			$variantsForJs = $product->variants->map(function ($v) {
+				return [
+					'id'    => $v->id,
+					'color' => $v->color,
+					'size'  => $v->size,
+					'price' => (float) $v->price,
+					'stock' => (int) $v->stock,
+				];
+			});
+		@endphp
 		<script>
+		window.NF_PRODUCT_VARIANTS = @json($variantsForJs);
+
 		(function () {
 			const form = document.querySelector('form.cart[data-product-id]');
 			if (!form) return;
 
-			const productId    = Number(form.dataset.productId);
-			const productName  = form.dataset.productName;
-			const productPrice = Number(form.dataset.productPrice);
-			const productImg   = form.dataset.productImg;
-			const productUrl   = form.dataset.productUrl;
-			const qtyInput     = form.querySelector('input[name="quantity"]');
+			const productId      = Number(form.dataset.productId);
+			const productName    = form.dataset.productName;
+			const baseProductPrice = Number(form.dataset.productPrice);
+			const productImg     = form.dataset.productImg;
+			const productUrl     = form.dataset.productUrl;
+			const qtyInput       = form.querySelector('input[name="quantity"]');
+			const variantIdInput = document.getElementById('gmsVariantId');
+			const variants       = window.NF_PRODUCT_VARIANTS || [];
+			const hasColors      = variants.some(v => v.color);
+			const hasSizes       = variants.some(v => v.size);
+			const addBtns        = form.querySelectorAll('.single_add_to_cart_button, #wd-add-to-cart');
+
+			const selected = { color: null, size: null };
+			let currentVariant = null;
+
+			function findVariant() {
+				if (!hasColors && !hasSizes) return null;
+				return variants.find(v =>
+					(!hasColors || v.color === selected.color) &&
+					(!hasSizes || v.size === selected.size)
+				) || null;
+			}
+
+			function variantLabel(v) {
+				return [v.color, v.size].filter(Boolean).join(' / ');
+			}
+
+			function refreshUI() {
+				currentVariant = findVariant();
+				const requiresSelection = hasColors || hasSizes;
+				const ready = !requiresSelection || !!currentVariant;
+
+				variantIdInput.value = currentVariant ? currentVariant.id : '';
+
+				const msgEl = document.getElementById('gmsVariantMsg');
+				if (msgEl) msgEl.style.display = ready ? 'none' : (selected.color || selected.size ? '' : 'none');
+
+				const stockText = document.getElementById('gmsStockText');
+				const effectiveStock = currentVariant ? currentVariant.stock : Number(qtyInput.max || 0);
+				const outOfStock = requiresSelection && currentVariant ? effectiveStock <= 0 : {{ $outOfStock ? 'true' : 'false' }};
+				if (stockText && currentVariant) {
+					stockText.textContent = effectiveStock > 0 ? (effectiveStock + ' in stock') : 'Out of stock';
+					stockText.classList.toggle('out-of-stock', effectiveStock <= 0);
+					stockText.classList.toggle('in-stock', effectiveStock > 0);
+				}
+				if (currentVariant) {
+					qtyInput.max = Math.max(effectiveStock, 1);
+				}
+
+				addBtns.forEach(function (btn) {
+					btn.disabled = !ready || outOfStock;
+				});
+			}
+
+			document.querySelectorAll('.gms-variant-options').forEach(function (group) {
+				const attr = group.dataset.attr;
+				group.querySelectorAll('.gms-variant-option').forEach(function (opt) {
+					opt.addEventListener('click', function () {
+						selected[attr] = selected[attr] === opt.dataset.value ? null : opt.dataset.value;
+						group.querySelectorAll('.gms-variant-option').forEach(o =>
+							o.classList.toggle('is-selected', o.dataset.value === selected[attr])
+						);
+						refreshUI();
+					});
+				});
+			});
+
+			refreshUI();
 
 			form.querySelector('.minus')?.addEventListener('click', function () {
 				qtyInput.value = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
@@ -3112,11 +3226,16 @@
 			});
 
 			function addToCart(qty) {
+				const variantId = currentVariant ? currentVariant.id : null;
+				const price = currentVariant && currentVariant.price > 0 ? currentVariant.price : baseProductPrice;
+				const label = currentVariant ? variantLabel(currentVariant) : null;
+
 				let cart = JSON.parse(localStorage.getItem('gms_cart') || '[]');
-				const existing = cart.find(c => c.id === productId);
+				const existing = cart.find(c => c.id === productId && (c.variant_id || null) === variantId);
 				existing ? existing.qty += qty : cart.push({
-					id: productId, title: productName, img: productImg,
-					price: productPrice, qty: qty, url: productUrl,
+					id: productId, variant_id: variantId, variant_label: label,
+					title: productName, img: productImg,
+					price: price, qty: qty, url: productUrl,
 				});
 				localStorage.setItem('gms_cart', JSON.stringify(cart));
 				window.dispatchEvent(new Event('gms:cart-updated'));
@@ -3124,6 +3243,13 @@
 
 			form.addEventListener('submit', function (e) {
 				e.preventDefault();
+
+				if ((hasColors || hasSizes) && !currentVariant) {
+					const msgEl = document.getElementById('gmsVariantMsg');
+					if (msgEl) msgEl.style.display = '';
+					return;
+				}
+
 				const qty = parseInt(qtyInput.value, 10) || 1;
 				addToCart(qty);
 

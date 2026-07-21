@@ -1,0 +1,455 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - link "Skip to navigation" [ref=f2e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f2e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f2e5]:
+    - banner [ref=f2e6]:
+      - generic [ref=f2e10]:
+        - generic [ref=f2e11]:
+          - link "Site logo" [ref=f2e13] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - navigation "Main navigation" [ref=f2e14]:
+            - list [ref=f2e15]:
+              - listitem [ref=f2e16]:
+                - link "Sierra Moran" [ref=f2e17] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=sierra-moran
+              - listitem [ref=f2e19]:
+                - link "Malcolm Mcintosh" [ref=f2e20] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=malcolm-mcintosh
+              - listitem [ref=f2e22]:
+                - link "Easy Mart" [ref=f2e23] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=easy-mart
+              - listitem [ref=f2e25]:
+                - link "What is Lorem Ipsum?" [ref=f2e26] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=what-is-lorem-ipsum
+        - generic "Search" [ref=f2e29]:
+          - link "Search" [ref=f2e30] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=f2e31]:  
+        - generic [ref=f2e32]:
+          - link "" [ref=f2e34] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/login
+          - generic "My Wishlist" [ref=f2e36]:
+            - link " 2" [ref=f2e37] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/wishlist
+              - generic [ref=f2e38]:
+                - text: 
+                - generic [ref=f2e39]: "2"
+          - link " 0 ৳0.00" [ref=f2e41] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/cart
+            - generic [ref=f2e42]:
+              - generic [ref=f2e43]:
+                - text: 
+                - generic [ref=f2e44]: "0"
+              - generic [ref=f2e45]: ৳0.00
+        - text:  
+    - main [ref=f2e50]:
+      - generic [ref=f2e52]:
+        - generic [ref=f2e54]:
+          - navigation "Breadcrumb" [ref=f2e56]:
+            - link "Home" [ref=f2e57] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+            - generic [ref=f2e58]: /
+            - link "All Products" [ref=f2e59] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - generic [ref=f2e60]: /
+            - link "What is Lorem Ipsum?" [ref=f2e61] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?cat=what-is-lorem-ipsum
+            - generic [ref=f2e62]: /
+            - generic [ref=f2e63]: What is Lorem Ipsum? T-Shirt
+          - generic [ref=f2e65]:
+            - link " Back to products" [ref=f2e66] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+              - text: 
+              - generic: Back to products
+            - link "Next product" [ref=f2e68] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-hoodie-2
+              - text: 
+        - generic [ref=f2e69]:
+          - generic [ref=f2e72]:
+            - generic [ref=f2e74]:
+              - figure [ref=f2e75]:
+                - generic [ref=f2e76]:
+                  - figure [ref=f2e78]:
+                    - link "What is Lorem Ipsum? T-Shirt - Image 1":
+                      - /url: /storage/products/dummy/8-bit-hearts-cap-1-600x686.jpeg.webp
+                      - img "What is Lorem Ipsum? T-Shirt - Image 1"
+                  - generic:
+                    - figure:
+                      - link "What is Lorem Ipsum? T-Shirt - Image 2":
+                        - /url: /storage/products/dummy/8-bit-hearts-cap-2-600x686.jpeg.webp
+                        - img "What is Lorem Ipsum? T-Shirt - Image 2"
+                  - generic:
+                    - figure:
+                      - link "What is Lorem Ipsum? T-Shirt - Image 3":
+                        - /url: /storage/products/dummy/8-bit-hearts-cap-3-600x686.jpeg.webp
+                        - img "What is Lorem Ipsum? T-Shirt - Image 3"
+                  - generic:
+                    - figure:
+                      - link "What is Lorem Ipsum? T-Shirt - Image 4":
+                        - /url: /storage/products/dummy/8-bit-hearts-cap-600x686.jpeg.webp
+                        - img "What is Lorem Ipsum? T-Shirt - Image 4"
+              - generic:
+                - generic: 
+                - generic: 
+              - link " Click to enlarge" [ref=f2e81] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f2e82]: 
+                - generic: Click to enlarge
+            - generic [ref=f2e84]:
+              - generic [ref=f2e86]:
+                - img "What is Lorem Ipsum? T-Shirt - Image 1" [ref=f2e88] [cursor=pointer]
+                - img "What is Lorem Ipsum? T-Shirt - Image 2" [ref=f2e90] [cursor=pointer]
+                - img "What is Lorem Ipsum? T-Shirt - Image 3" [ref=f2e92] [cursor=pointer]
+                - img "What is Lorem Ipsum? T-Shirt - Image 4" [ref=f2e94] [cursor=pointer]
+              - generic:
+                - generic: 
+                - generic: 
+          - generic [ref=f2e95]:
+            - generic [ref=f2e96]:
+              - heading "What is Lorem Ipsum? T-Shirt" [level=1] [ref=f2e98]
+              - table "Product Details" [ref=f2e100]:
+                - rowgroup [ref=f2e101]:
+                  - row [ref=f2e102]:
+                    - cell [ref=f2e103]:
+                      - link "What is Lorem Ipsum?" [ref=f2e104] [cursor=pointer]:
+                        - /url: http://127.0.0.1:8000/category-products?cat=what-is-lorem-ipsum
+            - generic [ref=f2e106]:
+              - img "Rated 0 out of 5" [ref=f2e107]:
+                - text: 
+                - generic:
+                  - text:  Rated
+                  - strong [ref=f2e108]: "0.00"
+                  - text: out of 5 based on
+                  - generic:  0
+                  - text: customer ratings
+              - link "(0 customer reviews)" [ref=f2e109] [cursor=pointer]:
+                - /url: "#reviews"
+            - generic [ref=f2e110]:
+              - paragraph [ref=f2e112]: 280 in stock
+              - generic [ref=f2e113]: "SKU: DUM-TYRD6D"
+            - paragraph [ref=f2e118]: Official licensed product — premium materials and vibrant print.
+            - paragraph [ref=f2e120]:
+              - deletion [ref=f2e121]:
+                - generic [ref=f2e122]: ৳350.00
+              - insertion [ref=f2e123]:
+                - generic [ref=f2e124]: ৳298.00
+            - generic [ref=f2e125]:
+              - text: 
+              - generic [ref=f2e126]:
+                - generic [ref=f2e127]:
+                  - paragraph [ref=f2e128]: Color
+                  - generic [ref=f2e129]:
+                    - generic [ref=f2e130] [cursor=pointer]: Red
+                    - generic [ref=f2e131] [cursor=pointer]: Blue
+                - generic [ref=f2e132]:
+                  - paragraph [ref=f2e133]: Size
+                  - generic [ref=f2e134]:
+                    - generic [ref=f2e135] [cursor=pointer]: M
+                    - generic [ref=f2e136] [cursor=pointer]: L
+              - generic [ref=f2e137]:
+                - generic [ref=f2e138]:
+                  - button "Decrease quantity" [ref=f2e139] [cursor=pointer]: "-"
+                  - generic: What is Lorem Ipsum? T-Shirt quantity
+                  - spinbutton "Product quantity" [ref=f2e140]: "1"
+                  - button "Increase quantity" [ref=f2e141] [cursor=pointer]: +
+                - button "Add to cart" [disabled] [ref=f2e142]
+                - button "Buy now" [disabled] [ref=f2e143]
+            - generic [ref=f2e144]:
+              - link " Add to wishlist" [ref=f2e147] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/wishlist
+                - generic [ref=f2e148]:  
+                - generic [ref=f2e149]: Add to wishlist
+              - link " Size guide" [ref=f2e152] [cursor=pointer]:
+                - /url: "#wd_sizeguide"
+                - generic [ref=f2e153]: 
+                - generic [ref=f2e154]: Size guide
+            - table "Product Details" [ref=f2e156]:
+              - rowgroup [ref=f2e157]:
+                - row [ref=f2e158]:
+                  - rowheader "Color" [ref=f2e159]
+                  - cell "Red, Blue" [ref=f2e161]
+                - row [ref=f2e163]:
+                  - rowheader "Size" [ref=f2e164]
+                  - cell "M, L" [ref=f2e166]
+        - generic [ref=f2e169]:
+          - heading "Customer Reviews" [level=2] [ref=f2e170]
+          - generic [ref=f2e172]:
+            - generic [ref=f2e173]:
+              - heading "0 reviews for What is Lorem Ipsum? T-Shirt" [level=2] [ref=f2e176]
+              - paragraph [ref=f2e178]: Be the first to review “What is Lorem Ipsum? T-Shirt”.
+            - generic [ref=f2e181]:
+              - heading "Add a review" [level=3] [ref=f2e182]
+              - paragraph [ref=f2e183]:
+                - link "Log in" [ref=f2e184] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/login
+                - text: to leave a review for this product.
+        - generic [ref=f2e187]:
+          - heading "You may also like…" [level=2] [ref=f2e188]
+          - generic [ref=f2e189]:
+            - generic [ref=f2e191]:
+              - generic [ref=f2e194]:
+                - generic [ref=f2e195]:
+                  - link "What is Lorem Ipsum? Collector's Mug" [ref=f2e196] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-collectors-mug-8
+                    - img "What is Lorem Ipsum? Collector's Mug" [ref=f2e197]
+                  - generic [ref=f2e198]: New
+                  - generic:
+                    - img "What is Lorem Ipsum? Collector's Mug"
+                - generic [ref=f2e199]:
+                  - heading [level=3] [ref=f2e200]:
+                    - link "What is Lorem Ipsum? Collector's Mug" [ref=f2e201] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-collectors-mug-8
+                  - generic [ref=f2e202]: ৳380.00
+                  - generic [ref=f2e204]: In stock
+              - generic [ref=f2e207]:
+                - generic [ref=f2e208]:
+                  - link "What is Lorem Ipsum? Plush Toy" [ref=f2e209] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-plush-toy-7
+                    - img "What is Lorem Ipsum? Plush Toy" [ref=f2e210]
+                  - generic [ref=f2e211]: Sale New
+                  - generic:
+                    - img "What is Lorem Ipsum? Plush Toy"
+                - generic [ref=f2e212]:
+                  - heading [level=3] [ref=f2e213]:
+                    - link "What is Lorem Ipsum? Plush Toy" [ref=f2e214] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-plush-toy-7
+                  - generic [ref=f2e215]:
+                    - deletion [ref=f2e216]:
+                      - generic [ref=f2e217]: ৳950.00
+                    - insertion [ref=f2e218]:
+                      - generic [ref=f2e219]: ৳808.00
+                  - generic [ref=f2e220]: In stock
+              - generic [ref=f2e223]:
+                - generic [ref=f2e224]:
+                  - link "What is Lorem Ipsum? Sticker Pack" [ref=f2e225] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-sticker-pack-6
+                    - img "What is Lorem Ipsum? Sticker Pack" [ref=f2e226]
+                  - generic [ref=f2e227]: New
+                  - generic:
+                    - img "What is Lorem Ipsum? Sticker Pack"
+                - generic [ref=f2e228]:
+                  - heading [level=3] [ref=f2e229]:
+                    - link "What is Lorem Ipsum? Sticker Pack" [ref=f2e230] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-sticker-pack-6
+                  - generic [ref=f2e231]: ৳150.00
+                  - generic [ref=f2e233]: In stock
+              - generic [ref=f2e236]:
+                - generic [ref=f2e237]:
+                  - link "What is Lorem Ipsum? Vinyl Figure" [ref=f2e238] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-vinyl-figure-5
+                    - img "What is Lorem Ipsum? Vinyl Figure" [ref=f2e239]
+                  - generic [ref=f2e240]: New
+                  - generic:
+                    - img "What is Lorem Ipsum? Vinyl Figure"
+                - generic [ref=f2e241]:
+                  - heading [level=3] [ref=f2e242]:
+                    - link "What is Lorem Ipsum? Vinyl Figure" [ref=f2e243] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-vinyl-figure-5
+                  - generic [ref=f2e244]: ৳1,200.00
+                  - generic [ref=f2e246]: In stock
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f2e247]:
+          - heading "Subscribe and get 10% off your first purchase" [level=2] [ref=f2e249]
+          - paragraph [ref=f2e250]:
+            - text: Will be used in accordance with our
+            - link "Privacy Policy" [ref=f2e251] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f2e254]:
+            - textbox "Your email address" [ref=f2e256]
+            - button "Sign up" [ref=f2e258] [cursor=pointer]
+        - generic [ref=f2e259]:
+          - heading "Connect to our Instagram" [level=2] [ref=f2e260]
+          - paragraph [ref=f2e261]: Follow us on Instagram, keep up to date with new products and share your impressions
+          - link "@xtemos.studio" [ref=f2e262] [cursor=pointer]:
+            - /url: https://www.instagram.com/xtemos.studio/
+          - generic [ref=f2e265]:
+            - generic [ref=f2e266]:
+              - link "Instagram picture" [ref=f2e267] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  2785
+                - generic:  463
+            - generic [ref=f2e268]:
+              - link "Instagram picture" [ref=f2e269] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  6236
+                - generic:  669
+            - generic [ref=f2e270]:
+              - link "Instagram picture" [ref=f2e271] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  5180
+                - generic:  446
+            - generic [ref=f2e272]:
+              - link "Instagram picture" [ref=f2e273] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  6944
+                - generic:  899
+            - generic [ref=f2e274]:
+              - link "Instagram picture" [ref=f2e275] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  5694
+                - generic:  536
+            - generic [ref=f2e276]:
+              - link "Instagram picture" [ref=f2e277] [cursor=pointer]:
+                - /url: https://www.instagram.com/xtemos.studio/
+              - generic:
+                - generic:  6485
+                - generic:  790
+    - contentinfo [ref=f2e278]:
+      - generic [ref=f2e279]:
+        - generic [ref=f2e280]:
+          - generic [ref=f2e281]:
+            - link [ref=f2e283] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+            - paragraph [ref=f2e284]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f2e286]:
+            - heading "Company" [level=2] [ref=f2e288]
+            - list [ref=f2e291]:
+              - listitem [ref=f2e292]:
+                - list [ref=f2e293]:
+                  - listitem [ref=f2e294]:
+                    - link "About Us" [ref=f2e295] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/about
+                  - listitem [ref=f2e296]:
+                    - link "Contact Us" [ref=f2e297] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/contact
+                  - listitem [ref=f2e298]:
+                    - link "F.A.Q." [ref=f2e299] [cursor=pointer]:
+                      - /url: "#"
+          - generic [ref=f2e301]:
+            - heading "Info" [level=2] [ref=f2e303]
+            - list [ref=f2e306]:
+              - listitem [ref=f2e307]:
+                - list [ref=f2e308]:
+                  - listitem [ref=f2e309]:
+                    - link "Refund & Return Policy" [ref=f2e310] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/refund-policy
+                  - listitem [ref=f2e311]:
+                    - link "Terms & Conditions" [ref=f2e312] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/terms-conditions
+                  - listitem [ref=f2e313]:
+                    - link "Privacy Policy" [ref=f2e314] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/privacy-policy
+          - generic [ref=f2e316]:
+            - heading "Social Links" [level=2] [ref=f2e318]
+            - generic:
+              - generic:
+                - list
+        - paragraph [ref=f2e320]:
+          - link "Roventex" [ref=f2e321] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - text: © 2026
+          - link "Roventex" [ref=f2e322] [cursor=pointer]:
+            - /url: "#"
+          - text: .
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f2e323]:
+    - search [ref=f2e325]:
+      - textbox "Search" [ref=f2e326]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f2e327] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f2e328]:
+      - listitem [ref=f2e329]:
+        - link "navigation-menu-t-shirt Products" [ref=f2e330] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/all-products
+          - img "navigation-menu-t-shirt" [ref=f2e331]
+          - generic [ref=f2e332]: Products
+        - button "Toggle submenu" [ref=f2e333] [cursor=pointer]
+        - list [ref=f2e334]:
+          - listitem [ref=f2e335]:
+            - generic [ref=f2e336] [cursor=pointer]: 
+            - link "Back" [ref=f2e337] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f2e338]:
+            - link "Apparel" [ref=f2e339] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - button "Toggle submenu" [ref=f2e340] [cursor=pointer]
+            - list [ref=f2e341]:
+              - listitem [ref=f2e342]:
+                - generic [ref=f2e343] [cursor=pointer]: 
+                - link "Back" [ref=f2e344] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f2e345]:
+                - link "Hats" [ref=f2e346] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+              - listitem [ref=f2e347]:
+                - link "Sweatshirts" [ref=f2e348] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+              - listitem [ref=f2e349]:
+                - link "T-Shirts" [ref=f2e350] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+            - generic [ref=f2e351] [cursor=pointer]: 
+          - listitem [ref=f2e352]:
+            - link "Accessories & Arts" [ref=f2e353] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - button "Toggle submenu" [ref=f2e354] [cursor=pointer]
+            - list [ref=f2e355]:
+              - listitem [ref=f2e356]:
+                - generic [ref=f2e357] [cursor=pointer]: 
+                - link "Back" [ref=f2e358] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f2e359]:
+                - link "Pins" [ref=f2e360] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+              - listitem [ref=f2e361]:
+                - link "Posters" [ref=f2e362] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+              - listitem [ref=f2e363]:
+                - link "Stickers" [ref=f2e364] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+            - generic [ref=f2e365] [cursor=pointer]: 
+          - listitem [ref=f2e366]:
+            - link "Collectibles" [ref=f2e367] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - button "Toggle submenu" [ref=f2e368] [cursor=pointer]
+            - list [ref=f2e369]:
+              - listitem [ref=f2e370]:
+                - generic [ref=f2e371] [cursor=pointer]: 
+                - link "Back" [ref=f2e372] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f2e373]:
+                - link "Figures" [ref=f2e374] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+              - listitem [ref=f2e375]:
+                - link "Plushes" [ref=f2e376] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+            - generic [ref=f2e377] [cursor=pointer]: 
+        - generic [ref=f2e378] [cursor=pointer]: 
+      - listitem [ref=f2e379]:
+        - link "navigation-menu-movie About Us" [ref=f2e380] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/about
+          - img "navigation-menu-movie" [ref=f2e381]
+          - generic [ref=f2e382]: About Us
+      - listitem [ref=f2e383]:
+        - link "navigation-menu-d-pad Contact Us" [ref=f2e384] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/contact
+          - img "navigation-menu-d-pad" [ref=f2e385]
+          - generic [ref=f2e386]: Contact Us
+      - listitem [ref=f2e387]:
+        - link "navigation-menu-star F.A.Q." [ref=f2e388] [cursor=pointer]:
+          - /url: "#"
+          - img "navigation-menu-star" [ref=f2e389]
+          - generic [ref=f2e390]: F.A.Q.
+  - complementary "Shopping cart sidebar" [ref=f2e391]:
+    - generic [ref=f2e392]:
+      - generic [ref=f2e393]: Shopping cart
+      - link " Close" [ref=f2e395] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f2e396]: 
+        - generic [ref=f2e397]: Close
+  - text:    
+  - button "Contact us" [ref=f2e401] [cursor=pointer]

@@ -1,0 +1,214 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: Internal Server Error
+    - button "Copy as Markdown" [ref=e11] [cursor=pointer]
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - heading "ParseError" [level=1] [ref=e20]
+      - generic [ref=e21]: resources\views\Frontend\product-details.blade.php:3134
+      - paragraph [ref=e23]: Unclosed '[' on line 3134 does not match ')'
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: LARAVEL
+          - generic [ref=e28]: 12.58.0
+        - generic [ref=e29]:
+          - generic [ref=e30]: PHP
+          - generic [ref=e31]: 8.2.12
+      - generic [ref=e32]: UNHANDLED
+      - generic [ref=e36]: CODE 0
+    - generic [ref=e38]:
+      - generic [ref=e39]: "500"
+      - generic [ref=e43]: GET
+      - generic [ref=e47]: http://127.0.0.1:8000/product-details?slug=what-is-lorem-ipsum-t-shirt-1
+      - button [ref=e48] [cursor=pointer]
+  - generic [ref=e53]:
+    - generic [ref=e54]:
+      - heading "Exception trace" [level=3] [ref=e60]
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63] [cursor=pointer]:
+            - generic [ref=e66]:
+              - code [ref=e70]:
+                - generic [ref=e71]: "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()"
+              - generic [ref=e72]: resources\views\Frontend\product-details.blade.php:3134
+            - button [ref=e75]
+          - code [ref=e84]:
+            - generic [ref=e85]: 3129 </main>
+            - generic [ref=e86]: "3130"
+            - generic [ref=e87]: 3131 </div>
+            - generic [ref=e88]: "3132"
+            - generic [ref=e89]: 3133 <script>
+            - generic [ref=e90]: 3134 window.NF_PRODUCT_VARIANTS = @json($product->variants->map(fn ($v) => [
+            - generic [ref=e91]: 3135 'id' => $v->id,
+            - generic [ref=e92]: 3136 'color' => $v->color,
+            - generic [ref=e93]: 3137 'size' => $v->size,
+            - generic [ref=e94]: 3138 'price' => (float) $v->price,
+            - generic [ref=e95]: 3139 'stock' => (int) $v->stock,
+            - generic [ref=e96]: 3140 ]));
+            - generic [ref=e97]: "3141"
+            - generic [ref=e98]: "3142 (function () {"
+            - generic [ref=e99]: 3143 const form = document.querySelector('form.cart[data-product-id]');
+            - generic [ref=e100]: 3144 if (!form) return;
+            - generic [ref=e101]: "3145"
+            - generic [ref=e102]: "3146"
+        - generic [ref=e104] [cursor=pointer]:
+          - generic [ref=e109]: 12 vendor frames
+          - button [ref=e110]
+        - generic [ref=e116] [cursor=pointer]:
+          - generic [ref=e119]:
+            - code [ref=e123]:
+              - generic [ref=e124]: "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(object(Illuminate\\Http\\Request))"
+            - generic [ref=e125]: app\Http\Middleware\TrackVisitor.php:48
+          - button [ref=e128]
+        - generic [ref=e134] [cursor=pointer]:
+          - generic [ref=e139]: 43 vendor frames
+          - button [ref=e140]
+        - generic [ref=e146] [cursor=pointer]:
+          - generic [ref=e149]:
+            - code [ref=e153]:
+              - generic [ref=e154]: Illuminate\Foundation\Application->handleRequest(object(Illuminate\Http\Request))
+            - generic [ref=e155]: public\index.php:20
+          - button [ref=e158]
+        - generic [ref=e164] [cursor=pointer]:
+          - generic [ref=e169]: 1 vendor frame
+          - button [ref=e170]
+    - generic [ref=e175]:
+      - generic [ref=e176]:
+        - heading "Queries" [level=3] [ref=e181]
+        - generic [ref=e182]: 1-10 of 12
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - generic [ref=e187]: mysql
+            - code [ref=e194]:
+              - generic [ref=e195]: "select exists (select 1 from information_schema.tables where table_schema = schema() and table_name = 'site_settings' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`"
+          - generic [ref=e196]: 5ms
+        - generic [ref=e197]:
+          - generic [ref=e198]:
+            - generic [ref=e199]: mysql
+            - code [ref=e206]:
+              - generic [ref=e207]: "select `value`, `key` from `site_settings`"
+          - generic [ref=e208]: 1.05ms
+        - generic [ref=e209]:
+          - generic [ref=e210]:
+            - generic [ref=e211]: mysql
+            - code [ref=e218]:
+              - generic [ref=e219]: "select * from `sessions` where `id` = 'V4WedCxiJhQGucNNKvQiapUDXzLvBva1DcQ0OcE5' limit 1"
+          - generic [ref=e220]: 1.15ms
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - generic [ref=e223]: mysql
+            - code [ref=e230]:
+              - generic [ref=e231]: "insert into `visitor_sessions` (`session_id`, `ip_address`, `last_seen_at`) values ('V4WedCxiJhQGucNNKvQiapUDXzLvBva1DcQ0OcE5', '127.0.0.1', '2026-07-21 14:51:23') on duplicate key update `ip_address` = values(`ip_address`), `last_seen_at` = values(`last_seen_at`)"
+          - generic [ref=e232]: 2.02ms
+        - generic [ref=e233]:
+          - generic [ref=e234]:
+            - generic [ref=e235]: mysql
+            - code [ref=e242]:
+              - generic [ref=e243]: "insert ignore into `visitor_logs` (`session_id`, `ip_address`, `visited_date`) values ('V4WedCxiJhQGucNNKvQiapUDXzLvBva1DcQ0OcE5', '127.0.0.1', '2026-07-21')"
+          - generic [ref=e244]: 1.44ms
+        - generic [ref=e245]:
+          - generic [ref=e246]:
+            - generic [ref=e247]: mysql
+            - code [ref=e254]:
+              - generic [ref=e255]: "select * from `products` where `publish_status` = 'published' and `slug` = 'what-is-lorem-ipsum-t-shirt-1' limit 1"
+          - generic [ref=e256]: 5.42ms
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - generic [ref=e259]: mysql
+            - code [ref=e266]:
+              - generic [ref=e267]: "select `id`, `name`, `slug` from `categories` where `categories`.`id` in (1)"
+          - generic [ref=e268]: 1.46ms
+        - generic [ref=e269]:
+          - generic [ref=e270]:
+            - generic [ref=e271]: mysql
+            - code [ref=e278]:
+              - generic [ref=e279]: "select * from `product_variants` where `product_variants`.`product_id` in (1) order by `sort_order` asc"
+          - generic [ref=e280]: 1.33ms
+        - generic [ref=e281]:
+          - generic [ref=e282]:
+            - generic [ref=e283]: mysql
+            - code [ref=e290]:
+              - generic [ref=e291]: "select * from `products` where `publish_status` = 'published' and `id` != 1 and `category_id` = 1 order by `id` desc limit 4"
+          - generic [ref=e292]: 1.38ms
+        - generic [ref=e293]:
+          - generic [ref=e294]:
+            - generic [ref=e295]: mysql
+            - code [ref=e302]:
+              - generic [ref=e303]: "select * from `product_reviews` where `status` = 'approved' and `product_id` = 1 order by `created_at` desc"
+          - generic [ref=e304]: 1.2ms
+      - generic [ref=e305]:
+        - button [disabled] [ref=e306]
+        - button [disabled] [ref=e310]
+        - button "1" [ref=e314] [cursor=pointer]
+        - button "2" [ref=e316] [cursor=pointer]
+        - button [ref=e317] [cursor=pointer]
+        - button [ref=e320] [cursor=pointer]
+  - generic [ref=e325]:
+    - generic [ref=e326]:
+      - heading "Headers" [level=2] [ref=e327]
+      - generic [ref=e328]:
+        - generic [ref=e329]:
+          - generic [ref=e330]: host
+          - generic [ref=e332]: 127.0.0.1:8000
+        - generic [ref=e333]:
+          - generic [ref=e334]: connection
+          - generic [ref=e336]: keep-alive
+        - generic [ref=e337]:
+          - generic [ref=e338]: sec-ch-ua
+          - generic [ref=e340]: "\"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"150\", \"Google Chrome\";v=\"150\""
+        - generic [ref=e341]:
+          - generic [ref=e342]: sec-ch-ua-mobile
+          - generic [ref=e344]: "?0"
+        - generic [ref=e345]:
+          - generic [ref=e346]: sec-ch-ua-platform
+          - generic [ref=e348]: "\"Windows\""
+        - generic [ref=e349]:
+          - generic [ref=e350]: upgrade-insecure-requests
+          - generic [ref=e352]: "1"
+        - generic [ref=e353]:
+          - generic [ref=e354]: user-agent
+          - generic [ref=e356]: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36
+        - generic [ref=e357]:
+          - generic [ref=e358]: accept
+          - generic [ref=e360]: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+        - generic [ref=e361]:
+          - generic [ref=e362]: sec-fetch-site
+          - generic [ref=e364]: none
+        - generic [ref=e365]:
+          - generic [ref=e366]: sec-fetch-mode
+          - generic [ref=e368]: navigate
+        - generic [ref=e369]:
+          - generic [ref=e370]: sec-fetch-user
+          - generic [ref=e372]: "?1"
+        - generic [ref=e373]:
+          - generic [ref=e374]: sec-fetch-dest
+          - generic [ref=e376]: document
+        - generic [ref=e377]:
+          - generic [ref=e378]: accept-encoding
+          - generic [ref=e380]: gzip, deflate, br, zstd
+        - generic [ref=e381]:
+          - generic [ref=e382]: accept-language
+          - generic [ref=e384]: en-US,en;q=0.9
+    - generic [ref=e385]:
+      - heading "Body" [level=2] [ref=e386]
+      - code [ref=e391]:
+        - generic [ref=e392]: "{"
+        - generic [ref=e393]: "\"slug\": \"what-is-lorem-ipsum-t-shirt-1\""
+        - generic [ref=e394]: "}"
+    - generic [ref=e395]:
+      - heading "Routing" [level=2] [ref=e396]
+      - generic [ref=e397]:
+        - generic [ref=e398]:
+          - generic [ref=e399]: controller
+          - generic [ref=e401]: App\Http\Controllers\Frontend\HomePageController@productDetails
+        - generic [ref=e402]:
+          - generic [ref=e403]: route name
+          - generic [ref=e405]: product-details
+        - generic [ref=e406]:
+          - generic [ref=e407]: middleware
+          - generic [ref=e409]: web
+    - generic [ref=e410]:
+      - heading "Routing parameters" [level=2] [ref=e411]
+      - generic [ref=e412]: // No routing parameters

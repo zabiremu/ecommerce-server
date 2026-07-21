@@ -2878,10 +2878,21 @@ window.NF_COUPONS  = @json($coupons);
         return (window.NF_PRODUCTS || []).find(p => p.id === id);
     }
 
+    function findVariant(product, variantId) {
+        if (!product || !variantId) return null;
+        return (product.variants || []).find(v => v.id === variantId) || null;
+    }
+
+    function linePrice(item) {
+        const p = findProduct(item.id);
+        if (!p) return 0;
+        const v = findVariant(p, item.variant_id);
+        return (v && v.price > 0) ? v.price : p.cur;
+    }
+
     function computeSubtotal(cart) {
         return cart.reduce(function (sum, item) {
-            const p = findProduct(item.id);
-            return p ? sum + p.cur * item.qty : sum;
+            return sum + linePrice(item) * item.qty;
         }, 0);
     }
 
@@ -2913,8 +2924,9 @@ window.NF_COUPONS  = @json($coupons);
         const itemsEl = document.getElementById('gmsOrderItems');
         itemsEl.innerHTML = cart.map(function (item) {
             const p = findProduct(item.id);
-            const lineTotal = p.cur * item.qty;
-            return '<tr><td class="product-name">' + p.title + '&nbsp;<strong class="product-quantity">&times;&nbsp;' + item.qty + '</strong></td>' +
+            const lineTotal = linePrice(item) * item.qty;
+            const variantRow = item.variant_label ? '<br><small style="color:#64748b">' + item.variant_label + '</small>' : '';
+            return '<tr><td class="product-name">' + p.title + variantRow + '&nbsp;<strong class="product-quantity">&times;&nbsp;' + item.qty + '</strong></td>' +
                 '<td class="product-total"><span class="woocommerce-Price-amount amount">' + window.formatPrice(lineTotal) + '</span></td></tr>';
         }).join('');
 
@@ -2992,7 +3004,7 @@ window.NF_COUPONS  = @json($coupons);
                 payment_method:   (document.querySelector('input[name="payment_method"]:checked') || {}).value || 'cod',
                 notes:            document.getElementById('notes').value.trim(),
                 coupon_code:      appliedCoupon ? appliedCoupon.code : null,
-                items:            cart.map(function (c) { return { id: c.id, qty: c.qty, variant_id: null }; }),
+                items:            cart.map(function (c) { return { id: c.id, qty: c.qty, variant_id: c.variant_id || null }; }),
             };
 
             const btn = document.getElementById('gmsPlaceOrder');

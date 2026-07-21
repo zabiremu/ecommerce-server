@@ -2736,6 +2736,18 @@ window.NF_COUPONS  = @json($coupons);
         return (window.NF_PRODUCTS || []).find(p => p.id === id);
     }
 
+    function findVariant(product, variantId) {
+        if (!product || !variantId) return null;
+        return (product.variants || []).find(v => v.id === variantId) || null;
+    }
+
+    function linePrice(item) {
+        const p = findProduct(item.id);
+        if (!p) return 0;
+        const v = findVariant(p, item.variant_id);
+        return (v && v.price > 0) ? v.price : p.cur;
+    }
+
     function syncCart(cart) {
         fetch('{{ route('cart.sync') }}', {
             method: 'POST',
@@ -2744,14 +2756,13 @@ window.NF_COUPONS  = @json($coupons);
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ items: cart.map(c => ({ id: c.id, qty: c.qty, variant_id: null })) })
+            body: JSON.stringify({ items: cart.map(c => ({ id: c.id, qty: c.qty, variant_id: c.variant_id || null })) })
         }).catch(function () {});
     }
 
     function computeSubtotal(cart) {
         return cart.reduce(function (sum, item) {
-            const p = findProduct(item.id);
-            return p ? sum + p.cur * item.qty : sum;
+            return sum + linePrice(item) * item.qty;
         }, 0);
     }
 
@@ -2808,16 +2819,21 @@ window.NF_COUPONS  = @json($coupons);
         const tbody = document.getElementById('gmsCartBody');
         tbody.innerHTML = cart.map(function (item) {
             const p = findProduct(item.id);
-            const lineTotal = p.cur * item.qty;
+            const vid = item.variant_id || null;
+            const price = linePrice(item);
+            const lineTotal = price * item.qty;
+            const variantRow = item.variant_label
+                ? '<br><small style="color:#64748b">' + item.variant_label + '</small>'
+                : '';
             return '<tr class="woocommerce-cart-form__cart-item cart_item" data-id="' + p.id + '">' +
-                '<td class="product-remove"><a href="#" class="remove" aria-label="Remove ' + p.title + ' from cart" onclick="gmsCartRemove(event,' + p.id + ')">&times;</a></td>' +
+                '<td class="product-remove"><a href="#" class="remove" aria-label="Remove ' + p.title + ' from cart" onclick="gmsCartRemove(event,' + p.id + ',' + (vid ?? 'null') + ')">&times;</a></td>' +
                 '<td class="product-thumbnail"><a href="' + p.url + '"><img width="120" height="137" src="' + (p.img || '') + '" alt="' + p.title + '" loading="lazy" /></a></td>' +
-                '<td class="product-name" data-title="Product"><a href="' + p.url + '">' + p.title + '</a></td>' +
-                '<td class="product-price" data-title="Price"><span class="woocommerce-Price-amount amount">' + window.formatPrice(p.cur) + '</span></td>' +
+                '<td class="product-name" data-title="Product"><a href="' + p.url + '">' + p.title + '</a>' + variantRow + '</td>' +
+                '<td class="product-price" data-title="Price"><span class="woocommerce-Price-amount amount">' + window.formatPrice(price) + '</span></td>' +
                 '<td class="product-quantity" data-title="Quantity"><div class="quantity">' +
-                    '<input type="button" value="-" class="minus btn" aria-label="Decrease quantity" onclick="gmsCartQty(' + p.id + ',-1)" />' +
-                    '<input type="number" class="input-text qty text" value="' + item.qty + '" min="1" aria-label="Product quantity" onchange="gmsCartSetQty(' + p.id + ',this.value)" />' +
-                    '<input type="button" value="+" class="plus btn" aria-label="Increase quantity" onclick="gmsCartQty(' + p.id + ',1)" />' +
+                    '<input type="button" value="-" class="minus btn" aria-label="Decrease quantity" onclick="gmsCartQty(' + p.id + ',' + (vid ?? 'null') + ',-1)" />' +
+                    '<input type="number" class="input-text qty text" value="' + item.qty + '" min="1" aria-label="Product quantity" onchange="gmsCartSetQty(' + p.id + ',' + (vid ?? 'null') + ',this.value)" />' +
+                    '<input type="button" value="+" class="plus btn" aria-label="Increase quantity" onclick="gmsCartQty(' + p.id + ',' + (vid ?? 'null') + ',1)" />' +
                 '</div></td>' +
                 '<td class="product-subtotal" data-title="Subtotal"><span class="woocommerce-Price-amount amount">' + window.formatPrice(lineTotal) + '</span></td>' +
                 '</tr>';
@@ -2827,24 +2843,28 @@ window.NF_COUPONS  = @json($coupons);
         syncCart(cart);
     }
 
-    window.gmsCartRemove = function (e, id) {
+    function sameLine(c, id, variantId) {
+        return c.id === id && (c.variant_id || null) === (variantId || null);
+    }
+
+    window.gmsCartRemove = function (e, id, variantId) {
         e.preventDefault();
-        setCart(getCart().filter(function (c) { return c.id !== id; }));
+        setCart(getCart().filter(function (c) { return !sameLine(c, id, variantId); }));
         render();
     };
 
-    window.gmsCartQty = function (id, delta) {
+    window.gmsCartQty = function (id, variantId, delta) {
         const cart = getCart();
-        const item = cart.find(function (c) { return c.id === id; });
+        const item = cart.find(function (c) { return sameLine(c, id, variantId); });
         if (!item) return;
         item.qty = Math.max(1, (parseInt(item.qty, 10) || 1) + delta);
         setCart(cart);
         render();
     };
 
-    window.gmsCartSetQty = function (id, value) {
+    window.gmsCartSetQty = function (id, variantId, value) {
         const cart = getCart();
-        const item = cart.find(function (c) { return c.id === id; });
+        const item = cart.find(function (c) { return sameLine(c, id, variantId); });
         if (!item) return;
         item.qty = Math.max(1, parseInt(value, 10) || 1);
         setCart(cart);

@@ -139,7 +139,7 @@ class HomePageController extends Controller
     protected function publishedProductsForJs()
     {
         return Product::published()
-            ->with('category:id,slug', 'brand:id,slug')
+            ->with('category:id,slug', 'brand:id,slug', 'variants')
             ->orderByDesc('id')
             ->get()
             ->map(function (Product $p) {
@@ -155,6 +155,15 @@ class HomePageController extends Controller
                     'cat'   => $p->category?->slug ?? '',
                     'brand' => $p->brand?->slug ?? '',
                     'url'   => route('product-details') . '?slug=' . $p->slug,
+                    'variants' => $p->variants->map(fn ($v) => [
+                        'id'    => $v->id,
+                        'color' => $v->color,
+                        'size'  => $v->size,
+                        'label' => trim(implode(' / ', array_filter([$v->color, $v->size])) ?: $v->name),
+                        'price' => (float) $v->price,
+                        'stock' => (int) $v->stock,
+                        'sku'   => $v->sku,
+                    ])->values(),
                 ];
             });
     }
