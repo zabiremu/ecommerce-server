@@ -1783,363 +1783,108 @@
     </style>
 @endpush
 @section('content')
-    <div class="wd-page-content main-page-wrapper">
+<div class="wd-page-wrapper">
+    <div class="container" style="padding-top:24px;padding-bottom:60px;">
 
+        <div class="wd-breadcrumbs" style="margin-bottom:20px;font-size:13px;">
+            <a href="{{ route('home') }}">Home</a>
+            <span> / </span>
+            <span>Wishlist</span>
+        </div>
 
-        <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main">
-            <div class="wd-content-area site-content">
-                <div class="woocommerce entry-content">
-                    <link rel="stylesheet" id="wd-mod-nav-vertical-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-nav-vertical.css" type="text/css"
-                        media="all" />
-                    <link rel="stylesheet" id="wd-mod-nav-vertical-design-simple-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/mod-nav-vertical-design-simple.css"
-                        type="text/css" media="all" />
-                    <style id="wd-style-blocks-1026-inline-css" data-type="wd-style-blocks-1026">
-                        #wd-8a5cc588 {
-                            margin-top: -40px;
-                            margin-bottom: 40px;
-                        }
+        <h1 style="margin-bottom:20px;">My Wishlist</h1>
 
-                        #wd-db34d310 {
-                            padding: 25px 30px 25px 30px;
-                            background-color: #f5f5f5;
-                            border-radius: 16px;
-                            align-self: start;
-                        }
+        <div id="wl-empty" style="display:none;padding:40px 0;text-align:center;color:#777;">
+            <p>Your wishlist is empty.</p>
+            <a href="{{ route('all-products') }}" class="button alt"
+                style="display:inline-block;margin-top:10px;padding:10px 24px;background:#e5533d;color:#fff;border-radius:6px;text-decoration:none;">
+                Browse products
+            </a>
+        </div>
 
-                        @media (min-width: 769px) {
-                            #wd-db34d310 {
-                                flex: 0 1 calc(25% - var(--wd-col-gap) * 1 / 2);
-                            }
+        <div id="wl-loading" style="padding:40px 0;text-align:center;color:#777;">Loading your wishlist…</div>
 
-                            #wd-78bc329a {
-                                flex: 0 1 calc(75% - var(--wd-col-gap) * 1 / 2);
-                            }
-                        }
-
-                        @media (min-width: 769px) and (max-width: 1024px) {
-                            #wd-db34d310 {
-                                flex: 0 1 calc(35% - var(--wd-col-gap) * 1 / 2);
-                            }
-
-                            #wd-78bc329a {
-                                flex: 0 1 calc(65% - var(--wd-col-gap) * 1 / 2);
-                            }
-                        }
-
-                        @media (max-width: 768.98px) {
-                            #wd-db34d310 {
-                                padding: 15px 30px 15px 30px;
-                                border-width: 0px;
-                            }
-
-                            #wd-e3644b91 {
-                                --wd-col-gap: 20px;
-                            }
-                        }
-                    </style>
-                    <link rel="stylesheet" id="wd-el-page-title-builder-css"
-                        href="merchandise/wp-content/themes/woodmart/css/parts/el-page-title-builder.css" type="text/css"
-                        media="all" />
-                    <div id="wd-8a5cc588" class="wd-page-title-el wd-8a5cc588 wd-stretched">
-                        <link rel="stylesheet" id="wd-page-title-css"
-                            href="merchandise/wp-content/themes/woodmart/css/parts/page-title.css" type="text/css"
-                            media="all" />
-                        <div class="wd-page-title page-title  page-title-default title-size-small title-design-centered color-scheme-default"
-                            style="">
-                            <div class="wd-page-title-bg wd-fill">
-                            </div>
-                            <div class="container">
-                                <h1 class="entry-title title">
-                                    Wishlist </h1>
-
-
-                                <nav class="wd-breadcrumbs"><a href="{{ route('home') }}">Home</a><span
-                                        class="wd-delimiter">/</span><span class="wd-last">Wishlist</span></nav>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div id="wd-e3644b91" class="wp-block-wd-row">
-                        @auth
-                        <div id="wd-db34d310" class="wp-block-wd-column wd-align-s-start">
-                            <div id="wd-6aee5deb" class="wd-el-my-acc-nav wd-6aee5deb">
-
-                                <nav class="woocommerce-MyAccount-navigation" aria-label="Account pages">
-                                    <ul
-                                        class="wd-nav-my-acc wd-nav wd-nav-vertical wd-design-simple wd-gap-m wd-icon-left">
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard wd-my-acc-dashboard">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Dashboard </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders wd-my-acc-orders">
-                                            <a href="{{ Auth::guard('web')->check() ? route('dashboard').'#orders' : route('login') }}">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Orders </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist is-active wd-my-acc-wishlist wd-active">
-                                            <a href="{{ route('wishlist') }}" aria-current="page">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Wishlist </span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout wd-my-acc-customer-logout">
-                                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <span class="wd-nav-icon"></span>
-                                                <span class="nav-link-text">
-                                                    Logout </span>
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
-                                        </li>
-                                    </ul>
-                                </nav>
-
-                            </div>
-                        </div>
-                        @endauth
-                        <div id="wd-78bc329a" class="wp-block-wd-column">
-                            <div id="wd-9020d6b2" class="wd-el-my-acc-content wd-9020d6b2 woocommerce-MyAccount-content">
-                                <div class="wd-wishlist-content">
-                                    <link rel="stylesheet" id="wd-page-wishlist-bulk-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-page-wishlist-bulk.css"
-                                        type="text/css" media="all" />
-                                    <div class="wd-wishlist-head">
-                                        <h4 class="title">
-                                            Your products wishlist </h4>
-
-                                        <div
-                                            class=" wd-social-icons wd-style-default wd-size-small social-share wd-shape-circle wd-layout-inline text-center">
-                                            <link rel="stylesheet" id="wd-social-icons-css"
-                                                href="merchandise/wp-content/themes/woodmart/css/parts/el-social-icons.css"
-                                                type="text/css" media="all" />
-                                            <span class="wd-label share-title">Share: </span>
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('wishlist')) }}"
-                                                target="_blank" class=" wd-social-icon social-facebook"
-                                                aria-label="Facebook social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://x.com/share?url={{ urlencode(route('wishlist')) }}" target="_blank"
-                                                class=" wd-social-icon social-twitter" aria-label="X social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-
-
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://pinterest.com/pin/create/button/?url={{ urlencode(route('wishlist')) }}"
-                                                target="_blank" class=" wd-social-icon social-pinterest"
-                                                aria-label="Pinterest social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://www.linkedin.com/shareArticle?mini=true&#038;url={{ urlencode(route('wishlist')) }}"
-                                                target="_blank" class=" wd-social-icon social-linkedin"
-                                                aria-label="Linkedin social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                            <a rel="noopener noreferrer nofollow"
-                                                href="https://telegram.me/share/url?url={{ urlencode(route('wishlist')) }}" target="_blank"
-                                                class=" wd-social-icon social-tg" aria-label="Telegram social link">
-                                                <span class="wd-icon"></span>
-                                            </a>
-
-
-                                        </div>
-
-                                    </div>
-                                    <div id="gmsWishlistBulkAction" class="wd-wishlist-bulk-action" style="display:none;">
-                                        <div class="wd-wishlist-remove-action wd-action-btn wd-style-text wd-cross-icon">
-                                            <a href="#" onclick="gmsClearWishlist(event)">
-                                                <span class="wd-action-icon"></span>
-                                                <span class="wd-action-text">
-                                                    Clear wishlist </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <link rel="stylesheet" id="wd-woo-opt-title-limit-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-opt-stretch-cont-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-opt-stretch-cont-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-stretch-cont-predefined.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-bordered-product-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-bordered-product-predefined-css"
-                                        href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-bordered-product-predefined.css"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-product-loop-css"
-                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop.css') }}"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-loop-prod-el-base-css"
-                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-el-base.css') }}"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-loop-prod-predefined-css"
-                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-loop-prod-predefined.css') }}"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-product-loop-quick-css"
-                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.css') }}"
-                                        type="text/css" media="all" />
-                                    <link rel="stylesheet" id="wd-woo-mod-loop-prod-add-btn-replace-css"
-                                        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-mod-loop-prod-add-btn-replace.css') }}"
-                                        type="text/css" media="all" />
-                                    <div class="wd-products-element">
-
-                                        <div id="gmsWishlistEmpty" class="wd-empty-wishlist" style="display:none;padding:60px 20px;text-align:center;">
-                                            <i class="fas fa-heart" style="font-size:48px;color:var(--gms-line,#ececec);margin-bottom:16px;display:block;"></i>
-                                            <h3 style="margin-bottom:8px;">Your wishlist is empty</h3>
-                                            <p style="margin-bottom:20px;color:#777;">Save products you love by clicking the wishlist icon on any product.</p>
-                                            <a href="{{ route('all-products') }}" class="button btn btn-accent">Continue shopping</a>
-                                        </div>
-
-                                        <div id="gmsWishlistGrid" class="products wd-products grid-columns-3 elements-grid wd-grid-g wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                                            style="--wd-col-lg:3;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
+        <div id="wl-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;"></div>
     </div>
+</div>
 
 <script>
-window.NF_PRODUCTS = @json($products);
+document.addEventListener('DOMContentLoaded', function () {
+    var ids = ShopCart.getWishlist();
+    var loading = document.getElementById('wl-loading');
+    var empty = document.getElementById('wl-empty');
+    var grid = document.getElementById('wl-grid');
 
-(function () {
-    function getWishlist() {
-        let wl = [];
-        try { wl = JSON.parse(localStorage.getItem('gms_wishlist') || '[]'); } catch (e) { wl = []; }
-        return Array.isArray(wl) ? wl : [];
+    function money(n) {
+        return '৳' + Number(n).toFixed(2);
     }
 
-    function findProduct(id) {
-        return (window.NF_PRODUCTS || []).find(p => p.id === id);
-    }
+    function render(products) {
+        loading.style.display = 'none';
 
-    function buildCard(p) {
-        const hasSale = p.old && p.old > p.cur;
-        const img = p.img || '{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}';
-        const priceHtml = hasSale
-            ? `<span class="price"><del><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.old)}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></ins></span>`
-            : `<span class="price"><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></span>`;
-        const saleLabel = hasSale ? `<span class="product-label onsale">Sale</span>` : '';
-        return `
-<div class="wd-product wd-col wd-hover-quick product-grid-item product type-product status-publish instock has-post-thumbnail purchasable product-type-simple" data-id="${p.id}">
-  <div class="wd-product-wrapper product-wrapper">
-    <div class="wd-product-thumb product-element-top wd-quick-shop">
-      ${saleLabel}
-      <a href="${p.url}" class="wd-product-img-link product-image-link" tabindex="-1" aria-label="${p.title}">
-        <img src="${img}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="${p.title}" loading="lazy" style="width:100%;aspect-ratio:430/492;object-fit:cover;"/>
-      </a>
-      <div class="wd-buttons wd-pos-r-t">
-        <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-          <a href="#" rel="nofollow" data-product-id="${p.id}" onclick="nfWishlistClick(event,${p.id})">
-            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-            <span class="wd-action-text">Remove from wishlist</span>
-          </a>
-        </div>
-      </div>
-      <div class="wd-add-btn wd-add-btn-replace">
-        <a href="#" class="button product_type_simple add_to_cart_button add-to-cart-loop" onclick="addToCart(event,${p.id})" role="button">
-          <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-          <span class="wd-action-text">Add to cart</span>
-        </a>
-      </div>
-    </div>
-    <div class="product-element-bottom">
-      <h3 class="wd-entities-title"><a href="${p.url}">${p.title}</a></h3>
-      ${priceHtml}
-    </div>
-  </div>
-</div>`;
-    }
-
-    function addToCart(e, id) {
-        e.preventDefault();
-        if (typeof window.nfAddToCart === 'function') { window.nfAddToCart(id); return; }
-        const p = findProduct(id);
-        if (!p) return;
-        let cart = JSON.parse(localStorage.getItem('gms_cart') || '[]');
-        const ex = cart.find(c => c.id === id);
-        ex ? ex.qty++ : cart.push({ id, title: p.title, img: p.img, price: p.cur, qty: 1, url: p.url });
-        localStorage.setItem('gms_cart', JSON.stringify(cart));
-        window.dispatchEvent(new Event('gms:cart-updated'));
-    }
-    window.addToCart = addToCart;
-
-    window.gmsClearWishlist = function (e) {
-        e.preventDefault();
-        getWishlist().slice().forEach(id => window.nfRemoveFromWishlist(id));
-    };
-
-    function render() {
-        const ids = getWishlist();
-        const products = ids.map(findProduct).filter(Boolean);
-
-        const gridEl = document.getElementById('gmsWishlistGrid');
-        const emptyEl = document.getElementById('gmsWishlistEmpty');
-        const bulkEl = document.getElementById('gmsWishlistBulkAction');
-
-        if (products.length === 0) {
-            gridEl.style.display = 'none';
-            emptyEl.style.display = '';
-            bulkEl.style.display = 'none';
-            gridEl.innerHTML = '';
+        if (!products.length) {
+            empty.style.display = 'block';
             return;
         }
 
-        gridEl.style.display = '';
-        emptyEl.style.display = 'none';
-        bulkEl.style.display = '';
-        gridEl.innerHTML = products.map(buildCard).join('');
+        grid.style.display = 'grid';
+        grid.innerHTML = products.map(function (p) {
+            var priceHtml = p.old_price
+                ? '<del><span class="woocommerce-Price-amount amount">' + money(p.old_price) + '</span></del> ' +
+                  '<ins><span class="woocommerce-Price-amount amount">' + money(p.price) + '</span></ins>'
+                : '<span class="woocommerce-Price-amount amount">' + money(p.price) + '</span>';
+
+            return (
+                '<div class="wd-product wd-hover-quick product-grid-item" data-id="' + p.id + '">' +
+                    '<a href="' + p.url + '"><img src="' + (p.image || '') + '" alt="' + p.name + '" ' +
+                        'style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px;"></a>' +
+                    '<h3 class="wd-entities-title" style="font-size:14px;margin:8px 0 4px;"><a href="' + p.url + '">' + p.name + '</a></h3>' +
+                    '<span class="price">' + priceHtml + '</span>' +
+                    '<div style="display:flex;gap:8px;margin-top:8px;">' +
+                        '<button type="button" class="button add_to_cart_button wl-add-cart" data-id="' + p.id + '" ' +
+                            (p.stock <= 0 && p.type === 'physical' ? 'disabled' : '') +
+                            ' style="flex:1;padding:8px;background:#e5533d;color:#fff;border:none;border-radius:6px;cursor:pointer;">' +
+                            (p.stock <= 0 && p.type === 'physical' ? 'Out of stock' : 'Add to cart') +
+                        '</button>' +
+                        '<button type="button" class="wl-remove" data-id="' + p.id + '" ' +
+                            'style="padding:8px 12px;background:#f5f5f5;border:none;border-radius:6px;cursor:pointer;" ' +
+                            'aria-label="Remove from wishlist">&times;</button>' +
+                    '</div>' +
+                '</div>'
+            );
+        }).join('');
+
+        grid.querySelectorAll('.wl-add-cart').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = parseInt(btn.getAttribute('data-id'), 10);
+                ShopCart.addToCart(id, 1, null);
+                var original = btn.textContent;
+                btn.textContent = 'Added ✓';
+                setTimeout(function () { btn.textContent = original; }, 1200);
+            });
+        });
+
+        grid.querySelectorAll('.wl-remove').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = parseInt(btn.getAttribute('data-id'), 10);
+                ShopCart.removeFromWishlist(id);
+                btn.closest('[data-id]').remove();
+                if (ShopCart.getWishlist().length === 0) {
+                    grid.style.display = 'none';
+                    empty.style.display = 'block';
+                }
+            });
+        });
     }
 
-    window.addEventListener('gms:wishlist-updated', render);
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-    else render();
-})();
+    if (!ids.length) {
+        loading.style.display = 'none';
+        empty.style.display = 'block';
+    } else {
+        ShopCart.fetchProducts(ids).then(render).catch(function () {
+            loading.textContent = 'Could not load your wishlist. Please try again.';
+        });
+    }
+});
 </script>
 @endsection

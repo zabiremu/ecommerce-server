@@ -2712,345 +2712,230 @@
     </style>
 @endpush
 @section('content')
-    <div class="wd-page-content main-page-wrapper">
-        <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main">
-            <div class="wd-content-area site-content">
-                <div class="woocommerce entry-content">
+<div class="wd-page-content main-page-wrapper">
+    <main id="main-content" class="wd-content-layout content-layout-wrapper container wd-builder-on" role="main" style="padding-top:24px;padding-bottom:60px;">
 
-                    <div class="wd-page-title page-title page-title-default title-size-small title-design-centered color-scheme-default">
-                        <div class="wd-page-title-bg wd-fill"></div>
-                        <div class="container">
-                            <ul class="wd-checkout-steps">
-                                <li class="step-cart step-inactive">
-                                    <a href="{{ route('cart') }}"><span>Shopping cart</span></a>
-                                </li>
-                                <li class="step-checkout step-active">
-                                    <a href="{{ route('checkout') }}"><span>Checkout</span></a>
-                                </li>
-                                <li class="step-complete step-inactive">
-                                    <span>Order complete</span>
-                                </li>
-                            </ul>
+        <ul class="wd-checkout-steps" style="display:flex;gap:20px;list-style:none;padding:0;margin-bottom:30px;font-weight:600;">
+            <li class="step-cart step-inactive"><a href="{{ route('cart') }}"><span>Shopping cart</span></a></li>
+            <li class="step-checkout step-active"><span>Checkout</span></li>
+            <li class="step-complete step-inactive"><span>Order complete</span></li>
+        </ul>
+
+        <h1 style="margin-bottom:24px;">Checkout</h1>
+
+        <div id="co-empty" style="display:none;padding:40px 0;text-align:center;color:#777;">
+            <p>Your cart is empty — add something before checking out.</p>
+            <a href="{{ route('all-products') }}" class="button alt"
+                style="display:inline-block;margin-top:10px;padding:10px 24px;background:#e5533d;color:#fff;border-radius:6px;text-decoration:none;">
+                Browse products
+            </a>
+        </div>
+
+        <div id="co-wrap" style="display:none;gap:30px;flex-wrap:wrap;" class="wd-checkout-wrap">
+
+            {{-- Shipping / payment form --}}
+            <div style="flex:2 1 500px;min-width:280px;">
+                <form id="checkout-form" class="checkout woocommerce-checkout">
+                    @csrf
+                    <h3 style="margin-bottom:16px;">Shipping details</h3>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                        <div style="grid-column:1/-1;">
+                            <label>Full name *</label>
+                            <input type="text" name="shipping_name" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                        </div>
+                        <div>
+                            <label>Phone *</label>
+                            <input type="tel" name="shipping_phone" required placeholder="01XXXXXXXXX" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                        </div>
+                        <div>
+                            <label>Email (optional)</label>
+                            <input type="email" name="shipping_email" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                        </div>
+                        <div style="grid-column:1/-1;">
+                            <label>Address *</label>
+                            <textarea name="shipping_address" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"></textarea>
+                        </div>
+                        <div style="grid-column:1/-1;">
+                            <label>City *</label>
+                            <input type="text" name="shipping_city" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                        </div>
+                        <div style="grid-column:1/-1;">
+                            <label>Order notes (optional)</label>
+                            <textarea name="notes" rows="2" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"></textarea>
                         </div>
                     </div>
 
-                    <div id="gmsCheckoutEmpty" class="gms-empty" style="display:none;padding:60px 20px;text-align:center;">
-                        <i class="fas fa-shopping-cart" style="font-size:48px;color:var(--gms-line,#ececec);margin-bottom:16px;display:block;"></i>
-                        <h3 style="margin-bottom:8px;">Your cart is empty</h3>
-                        <p style="margin-bottom:20px;color:#777;">Add some products before checking out.</p>
-                        <a href="{{ route('all-products') }}" class="button btn btn-accent">Continue shopping</a>
+                    <h3 style="margin:24px 0 16px;">Payment method</h3>
+                    <div id="co-payment-methods" style="display:flex;flex-direction:column;gap:10px;">
+                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
+                            <input type="radio" name="payment_method" value="cod" checked> Cash on Delivery
+                        </label>
+                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
+                            <input type="radio" name="payment_method" value="bkash"> bKash (manual)
+                        </label>
+                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
+                            <input type="radio" name="payment_method" value="nagad"> Nagad (manual)
+                        </label>
+                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
+                            <input type="radio" name="payment_method" value="uddoktapay"> Pay online (UddoktaPay)
+                        </label>
                     </div>
 
-                    <div id="gmsCheckoutWrap">
-                        <div id="gmsCheckoutNotice" class="woocommerce-notices-wrapper"></div>
+                    <p id="checkout-error" style="display:none;margin-top:16px;padding:12px;background:#fee2e2;color:#b91c1c;border-radius:6px;"></p>
 
-                        <div class="wd-checkout-coupon">
-                            <div class="woocommerce-form-coupon-toggle">
-                                <div class="woocommerce-info" role="status">
-                                    Have a coupon? <a href="#" role="button" id="gmsShowCoupon">Click here to enter your code</a>
-                                </div>
-                            </div>
-                            <div class="checkout_coupon woocommerce-form-coupon" style="display:none;" id="gmsCouponForm">
-                                <p class="form-row form-row-first">
-                                    <input type="text" id="gmsCouponCode" class="input-text" placeholder="Coupon code" />
-                                </p>
-                                <p class="form-row form-row-last">
-                                    <button type="button" id="gmsApplyCoupon" class="button">Apply coupon</button>
-                                </p>
-                                <p id="gmsCouponMsg" style="margin-top:8px;font-size:13px;"></p>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-
-                        <form id="gmsCheckoutForm" class="checkout woocommerce-checkout wd-checkout-form" aria-label="Checkout">
-                            <div class="wp-block-wd-row">
-                                <div class="wp-block-wd-column" style="flex:0 1 calc(65% - 10px);">
-                                    <h2 class="wp-block-wd-title title">Billing &amp; shipping details</h2>
-
-                                    <div class="wd-billing-details">
-                                        <div class="woocommerce-billing-fields__field-wrapper">
-                                            <p class="form-row form-row-wide validate-required">
-                                                <label for="shipping_name" class="required_field">Full name&nbsp;<span class="required">*</span></label>
-                                                <input type="text" class="input-text" name="shipping_name" id="shipping_name" required maxlength="255" />
-                                            </p>
-                                            <p class="form-row form-row-first validate-required">
-                                                <label for="shipping_phone" class="required_field">Phone&nbsp;<span class="required">*</span></label>
-                                                <input type="tel" class="input-text" name="shipping_phone" id="shipping_phone" required maxlength="30" />
-                                            </p>
-                                            <p class="form-row form-row-last">
-                                                <label for="shipping_email">Email address</label>
-                                                <input type="email" class="input-text" name="shipping_email" id="shipping_email" maxlength="255" />
-                                            </p>
-                                            <p class="form-row form-row-wide validate-required">
-                                                <label for="shipping_address" class="required_field">Street address&nbsp;<span class="required">*</span></label>
-                                                <input type="text" class="input-text" name="shipping_address" id="shipping_address" placeholder="House number and street name" required maxlength="1000" />
-                                            </p>
-                                            <p class="form-row form-row-wide validate-required">
-                                                <label for="shipping_city" class="required_field">Town / City&nbsp;<span class="required">*</span></label>
-                                                <input type="text" class="input-text" name="shipping_city" id="shipping_city" required maxlength="100" />
-                                            </p>
-                                            <p class="form-row form-row-wide">
-                                                <label for="notes">Order notes</label>
-                                                <textarea class="input-text" name="notes" id="notes" rows="3" maxlength="1000" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <h2 class="wp-block-wd-title title" style="margin-top:30px;">Payment method</h2>
-                                    <div class="wd-checkout-payment">
-                                        <ul class="wc_payment_methods payment_methods methods">
-                                            <li class="wc_payment_method payment_method_cod">
-                                                <label><input type="radio" name="payment_method" value="cod" checked /> Cash on delivery</label>
-                                            </li>
-
-                                            <li class="wc_payment_method payment_method_uddoktapay">
-                                                <label><input type="radio" name="payment_method" value="uddoktapay" /> Pay online (bKash / Nagad / Card via UddoktaPay)</label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="wp-block-wd-column wd-align-s-start" style="flex:0 1 calc(35% - 10px);padding:30px;background-color:#f5f5f5;border-radius:16px;">
-                                    <h2 class="wp-block-wd-title title">Your order</h2>
-
-                                    <table class="woocommerce-checkout-review-order-table shop_table">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-total">Subtotal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="gmsOrderItems"></tbody>
-                                        <tfoot>
-                                            <tr class="cart-subtotal">
-                                                <th>Subtotal</th>
-                                                <td><span id="gmsOrderSubtotal" class="woocommerce-Price-amount amount"></span></td>
-                                            </tr>
-                                            <tr id="gmsOrderDiscountRow" style="display:none;">
-                                                <th>Discount</th>
-                                                <td><span id="gmsOrderDiscount" class="woocommerce-Price-amount amount"></span></td>
-                                            </tr>
-                                            <tr class="shipping">
-                                                <th>Shipping</th>
-                                                <td><span id="gmsOrderShipping"></span></td>
-                                            </tr>
-                                            <tr class="order-total">
-                                                <th>Total</th>
-                                                <td><strong><span id="gmsOrderTotal" class="woocommerce-Price-amount amount"></span></strong></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                    <div id="gmsCheckoutError" class="woocommerce-error" style="display:none;margin-top:16px;"></div>
-
-                                    <button type="submit" id="gmsPlaceOrder" class="button alt btn-accent" style="width:100%;margin-top:16px;">
-                                        Place order
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
+                    <button type="submit" id="checkout-submit" class="button alt"
+                        style="margin-top:20px;padding:14px 30px;background:#e5533d;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">
+                        Place order
+                    </button>
+                </form>
             </div>
-        </main>
-    </div>
+
+            {{-- Order review --}}
+            <div style="flex:1 1 320px;min-width:280px;padding:24px;background:#f5f5f5;border-radius:12px;align-self:start;">
+                <h3 style="margin-bottom:16px;">Your order</h3>
+                <div id="co-items" style="margin-bottom:16px;"></div>
+
+                <div class="wd-coupon-form" style="display:flex;gap:8px;margin-bottom:16px;">
+                    <input type="text" id="co-coupon-input" placeholder="Coupon code"
+                        style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;">
+                    <button type="button" id="co-coupon-apply" class="button btn btn-accent"
+                        style="padding:10px 16px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer;">Apply</button>
+                </div>
+                <p id="co-coupon-msg" style="display:none;font-size:13px;margin-top:-10px;margin-bottom:14px;"></p>
+
+                <table style="width:100%;">
+                    <tr><td style="padding:6px 0;">Subtotal</td><td style="text-align:right;" id="co-subtotal">৳0.00</td></tr>
+                    <tr id="co-discount-row" style="display:none;"><td style="padding:6px 0;">Discount</td><td style="text-align:right;color:#16a34a;" id="co-discount">-৳0.00</td></tr>
+                    <tr><td style="padding:6px 0;">Shipping</td><td style="text-align:right;" id="co-shipping">৳0.00</td></tr>
+                    <tr style="border-top:1px solid #ddd;font-weight:700;font-size:16px;">
+                        <td style="padding:10px 0;">Total</td><td style="text-align:right;" id="co-total">৳0.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
 
 <script>
-window.NF_PRODUCTS = @json($products);
-window.NF_COUPONS  = @json($coupons);
+document.addEventListener('DOMContentLoaded', function () {
+    var empty = document.getElementById('co-empty');
+    var wrap = document.getElementById('co-wrap');
+    var itemsBox = document.getElementById('co-items');
 
-(function () {
-    let appliedCoupon = null;
+    function money(n) { return '৳' + Number(n).toFixed(2); }
 
-    function getCart() {
-        let cart = [];
-        try { cart = JSON.parse(localStorage.getItem('gms_cart') || '[]'); } catch (e) { cart = []; }
-        return Array.isArray(cart) ? cart : [];
+    function refreshQuote() {
+        var cartItems = ShopCart.getCart();
+        var coupon = localStorage.getItem('gms_coupon') || '';
+        document.getElementById('co-coupon-input').value = coupon;
+
+        ShopCart.fetchQuote(cartItems, coupon).then(function (quote) {
+            itemsBox.innerHTML = quote.items.map(function (li) {
+                return (
+                    '<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;">' +
+                        '<span>' + li.name + (li.variant_label ? ' (' + li.variant_label + ')' : '') + ' × ' + li.qty + '</span>' +
+                        '<span>' + money(li.total) + '</span>' +
+                    '</div>'
+                );
+            }).join('');
+
+            document.getElementById('co-subtotal').textContent = money(quote.subtotal);
+            document.getElementById('co-shipping').textContent = quote.shipping > 0 ? money(quote.shipping) : 'Free';
+            document.getElementById('co-total').textContent = money(quote.total);
+
+            var discountRow = document.getElementById('co-discount-row');
+            if (quote.discount > 0) {
+                discountRow.style.display = '';
+                document.getElementById('co-discount').textContent = '-' + money(quote.discount);
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            var msg = document.getElementById('co-coupon-msg');
+            if (quote.coupon_message) {
+                msg.style.display = 'block';
+                msg.style.color = quote.coupon_valid ? 'green' : 'red';
+                msg.textContent = quote.coupon_message;
+            } else {
+                msg.style.display = 'none';
+            }
+        });
     }
 
-    function setCart(cart) {
-        localStorage.setItem('gms_cart', JSON.stringify(cart));
-        window.dispatchEvent(new Event('gms:cart-updated'));
+    document.getElementById('co-coupon-apply').addEventListener('click', function () {
+        var code = document.getElementById('co-coupon-input').value.trim();
+        localStorage.setItem('gms_coupon', code);
+        refreshQuote();
+    });
+
+    var cartItems = ShopCart.getCart();
+    if (!cartItems.length) {
+        empty.style.display = 'block';
+        wrap.style.display = 'none';
+    } else {
+        wrap.style.display = 'flex';
+        refreshQuote();
     }
 
-    function findProduct(id) {
-        return (window.NF_PRODUCTS || []).find(p => p.id === id);
-    }
+    document.getElementById('checkout-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var errorBox = document.getElementById('checkout-error');
+        errorBox.style.display = 'none';
 
-    function findVariant(product, variantId) {
-        if (!product || !variantId) return null;
-        return (product.variants || []).find(v => v.id === variantId) || null;
-    }
-
-    function linePrice(item) {
-        const p = findProduct(item.id);
-        if (!p) return 0;
-        const v = findVariant(p, item.variant_id);
-        return (v && v.price > 0) ? v.price : p.cur;
-    }
-
-    function computeSubtotal(cart) {
-        return cart.reduce(function (sum, item) {
-            return sum + linePrice(item) * item.qty;
-        }, 0);
-    }
-
-    function computeDiscount(subtotal) {
-        if (!appliedCoupon || subtotal <= 0) return 0;
-        if (appliedCoupon.minimum_spend > 0 && subtotal < appliedCoupon.minimum_spend) return 0;
-        let discount = appliedCoupon.type === 'percentage' ? (subtotal * appliedCoupon.amount / 100) : appliedCoupon.amount;
-        if (appliedCoupon.maximum_discount > 0) discount = Math.min(discount, appliedCoupon.maximum_discount);
-        return Math.min(discount, subtotal);
-    }
-
-    function currentCart() {
-        return getCart().filter(function (c) { return findProduct(c.id); });
-    }
-
-    function render() {
-        const cart = currentCart();
-        const wrapEl  = document.getElementById('gmsCheckoutWrap');
-        const emptyEl = document.getElementById('gmsCheckoutEmpty');
-
-        if (cart.length === 0) {
-            wrapEl.style.display = 'none';
-            emptyEl.style.display = '';
+        var items = ShopCart.getCart();
+        if (!items.length) {
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Your cart is empty.';
             return;
         }
-        wrapEl.style.display = '';
-        emptyEl.style.display = 'none';
 
-        const itemsEl = document.getElementById('gmsOrderItems');
-        itemsEl.innerHTML = cart.map(function (item) {
-            const p = findProduct(item.id);
-            const lineTotal = linePrice(item) * item.qty;
-            const variantRow = item.variant_label ? '<br><small style="color:#64748b">' + item.variant_label + '</small>' : '';
-            return '<tr><td class="product-name">' + p.title + variantRow + '&nbsp;<strong class="product-quantity">&times;&nbsp;' + item.qty + '</strong></td>' +
-                '<td class="product-total"><span class="woocommerce-Price-amount amount">' + window.formatPrice(lineTotal) + '</span></td></tr>';
-        }).join('');
+        var formData = new FormData(e.target);
+        var payload = {
+            shipping_name: formData.get('shipping_name'),
+            shipping_phone: formData.get('shipping_phone'),
+            shipping_email: formData.get('shipping_email') || null,
+            shipping_address: formData.get('shipping_address'),
+            shipping_city: formData.get('shipping_city'),
+            payment_method: formData.get('payment_method'),
+            notes: formData.get('notes') || null,
+            coupon_code: localStorage.getItem('gms_coupon') || null,
+            items: items,
+        };
 
-        const subtotal = computeSubtotal(cart);
-        const discount = computeDiscount(subtotal);
-        const freeShipping = (appliedCoupon && appliedCoupon.free_shipping) || subtotal >= 500;
-        const shipping = freeShipping ? 0 : 60;
-        const total = Math.max(0, subtotal + shipping - discount);
+        var submitBtn = document.getElementById('checkout-submit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Placing order…';
 
-        document.getElementById('gmsOrderSubtotal').textContent = window.formatPrice(subtotal);
-        document.getElementById('gmsOrderShipping').textContent = shipping === 0 ? 'Free shipping' : window.formatPrice(shipping);
-        document.getElementById('gmsOrderTotal').textContent = window.formatPrice(total);
-
-        const discountRow = document.getElementById('gmsOrderDiscountRow');
-        if (discount > 0) {
-            discountRow.style.display = '';
-            document.getElementById('gmsOrderDiscount').textContent = '-' + window.formatPrice(discount);
-        } else {
-            discountRow.style.display = 'none';
-        }
-    }
-
-    function showError(message) {
-        const el = document.getElementById('gmsCheckoutError');
-        el.textContent = message;
-        el.style.display = '';
-    }
-
-    function clearError() {
-        const el = document.getElementById('gmsCheckoutError');
-        el.textContent = '';
-        el.style.display = 'none';
-    }
-
-    function init() {
-        document.getElementById('gmsShowCoupon').addEventListener('click', function (e) {
-            e.preventDefault();
-            const form = document.getElementById('gmsCouponForm');
-            form.style.display = form.style.display === 'none' ? '' : 'none';
-        });
-
-        document.getElementById('gmsApplyCoupon').addEventListener('click', function () {
-            const code = (document.getElementById('gmsCouponCode').value || '').trim().toUpperCase();
-            const msgEl = document.getElementById('gmsCouponMsg');
-            if (!code) return;
-            const coupon = (window.NF_COUPONS || []).find(function (c) { return c.code.toUpperCase() === code; });
-            if (!coupon) {
-                appliedCoupon = null;
-                msgEl.textContent = 'Invalid coupon code.';
-                msgEl.style.color = '#c9401d';
+        fetch("{{ route('orders.store') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': ShopCart.csrfToken(),
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+        .then(function (res) {
+            if (res.ok && res.data.success) {
+                ShopCart.clearCart();
+                localStorage.removeItem('gms_coupon');
+                window.location.href = res.data.redirect || "{{ route('order-complete') }}";
             } else {
-                appliedCoupon = coupon;
-                msgEl.textContent = 'Coupon applied: ' + coupon.code;
-                msgEl.style.color = '#2f8f4e';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Place order';
+                errorBox.style.display = 'block';
+                errorBox.textContent = res.data.message || 'Something went wrong placing your order. Please check the form and try again.';
             }
-            render();
+        })
+        .catch(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Place order';
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Network error — please try again.';
         });
-
-        document.getElementById('gmsCheckoutForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            clearError();
-
-            const cart = currentCart();
-            if (cart.length === 0) {
-                showError('Your cart is empty.');
-                return;
-            }
-
-            const payload = {
-                shipping_name:    document.getElementById('shipping_name').value.trim(),
-                shipping_phone:   document.getElementById('shipping_phone').value.trim(),
-                shipping_email:   document.getElementById('shipping_email').value.trim(),
-                shipping_address: document.getElementById('shipping_address').value.trim(),
-                shipping_city:    document.getElementById('shipping_city').value.trim(),
-                payment_method:   (document.querySelector('input[name="payment_method"]:checked') || {}).value || 'cod',
-                notes:            document.getElementById('notes').value.trim(),
-                coupon_code:      appliedCoupon ? appliedCoupon.code : null,
-                items:            cart.map(function (c) { return { id: c.id, qty: c.qty, variant_id: c.variant_id || null }; }),
-            };
-
-            const btn = document.getElementById('gmsPlaceOrder');
-            btn.disabled = true;
-            btn.textContent = 'Placing order…';
-
-            fetch('{{ route('orders.store') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then(function (res) { return res.json().then(function (data) { return { status: res.status, data: data }; }); })
-                .then(function (result) {
-                    if (result.status >= 200 && result.status < 300 && result.data.success) {
-                        localStorage.removeItem('gms_cart');
-                        window.dispatchEvent(new Event('gms:cart-updated'));
-                        window.location.href = result.data.redirect;
-                        return;
-                    }
-
-                    btn.disabled = false;
-                    btn.textContent = 'Place order';
-
-                    if (result.status === 422 && result.data.errors) {
-                        showError(Object.values(result.data.errors).flat().join(' '));
-                    } else {
-                        showError(result.data.message || 'Something went wrong. Please try again.');
-                    }
-                })
-                .catch(function () {
-                    btn.disabled = false;
-                    btn.textContent = 'Place order';
-                    showError('Network error. Please try again.');
-                });
-        });
-
-        window.addEventListener('gms:cart-updated', render);
-        render();
-    }
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-    else init();
-})();
+    });
+});
 </script>
 @endsection
