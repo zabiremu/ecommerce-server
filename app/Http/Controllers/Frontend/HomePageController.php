@@ -149,23 +149,51 @@ class HomePageController extends Controller
 
     protected function publishedProductsForJs()
     {
+        $bestSellerIds = Product::published()
+            ->has('orderItems')
+            ->withCount('orderItems as sold_count')
+            ->orderByDesc('sold_count')
+            ->orderByDesc('id')
+            ->limit(8)
+            ->pluck('id')
+            ->all();
+
+        $resolveImage = function (?string $path) {
+            if (!$path) return '';
+            return Storage::disk('public')->exists($path) ? Storage::url($path) : asset($path);
+        };
+
         return Product::published()
             ->with('category:id,slug', 'brand:id,slug', 'variants')
+            ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
+            ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
             ->orderByDesc('id')
             ->get()
-            ->map(function (Product $p) {
+            ->map(function (Product $p) use ($bestSellerIds, $resolveImage) {
                 $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
+                $stock = (float) ($p->stock ?? 0);
+                $alertQty = (float) ($p->alert_quantity ?? 0);
+                $outOfStock = $stock <= 0;
+                $lowStock = !$outOfStock && $alertQty > 0 && $stock <= $alertQty;
+
                 return [
                     'id'    => $p->id,
                     'slug'  => $p->slug,
-                    'img'   => $p->thumbnail ? Storage::url($p->thumbnail) : '',
+                    'img'   => $resolveImage($p->thumbnail),
                     'title' => $p->name,
                     'cur'   => (float) ($hasSale ? $p->sale_price : $p->selling_price),
                     'old'   => (float) $p->selling_price,
-                    'stock' => (int) ($p->stock ?? 0),
+                    'stock' => (int) $stock,
+                    'stockStatus' => $outOfStock ? 'out-of-stock' : ($lowStock ? 'low-stock' : 'in-stock'),
+                    'stockLabel'  => $outOfStock ? 'Out of stock' : ($lowStock ? 'Only ' . rtrim(rtrim(number_format($stock, 2), '0'), '.') . ' left' : 'In stock'),
                     'cat'   => $p->category?->slug ?? '',
                     'brand' => $p->brand?->slug ?? '',
                     'url'   => route('product-details') . '?slug=' . $p->slug,
+                    'quickViewUrl' => route('product.quick-view', $p),
+                    'isNew' => (bool) ($p->created_at && $p->created_at->gt(now()->subDays(14))),
+                    'isBestSeller' => \in_array($p->id, $bestSellerIds, true),
+                    'avgRating' => round((float) ($p->avg_rating ?? 0), 1),
+                    'reviewsCount' => (int) ($p->reviews_count ?? 0),
                     'variants' => $p->variants->map(fn ($v) => [
                         'id'    => $v->id,
                         'color' => $v->color,

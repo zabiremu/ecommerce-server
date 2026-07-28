@@ -387,43 +387,11 @@ window.NF_PRODUCTS = @json($products);
         return list;
     }
 
-    // ── build one product card (woodmart style) ─────────────────────
+    // ── build one product card — shared renderer, see gms-custom.js
+    // (window.gmsBuildProductCard) so this stays in sync with the
+    // server-rendered product-card.blade.php partial instead of drifting. ──
     function buildCard(p) {
-        const hasSale = p.old && p.old > p.cur;
-        const img = p.img || '{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}';
-        const priceHtml = hasSale
-            ? `<span class="price"><del><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.old)}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></ins></span>`
-            : `<span class="price"><span class="woocommerce-Price-amount amount"><bdi>${window.formatPrice(p.cur)}</bdi></span></span>`;
-        const saleLabel = hasSale ? `<span class="product-label onsale">Sale</span>` : '';
-        return `
-<div class="wd-product wd-col wd-hover-quick product-grid-item product type-product status-publish instock has-post-thumbnail purchasable product-type-simple">
-  <div class="wd-product-wrapper product-wrapper">
-    <div class="wd-product-thumb product-element-top wd-quick-shop">
-      ${saleLabel}
-      <a href="${p.url}" class="wd-product-img-link product-image-link" tabindex="-1" aria-label="${p.title}">
-        <img src="${img}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="${p.title}" loading="lazy" style="width:100%;aspect-ratio:430/492;object-fit:cover;"/>
-      </a>
-      <div class="wd-buttons wd-pos-r-t">
-        <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
-          <a href="{{ route('wishlist') }}" rel="nofollow" data-product-id="${p.id}" onclick="nfWishlistClick(event,${p.id})">
-            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-            <span class="wd-action-text">Add to wishlist</span>
-          </a>
-        </div>
-      </div>
-      <div class="wd-add-btn wd-add-btn-replace">
-        <a href="#" class="button product_type_simple add_to_cart_button add-to-cart-loop" onclick="addToCart(event,${p.id})" role="button">
-          <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-          <span class="wd-action-text">Add to cart</span>
-        </a>
-      </div>
-    </div>
-    <div class="product-element-bottom">
-      <h3 class="wd-entities-title"><a href="${p.url}">${p.title}</a></h3>
-      ${priceHtml}
-    </div>
-  </div>
-</div>`;
+        return window.gmsBuildProductCard(p);
     }
 
     // ── render page ─────────────────────────────────────────────────

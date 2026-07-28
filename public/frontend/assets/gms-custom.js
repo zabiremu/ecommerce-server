@@ -7,6 +7,82 @@ window.formatPrice = function (n) {
   return '৳' + Number(n || 0).toFixed(2);
 };
 
+/* --- Shared product card builder: used by any JS-rendered product grid
+   (all-products, category-products, ...) instead of each page keeping its
+   own copy — a duplicated template is exactly how those pages ended up
+   missing the ribbon/stock-pill/quick-view fixes made to the server-
+   rendered product-card.blade.php partial. Expects one product object
+   from HomePageController::publishedProductsForJs(). */
+window.gmsBuildProductCard = function (p) {
+  var hasSale = p.old && p.old > p.cur;
+  var img = p.img || ('data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" font-size="24" fill="#999" text-anchor="middle" dy=".3em">No image</text></svg>'
+  ));
+
+  var priceHtml = hasSale
+    ? '<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.old) + '</bdi></span></del> <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.cur) + '</bdi></span></ins>'
+    : '<span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.cur) + '</bdi></span>';
+
+  var ribbonLabels = [];
+  if (hasSale) ribbonLabels.push('Sale');
+  if (p.isNew) ribbonLabels.push('New Arrival');
+  if (p.isBestSeller) ribbonLabels.push('Bestseller');
+  if (p.stockStatus === 'low-stock') ribbonLabels.push('Limited');
+  var ribbonHtml = ribbonLabels.length
+    ? '<div class="gms-ribbon"><div class="gms-ribbon-inner">' + ribbonLabels.map(function (l) { return '<span>' + l + '</span>'; }).join('') + '</div></div>'
+    : '';
+
+  var ratingHtml = '';
+  if (p.avgRating > 0) {
+    ratingHtml = '<div class="star-rating" role="img" aria-label="Rated ' + p.avgRating + ' out of 5">' +
+      '<span style="width:' + (p.avgRating / 5 * 100) + '%">Rated <strong class="rating">' + p.avgRating + '</strong> out of 5</span></div>' +
+      (p.reviewsCount > 0 ? '<span class="wd-review-count" style="font-size:12px;color:#888">(' + p.reviewsCount + ')</span>' : '');
+  }
+
+  var cartIconSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h3l2.7 13.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6"/></svg>';
+  var hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
+  var addToCartHtml = p.stockStatus === 'out-of-stock'
+    ? '<span class="button add-to-cart-loop wd-disabled" aria-disabled="true"><span class="wd-action-text">Out of stock</span></span>'
+    : hasVariants
+    ? '<a href="' + p.url + '" class="button add_to_cart_button add-to-cart-loop" aria-label="View ' + p.title + '" rel="nofollow">' +
+      '<span class="wd-action-icon">' + cartIconSvg + '</span><span class="wd-action-text">Select options</span></a>'
+    : '<a href="#" class="button add_to_cart_button add-to-cart-loop" rel="nofollow" aria-label="Add ' + p.title + ' to cart" onclick="addToCart(event,' + p.id + ')">' +
+      '<span class="wd-action-icon">' + cartIconSvg + '</span><span class="wd-action-text">Add to cart</span></a>';
+
+  return '' +
+'<div class="wd-product wd-col wd-hover-quick product-grid-item product type-product' + (p.stockStatus === 'out-of-stock' ? ' outofstock' : ' instock') + ' has-post-thumbnail' + (hasSale ? ' sale' : '') + '" data-id="' + p.id + '">' +
+'  <div class="wd-product-wrapper product-wrapper">' +
+'    <div class="wd-product-thumb product-element-top wd-quick-shop">' +
+'      <a href="' + p.url + '" class="wd-product-img-link product-image-link" tabindex="-1" aria-label="' + p.title + '">' +
+'        <img loading="lazy" decoding="async" width="263" height="300" src="' + img + '" class="attachment-263x300 size-263x300" alt="' + p.title + '" />' +
+'      </a>' +
+       ribbonHtml +
+'      <div class="wd-buttons wd-pos-r-t">' +
+'        <div class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">' +
+'          <a href="' + p.url + '" class="open-quick-view" rel="nofollow" data-id="' + p.id + '" data-quick-view-url="' + p.quickViewUrl + '">' +
+'            <span class="wd-action-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3.25"/></svg></span>' +
+'            <span class="wd-action-text wd-visually-hidden">Quick view</span>' +
+'          </a>' +
+'        </div>' +
+'        <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">' +
+'          <a href="/wishlist" data-product-id="' + p.id + '" rel="nofollow" onclick="nfWishlistClick(event,' + p.id + ')">' +
+'            <span class="wd-action-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-10-9.3C.4 8 1.7 4.7 4.8 3.7c2.1-.7 4.3.1 5.6 1.9l1.6 2.1 1.6-2.1c1.3-1.8 3.5-2.6 5.6-1.9 3.1 1 4.4 4.3 2.8 7.5-2.5 4.7-10 9.3-10 9.3Z"/></svg><span class="wd-check-icon"></span></span>' +
+'            <span class="wd-action-text wd-visually-hidden">Add to wishlist</span>' +
+'          </a>' +
+'        </div>' +
+'      </div>' +
+'    </div>' +
+'    <div class="product-element-bottom">' +
+'      <h3 class="wd-entities-title"><a href="' + p.url + '">' + p.title + '</a></h3>' +
+       ratingHtml +
+'      <span class="price">' + priceHtml + '</span>' +
+'      <span class="wd-stock-status ' + p.stockStatus + '">' + p.stockLabel + '</span>' +
+'      <div class="wd-add-btn wd-add-btn-replace">' + addToCartHtml + '</div>' +
+'    </div>' +
+'  </div>' +
+'</div>';
+};
+
 /* --- CONFIG: all editable values in one place --- */
 const GMS_CONFIG = {
   whatsapp: '1234567890',            // WhatsApp number (digits only)
