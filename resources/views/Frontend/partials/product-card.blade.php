@@ -60,15 +60,25 @@
                     <div class="wd-quick-view-btn wd-quick-view-icon wd-action-btn wd-style-icon">
                         <a href="{{ $detailsUrl }}" class="open-quick-view" rel="nofollow" data-id="{{ $product->id }}"
                             data-quick-view-url="{{ route('product.quick-view', $product) }}">
-                            <span class="wd-action-icon"></span>
-                            <span class="wd-action-text">Quick view</span>
+                            <span class="wd-action-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z" />
+                                    <circle cx="12" cy="12" r="3.25" />
+                                </svg>
+                            </span>
+                            <span class="wd-action-text wd-visually-hidden">Quick view</span>
                         </a>
                     </div>
                     <div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
                         <a class="" href="{{ route('wishlist') }}" data-product-id="{{ $product->id }}" rel="nofollow"
                             onclick="nfWishlistClick(event, {{ $product->id }})">
-                            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
-                            <span class="wd-action-text">Add to wishlist</span>
+                            <span class="wd-action-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 20.5s-7.5-4.6-10-9.3C.4 8 1.7 4.7 4.8 3.7c2.1-.7 4.3.1 5.6 1.9l1.6 2.1 1.6-2.1c1.3-1.8 3.5-2.6 5.6-1.9 3.1 1 4.4 4.3 2.8 7.5-2.5 4.7-10 9.3-10 9.3Z" />
+                                </svg>
+                                <span class="wd-check-icon"></span>
+                            </span>
+                            <span class="wd-action-text wd-visually-hidden">Add to wishlist</span>
                         </a>
                     </div>
                 </div>
@@ -80,7 +90,12 @@
                     @elseif($product->type === 'variable')
                         <a href="{{ $detailsUrl }}" class="button add_to_cart_button add-to-cart-loop"
                             data-product_id="{{ $product->id }}" aria-label="View {{ $product->name }}" rel="nofollow">
-                            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
+                            <span class="wd-action-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="9" cy="21" r="1" /><circle cx="19" cy="21" r="1" />
+                                    <path d="M1 1h3l2.7 13.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6" />
+                                </svg>
+                            </span>
                             <span class="wd-action-text">Select options</span>
                         </a>
                     @else
@@ -91,7 +106,12 @@
                             data-price="{{ $displayPrice }}"
                             data-img="{{ $thumbUrl }}"
                             data-url="{{ $detailsUrl }}">
-                            <span class="wd-action-icon"><span class="wd-check-icon"></span></span>
+                            <span class="wd-action-icon">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="9" cy="21" r="1" /><circle cx="19" cy="21" r="1" />
+                                    <path d="M1 1h3l2.7 13.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6" />
+                                </svg>
+                            </span>
                             <span class="wd-action-text">Add to cart</span>
                         </a>
                     @endif

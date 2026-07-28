@@ -254,16 +254,38 @@ a.wp-block-wd-button.btn-color-primary:hover {
   color: #FFF !important;
 }
 
-/* Stock status */
+/* Stock status — small colored pill badge */
 .wd-stock-status {
-  display: block;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 11px;
   font-weight: 600;
-  margin-top: 4px;
+  margin-top: 6px;
+  line-height: 1.5;
 }
-.wd-stock-status.in-stock { color: #2f8f4e; }
-.wd-stock-status.low-stock { color: #c9401d; }
-.wd-stock-status.out-of-stock { color: var(--gms-text); }
+.wd-stock-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.wd-stock-status.in-stock {
+  background: #E4F5EA;
+  color: #2f8f4e;
+}
+.wd-stock-status.low-stock {
+  background: #FDECDA;
+  color: #B4690E;
+}
+.wd-stock-status.out-of-stock {
+  background: #ECE7E7;
+  color: #8A7A7A;
+}
 
 /* ==========================================================
    QUICK VIEW MODAL
@@ -506,6 +528,134 @@ input[type="submit"] {
   display: block;
 }
 
+/* Visually-hidden accessible label (icon-only buttons still announce
+   their purpose to screen readers even though the text is hidden) */
+.wd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Quick view / wishlist — small circular icon buttons overlaid on the
+   image, revealed on hover on desktop. No hover on touch devices, so
+   always show them there instead. */
+.wd-buttons.wd-pos-r-t {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity var(--gms-ease), transform var(--gms-ease);
+  pointer-events: none;
+}
+.wd-product.product-grid-item:hover .wd-buttons.wd-pos-r-t {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.wd-buttons.wd-pos-r-t .wd-action-btn {
+  pointer-events: auto;
+}
+.wd-buttons.wd-pos-r-t .wd-action-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFF;
+  color: var(--gms-ink);
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
+  transition: background var(--gms-ease), color var(--gms-ease), transform var(--gms-ease);
+}
+.wd-buttons.wd-pos-r-t .wd-action-btn a:hover {
+  background: var(--gms-red);
+  color: #FFF;
+  transform: translateY(-2px);
+}
+.wd-buttons.wd-pos-r-t .wd-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 1024px) {
+  /* No hover on touch devices — keep these always visible instead of hidden behind a hover that can't happen. */
+  .wd-buttons.wd-pos-r-t {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+/* Add to cart — full-width solid button with icon */
+.wd-add-btn.wd-add-btn-replace {
+  margin-top: 10px;
+}
+.wd-add-btn.wd-add-btn-replace .button.add_to_cart_button,
+.wd-add-btn.wd-add-btn-replace .add-to-cart-loop {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--gms-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-decoration: none !important;
+  text-align: center;
+  line-height: 1.4;
+}
+.wd-add-btn.wd-add-btn-replace .wd-action-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.wd-add-btn.wd-add-btn-replace .button.wd-disabled {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--gms-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--gms-bg-soft) !important;
+  color: var(--gms-text) !important;
+  cursor: not-allowed;
+}
+
+/* Hover image swap — crossfade to the product's second gallery image */
+.wd-product-img-hover.hover-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--gms-ease);
+  pointer-events: none;
+}
+.wd-product-img-hover.hover-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--gms-ease);
+}
+.wd-product.product-grid-item:hover .wd-product-img-hover.hover-img {
+  opacity: 1;
+}
+.wd-product.product-grid-item:hover .wd-product-img-hover.hover-img img {
+  transform: scale(1.05);
+}
+
 /* Category card hover */
 .wd-cat .wd-cat-inner {
   transition: transform var(--gms-ease), box-shadow var(--gms-ease);
@@ -516,12 +666,17 @@ input[type="submit"] {
 }
 
 /* Wishlist button — filled heart + checkmark badge once added */
-.wd-wishlist-btn .wd-action-icon:before {
+.wd-wishlist-btn .wd-action-icon:before,
+.wd-wishlist-btn .wd-action-icon svg {
   transition: color .2s ease, transform .2s ease;
 }
-.wd-wishlist-btn.wd-active .wd-action-icon:before {
+.wd-wishlist-btn.wd-active .wd-action-icon:before,
+.wd-wishlist-btn.wd-active .wd-action-icon svg {
   color: var(--wd-primary-color, #e63946);
   transform: scale(1.15);
+}
+.wd-wishlist-btn.wd-active .wd-action-icon svg {
+  fill: currentColor;
 }
 .wd-wishlist-btn.wd-active .wd-check-icon {
   display: flex !important;
