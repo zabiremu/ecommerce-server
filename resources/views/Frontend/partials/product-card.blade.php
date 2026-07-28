@@ -82,6 +82,37 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <div class="product-element-bottom">
+                <h3 class="wd-entities-title"><a href="{{ $detailsUrl }}">{{ $product->name }}</a></h3>
+
+                @if($avgRating > 0)
+                    <div class="star-rating" role="img" aria-label="Rated {{ $avgRating }} out of 5">
+                        <span style="width:{{ $avgRating / 5 * 100 }}%">
+                            Rated <strong class="rating">{{ $avgRating }}</strong> out of 5
+                        </span>
+                    </div>
+                    @if($reviewsCount > 0)
+                        <span class="wd-review-count" style="font-size:12px;color:#888">({{ $reviewsCount }})</span>
+                    @endif
+                @endif
+
+                <span class="price">
+                    @if($hasSale)
+                        <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($product->selling_price) }}</bdi></span></del>
+                        <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span></ins>
+                    @else
+                        <span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span>
+                    @endif
+                </span>
+
+                @if($outOfStock)
+                    <span class="wd-stock-status out-of-stock">Out of stock</span>
+                @elseif($lowStock)
+                    <span class="wd-stock-status low-stock">Only {{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} left</span>
+                @else
+                    <span class="wd-stock-status in-stock">In stock</span>
+                @endif
 
                 <div class="wd-add-btn wd-add-btn-replace">
                     @if($outOfStock)
@@ -116,37 +147,6 @@
                         </a>
                     @endif
                 </div>
-            </div>
-            <div class="product-element-bottom">
-                <h3 class="wd-entities-title"><a href="{{ $detailsUrl }}">{{ $product->name }}</a></h3>
-
-                @if($avgRating > 0)
-                    <div class="star-rating" role="img" aria-label="Rated {{ $avgRating }} out of 5">
-                        <span style="width:{{ $avgRating / 5 * 100 }}%">
-                            Rated <strong class="rating">{{ $avgRating }}</strong> out of 5
-                        </span>
-                    </div>
-                    @if($reviewsCount > 0)
-                        <span class="wd-review-count" style="font-size:12px;color:#888">({{ $reviewsCount }})</span>
-                    @endif
-                @endif
-
-                <span class="price">
-                    @if($hasSale)
-                        <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($product->selling_price) }}</bdi></span></del>
-                        <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span></ins>
-                    @else
-                        <span class="woocommerce-Price-amount amount"><bdi>{{ \App\Support\Money::format($displayPrice) }}</bdi></span>
-                    @endif
-                </span>
-
-                @if($outOfStock)
-                    <span class="wd-stock-status out-of-stock">Out of stock</span>
-                @elseif($lowStock)
-                    <span class="wd-stock-status low-stock">Only {{ rtrim(rtrim(number_format($stock, 2), '0'), '.') }} left</span>
-                @else
-                    <span class="wd-stock-status in-stock">In stock</span>
-                @endif
             </div>
         </div>
     </div>
