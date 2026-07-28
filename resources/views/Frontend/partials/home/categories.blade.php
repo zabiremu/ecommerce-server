@@ -1,5 +1,5 @@
 <link rel="stylesheet" id="wd-woo-categories-loop-css"
-    href="merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop.css" type="text/css"
+    href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop.css') }}" type="text/css"
     media="all" />
 <link rel="stylesheet" id="wd-categories-loop-css"
     href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
@@ -34,9 +34,24 @@
         transform: none !important;
         animation: none !important;
     }
+    /* Categories without an uploaded photo yet get their icon in a
+       soft gold circle instead of an unrelated stock placeholder image. */
+    .gms-cat-icon-fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #F3E4B8, #E9D3A0);
+        color: #8A6C2E;
+        font-size: 34px;
+    }
 </style>
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
-    <h2 class="wp-block-wd-title title">Shop by Category</h2>
+    <div>
+        <span class="gms-section-eyebrow">🛍️ Explore</span>
+        <h2 class="wp-block-wd-title title gms-heading-tier-2">Shop by Category</h2>
+    </div>
 </div>
 <div class="products wd-carousel-container wd-cats-element  wd-37bdf58d wd-img-width wd-cats">
     <div class="wd-carousel-inner">
@@ -49,7 +64,7 @@
                         data-loop="{{ $loop->iteration }}">
                         <div class="wd-cat-inner wrapp-category">
                             <div class="wd-cat-thumb category-image-wrapp">
-                                <a class="wd-cat-image category-image"
+                                <a class="wd-cat-image category-image gms-cat-image-link"
                                     href="{{ route('category-products') }}?cat={{ $cat->slug }}"
                                     aria-label="{{ $cat->name }}">
                                     @if($cat->image)
@@ -59,10 +74,9 @@
                                         alt="{{ $cat->name }}"
                                         style="object-fit: cover; width: 150px; height: 150px;" />
                                     @else
-                                    <img {{ $loop->index > 1 ? 'loading=lazy' : '' }} decoding="async" width="150" height="150"
-                                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-category-figures-150x150.jpg.webp') }}"
-                                        class="attachment-150x150 size-150x150"
-                                        alt="{{ $cat->name }}" />
+                                    <span class="gms-cat-icon-fallback" aria-hidden="true">
+                                        <i class="{{ $cat->icon ?: 'fas fa-tag' }}"></i>
+                                    </span>
                                     @endif
                                 </a>
                             </div>

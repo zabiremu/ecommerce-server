@@ -1,9 +1,9 @@
 <div class="wp-block-wd-row wd-7ae8bcf1">
     <div class="wp-block-wd-column wd-1083b687">
-        <span class="gms-section-eyebrow">{{ \App\Models\SiteSetting::get('home_hero_eyebrow', "Today's Offer") }}</span>
-        <h2 class="wp-block-wd-title title wd-47de8d1e gms-heading-tier-1">{{ \App\Models\SiteSetting::get('home_hero_title', 'Level Up Your Gear!') }}</h2>
+        <span class="gms-section-eyebrow">{{ \App\Models\SiteSetting::get('home_hero_eyebrow', 'New Season') }}</span>
+        <h2 class="wp-block-wd-title title wd-47de8d1e gms-heading-tier-1">{{ \App\Models\SiteSetting::get('home_hero_title', 'Everyday Style, Elevated') }}</h2>
 
-        <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">{{ \App\Models\SiteSetting::get('home_hero_subtitle', 'Official Merch for Every Gamer – Shop Hoodies, Collectibles, Posters, and More!') }}</h2>
+        <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">{{ \App\Models\SiteSetting::get('home_hero_subtitle', 'Apparel and footwear chosen for quality and fit, at honest prices.') }}</h2>
     </div>
 </div>
 
@@ -14,6 +14,11 @@
             data-autoplay="yes" data-speed="20000">
             <div class="wd-carousel-wrap">
                 @foreach($sliders as $slider)
+                @php
+                    $slideImage = \Illuminate\Support\Facades\Storage::disk('public')->exists($slider->image)
+                        ? \Illuminate\Support\Facades\Storage::url($slider->image)
+                        : asset($slider->image);
+                @endphp
                 <div
                     class="wp-block-wd-slider-item wd-slide wd-carousel-item {{ $loop->even ? 'color-scheme-dark' : 'color-scheme-light' }}">
                     <div class="wd-slide-container">
@@ -30,7 +35,7 @@
 
                     </div>
                     <div class="wd-slide-bg wd-fill"><img decoding="async" width="1294" height="600"
-                            src="{{ Storage::url($slider->image) }}" alt="{{ $slider->title }}" /></div>
+                            src="{{ $slideImage }}" alt="{{ $slider->title }}" /></div>
                 </div>
                 @endforeach
             </div>

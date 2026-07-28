@@ -1,12 +1,15 @@
 @if($allProducts->isNotEmpty())
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
-    <h2 class="wp-block-wd-title title">Featured Products</h2>
+    <div>
+        <span class="gms-section-eyebrow">✨ Handpicked</span>
+        <h2 class="wp-block-wd-title title gms-heading-tier-2">Featured Products</h2>
+    </div>
 
     <a class="wp-block-wd-button btn btn-style-default btn-size-default btn-shape-semi-round btn-icon-pos-right"
         href="{{ route('all-products') }}"><span>View more</span>
         <div class="wp-block-wd-icon"><img loading="lazy" decoding="async" width="16"
                 height="17"
-                src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
+                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg') }}"
                 alt="" /></div>
     </a>
 </div>

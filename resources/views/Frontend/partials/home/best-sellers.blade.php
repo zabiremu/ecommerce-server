@@ -40,7 +40,7 @@
             href="{{ route('all-products') }}"><span>View more</span>
             <div class="wp-block-wd-icon wd-56c1d5ff"><img loading="lazy" decoding="async" width="16"
                     height="17" class="wp-image-1013"
-                    src="merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg"
+                    src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/wd-merchandise-long-arrow-black-1.svg') }}"
                     alt="" /></div>
         </a>
     </div>

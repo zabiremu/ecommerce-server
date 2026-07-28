@@ -1,6 +1,9 @@
 @if($homeReviews->isNotEmpty())
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
-    <h2 class="wp-block-wd-title title">What Our Customers Say</h2>
+    <div>
+        <span class="gms-section-eyebrow">💬 Testimonials</span>
+        <h2 class="wp-block-wd-title title gms-heading-tier-2">What Our Customers Say</h2>
+    </div>
 </div>
 <div class="wd-carousel-container wd-home-reviews"
     style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:24px;">
