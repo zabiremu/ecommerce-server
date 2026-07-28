@@ -1318,10 +1318,23 @@ input[type="submit"],
   background: var(--gms-red);
   flex-shrink: 0;
 }
+/* Full-width breakout: the hero slider sits inside <main class="...
+   container">, which caps width to the site's max content width. This
+   breaks it out to span the full viewport regardless of that
+   ancestor, using the standard 50%-offset + negative-margin technique.
+   No rounded corners/shadow once it's edge-to-edge — those read as a
+   floating card, which contradicts a full-bleed banner. */
 .wd-slider.wd-carousel-container {
-  border-radius: var(--gms-radius);
-  box-shadow: var(--gms-shadow);
   overflow: hidden;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+body {
+  overflow-x: hidden;
 }
 @media (max-width: 768.98px) {
   .gms-hero-cta-row {
