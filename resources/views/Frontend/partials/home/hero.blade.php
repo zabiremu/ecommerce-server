@@ -1,9 +1,21 @@
-<div class="wp-block-wd-row wd-7ae8bcf1">
+<div class="wp-block-wd-row wd-7ae8bcf1 gms-hero-intro">
     <div class="wp-block-wd-column wd-1083b687">
         <span class="gms-section-eyebrow">{{ \App\Models\SiteSetting::get('home_hero_eyebrow', 'New Season') }}</span>
         <h2 class="wp-block-wd-title title wd-47de8d1e gms-heading-tier-1">{{ \App\Models\SiteSetting::get('home_hero_title', 'Everyday Style, Elevated') }}</h2>
 
         <h2 class="wp-block-wd-title title wd-56e5e720 wd-custom-width">{{ \App\Models\SiteSetting::get('home_hero_subtitle', 'Apparel and footwear chosen for quality and fit, at honest prices.') }}</h2>
+
+        <div class="gms-hero-cta-row">
+            <a href="{{ route('all-products') }}" class="gms-hero-cta">
+                <span>Shop Collection</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="gms-hero-trust">
+                <span><i class="gms-hero-dot"></i>Cash on Delivery</span>
+                <span><i class="gms-hero-dot"></i>Nationwide Shipping</span>
+                <span><i class="gms-hero-dot"></i>Easy Returns</span>
+            </div>
+        </div>
     </div>
 </div>
 
