@@ -7,6 +7,7 @@
             <article id="post-591" class="entry-content post-591 page type-page status-publish has-post-thumbnail hentry">
 
                 @include('Frontend.partials.home.hero')
+                @include('Frontend.partials.home.usp-strip')
                 @include('Frontend.partials.home.categories')
                 @include('Frontend.partials.home.best-sellers')
                 @include('Frontend.partials.home.reviews')

@@ -1,0 +1,53 @@
+<div class="gms-usp-strip">
+    <div class="gms-usp-item">
+        <span class="gms-usp-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l7 3v5c0 4.5-3 8.2-7 9.5-4-1.3-7-5-7-9.5V6l7-3Z" />
+                <path d="M9 12l2 2 4-4" />
+            </svg>
+        </span>
+        <span class="gms-usp-text">
+            <strong>Secure Shopping</strong>
+            <span>Pay when you receive</span>
+        </span>
+    </div>
+    <div class="gms-usp-item">
+        <span class="gms-usp-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="7" width="14" height="10" rx="1.5" />
+                <path d="M15 10h4l3 3v4h-7v-7Z" />
+                <circle cx="6" cy="19" r="1.6" />
+                <circle cx="17.5" cy="19" r="1.6" />
+            </svg>
+        </span>
+        <span class="gms-usp-text">
+            <strong>Fast Delivery</strong>
+            <span>Nationwide shipping</span>
+        </span>
+    </div>
+    <div class="gms-usp-item">
+        <span class="gms-usp-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 11a8 8 0 1 0-2.7 6" />
+                <path d="M20 5v6h-6" />
+            </svg>
+        </span>
+        <span class="gms-usp-text">
+            <strong>Easy Returns</strong>
+            <span>Hassle-free exchange</span>
+        </span>
+    </div>
+    <div class="gms-usp-item">
+        <span class="gms-usp-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 13a8 8 0 0 1 16 0" />
+                <path d="M4 13v4a2 2 0 0 0 2 2h1v-6H5a1 1 0 0 0-1 1Z" />
+                <path d="M20 13v4a2 2 0 0 1-2 2h-1v-6h1a1 1 0 0 1 2 1Z" />
+            </svg>
+        </span>
+        <span class="gms-usp-text">
+            <strong>24/7 Support</strong>
+            <span>Always here to help</span>
+        </span>
+    </div>
+</div>
