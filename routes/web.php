@@ -74,6 +74,7 @@ Route::middleware('auth:web')->group(function () {
 });
 
 
+Route::get('/faq', [HomePageController::class, 'faq'])->name('faq');
 Route::get('/forgot-password', [HomePageController::class, 'forgotPassword'])->name('forgot-password');
 Route::get('/login', [HomePageController::class, 'login'])->name('login');
 Route::post('/login', [HomePageController::class, 'loginSubmit'])->name('login.submit');

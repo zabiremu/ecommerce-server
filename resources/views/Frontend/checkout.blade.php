@@ -2788,6 +2788,8 @@
                         style="margin-top:20px;padding:14px 30px;background:#e5533d;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">
                         Place order
                     </button>
+
+                    @include('Frontend.partials.trust-badges')
                 </form>
             </div>
 

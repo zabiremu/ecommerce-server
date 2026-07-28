@@ -23,6 +23,11 @@
                     placeholder="Your email address" required /></div>
             <div class="wd-col-auto"><input type="submit" value="Sign up" /></div>
         </div>
+        <label style="position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden;pointer-events:none;"
+            aria-hidden="true">
+            Leave this field empty if you're human:
+            <input type="text" name="website" id="newsletter-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        </label>
         <div class="newsletter-message" style="margin-top:8px;font-size:14px;"></div>
     </form>
 </div>

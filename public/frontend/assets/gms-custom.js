@@ -531,6 +531,9 @@ document.addEventListener('DOMContentLoaded', function () {
       var email = form.querySelector('#newsletter-email').value.trim();
       if (!email) return;
 
+      var honeypotInput = form.querySelector('#newsletter-honeypot');
+      var website = honeypotInput ? honeypotInput.value : '';
+
       msgBox.textContent = 'Subscribing…';
       msgBox.style.color = '';
 
@@ -541,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function () {
           'Accept': 'application/json',
           'X-CSRF-TOKEN': tokenInput ? tokenInput.value : ''
         },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ email: email, website: website })
       })
         .then(function (res) { return res.json().then(function (data) { return { status: res.status, data: data }; }); })
         .then(function (result) {
@@ -654,8 +657,15 @@ document.addEventListener('DOMContentLoaded', function () {
       overlay.classList.remove('gms-visible');
     }
 
+    var NO_IMAGE_PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' +
+      encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" font-size="24" fill="#999" text-anchor="middle" dy=".3em">No image</text></svg>');
+
     function renderProduct(data) {
-      imgEl.src = data.image || '';
+      imgEl.onerror = function () {
+        imgEl.onerror = null;
+        imgEl.src = NO_IMAGE_PLACEHOLDER;
+      };
+      imgEl.src = data.image || NO_IMAGE_PLACEHOLDER;
       imgEl.alt = data.name || '';
       titleEl.textContent = data.name || '';
       linkEl.href = data.url || '#';

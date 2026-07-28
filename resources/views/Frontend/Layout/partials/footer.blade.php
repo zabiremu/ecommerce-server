@@ -143,7 +143,7 @@
                                                   Us</a></li>
 
                                           <li class="wp-block-wd-menu-list-item wd-8263aca4"><a
-                                                  href="#">F.A.Q.</a></li>
+                                                  href="{{ route('faq') }}">F.A.Q.</a></li>
                                       </ul>
                                   </li>
                               </ul>
@@ -249,9 +249,11 @@
 
           <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-7c5e9f7c ">
               <p class="wp-block-wd-paragraph text-center    wd-aae3cee5"><a href="{{ route('home') }}">Roventex</a>
-                  © 2026 <a href="#">Roventex</a>.</p>
+                  © 2026 Roventex.</p>
 
 
           </div>
+
+          @include('Frontend.partials.trust-badges')
       </div>
   </footer>

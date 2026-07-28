@@ -10,6 +10,15 @@ class NewsletterController extends Controller
 {
     public function store(Request $request)
     {
+        // Honeypot: real users never fill this hidden field, bots that blindly fill every input do.
+        // Fail silently with a fake success so bots don't learn they were caught.
+        if (filled($request->input('website'))) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Thanks for subscribing! Check your inbox for your 10% off code.',
+            ]);
+        }
+
         $data = $request->validate([
             'email' => 'required|email|max:255',
         ]);

@@ -118,11 +118,20 @@ class HomePageController extends Controller
         $avgRating = round($product->reviews()->approved()->avg('rating') ?? 0, 1);
         $reviewsCount = $product->reviews()->approved()->count();
 
+        $noImagePlaceholder = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" font-size="24" fill="#999" text-anchor="middle" dy=".3em">No image</text></svg>');
+        if ($product->thumbnail) {
+            $image = Storage::disk('public')->exists($product->thumbnail)
+                ? Storage::url($product->thumbnail)
+                : asset($product->thumbnail);
+        } else {
+            $image = $noImagePlaceholder;
+        }
+
         return response()->json([
             'name'           => $product->name,
             'slug'           => $product->slug,
             'url'            => route('product-details') . '?slug=' . $product->slug,
-            'image'          => $product->thumbnail ? Storage::url($product->thumbnail) : '',
+            'image'          => $image,
             'price'          => [
                 'current' => $displayPrice,
                 'old'     => (float) $product->selling_price,
@@ -395,6 +404,12 @@ class HomePageController extends Controller
                 'phone' => $customer->phone,
             ],
         ]);
+    }
+
+    public function faq()
+    {
+        $page = Page::findBySlug('faq');
+        return view('Frontend.faq', compact('page'));
     }
 
     public function forgotPassword()

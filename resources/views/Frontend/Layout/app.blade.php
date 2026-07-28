@@ -506,7 +506,7 @@
                         height="18"><span class="nav-link-text">Contact Us</span></a></li>
             <li id="menu-item-608"
                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-608 item-level-0"><a
-                    href="#" class="woodmart-nav-link"><img
+                    href="{{ route('faq') }}" class="woodmart-nav-link"><img
                         src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-star-1.svg') }}"
                         title="navigation-menu-star" loading="lazy" class="wd-nav-img" width="18"
                         height="18"><span class="nav-link-text">F.A.Q.</span></a></li>
@@ -719,7 +719,7 @@
         <div class="gms-quick-view" role="dialog" aria-modal="true" aria-label="Quick view">
             <button type="button" class="gms-quick-view-close" id="gms-quick-view-close" aria-label="Close">&times;</button>
             <div class="gms-quick-view-image">
-                <img src="" alt="" id="gms-quick-view-img">
+                <img alt="" id="gms-quick-view-img">
             </div>
             <div class="gms-quick-view-body">
                 <div class="gms-quick-view-badges" id="gms-quick-view-badges"></div>

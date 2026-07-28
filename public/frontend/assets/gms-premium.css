@@ -1,0 +1,254 @@
+/* ============================================================
+   GMS Premium — product card redesign
+   Extends gms-custom.css design tokens (--gms-*). Scoped to the
+   shared product-card partial, so it applies everywhere the card
+   is used (home best-sellers/featured, all-products, category,
+   search, wishlist, recently-viewed, etc).
+   ============================================================ */
+
+:root {
+  --gms-gold: #C9A24B;
+  --gms-gold-light: #F3E4B8;
+  --gms-gold-dark: #8A6C2E;
+  --gms-ink-soft: #3B2F17;
+}
+
+/* Card needs a positioning context for the ribbon badges, hover
+   image crossfade, and the centered hover-action buttons. */
+.wd-product-thumb {
+  position: relative;
+}
+
+/* ------------------------------------------------------------
+   1. Badges → small gold ribbons, top-right corner
+   ------------------------------------------------------------ */
+.product-labels.labels-rounded-sm {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  z-index: 5;
+  max-width: calc(100% - 20px);
+}
+.product-labels.labels-rounded-sm .product-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px 4px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--gms-ink-soft) !important;
+  background: linear-gradient(135deg, var(--gms-gold-light), var(--gms-gold) 60%, var(--gms-gold-dark)) !important;
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+  clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   2. Stock status → pill badges
+   ------------------------------------------------------------ */
+.wd-stock-status {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.wd-stock-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.wd-stock-status.in-stock {
+  background: #E4F5EA;
+  color: #2f8f4e;
+}
+.wd-stock-status.low-stock {
+  background: #FDECDA;
+  color: #B4690E;
+}
+.wd-stock-status.out-of-stock {
+  background: #ECE7E7;
+  color: #8A7A7A;
+}
+
+/* ------------------------------------------------------------
+   3. Quick view / wishlist → icon buttons overlaid on the
+      image, centered, revealed on hover
+   ------------------------------------------------------------ */
+.wd-buttons.wd-pos-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--gms-ease), transform var(--gms-ease);
+  pointer-events: none;
+}
+.wd-product.product-grid-item:hover .wd-buttons.wd-pos-center {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.wd-buttons.wd-pos-center .wd-action-btn {
+  pointer-events: auto;
+}
+.wd-buttons.wd-pos-center .wd-action-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #FFF;
+  color: var(--gms-ink);
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
+  transition: background var(--gms-ease), color var(--gms-ease), transform var(--gms-ease);
+}
+.wd-buttons.wd-pos-center .wd-action-btn a:hover {
+  background: var(--gms-gold);
+  color: #FFF;
+  transform: translateY(-2px);
+}
+.wd-buttons.wd-pos-center .wd-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Visually-hidden accessible label (icon-only buttons still announce their purpose) */
+.wd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Wishlist "active" state still visible via icon fill */
+.wd-wishlist-btn.wd-active .wd-action-icon svg {
+  fill: currentColor;
+}
+
+/* ------------------------------------------------------------
+   4. Add to cart → full solid button with icon
+   ------------------------------------------------------------ */
+.wd-add-btn.wd-add-btn-replace {
+  margin-top: 10px;
+}
+.wd-add-btn.wd-add-btn-replace .button.add_to_cart_button,
+.wd-add-btn.wd-add-btn-replace .add-to-cart-loop {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--gms-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-decoration: none !important;
+  text-align: center;
+  line-height: 1.4;
+}
+.wd-add-btn.wd-add-btn-replace .wd-action-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.wd-add-btn.wd-add-btn-replace .button.wd-disabled {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--gms-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--gms-bg-soft) !important;
+  color: var(--gms-text) !important;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------
+   5. Hover image swap — crossfade to the second gallery image
+   ------------------------------------------------------------ */
+.wd-product-img-hover.hover-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--gms-ease);
+  pointer-events: none;
+}
+.wd-product-img-hover.hover-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--gms-ease);
+}
+.wd-product.product-grid-item:hover .wd-product-img-hover.hover-img {
+  opacity: 1;
+}
+.wd-product.product-grid-item:hover .wd-product-img-hover.hover-img img {
+  transform: scale(1.05);
+}
+
+/* ------------------------------------------------------------
+   6. Trust / payment badges (footer, checkout)
+   ------------------------------------------------------------ */
+.gms-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+  padding: 16px 0;
+  margin: 8px 0;
+  border-top: 1px solid var(--gms-line);
+  border-bottom: 1px solid var(--gms-line);
+}
+.gms-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--gms-bg-soft);
+  color: var(--gms-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+.gms-trust-badge svg {
+  flex-shrink: 0;
+  color: var(--gms-gold-dark);
+}
+.gms-trust-badge-secure {
+  background: var(--gms-gold-light);
+  color: var(--gms-ink-soft);
+}
+.gms-trust-badge-secure svg {
+  color: var(--gms-gold-dark);
+}

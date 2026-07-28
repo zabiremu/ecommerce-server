@@ -7,6 +7,7 @@
     <link rel="preload" as="image" href="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }}"
         imagesrcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }} 1294w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-300x139.jpg.webp') }} 300w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-1024x475.jpg.webp') }} 1024w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-768x356.jpg.webp') }} 768w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-290x134.jpg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-100x46.jpg.webp') }} 100w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-600x278.jpg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-150x70.jpg.webp') }} 150w"
         imagesizes="(max-width: 1294px) 100vw, 1294px" fetchpriority="high" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/fontawesome-all.min.css') }}">
     <link rel='stylesheet' id='wd-style-base-css' href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/base.css') }}"
         type='text/css' media='all' />
     <style id='wd-style-base-inline-css' type='text/css'>
@@ -2422,5 +2423,6 @@
         }
     </style>
     <link rel="stylesheet" href="{{ asset('frontend/assets/gms-custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/gms-premium.css') }}">
     @stack('styles')
 </head>
