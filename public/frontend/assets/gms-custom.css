@@ -1214,3 +1214,159 @@ input[type="submit"],
 .gms-trust-badge-secure svg {
   color: #8A6C2E;
 }
+
+/* ==========================================================
+   14. HEADER — BRAND LOCKUP + NAV UNDERLINE
+   ========================================================== */
+.gms-brand-lockup .wd-logo.wd-main-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.gms-brand-tagline {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--gms-text);
+  /* Logo img is visually scaled 1.6x via inline transform (doesn't
+     affect layout box), so this needs enough clearance to not sit
+     under the enlarged logo rather than cleanly below it. */
+  margin-top: 14px;
+  white-space: nowrap;
+}
+.wd-header-main-nav .menu-item > a {
+  position: relative;
+}
+.wd-header-main-nav .menu-item > a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--gms-red);
+  transition: width var(--gms-ease);
+}
+.wd-header-main-nav .menu-item:hover > a::after,
+.wd-header-main-nav .menu-item.current-menu-item > a::after {
+  width: 100%;
+}
+
+/* ==========================================================
+   15. HERO — CTA BUTTON + TRUST ROW + SLIDER FRAME
+   ========================================================== */
+.gms-hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.gms-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gms-red);
+  color: #FFF !important;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none !important;
+  transition: background var(--gms-ease), transform var(--gms-ease);
+}
+.gms-hero-cta:hover {
+  background: var(--gms-red-dark);
+  color: #FFF !important;
+}
+.gms-hero-cta svg {
+  transition: transform var(--gms-ease);
+}
+.gms-hero-cta:hover svg {
+  transform: translateX(3px);
+}
+.gms-hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gms-text);
+}
+.gms-hero-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gms-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gms-red);
+  flex-shrink: 0;
+}
+.wd-slider.wd-carousel-container {
+  border-radius: var(--gms-radius);
+  box-shadow: var(--gms-shadow);
+  overflow: hidden;
+}
+@media (max-width: 768.98px) {
+  .gms-hero-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+/* ==========================================================
+   16. HOMEPAGE USP / TRUST STRIP
+   ========================================================== */
+.gms-usp-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 28px 0;
+  margin: 20px 0;
+  border-top: 1px solid var(--gms-line);
+  border-bottom: 1px solid var(--gms-line);
+}
+.gms-usp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gms-usp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(230, 57, 70, .08);
+  color: var(--gms-red);
+  flex-shrink: 0;
+}
+.gms-usp-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gms-title);
+}
+.gms-usp-text span {
+  display: block;
+  font-size: 12px;
+  color: var(--gms-text);
+  font-weight: 400;
+}
+@media (max-width: 1024px) {
+  .gms-usp-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .gms-usp-strip {
+    grid-template-columns: 1fr;
+  }
+}

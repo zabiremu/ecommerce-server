@@ -24,14 +24,15 @@
                     <div class="container">
                         <div class="whb-flex-row whb-general-header-inner">
                             <div class="whb-column whb-col-left whb-column8 whb-visible-lg">
-                                <div class="site-logo whb-vq6q7g5o9lxjza5urabd">
+                                <div class="site-logo whb-vq6q7g5o9lxjza5urabd gms-brand-lockup">
                                     <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
                                         aria-label="Site logo">
                                         <img width="201" height="32"
                                             src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
                                             class="attachment-full size-full" alt=""
                                             style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
-                                            decoding="async" /> </a>
+                                            decoding="async" />
+                                        <span class="gms-brand-tagline">Style That Moves With You</span> </a>
                                 </div>
 
                                 <div class="whb-space-element whb-nhk1nrs4bqpvtm7wjy76 " style="width:120px;"></div>
