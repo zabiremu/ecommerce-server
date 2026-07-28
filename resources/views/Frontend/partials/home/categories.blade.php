@@ -35,17 +35,22 @@
         animation: none !important;
     }
     /* Categories without an uploaded photo yet get their icon in a
-       soft gold circle instead of an unrelated stock placeholder image. */
+       colored circle instead of an unrelated stock placeholder image.
+       Cycled palette so a row of repeated icons (e.g. several shirt
+       categories) doesn't read as visually broken/duplicated. */
     .gms-cat-icon-fallback {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #F3E4B8, #E9D3A0);
-        color: #8A6C2E;
         font-size: 34px;
     }
+    .gms-cat-icon-fallback-0 { background: linear-gradient(135deg, #F3E4B8, #C9A24B); color: #5C4A1E; }
+    .gms-cat-icon-fallback-1 { background: linear-gradient(135deg, #F3D9D2, #E0A99C); color: #7A3B2E; }
+    .gms-cat-icon-fallback-2 { background: linear-gradient(135deg, #DCE6DA, #A9C0A4); color: #3E5A38; }
+    .gms-cat-icon-fallback-3 { background: linear-gradient(135deg, #DCE1EA, #A9B7CC); color: #34435C; }
+    .gms-cat-icon-fallback-4 { background: linear-gradient(135deg, #E9DCEF, #C6A8D6); color: #5A3A6B; }
 </style>
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
     <div>
@@ -74,7 +79,7 @@
                                         alt="{{ $cat->name }}"
                                         style="object-fit: cover; width: 150px; height: 150px;" />
                                     @else
-                                    <span class="gms-cat-icon-fallback" aria-hidden="true">
+                                    <span class="gms-cat-icon-fallback gms-cat-icon-fallback-{{ $loop->index % 5 }}" aria-hidden="true">
                                         <i class="{{ $cat->icon ?: 'fas fa-tag' }}"></i>
                                     </span>
                                     @endif

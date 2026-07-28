@@ -46,60 +46,93 @@
                                             ->orderBy('home_order')
                                             ->orderBy('name')
                                             ->get();
+
+                                        // Categories with real sub-categories (Footwear, Special Sections) get
+                                        // their own mega-dropdown. Flat/leaf categories (T-Shirt, Jeans, etc.)
+                                        // are grouped under one "Shop" dropdown instead of listing all of them
+                                        // in the top-level bar — with 11+ leaf categories that wrapped across
+                                        // two messy lines. Display-only grouping; doesn't touch the real
+                                        // category parent/child relationships other pages rely on.
+                                        $navLeafCategories = $navCategories->filter(fn($c) => $c->children->isEmpty())->values();
+                                        $navGroupedCategories = $navCategories->filter(fn($c) => $c->children->isNotEmpty())->values();
                                     @endphp
                                     <ul id="menu-main-navigation"
                                         class="menu wd-nav wd-nav-header wd-nav-main wd-style-default wd-gap-s">
 
-                                        @foreach($navCategories as $navCat)
-                                            @if($navCat->children->isEmpty())
-                                                <li id="menu-item-cat-{{ $navCat->id }}"
-                                                    class="menu-item item-level-0 menu-simple-dropdown wd-event-hover">
-                                                    <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
-                                                       class="woodmart-nav-link">
-                                                        <span class="nav-link-text">{{ $navCat->name }}</span>
-                                                    </a>
-                                                </li>
-                                            @else
-                                                @php
-                                                    $colCount = $navCat->children->count();
-                                                    $dropdownWidth = min(660, max(220, $colCount * 220));
-                                                @endphp
-                                                <li id="menu-item-cat-{{ $navCat->id }}"
-                                                    class="menu-item item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
-                                                    style="--wd-dropdown-width: {{ $dropdownWidth }}px;">
-                                                    <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
-                                                       class="woodmart-nav-link">
-                                                        <span class="nav-link-text">{{ $navCat->name }}</span>
-                                                    </a>
-                                                    <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
-                                                        <div class="container wd-entry-content">
-                                                            <link rel="stylesheet"
-                                                                  href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
-                                                                  type="text/css" media="all"/>
-                                                            <div class="wp-block-wd-row">
-                                                                @foreach($navCat->children as $child)
-                                                                    <div class="wp-block-wd-column">
-                                                                        <ul class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
+                                        @if($navLeafCategories->isNotEmpty())
+                                            @php
+                                                $shopColCount = min(4, max(1, ceil($navLeafCategories->count() / 4)));
+                                                $shopDropdownWidth = min(660, max(320, $shopColCount * 200));
+                                            @endphp
+                                            <li id="menu-item-shop-all"
+                                                class="menu-item item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
+                                                style="--wd-dropdown-width: {{ $shopDropdownWidth }}px;">
+                                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">
+                                                    <span class="nav-link-text">Shop</span>
+                                                </a>
+                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                    <div class="container wd-entry-content">
+                                                        <link rel="stylesheet"
+                                                              href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
+                                                              type="text/css" media="all"/>
+                                                        <div class="wp-block-wd-row">
+                                                            @foreach($navLeafCategories->chunk((int) ceil($navLeafCategories->count() / $shopColCount)) as $columnCats)
+                                                                <div class="wp-block-wd-column">
+                                                                    <ul class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
+                                                                        @foreach($columnCats as $leafCat)
                                                                             <li>
-                                                                                <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $child->name }}</a>
-                                                                                @if($child->children->isNotEmpty())
-                                                                                    <ul class="sub-sub-menu">
-                                                                                        @foreach($child->children as $grandchild)
-                                                                                            <li class="wp-block-wd-menu-list-item">
-                                                                                                <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
-                                                                                            </li>
-                                                                                        @endforeach
-                                                                                    </ul>
-                                                                                @endif
+                                                                                <a href="{{ route('category-products') }}?slug={{ $leafCat->slug }}">{{ $leafCat->name }}</a>
                                                                             </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
-                                                </li>
-                                            @endif
+                                                </div>
+                                            </li>
+                                        @endif
+
+                                        @foreach($navGroupedCategories as $navCat)
+                                            @php
+                                                $colCount = $navCat->children->count();
+                                                $dropdownWidth = min(660, max(220, $colCount * 220));
+                                            @endphp
+                                            <li id="menu-item-cat-{{ $navCat->id }}"
+                                                class="menu-item item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
+                                                style="--wd-dropdown-width: {{ $dropdownWidth }}px;">
+                                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
+                                                   class="woodmart-nav-link">
+                                                    <span class="nav-link-text">{{ $navCat->name }}</span>
+                                                </a>
+                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                    <div class="container wd-entry-content">
+                                                        <link rel="stylesheet"
+                                                              href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
+                                                              type="text/css" media="all"/>
+                                                        <div class="wp-block-wd-row">
+                                                            @foreach($navCat->children as $child)
+                                                                <div class="wp-block-wd-column">
+                                                                    <ul class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
+                                                                        <li>
+                                                                            <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $child->name }}</a>
+                                                                            @if($child->children->isNotEmpty())
+                                                                                <ul class="sub-sub-menu">
+                                                                                    @foreach($child->children as $grandchild)
+                                                                                        <li class="wp-block-wd-menu-list-item">
+                                                                                            <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
+                                                                                        </li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            @endif
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </nav>
@@ -425,31 +458,43 @@
                         <a href="#">
                             Back </a>
                     </li>
-                    @foreach($navCategories as $navCat)
-                        @if($navCat->children->isEmpty())
-                            <li id="menu-item-cat-mobile-{{ $navCat->id }}"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-1">
-                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
-                            </li>
-                        @else
-                            <li id="menu-item-cat-mobile-{{ $navCat->id }}"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children item-level-1">
-                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
-                                <ul class="sub-sub-menu">
-                                    <li class="wd-drilldown-back">
-                                        <span class="wd-nav-opener"></span>
-                                        <a href="#">
-                                            Back </a>
+                    @if($navLeafCategories->isNotEmpty())
+                        <li id="menu-item-cat-mobile-shop-all"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children item-level-1">
+                            <a href="{{ route('all-products') }}" class="woodmart-nav-link">Shop</a>
+                            <ul class="sub-sub-menu">
+                                <li class="wd-drilldown-back">
+                                    <span class="wd-nav-opener"></span>
+                                    <a href="#">
+                                        Back </a>
+                                </li>
+                                @foreach($navLeafCategories as $leafCat)
+                                    <li id="menu-item-cat-mobile-{{ $leafCat->id }}"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
+                                        <a href="{{ route('category-products') }}?slug={{ $leafCat->slug }}" class="woodmart-nav-link">{{ $leafCat->name }}</a>
                                     </li>
-                                    @foreach($navCat->children as $child)
-                                        <li id="menu-item-cat-mobile-{{ $child->id }}"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
-                                            <a href="{{ route('category-products') }}?slug={{ $child->slug }}" class="woodmart-nav-link">{{ $child->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+                    @foreach($navGroupedCategories as $navCat)
+                        <li id="menu-item-cat-mobile-{{ $navCat->id }}"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children item-level-1">
+                            <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
+                            <ul class="sub-sub-menu">
+                                <li class="wd-drilldown-back">
+                                    <span class="wd-nav-opener"></span>
+                                    <a href="#">
+                                        Back </a>
+                                </li>
+                                @foreach($navCat->children as $child)
+                                    <li id="menu-item-cat-mobile-{{ $child->id }}"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
+                                        <a href="{{ route('category-products') }}?slug={{ $child->slug }}" class="woodmart-nav-link">{{ $child->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                     @endforeach
                 </ul>
             </li>

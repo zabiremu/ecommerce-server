@@ -36,6 +36,7 @@ class HomePageController extends Controller
             ->orderBy('name')
             ->get();
         $bestSellers = Product::published()
+            ->has('orderItems')
             ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
             ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
             ->withCount('orderItems as sold_count')
@@ -93,6 +94,7 @@ class HomePageController extends Controller
 
         $isNew = $product->created_at && $product->created_at->gt(now()->subDays(14));
         $bestSellerIds = Product::published()
+            ->has('orderItems')
             ->withCount('orderItems as sold_count')
             ->orderByDesc('sold_count')
             ->orderByDesc('id')

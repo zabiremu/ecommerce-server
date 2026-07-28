@@ -29,6 +29,7 @@
     href="merchandise/wp-content/themes/woodmart/css/parts/woo-opt-title-limit-predefined.css"
     type="text/css" media="all" />
 
+@if($bestSellers->isNotEmpty())
 <div class="gms-section-priority-2">
     <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
         <div>
@@ -70,3 +71,4 @@
         <div class="wd-nav-scroll"></div>
     </div>
 </div>
+@endif
