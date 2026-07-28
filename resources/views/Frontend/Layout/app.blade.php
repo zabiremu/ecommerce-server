@@ -43,8 +43,8 @@
                                             ->with(['children' => fn($q) => $q->where('status', true)
                                                 ->with(['children' => fn($q2) => $q2->where('status', true)->orderBy('name')])
                                                 ->orderBy('name')])
-                                            ->latest()
-                                            ->limit(4)
+                                            ->orderBy('home_order')
+                                            ->orderBy('name')
                                             ->get();
                                     @endphp
                                     <ul id="menu-main-navigation"
@@ -425,71 +425,32 @@
                         <a href="#">
                             Back </a>
                     </li>
-                    <li id="menu-item-937"
-                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-937 item-level-1">
-                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Apparel</a>
-                        <ul class="sub-sub-menu">
-                            <li class="wd-drilldown-back">
-                                <span class="wd-nav-opener"></span>
-                                <a href="#">
-                                    Back </a>
+                    @foreach($navCategories as $navCat)
+                        @if($navCat->children->isEmpty())
+                            <li id="menu-item-cat-mobile-{{ $navCat->id }}"
+                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-1">
+                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
                             </li>
-                            <li id="menu-item-1008"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1008 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Hats</a>
+                        @else
+                            <li id="menu-item-cat-mobile-{{ $navCat->id }}"
+                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children item-level-1">
+                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
+                                <ul class="sub-sub-menu">
+                                    <li class="wd-drilldown-back">
+                                        <span class="wd-nav-opener"></span>
+                                        <a href="#">
+                                            Back </a>
+                                    </li>
+                                    @foreach($navCat->children as $child)
+                                        <li id="menu-item-cat-mobile-{{ $child->id }}"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
+                                            <a href="{{ route('category-products') }}?slug={{ $child->slug }}" class="woodmart-nav-link">{{ $child->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </li>
-                            <li id="menu-item-1009"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1009 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Sweatshirts</a>
-                            </li>
-                            <li id="menu-item-1010"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1010 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">T-Shirts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li id="menu-item-936"
-                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-936 item-level-1">
-                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Accessories &amp; Arts</a>
-                        <ul class="sub-sub-menu">
-                            <li class="wd-drilldown-back">
-                                <span class="wd-nav-opener"></span>
-                                <a href="#">
-                                    Back </a>
-                            </li>
-                            <li id="menu-item-1005"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1005 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Pins</a>
-                            </li>
-                            <li id="menu-item-1006"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1006 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Posters</a>
-                            </li>
-                            <li id="menu-item-1007"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1007 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Stickers</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li id="menu-item-938"
-                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-938 item-level-1">
-                        <a href="{{ route('all-products') }}" class="woodmart-nav-link">Collectibles</a>
-                        <ul class="sub-sub-menu">
-                            <li class="wd-drilldown-back">
-                                <span class="wd-nav-opener"></span>
-                                <a href="#">
-                                    Back </a>
-                            </li>
-                            <li id="menu-item-1011"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1011 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Figures</a>
-                            </li>
-                            <li id="menu-item-1012"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-1012 item-level-2">
-                                <a href="{{ route('all-products') }}" class="woodmart-nav-link">Plushes</a>
-                            </li>
-                        </ul>
-                    </li>
+                        @endif
+                    @endforeach
                 </ul>
             </li>
             <li id="menu-item-606"
