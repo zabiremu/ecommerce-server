@@ -54,6 +54,43 @@
                 </div>
             </div>
 
+            <!-- Homepage trust strip -->
+            <div class="wp-panel">
+                <div class="wp-panel-h"><i class="fas fa-shield-heart mr-1.5 text-slate-400"></i> Trust Strip (Homepage)</div>
+                <div class="wp-panel-body">
+                    @php
+                        $uspIconMap = [
+                            1 => 'fa-shield-halved',
+                            2 => 'fa-truck-fast',
+                            3 => 'fa-rotate-left',
+                            4 => 'fa-headset',
+                        ];
+                    @endphp
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        @for ($i = 1; $i <= 4; $i++)
+                            <div class="p-3 bg-[#f6f7f7] border border-[#e0e0e0] rounded">
+                                <p class="text-[12px] font-semibold text-[#1d2327] mb-2">
+                                    <i class="fas {{ $uspIconMap[$i] }} mr-1 text-slate-400"></i> Item {{ $i }}
+                                </p>
+                                <div class="wp-field">
+                                    <label>{{ $fields['usp']["usp_{$i}_title"][0] }}</label>
+                                    <input type="text" name="usp_{{ $i }}_title"
+                                           value="{{ old("usp_{$i}_title", $settings["usp_{$i}_title"] ?? '') }}"
+                                           class="wp-input">
+                                </div>
+                                <div class="wp-field mb-0">
+                                    <label>{{ $fields['usp']["usp_{$i}_subtitle"][0] }}</label>
+                                    <input type="text" name="usp_{{ $i }}_subtitle"
+                                           value="{{ old("usp_{$i}_subtitle", $settings["usp_{$i}_subtitle"] ?? '') }}"
+                                           class="wp-input">
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                    <p class="wp-help mt-2">The 4-icon row shown under the homepage hero banner. Leave blank to keep the default text.</p>
+                </div>
+            </div>
+
             <!-- Company -->
             <div class="wp-panel">
                 <div class="wp-panel-h"><i class="fas fa-building mr-1.5 text-slate-400"></i> Company</div>

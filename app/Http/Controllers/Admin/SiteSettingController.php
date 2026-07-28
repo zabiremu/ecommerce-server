@@ -75,6 +75,16 @@ class SiteSettingController extends Controller
             'home_newsletter_title'    => ['Newsletter Title',    'nullable|string|max:255'],
             'home_newsletter_subtitle' => ['Newsletter Subtitle', 'nullable|string|max:500'],
         ],
+        'usp' => [
+            'usp_1_title'    => ['Item 1 Title',    'nullable|string|max:60'],
+            'usp_1_subtitle' => ['Item 1 Subtitle', 'nullable|string|max:100'],
+            'usp_2_title'    => ['Item 2 Title',    'nullable|string|max:60'],
+            'usp_2_subtitle' => ['Item 2 Subtitle', 'nullable|string|max:100'],
+            'usp_3_title'    => ['Item 3 Title',    'nullable|string|max:60'],
+            'usp_3_subtitle' => ['Item 3 Subtitle', 'nullable|string|max:100'],
+            'usp_4_title'    => ['Item 4 Title',    'nullable|string|max:60'],
+            'usp_4_subtitle' => ['Item 4 Subtitle', 'nullable|string|max:100'],
+        ],
     ];
 
     public function edit()
