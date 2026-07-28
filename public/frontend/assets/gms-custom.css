@@ -750,6 +750,14 @@ input[type="submit"] {
   position: relative;
   z-index: 1;
 }
+/* Woodmart's own fade CSS (el-slider-block.css) sets pointer-events:none
+   on every .wd-carousel-item once .wd-fade is active, re-enabling it only
+   for .wd-carousel-item.wd-active — a class our JS never applies (it uses
+   .gms-slide-active instead). Without this override, the CTA link (and
+   anything else) inside the hero slide is permanently unclickable. */
+.wd-carousel.wd-fade > .wd-carousel-wrap > .wd-carousel-item.gms-slide-active {
+  pointer-events: auto;
+}
 
 /* Hero slide — background image + centered text overlay.
    No Woodmart slider CSS actually loads here, so this is fully custom. */
