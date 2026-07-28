@@ -488,7 +488,7 @@ input[type="submit"] {
 
 /* Image zoom on hover */
 .wd-product-thumb {
-  position: relative;
+  position: relative !important;
   overflow: hidden;
 }
 .wd-product-thumb > a.wd-product-img-link {
@@ -552,13 +552,30 @@ input[type="submit"] {
 
 /* Quick view / wishlist — small circular icon buttons overlaid on the
    image, revealed on hover on desktop. No hover on touch devices, so
-   always show them there instead. */
+   always show them there instead.
+
+   base.css (Woodmart, loads successfully) sets --wd-btn-icon on
+   .wd-quick-view-icon/.wd-wishlist-icon and renders it as icon-font
+   glyph content on .wd-action-icon:before — that was rendering
+   alongside our own inline SVGs (a real duplicate-icon bug, confirmed
+   by screenshot), so it's explicitly suppressed below.
+
+   Position/size are !important-guarded: nothing in currently-loaded
+   CSS targets .wd-buttons/.wd-pos-r-t/.wd-add-btn-replace, but the
+   product-loop files that normally would (woo-mod-loop-prod-add-btn-
+   replace.css etc.) are one path-fix away from loading, and this
+   guarantees the layout can't be pulled out of normal/absolute flow
+   if that ever changes. */
 .wd-buttons.wd-pos-r-t {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
+  position: absolute !important;
+  top: auto !important;
+  left: auto !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  width: auto !important;
+  height: auto !important;
   z-index: 6;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 8px;
   opacity: 0;
@@ -573,13 +590,15 @@ input[type="submit"] {
 }
 .wd-buttons.wd-pos-r-t .wd-action-btn {
   pointer-events: auto;
+  width: auto !important;
+  height: auto !important;
 }
 .wd-buttons.wd-pos-r-t .wd-action-btn a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 34px !important;
+  height: 34px !important;
   border-radius: 50%;
   background: #FFF;
   color: var(--gms-ink);
@@ -595,6 +614,12 @@ input[type="submit"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+/* Suppress the icon-font glyph — our inline SVG is the only icon. */
+.wd-buttons.wd-pos-r-t .wd-action-icon:before {
+  content: none !important;
 }
 @media (max-width: 1024px) {
   /* No hover on touch devices — keep these always visible instead of hidden behind a hover that can't happen. */
@@ -607,7 +632,11 @@ input[type="submit"] {
 
 /* Add to cart — full-width solid button with icon */
 .wd-add-btn.wd-add-btn-replace {
+  position: static !important;
   margin-top: 10px;
+}
+.wd-add-btn.wd-add-btn-replace .wd-action-icon:before {
+  content: none !important;
 }
 .wd-add-btn.wd-add-btn-replace .button.add_to_cart_button,
 .wd-add-btn.wd-add-btn-replace .add-to-cart-loop {

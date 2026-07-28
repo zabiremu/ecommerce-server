@@ -4,5 +4,5 @@
     <path d="M90 0 L210 0 L240 40 L300 70 L260 130 L220 105 L220 300 L80 300 L80 105 L40 130 L0 70 L60 40 Z" fill="#FFFFFF"/>
     <path d="M90 0 C90 30 210 30 210 0" />
   </g>
-  <text x="300" y="560" font-family="Arial, sans-serif" font-size="20" fill="#A79E92" text-anchor="middle">Photo coming soon</text>
+  <text x="300" y="480" font-family="Arial, sans-serif" font-size="20" fill="#A79E92" text-anchor="middle">Photo coming soon</text>
 </svg>
