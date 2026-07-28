@@ -2423,6 +2423,5 @@
         }
     </style>
     <link rel="stylesheet" href="{{ asset('frontend/assets/gms-custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/gms-premium.css') }}">
     @stack('styles')
 </head>

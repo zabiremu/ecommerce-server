@@ -253,7 +253,5 @@
 
 
           </div>
-
-          @include('Frontend.partials.trust-badges')
       </div>
   </footer>
