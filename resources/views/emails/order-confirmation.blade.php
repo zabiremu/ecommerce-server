@@ -105,36 +105,36 @@
                         × {{ rtrim(rtrim(number_format((float)$item->quantity, 2, '.', ''), '0'), '.') }}
                     </td>
                     <td style="padding:12px 14px;text-align:right;font-size:13px;color:#475569">
-                        TK {{ number_format((float)$item->unit_price) }}
+                        {{ \App\Support\Money::format($item->unit_price) }}
                     </td>
                     <td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:600;color:#1e293b">
-                        TK {{ number_format((float)$item->total) }}
+                        {{ \App\Support\Money::format($item->total) }}
                     </td>
                 </tr>
                 @endforeach
                 {{-- Totals --}}
                 <tr style="background:#f8fafc;border-top:1px solid #e2e8f0">
                     <td colspan="3" style="padding:10px 14px;text-align:right;font-size:13px;color:#64748b">Subtotal</td>
-                    <td style="padding:10px 14px;text-align:right;font-size:13px;color:#1e293b">TK {{ number_format((float)$o->subtotal) }}</td>
+                    <td style="padding:10px 14px;text-align:right;font-size:13px;color:#1e293b">{{ \App\Support\Money::format($o->subtotal) }}</td>
                 </tr>
                 <tr style="background:#f8fafc">
                     <td colspan="3" style="padding:6px 14px;text-align:right;font-size:13px;color:#64748b">Shipping</td>
                     <td style="padding:6px 14px;text-align:right;font-size:13px;color:#1e293b">
-                        {{ $o->shipping_charge > 0 ? 'TK '.number_format((float)$o->shipping_charge) : 'FREE' }}
+                        {{ $o->shipping_charge > 0 ? \App\Support\Money::format($o->shipping_charge) : 'FREE' }}
                     </td>
                 </tr>
                 @if($hasSale)
                 <tr style="background:#f8fafc">
                     <td colspan="3" style="padding:6px 14px;text-align:right;font-size:13px;color:#64748b">Discount</td>
                     <td style="padding:6px 14px;text-align:right;font-size:13px;color:#16a34a">
-                        − TK {{ number_format((float)$o->discount) }}
+                        − {{ \App\Support\Money::format($o->discount) }}
                     </td>
                 </tr>
                 @endif
                 <tr style="background:#f1f5f9;border-top:2px solid #e2e8f0">
                     <td colspan="3" style="padding:12px 14px;text-align:right;font-size:15px;font-weight:700;color:#1e293b">Total</td>
                     <td style="padding:12px 14px;text-align:right;font-size:17px;font-weight:800;color:#5E2590">
-                        TK {{ number_format((float)$o->total) }}
+                        {{ \App\Support\Money::format($o->total) }}
                     </td>
                 </tr>
             </table>
@@ -223,7 +223,7 @@
                     <td align="center">
                         <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#15803d">🚚 Estimated Delivery: 2–5 Business Days</p>
                         <p style="margin:0;font-size:13px;color:#166534">
-                            Cash on Delivery · Easy 7-day returns · Free shipping above TK 500
+                            Cash on Delivery · Easy 7-day returns · Free shipping above {{ \App\Support\Money::format(500) }}
                         </p>
                     </td>
                 </tr>

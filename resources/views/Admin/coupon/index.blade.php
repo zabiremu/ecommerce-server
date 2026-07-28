@@ -123,11 +123,11 @@
                         @if ($c->type === 'percentage')
                             {{ rtrim(rtrim(number_format($c->amount, 2, '.', ''), '0'), '.') }}%
                         @else
-                            ৳ {{ number_format($c->amount, 2) }}
+                            {{ \App\Support\Money::format($c->amount) }}
                         @endif
                     </strong>
                     @if ($c->minimum_spend)
-                        <div class="text-[11px] text-[#646970]">min ৳{{ number_format($c->minimum_spend, 0) }}</div>
+                        <div class="text-[11px] text-[#646970]">min {{ \App\Support\Money::format($c->minimum_spend) }}</div>
                     @endif
                 </td>
                 <td class="text-center">

@@ -2823,8 +2823,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var wrap = document.getElementById('co-wrap');
     var itemsBox = document.getElementById('co-items');
 
-    function money(n) { return '৳' + Number(n).toFixed(2); }
-
     function refreshQuote() {
         var cartItems = ShopCart.getCart();
         var coupon = localStorage.getItem('gms_coupon') || '';
@@ -2835,19 +2833,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 return (
                     '<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;">' +
                         '<span>' + li.name + (li.variant_label ? ' (' + li.variant_label + ')' : '') + ' × ' + li.qty + '</span>' +
-                        '<span>' + money(li.total) + '</span>' +
+                        '<span>' + window.formatPrice(li.total) + '</span>' +
                     '</div>'
                 );
             }).join('');
 
-            document.getElementById('co-subtotal').textContent = money(quote.subtotal);
-            document.getElementById('co-shipping').textContent = quote.shipping > 0 ? money(quote.shipping) : 'Free';
-            document.getElementById('co-total').textContent = money(quote.total);
+            document.getElementById('co-subtotal').textContent = window.formatPrice(quote.subtotal);
+            document.getElementById('co-shipping').textContent = quote.shipping > 0 ? window.formatPrice(quote.shipping) : 'Free';
+            document.getElementById('co-total').textContent = window.formatPrice(quote.total);
 
             var discountRow = document.getElementById('co-discount-row');
             if (quote.discount > 0) {
                 discountRow.style.display = '';
-                document.getElementById('co-discount').textContent = '-' + money(quote.discount);
+                document.getElementById('co-discount').textContent = '-' + window.formatPrice(quote.discount);
             } else {
                 discountRow.style.display = 'none';
             }

@@ -64,7 +64,7 @@
                 </td>
                 <td class="text-[#50575e] font-mono text-[12px]">{{ $cart->ip_address ?? '—' }}</td>
                 <td class="text-[#50575e]">{{ $cart->items->count() }} item{{ $cart->items->count() !== 1 ? 's' : '' }}</td>
-                <td><strong>৳{{ number_format($cart->estimated_total, 2) }}</strong></td>
+                <td><strong>{{ \App\Support\Money::format($cart->estimated_total) }}</strong></td>
                 <td class="text-[#50575e]">
                     @if ($cart->last_activity)
                         <span title="{{ $cart->last_activity->format('d M Y, H:i') }}">

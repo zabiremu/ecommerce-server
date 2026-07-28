@@ -253,7 +253,7 @@
                 <img src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}" class="w-full h-24 object-contain rounded mb-2 bg-slate-50">
                 @endif
                 <p class="text-[13px] font-semibold text-[#1d2327]">{{ $product->name }}</p>
-                <p class="text-[12px] font-semibold text-[#2271b1] mt-1">TK {{ number_format($product->selling_price) }}</p>
+                <p class="text-[12px] font-semibold text-[#2271b1] mt-1">{{ \App\Support\Money::format($product->selling_price) }}</p>
             </div>
         </div>
 

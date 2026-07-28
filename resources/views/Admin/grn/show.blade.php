@@ -63,15 +63,15 @@
                                 <td><strong>{{ $item->product_name }}</strong></td>
                                 <td class="text-right text-[#50575e]">{{ $item->ordered_qty }}</td>
                                 <td class="text-right"><strong class="text-[#2e7d32]">{{ $item->received_qty }}</strong></td>
-                                <td class="text-right text-[#50575e]">{{ number_format($item->unit_cost, 2) }}</td>
-                                <td class="text-right"><strong>{{ number_format($item->total, 2) }}</strong></td>
+                                <td class="text-right text-[#50575e]">{{ \App\Support\Money::format($item->unit_cost) }}</td>
+                                <td class="text-right"><strong>{{ \App\Support\Money::format($item->total) }}</strong></td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="5" class="text-right">Total</th>
-                            <th class="text-right">{{ number_format($goodsReceivedNote->items->sum('total'), 2) }}</th>
+                            <th class="text-right">{{ \App\Support\Money::format($goodsReceivedNote->items->sum('total')) }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="wc-summary-total">
                     <span class="lbl">Total Amount</span>
-                    <span class="val">{{ number_format($goodsReceivedNote->items->sum('total'), 2) }}</span>
+                    <span class="val">{{ \App\Support\Money::format($goodsReceivedNote->items->sum('total')) }}</span>
                 </div>
             </div>
         </div>

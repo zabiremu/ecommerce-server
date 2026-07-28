@@ -87,30 +87,30 @@
                                         <div class="text-[12px] text-[#50575e]">Option: <strong>{{ $item->variant_label }}</strong>@if($item->variant_sku) (<span class="font-mono">{{ $item->variant_sku }}</span>)@endif</div>
                                     @endif
                                 </td>
-                                <td class="text-right">৳ {{ number_format($item->unit_price, 2) }}</td>
+                                <td class="text-right">{{ \App\Support\Money::format($item->unit_price) }}</td>
                                 <td class="text-right">× {{ rtrim(rtrim(number_format($item->quantity, 2, '.', ''), '0'), '.') }}</td>
-                                <td class="text-right"><strong>৳ {{ number_format($item->total, 2) }}</strong></td>
+                                <td class="text-right"><strong>{{ \App\Support\Money::format($item->total) }}</strong></td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="4" class="text-right text-[#50575e]">Subtotal</td>
-                            <td class="text-right">৳ {{ number_format($order->subtotal, 2) }}</td>
+                            <td class="text-right">{{ \App\Support\Money::format($order->subtotal) }}</td>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right text-[#50575e]">Shipping</td>
-                            <td class="text-right">৳ {{ number_format($order->shipping_charge, 2) }}</td>
+                            <td class="text-right">{{ \App\Support\Money::format($order->shipping_charge) }}</td>
                         </tr>
                         @if ($order->discount > 0)
                             <tr>
                                 <td colspan="4" class="text-right text-[#50575e]">Discount</td>
-                                <td class="text-right text-emerald-700">-৳ {{ number_format($order->discount, 2) }}</td>
+                                <td class="text-right text-emerald-700">-{{ \App\Support\Money::format($order->discount) }}</td>
                             </tr>
                         @endif
                         <tr style="border-top: 2px solid #c3c4c7;">
                             <td colspan="4" class="text-right"><strong>Total</strong></td>
-                            <td class="text-right"><strong class="text-[15px]">৳ {{ number_format($order->total, 2) }}</strong></td>
+                            <td class="text-right"><strong class="text-[15px]">{{ \App\Support\Money::format($order->total) }}</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -217,7 +217,7 @@
                 <div id="sfPreInfo" class="{{ $order->isSentToSteadfast() ? 'hidden' : '' }} text-[12.5px] text-[#50575e] space-y-1 bg-[#f6f7f7] rounded px-3 py-2">
                     <div class="flex justify-between"><span>Recipient</span><strong class="text-[#1d2327]">{{ $order->shipping_name }}</strong></div>
                     <div class="flex justify-between"><span>Phone</span><strong class="font-mono text-[#1d2327]">{{ $order->shipping_phone }}</strong></div>
-                    <div class="flex justify-between"><span>COD Amount</span><strong class="text-[#1d2327]">৳{{ number_format($order->total, 2) }}</strong></div>
+                    <div class="flex justify-between"><span>COD Amount</span><strong class="text-[#1d2327]">{{ \App\Support\Money::format($order->total) }}</strong></div>
                 </div>
 
                 {{-- ONE-CLICK SEND button --}}
@@ -478,7 +478,7 @@
                     <span class="lbl">Quantity</span>
                     <span class="val">{{ rtrim(rtrim(number_format((float) $order->items->sum('quantity'), 2, '.', ''), '0'), '.') }}</span>
                     <span class="lbl">Total</span>
-                    <span class="val text-[16px] font-bold">৳ {{ number_format($order->total, 2) }}</span>
+                    <span class="val text-[16px] font-bold">{{ \App\Support\Money::format($order->total) }}</span>
                 </div>
             </div>
         </div>
@@ -501,7 +501,7 @@
                         <span class="lbl">Total Orders</span>
                         <span class="val">{{ $order->customer->total_orders }}</span>
                         <span class="lbl">Total Spent</span>
-                        <span class="val text-emerald-700">৳ {{ number_format($order->customer->total_spent, 2) }}</span>
+                        <span class="val text-emerald-700">{{ \App\Support\Money::format($order->customer->total_spent) }}</span>
                     </div>
                     <a href="{{ route('admin.customers.show', $order->customer) }}" class="wp-btn mt-3 block text-center">View customer →</a>
                 </div>
@@ -613,7 +613,7 @@ function loadSfBalance() {
     .then(d => {
         el.innerHTML = d.error
             ? '<span class="text-red-600">' + d.error + '</span>'
-            : '<strong>৳ ' + parseFloat(d.current_balance || 0).toLocaleString() + '</strong>';
+            : '<strong>৳' + parseFloat(d.current_balance || 0).toFixed(2) + '</strong>';
     })
     .catch(() => { el.innerHTML = '<span class="text-red-600">Failed</span>'; });
 }

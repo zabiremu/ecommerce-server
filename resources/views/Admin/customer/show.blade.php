@@ -66,7 +66,7 @@
     </div>
     <div class="stat-card">
         <div class="lbl">Total Spent</div>
-        <div class="val text-emerald-700">৳ {{ number_format($customer->total_spent, 2) }}</div>
+        <div class="val text-emerald-700">{{ \App\Support\Money::format($customer->total_spent) }}</div>
     </div>
     <div class="stat-card">
         <div class="lbl">Avg Order Value</div>
@@ -120,7 +120,7 @@
                                         <span class="order-pill" style="background:{{ $bg }};color:{{ $fg }}">{{ $o->status }}</span>
                                     </td>
                                     <td class="text-center text-[12px] uppercase">{{ $o->payment_method }} <span class="text-[#646970]">({{ $o->payment_status }})</span></td>
-                                    <td class="text-right"><strong>৳ {{ number_format($o->total, 2) }}</strong></td>
+                                    <td class="text-right"><strong>{{ \App\Support\Money::format($o->total) }}</strong></td>
                                 </tr>
                             @endforeach
                         </tbody>

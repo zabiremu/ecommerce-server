@@ -76,7 +76,7 @@
                             </div>
                             <div class="text-[12.5px] text-[#50575e]">
                                 <i class="fas fa-taka-sign mr-1 text-[#787c82]"></i>
-                                Total spent: <strong>৳{{ number_format($customer->total_spent, 2) }}</strong>
+                                Total spent: <strong>{{ \App\Support\Money::format($customer->total_spent) }}</strong>
                             </div>
                             @if ($customer->last_order_at)
                                 <div class="text-[12.5px] text-[#50575e]">
@@ -136,15 +136,15 @@
                                     </div>
                                 </td>
                                 <td class="text-right text-[#50575e]">{{ $item->quantity }}</td>
-                                <td class="text-right text-[#50575e]">৳{{ number_format($item->unit_price, 2) }}</td>
-                                <td class="text-right"><strong>৳{{ number_format($item->total, 2) }}</strong></td>
+                                <td class="text-right text-[#50575e]">{{ \App\Support\Money::format($item->unit_price) }}</td>
+                                <td class="text-right"><strong>{{ \App\Support\Money::format($item->total) }}</strong></td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="4" class="text-right">Estimated Total</th>
-                            <th class="text-right">৳{{ number_format($cart->items->sum('total'), 2) }}</th>
+                            <th class="text-right">{{ \App\Support\Money::format($cart->items->sum('total')) }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="wc-summary-total">
                     <span class="lbl">Est. Total</span>
-                    <span class="val">৳{{ number_format($cart->items->sum('total'), 2) }}</span>
+                    <span class="val">{{ \App\Support\Money::format($cart->items->sum('total')) }}</span>
                 </div>
             </div>
         </div>

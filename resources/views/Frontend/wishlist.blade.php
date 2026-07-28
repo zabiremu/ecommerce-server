@@ -1815,10 +1815,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var empty = document.getElementById('wl-empty');
     var grid = document.getElementById('wl-grid');
 
-    function money(n) {
-        return '৳' + Number(n).toFixed(2);
-    }
-
     function render(products) {
         loading.style.display = 'none';
 
@@ -1830,9 +1826,9 @@ document.addEventListener('DOMContentLoaded', function () {
         grid.style.display = 'grid';
         grid.innerHTML = products.map(function (p) {
             var priceHtml = p.old_price
-                ? '<del><span class="woocommerce-Price-amount amount">' + money(p.old_price) + '</span></del> ' +
-                  '<ins><span class="woocommerce-Price-amount amount">' + money(p.price) + '</span></ins>'
-                : '<span class="woocommerce-Price-amount amount">' + money(p.price) + '</span>';
+                ? '<del><span class="woocommerce-Price-amount amount">' + window.formatPrice(p.old_price) + '</span></del> ' +
+                  '<ins><span class="woocommerce-Price-amount amount">' + window.formatPrice(p.price) + '</span></ins>'
+                : '<span class="woocommerce-Price-amount amount">' + window.formatPrice(p.price) + '</span>';
 
             return (
                 '<div class="wd-product wd-hover-quick product-grid-item" data-id="' + p.id + '">' +

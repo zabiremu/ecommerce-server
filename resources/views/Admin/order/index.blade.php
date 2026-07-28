@@ -250,7 +250,7 @@
                 @endif
                 <div class="min-w-0">
                     <div class="text-[12px] font-medium text-[#1d2327] leading-tight" style="max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ $item->product_name }}</div>
-                    <div class="text-[11px] text-[#50575e]">{{ rtrim(rtrim(number_format((float)$item->quantity,2,'.',''  ),'0'),'.') }} × ৳{{ number_format((float)$item->unit_price) }}</div>
+                    <div class="text-[11px] text-[#50575e]">{{ rtrim(rtrim(number_format((float)$item->quantity,2,'.',''  ),'0'),'.') }} × {{ \App\Support\Money::format((float)$item->unit_price) }}</div>
                 </div>
             </div>
             @endforeach
@@ -261,7 +261,7 @@
 
         {{-- Amount --}}
         <td>
-            <div class="font-bold text-[14px] text-[#1d2327]">৳{{ number_format((float)$o->total) }}</div>
+            <div class="font-bold text-[14px] text-[#1d2327]">{{ \App\Support\Money::format((float)$o->total) }}</div>
             <div class="text-[11px] mt-0.5">
                 @php
                     $pmColors = ['cod'=>['#fffbeb','#92400e'],'bkash'=>['#fdf2f8','#9d174d'],'nagad'=>['#fff7ed','#9a3412'],'rocket'=>['#f5f3ff','#5b21b6'],'uddoktapay'=>['#eff6ff','#1e40af'],'bank'=>['#f0fdf4','#14532d']];

@@ -57,17 +57,17 @@
     </div>
     <div class="stat-card">
         <div class="label">Total Revenue</div>
-        <div class="value">TK {{ number_format($totalRevenue) }}</div>
+        <div class="value">{{ \App\Support\Money::format($totalRevenue) }}</div>
         <div class="sub">Excl. cancelled &amp; returned</div>
     </div>
     <div class="stat-card">
         <div class="label">Avg Order Value</div>
-        <div class="value">TK {{ number_format($avgOrder) }}</div>
+        <div class="value">{{ \App\Support\Money::format($avgOrder) }}</div>
         <div class="sub">Per completed order</div>
     </div>
     <div class="stat-card">
         <div class="label">Delivered Revenue</div>
-        <div class="value">TK {{ number_format($deliveredRev) }}</div>
+        <div class="value">{{ \App\Support\Money::format($deliveredRev) }}</div>
         <div class="sub">Delivered orders only</div>
     </div>
 </div>
@@ -126,16 +126,16 @@
                     {{ ucfirst($order->status) }}
                 </span>
             </td>
-            <td class="text-right">TK {{ number_format($order->subtotal) }}</td>
-            <td class="text-right text-[#50575e]">TK {{ number_format($order->shipping_charge) }}</td>
+            <td class="text-right">{{ \App\Support\Money::format($order->subtotal) }}</td>
+            <td class="text-right text-[#50575e]">{{ \App\Support\Money::format($order->shipping_charge) }}</td>
             <td class="text-right text-[#50575e]">
                 @if ($order->discount > 0)
-                    <span class="text-emerald-600">-TK {{ number_format($order->discount) }}</span>
+                    <span class="text-emerald-600">-{{ \App\Support\Money::format($order->discount) }}</span>
                 @else
                     —
                 @endif
             </td>
-            <td class="text-right font-semibold">TK {{ number_format($order->total) }}</td>
+            <td class="text-right font-semibold">{{ \App\Support\Money::format($order->total) }}</td>
         </tr>
         @empty
         <tr><td colspan="10" class="wc-empty">No orders found for the selected period.</td></tr>
@@ -145,10 +145,10 @@
     <tfoot>
         <tr style="background:#f6f7f7; font-weight:600; font-size:13px;">
             <td colspan="6" class="text-right pr-2" style="padding:10px 8px; border-top:2px solid #c3c4c7;">Totals ({{ $totalOrders }} orders)</td>
-            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">TK {{ number_format($orders->sum('subtotal')) }}</td>
-            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">TK {{ number_format($orders->sum('shipping_charge')) }}</td>
-            <td class="text-right text-emerald-700" style="padding:10px 8px; border-top:2px solid #c3c4c7;">-TK {{ number_format($orders->sum('discount')) }}</td>
-            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">TK {{ number_format($orders->sum('total')) }}</td>
+            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">{{ \App\Support\Money::format($orders->sum('subtotal')) }}</td>
+            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">{{ \App\Support\Money::format($orders->sum('shipping_charge')) }}</td>
+            <td class="text-right text-emerald-700" style="padding:10px 8px; border-top:2px solid #c3c4c7;">-{{ \App\Support\Money::format($orders->sum('discount')) }}</td>
+            <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">{{ \App\Support\Money::format($orders->sum('total')) }}</td>
         </tr>
     </tfoot>
     @endif

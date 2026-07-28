@@ -121,7 +121,7 @@
                     {{ $c->city ?: '—' }}@if ($c->area), <span class="text-[12px]">{{ $c->area }}</span>@endif
                 </td>
                 <td class="text-center"><strong>{{ $c->total_orders }}</strong></td>
-                <td class="text-right"><strong class="text-emerald-700">৳ {{ number_format($c->total_spent, 2) }}</strong></td>
+                <td class="text-right"><strong class="text-emerald-700">{{ \App\Support\Money::format($c->total_spent) }}</strong></td>
                 <td class="text-[#50575e] text-[12px]">{{ $c->last_order_at?->format('d M, Y') ?? '—' }}</td>
                 <td class="text-center">
                     <span class="wp-status-pill {{ $c->status ? 'wp-status-on' : 'wp-status-off' }}">{{ $c->status ? 'Active' : 'Inactive' }}</span>

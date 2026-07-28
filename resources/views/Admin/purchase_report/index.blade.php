@@ -77,17 +77,17 @@
     </div>
     <div class="stat-card">
         <div class="label">Total Amount</div>
-        <div class="value">TK {{ number_format($totalAmount) }}</div>
+        <div class="value">{{ \App\Support\Money::format($totalAmount) }}</div>
         <div class="sub">All statuses</div>
     </div>
     <div class="stat-card">
         <div class="label">Received Amount</div>
-        <div class="value">TK {{ number_format($receivedAmount) }}</div>
+        <div class="value">{{ \App\Support\Money::format($receivedAmount) }}</div>
         <div class="sub">Received purchases</div>
     </div>
     <div class="stat-card">
         <div class="label">Pending Amount</div>
-        <div class="value">TK {{ number_format($pendingAmount) }}</div>
+        <div class="value">{{ \App\Support\Money::format($pendingAmount) }}</div>
         <div class="sub">Pending purchases</div>
     </div>
 </div>
@@ -139,7 +139,7 @@
                     {{ ucfirst($purchase->status) }}
                 </span>
             </td>
-            <td class="text-right font-semibold">TK {{ number_format($purchase->total_amount) }}</td>
+            <td class="text-right font-semibold">{{ \App\Support\Money::format($purchase->total_amount) }}</td>
         </tr>
         @empty
         <tr><td colspan="6" class="wc-empty">No purchases found for the selected period.</td></tr>
@@ -152,7 +152,7 @@
                 Totals ({{ $totalPurchases }} purchases)
             </td>
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
-                TK {{ number_format($totalAmount) }}
+                {{ \App\Support\Money::format($totalAmount) }}
             </td>
         </tr>
     </tfoot>

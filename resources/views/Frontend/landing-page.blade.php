@@ -346,8 +346,8 @@
                 <div class="lp-fld">
                     <label>ডেলিভারি এরিয়া</label>
                     <div class="lp-zone" id="lpZones">
-                        <label class="active"><span><input type="radio" name="lpZone" value="inside" checked> ঢাকা শহর</span> <span class="z-cost">৳ {{ number_format($shipIn) }}</span></label>
-                        <label><span><input type="radio" name="lpZone" value="outside"> ঢাকার বাইরে</span> <span class="z-cost">৳ {{ number_format($shipOut) }}</span></label>
+                        <label class="active"><span><input type="radio" name="lpZone" value="inside" checked> ঢাকা শহর</span> <span class="z-cost">{{ \App\Support\Money::format($shipIn) }}</span></label>
+                        <label><span><input type="radio" name="lpZone" value="outside"> ঢাকার বাইরে</span> <span class="z-cost">{{ \App\Support\Money::format($shipOut) }}</span></label>
                     </div>
                 </div>
                 <div class="lp-fld">
@@ -364,9 +364,9 @@
             <div class="lp-card">
                 <h3>আপনার অর্ডার</h3>
                 <div class="lp-sum-row lp-sum-head"><span>Product</span><span class="v">Subtotal</span></div>
-                <div class="lp-sum-row"><span id="lpItemLabel">{{ $product->name }} × 1</span><span class="v">৳ <span id="lpSubtotal">{{ number_format($unit) }}</span></span></div>
-                <div class="lp-sum-row"><span>Shipping</span><span class="v">৳ <span id="lpShip">{{ number_format($shipIn) }}</span></span></div>
-                <div class="lp-sum-total"><span>Total</span><span>৳ <span id="lpTotal">{{ number_format($unit + $shipIn) }}</span></span></div>
+                <div class="lp-sum-row"><span id="lpItemLabel">{{ $product->name }} × 1</span><span class="v"><span id="lpSubtotal">{{ \App\Support\Money::format($unit) }}</span></span></div>
+                <div class="lp-sum-row"><span>Shipping</span><span class="v"><span id="lpShip">{{ \App\Support\Money::format($shipIn) }}</span></span></div>
+                <div class="lp-sum-total"><span>Total</span><span><span id="lpTotal">{{ \App\Support\Money::format($unit + $shipIn) }}</span></span></div>
 
                 <div class="lp-pay">
                     <label class="active"><input type="radio" name="lpPay" value="cod" checked> <i class="fas fa-money-bill-wave" style="color:var(--c1)"></i> Cash on Delivery</label>
@@ -377,7 +377,7 @@
                 </div>
 
                 <button type="button" class="lp-confirm" id="lpConfirm" onclick="lpPlaceOrder()">
-                    কনফার্ম অর্ডার — ৳ <span id="lpBtnTotal">{{ number_format($unit + $shipIn) }}</span>
+                    কনফার্ম অর্ডার — <span id="lpBtnTotal">{{ \App\Support\Money::format($unit + $shipIn) }}</span>
                 </button>
                 <div class="lp-msg" id="lpMsg"></div>
             </div>
@@ -395,7 +395,7 @@
 
     {{-- Sticky mobile order bar --}}
     <div class="lp-sticky-bar" id="lpStickyBar">
-        <div class="lp-sticky-price"><small>সর্বমোট</small>৳ <span id="lpStickyTotal">{{ number_format($unit + $shipIn) }}</span></div>
+        <div class="lp-sticky-price"><small>সর্বমোট</small><span id="lpStickyTotal">{{ \App\Support\Money::format($unit + $shipIn) }}</span></div>
         <a href="#lp-order" class="lp-sticky-btn"><i class="fas fa-bag-shopping"></i> {{ $cta }}</a>
     </div>
 
@@ -420,7 +420,9 @@ window.LP = {
     csrf:     @json(csrf_token()),
 };
 
-function lpFmt(n){ return Math.round(n).toLocaleString('en-US'); }
+/* Mirrors App\Support\Money::format() / window.formatPrice() in gms-custom.js */
+window.formatPrice = window.formatPrice || function (n) { return '৳' + Number(n || 0).toFixed(2); };
+function lpFmt(n){ return window.formatPrice(n); }
 
 function lpState(){
     var qty  = parseInt(document.getElementById('lpQtyInput').value) || 1;

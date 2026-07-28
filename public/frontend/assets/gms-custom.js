@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
       rangeFill.style.left = pct1 + '%';
       rangeFill.style.width = (pct2 - pct1) + '%';
 
-      valMin.textContent = '$' + lo;
-      valMax.textContent = '$' + hi;
+      valMin.textContent = window.formatPrice(lo);
+      valMax.textContent = window.formatPrice(hi);
 
       var visible = 0;
       cards.forEach(function (card) {
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
               (p.img ? '<img src="' + p.img + '" alt="" loading="lazy">' : '') +
               '<span class="gms-search-item-info">' +
                 '<span class="gms-search-item-title">' + p.title + '</span>' +
-                '<span class="gms-search-item-price">৳' + Number(p.price).toLocaleString() + '</span>' +
+                '<span class="gms-search-item-price">' + window.formatPrice(p.price) + '</span>' +
               '</span>' +
             '</a>' +
           '</li>';

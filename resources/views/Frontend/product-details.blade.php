@@ -2031,10 +2031,10 @@
                 <div class="wd-single-price" style="margin:16px 0;">
                     <p class="price" style="font-size:26px;">
                         @if($hasSale)
-                            <del aria-hidden="true"><span class="woocommerce-Price-amount amount">৳{{ number_format($product->selling_price, 2) }}</span></del>
-                            <ins aria-hidden="true"><span class="woocommerce-Price-amount amount">৳{{ number_format($displayPrice, 2) }}</span></ins>
+                            <del aria-hidden="true"><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($product->selling_price) }}</span></del>
+                            <ins aria-hidden="true"><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($displayPrice) }}</span></ins>
                         @else
-                            <span class="woocommerce-Price-amount amount">৳{{ number_format($displayPrice, 2) }}</span>
+                            <span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($displayPrice) }}</span>
                         @endif
                     </p>
                 </div>
@@ -2051,7 +2051,7 @@
                                 @endphp
                                 <option value="{{ $variant->id }}" data-price="{{ $vPrice }}" data-stock="{{ $variant->stock }}"
                                     {{ $variant->stock <= 0 ? 'disabled' : '' }}>
-                                    {{ $label }} — ৳{{ number_format($vPrice, 2) }}{{ $variant->stock <= 0 ? ' (out of stock)' : '' }}
+                                    {{ $label }} — {{ \App\Support\Money::format($vPrice) }}{{ $variant->stock <= 0 ? ' (out of stock)' : '' }}
                                 </option>
                             @endforeach
                         </select>
@@ -2176,10 +2176,10 @@
                     <h3 class="wd-entities-title" style="font-size:14px;margin:8px 0 4px;"><a href="{{ $rUrl }}">{{ $rp->name }}</a></h3>
                     <span class="price">
                         @if($rHasSale)
-                            <del><span class="woocommerce-Price-amount amount">৳{{ number_format($rp->selling_price, 2) }}</span></del>
-                            <ins><span class="woocommerce-Price-amount amount">৳{{ number_format($rPrice, 2) }}</span></ins>
+                            <del><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($rp->selling_price) }}</span></del>
+                            <ins><span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($rPrice) }}</span></ins>
                         @else
-                            <span class="woocommerce-Price-amount amount">৳{{ number_format($rPrice, 2) }}</span>
+                            <span class="woocommerce-Price-amount amount">{{ \App\Support\Money::format($rPrice) }}</span>
                         @endif
                     </span>
                     <div class="wd-add-btn" style="margin-top:8px;">

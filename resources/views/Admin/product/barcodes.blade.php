@@ -118,7 +118,7 @@
             <div class="barcode-label" data-category="{{ $p->category_id }}" data-type="{{ $p->type }}">
                 <div class="name">{{ $p->name }}</div>
                 <img src="{{ route('admin.products.barcode-image', $p->barcode ?? $p->sku) }}" alt="barcode">
-                <div class="price">Tk {{ number_format($p->selling_price, 2) }}</div>
+                <div class="price">{{ \App\Support\Money::format($p->selling_price) }}</div>
             </div>
         @endforeach
     </div>

@@ -2717,7 +2717,7 @@
                                 <div class="wd-progress-bar wd-free-progress-bar">
                                     <div class="progress-msg">
                                         <p>Add <span class="woocommerce-Price-amount amount"><bdi><span
-                                                        class="woocommerce-Price-currencySymbol">&#36;</span>971,52</bdi></span>
+                                                        class="woocommerce-Price-currencySymbol">৳</span>971.52</bdi></span>
                                             to cart and get free shipping!</p>
                                     </div>
                                     <div class="progress-area">
@@ -2775,7 +2775,7 @@
                                                 <td class="product-price" data-title="Price">
 
                                                     <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
+                                                                class="woocommerce-Price-currencySymbol">৳</span>28.48</bdi></span>
                                                 </td>
 
                                                 <td class="product-quantity" data-title="Quantity">
@@ -2803,7 +2803,7 @@
 
                                                 <td class="product-subtotal" data-title="Subtotal">
                                                     <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
+                                                                class="woocommerce-Price-currencySymbol">৳</span>28.48</bdi></span>
                                                 </td>
                                             </tr>
 
@@ -2857,7 +2857,7 @@
                                                 <th>Subtotal</th>
                                                 <td data-title="Subtotal"><span
                                                         class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span>
+                                                                class="woocommerce-Price-currencySymbol">৳</span>28.48</bdi></span>
                                                 </td>
                                             </tr>
 
@@ -2882,7 +2882,7 @@
                                                                 value="flat_rate:2" class="shipping_method" /><label
                                                                 for="shipping_method_0_flat_rate2">Flat rate: <span
                                                                     class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>12,00</bdi></span></label>
+                                                                            class="woocommerce-Price-currencySymbol">৳</span>12.00</bdi></span></label>
                                                         </li>
                                                         <li>
                                                             <input type="radio" name="shipping_method[0]"
@@ -2890,7 +2890,7 @@
                                                                 value="local_pickup:3" class="shipping_method" /><label
                                                                 for="shipping_method_0_local_pickup3">Local pickup:
                                                                 <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                            class="woocommerce-Price-currencySymbol">&#36;</span>25,00</bdi></span></label>
+                                                                            class="woocommerce-Price-currencySymbol">৳</span>25.00</bdi></span></label>
                                                         </li>
                                                     </ul>
                                                     <p class="woocommerce-shipping-destination">
@@ -3265,7 +3265,7 @@
                                                 <th>Total</th>
                                                 <td data-title="Total"><strong><span
                                                             class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>28,48</bdi></span></strong>
+                                                                    class="woocommerce-Price-currencySymbol">৳</span>28.48</bdi></span></strong>
                                                 </td>
                                             </tr>
 

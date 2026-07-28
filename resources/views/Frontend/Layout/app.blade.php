@@ -193,7 +193,7 @@
 
                                                 <span class="wd-cart-subtotal"><span
                                                         class="woocommerce-Price-amount amount"><bdi><span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span>0,00</bdi></span></span>
+                                                                class="woocommerce-Price-currencySymbol">৳</span>0.00</bdi></span></span>
                                             </span>
 
                                         </span>

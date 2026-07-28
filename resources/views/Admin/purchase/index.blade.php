@@ -48,7 +48,7 @@
                 <td class="text-[#50575e]">{{ $p->supplier->name }}</td>
                 <td class="text-[#50575e]">{{ $p->warehouse->name }}</td>
                 <td class="text-[#50575e]">{{ $p->purchase_date->format('d M, Y') }}</td>
-                <td class="text-right"><strong>{{ number_format($p->total_amount, 2) }}</strong></td>
+                <td class="text-right"><strong>{{ \App\Support\Money::format($p->total_amount) }}</strong></td>
                 <td class="text-center">
                     @php
                         $s = $p->status;

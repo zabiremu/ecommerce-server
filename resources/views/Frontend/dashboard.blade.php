@@ -2056,7 +2056,7 @@
                                                 <div style="color: #767676; font-size: 14px; margin-top: 5px;">Total Orders</div>
                                             </div>
                                             <div style="flex:1; min-width: 200px; padding: 20px; background: #f5f5f5; border-radius: 12px; text-align: center;">
-                                                <div style="font-size: 28px; font-weight: 600; color: var(--wd-primary-color);" id="stat-total-spent">TK 0</div>
+                                                <div style="font-size: 28px; font-weight: 600; color: var(--wd-primary-color);" id="stat-total-spent">৳0.00</div>
                                                 <div style="color: #767676; font-size: 14px; margin-top: 5px;">Total Spent</div>
                                             </div>
                                         </div>
@@ -2162,7 +2162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Stats
         document.getElementById('stat-total-orders').textContent = data.stats?.total_orders ?? 0;
-        document.getElementById('stat-total-spent').textContent = 'TK ' + (data.stats?.total_spent ?? 0).toLocaleString();
+        document.getElementById('stat-total-spent').textContent = window.formatPrice(data.stats?.total_spent ?? 0);
 
         // Orders
         const orders = data.orders || [];
@@ -2185,7 +2185,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td data-title="Order"><strong>#${o.order_no}</strong></td>
                 <td data-title="Date">${o.date}</td>
                 <td data-title="Status"><span style="color:${color}; font-weight:600; text-transform:capitalize;">${o.status}</span></td>
-                <td data-title="Total"><span class="amount">TK ${o.total.toLocaleString()}</span> (${o.items.length} item${o.items.length > 1 ? 's' : ''})</td>
+                <td data-title="Total"><span class="amount">${window.formatPrice(o.total)}</span> (${o.items.length} item${o.items.length > 1 ? 's' : ''})</td>
                 <td data-title="Actions"><a href="{{ route('track-order') }}?id=${o.order_no}" class="button btn btn-accent" style="padding:5px 14px; min-height:36px; font-size:12px;">View</a></td>
             `;
             tbody.appendChild(tr);

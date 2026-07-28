@@ -73,7 +73,7 @@
     </div>
     <div class="stat-card">
         <div class="label">Period Revenue</div>
-        <div class="value">TK {{ number_format($totalRevenue) }}</div>
+        <div class="value">{{ \App\Support\Money::format($totalRevenue) }}</div>
         <div class="sub">{{ $from->format('d M') }} – {{ $to->format('d M Y') }}</div>
     </div>
     <div class="stat-card">
@@ -122,12 +122,12 @@
             <td class="text-[#50575e]">{{ $customer->city ?: '—' }}</td>
             <td class="text-[#50575e]">{{ $customer->created_at->format('d M Y') }}</td>
             <td class="text-center font-semibold">{{ number_format($customer->total_orders) }}</td>
-            <td class="text-right font-semibold">TK {{ number_format($customer->total_spent) }}</td>
+            <td class="text-right font-semibold">{{ \App\Support\Money::format($customer->total_spent) }}</td>
             <td class="text-center {{ $customer->period_orders > 0 ? 'font-semibold text-blue-700' : 'text-[#c3c4c7]' }}">
                 {{ $customer->period_orders > 0 ? number_format($customer->period_orders) : '—' }}
             </td>
             <td class="text-right {{ $customer->period_spent > 0 ? 'font-semibold text-emerald-700' : 'text-[#c3c4c7]' }}">
-                {{ $customer->period_spent > 0 ? 'TK '.number_format($customer->period_spent) : '—' }}
+                {{ $customer->period_spent > 0 ? \App\Support\Money::format($customer->period_spent) : '—' }}
             </td>
             <td class="text-[#50575e]">{{ $customer->last_order_at ? $customer->last_order_at->format('d M Y') : '—' }}</td>
             <td class="text-center">
@@ -150,13 +150,13 @@
                 {{ number_format($customers->sum('total_orders')) }}
             </td>
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
-                TK {{ number_format($customers->sum('total_spent')) }}
+                {{ \App\Support\Money::format($customers->sum('total_spent')) }}
             </td>
             <td class="text-center" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
                 {{ number_format($customers->sum('period_orders')) }}
             </td>
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
-                TK {{ number_format($totalRevenue) }}
+                {{ \App\Support\Money::format($totalRevenue) }}
             </td>
             <td colspan="2" style="padding:10px 8px; border-top:2px solid #c3c4c7;"></td>
         </tr>

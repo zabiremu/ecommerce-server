@@ -59,15 +59,15 @@
                                 <td class="text-[#787c82]">{{ $i + 1 }}</td>
                                 <td><strong>{{ $item->product_name }}</strong></td>
                                 <td class="text-right text-[#50575e]">{{ $item->quantity }}</td>
-                                <td class="text-right text-[#50575e]">{{ number_format($item->unit_cost, 2) }}</td>
-                                <td class="text-right"><strong>{{ number_format($item->total, 2) }}</strong></td>
+                                <td class="text-right text-[#50575e]">{{ \App\Support\Money::format($item->unit_cost) }}</td>
+                                <td class="text-right"><strong>{{ \App\Support\Money::format($item->total) }}</strong></td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="4" class="text-right">Total</th>
-                            <th class="text-right">{{ number_format($purchase->total_amount, 2) }}</th>
+                            <th class="text-right">{{ \App\Support\Money::format($purchase->total_amount) }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="wc-summary-total">
                     <span class="lbl">Total Amount</span>
-                    <span class="val">{{ number_format($purchase->total_amount, 2) }}</span>
+                    <span class="val">{{ \App\Support\Money::format($purchase->total_amount) }}</span>
                 </div>
             </div>
         </div>

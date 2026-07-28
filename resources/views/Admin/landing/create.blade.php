@@ -43,7 +43,7 @@
                             <option value="{{ $p->id }}"
                                     data-slug="{{ \Illuminate\Support\Str::slug($p->name) }}-lp"
                                     {{ old('product_id') == $p->id ? 'selected' : '' }}>
-                                {{ $p->name }} — TK {{ number_format($p->selling_price) }}
+                                {{ $p->name }} — {{ \App\Support\Money::format($p->selling_price) }}
                             </option>
                         @endforeach
                     </select>

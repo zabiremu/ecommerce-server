@@ -64,9 +64,9 @@
                 </span>
             @endif
         </div>
-        <p class="text-[22px] font-bold text-slate-900 tracking-tight">৳ {{ number_format($revenueThisMonth) }}</p>
+        <p class="text-[22px] font-bold text-slate-900 tracking-tight">{{ \App\Support\Money::format($revenueThisMonth) }}</p>
         <p class="text-[11.5px] text-slate-400 mt-1">
-            Last month: ৳ {{ number_format($revenueLastMonth) }}
+            Last month: {{ \App\Support\Money::format($revenueLastMonth) }}
         </p>
         <div class="mt-3 h-1 rounded-full bg-slate-100 overflow-hidden">
             @php $revBar = $revenueLastMonth > 0 ? min(100, (int)(($revenueThisMonth/$revenueLastMonth)*100)) : ($revenueThisMonth > 0 ? 100 : 0); @endphp
@@ -241,7 +241,7 @@
                 <h3 class="text-[14px] font-semibold text-slate-900">Sales Overview</h3>
                 <p class="text-[11.5px] text-slate-500 mt-0.5">Revenue for the last 7 days</p>
             </div>
-            <span class="text-[11px] text-slate-400 font-mono">৳ {{ number_format(collect($bars)->sum(fn($b) => 0)) }}</span>
+            <span class="text-[11px] text-slate-400 font-mono">{{ \App\Support\Money::format(collect($bars)->sum(fn($b) => 0)) }}</span>
         </div>
 
         <div class="p-4">
