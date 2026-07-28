@@ -98,12 +98,18 @@ class ProductController extends Controller
             'variants.*.stock' => 'nullable|numeric|min:0',
             'variants.*.sku' => 'nullable|string|max:100',
             'publish_status' => 'nullable|in:draft,pending,published',
+            'special_sections' => 'nullable|array',
+            'special_sections.*' => 'in:' . implode(',', array_keys(Product::SPECIAL_SECTIONS)),
         ]);
 
         // Note: new physical products always start at 0 stock (set via GRN), so
         // variant-vs-available-stock validation is only enforced on update().
 
         $data = $request->except(['digital_file', 'thumbnail', 'gallery_items', 'variants', 'stock']);
+
+        // Checkboxes send nothing at all when none are checked, so this must
+        // be set explicitly rather than relying on $request->except() above.
+        $data['special_sections'] = $request->input('special_sections', []);
 
         if (empty($data['publish_status'])) {
             $data['publish_status'] = 'draft';
@@ -228,6 +234,8 @@ class ProductController extends Controller
             'variants.*.stock' => 'nullable|numeric|min:0',
             'variants.*.sku' => 'nullable|string|max:100',
             'publish_status' => 'nullable|in:draft,pending,published',
+            'special_sections' => 'nullable|array',
+            'special_sections.*' => 'in:' . implode(',', array_keys(Product::SPECIAL_SECTIONS)),
         ]);
 
         if ($request->type === 'physical') {
@@ -248,6 +256,10 @@ class ProductController extends Controller
 
         // Never let edit form touch stock — it's GRN-controlled.
         $data = $request->except(['digital_file', 'thumbnail', 'gallery_items', 'variants', 'stock']);
+
+        // Checkboxes send nothing at all when none are checked, so this must
+        // be set explicitly rather than relying on $request->except() above.
+        $data['special_sections'] = $request->input('special_sections', []);
 
         if (empty($data['publish_status'])) {
             $data['publish_status'] = $product->publish_status ?? 'draft';

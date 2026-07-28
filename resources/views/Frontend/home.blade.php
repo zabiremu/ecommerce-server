@@ -10,6 +10,7 @@
                 @include('Frontend.partials.home.usp-strip')
                 @include('Frontend.partials.home.categories')
                 @include('Frontend.partials.home.best-sellers')
+                @include('Frontend.partials.home.special-sections')
                 @include('Frontend.partials.home.reviews')
                 @include('Frontend.partials.home.featured-products')
                 @include('Frontend.partials.home.newsletter')

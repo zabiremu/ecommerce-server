@@ -239,6 +239,20 @@
             </div>
 
             <div class="wc-panel">
+                <div class="wc-panel-h">Special Sections</div>
+                <div class="wc-panel-body space-y-2">
+                    @foreach (\App\Models\Product::SPECIAL_SECTIONS as $key => $meta)
+                        <label class="flex items-center gap-2 text-[13px] text-[#1d2327]">
+                            <input type="checkbox" name="special_sections[]" value="{{ $key }}"
+                                {{ in_array($key, old('special_sections', [])) ? 'checked' : '' }}>
+                            <span>{{ $meta['emoji'] }} {{ $meta['label'] }}</span>
+                        </label>
+                    @endforeach
+                    <p class="small-help">Shown as its own homepage section once at least one published product carries the tag.</p>
+                </div>
+            </div>
+
+            <div class="wc-panel">
                 <div class="wc-panel-h">Product image</div>
                 <div class="wc-panel-body">
                     <label for="thumbnailInput" class="img-upload-box-wc img-upload-box block w-full aspect-square">

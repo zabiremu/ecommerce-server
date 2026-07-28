@@ -29,9 +29,23 @@ class Product extends Model
         'thumbnail',
         'gallery',
         'publish_status',
+        'special_sections',
     ];
 
     public const PUBLISH_STATUSES = ['draft', 'pending', 'published'];
+
+    /** Admin-curated homepage badges. Distinct from the auto-computed
+     *  "Best Sellers" section and "New Arrival" ribbon — see the
+     *  add_special_sections_to_products_table migration. */
+    public const SPECIAL_SECTIONS = [
+        'new-arrival'        => ['label' => 'New Arrival', 'emoji' => '🔥'],
+        'best-seller'        => ['label' => 'Best Seller', 'emoji' => '⭐'],
+        'premium-collection' => ['label' => 'Premium Collection', 'emoji' => '💎'],
+        'flash-sale'         => ['label' => 'Flash Sale', 'emoji' => '💥'],
+        'combo-offer'        => ['label' => 'Combo Offer', 'emoji' => '🎁'],
+        'restock'            => ['label' => 'Restock', 'emoji' => '🆕'],
+        'clearance'          => ['label' => 'Clearance', 'emoji' => '🏷️'],
+    ];
 
     protected function casts(): array
     {
@@ -43,6 +57,7 @@ class Product extends Model
             'stock' => 'decimal:2',
             'alert_quantity' => 'decimal:2',
             'gallery' => 'array',
+            'special_sections' => 'array',
         ];
     }
 

@@ -79,7 +79,22 @@ class HomePageController extends Controller
             ->limit(6)
             ->get();
         $instagramPosts = InstagramPost::active()->orderBy('sort_order')->orderByDesc('id')->get();
-        return view('Frontend.home', compact('sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts'));
+
+        // Admin-curated homepage badges (see Product::SPECIAL_SECTIONS) —
+        // one query per tag, only shown on the homepage when it actually
+        // has at least one published product (special-sections.blade.php).
+        $specialSections = collect(Product::SPECIAL_SECTIONS)->mapWithKeys(function ($meta, $key) {
+            $products = Product::published()
+                ->whereJsonContains('special_sections', $key)
+                ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
+                ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
+                ->orderByDesc('id')
+                ->limit(8)
+                ->get();
+            return [$key => $products];
+        });
+
+        return view('Frontend.home', compact('sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts', 'specialSections'));
     }
 
     public function about()
