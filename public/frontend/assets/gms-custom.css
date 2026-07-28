@@ -1487,6 +1487,20 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 1.3;
+  /* Woodmart's own woo-opt-title-limit-predefined.css clamps titles to
+     1 line via a `title-line-one` ancestor class + max-height:calc(1 *
+     line-height) + overflow:hidden — with no ellipsis and white-space
+     left as "normal", any title that wraps (e.g. "Suede Loafers") gets
+     its second line silently cut off instead of shown or truncated.
+     Force a proper 2-line clamp instead so full/short titles both
+     render correctly and card heights stay aligned across a row. */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden;
+  max-height: none !important;
+  white-space: normal;
+  min-height: 2.6em;
 }
 .product-element-bottom .price {
   display: block;
@@ -1496,4 +1510,101 @@ body {
 .product-element-bottom .wd-add-btn.wd-add-btn-replace {
   width: 100%;
   margin-top: 4px;
+}
+
+/* ==========================================================
+   18. MOBILE BOTTOM TOOLBAR — CLEARANCE
+   ========================================================== */
+/* opt-bottom-toolbar.css renders a fixed 55px-tall bar (Menu/Cart/
+   Wishlist/Account) at the bottom of the viewport below 1025px, but
+   nothing in the theme reserves that space in the page's own layout —
+   so whatever content naturally lands at the bottom of the scrollable
+   area (the product page's Add to Cart button, the homepage USP strip,
+   footer content) ends up rendered underneath it and becomes unreadable
+   / unclickable. Reserve matching space so everything can scroll clear. */
+@media (max-width: 1024.98px) {
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* ==========================================================
+   19. FOOTER — DARK BRANDED REDESIGN
+   ========================================================== */
+.wd-footer.footer-container {
+  position: relative;
+  background: var(--gms-ink) !important;
+  color: rgba(255, 255, 255, .68);
+  overflow: hidden;
+}
+.wd-footer.footer-container::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gms-red), #C9A24B 55%, var(--gms-red));
+}
+.wd-footer .wd-35aff150 img {
+  filter: brightness(0) invert(1) !important;
+  opacity: .95;
+}
+.wd-footer .wd-5f577beb {
+  color: rgba(255, 255, 255, .55) !important;
+  max-width: 300px;
+  line-height: 1.6;
+}
+.wd-footer .wp-block-wd-title.title {
+  color: #FFF !important;
+  font-weight: 700 !important;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.wd-footer .wd-toggle-icon {
+  fill: rgba(255, 255, 255, .5) !important;
+}
+.wd-footer .sub-sub-menu > li > a {
+  color: rgba(255, 255, 255, .62) !important;
+  transition: color var(--gms-ease), padding-left var(--gms-ease);
+}
+.wd-footer .sub-sub-menu > li > a:hover {
+  color: #C9A24B !important;
+  padding-left: 4px;
+}
+.wd-footer .wd-list-content,
+.wd-footer .wd-list-content a {
+  color: rgba(255, 255, 255, .62) !important;
+  transition: color var(--gms-ease);
+}
+.wd-footer .wd-list-content a:hover {
+  color: #C9A24B !important;
+}
+.wd-footer .wd-a75bb30e .wd-icon img {
+  filter: brightness(0) invert(1);
+  opacity: .8;
+}
+.wd-footer .wp-block-wd-container.wd-7c5e9f7c {
+  border-color: rgba(255, 255, 255, .12) !important;
+}
+.wd-footer .wd-aae3cee5 {
+  color: rgba(255, 255, 255, .5) !important;
+}
+.wd-footer .wd-aae3cee5 a {
+  color: #FFF !important;
+  font-weight: 700;
+}
+.wd-footer .gms-trust-badges {
+  border-color: rgba(255, 255, 255, .12);
+}
+.wd-footer .gms-trust-badge {
+  background: rgba(255, 255, 255, .08);
+  color: rgba(255, 255, 255, .85);
+}
+.wd-footer .gms-trust-badge svg {
+  color: #C9A24B;
+}
+.wd-footer .gms-trust-badge-secure {
+  background: rgba(201, 162, 75, .2);
+  color: #F3E4B8;
+}
+.wd-footer .gms-trust-badge-secure svg {
+  color: #C9A24B;
 }
