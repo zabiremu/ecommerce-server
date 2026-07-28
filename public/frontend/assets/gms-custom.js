@@ -2,9 +2,14 @@
    GMS Custom Scripts — Vanilla JS, no jQuery dependency
    ============================================================ */
 
-/* --- Shared price formatter: mirrors App\Support\Money::format() --- */
+/* --- Shared price formatter: mirrors App\Support\Money::format(), which
+   uses PHP's number_format() — i.e. comma thousands separators, 2 decimal
+   places. toFixed(2) alone (the previous implementation) doesn't group
+   thousands, so JS-rendered cards (all-products, category-products,
+   wishlist) showed "৳2600.00" while server-rendered cards (home) showed
+   "৳2,600.00" for the same price. */
 window.formatPrice = function (n) {
-  return '৳' + Number(n || 0).toFixed(2);
+  return '৳' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 };
 
 /* --- Shared product card builder: used by any JS-rendered product grid
