@@ -407,16 +407,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!slider) return;
 
     var slides = slider.querySelectorAll('.wd-slide.wd-carousel-item');
-    if (slides.length < 2) return;
+    if (slides.length === 0) return;
 
-    var carousel = slider.querySelector('.wd-carousel');
-    if (carousel) carousel.classList.add('wd-fade');
-
-    var wrap = slides[0].parentNode;
-    var current = 0;
-    var timer = null;
-
-    // Initialize: set first slide active
+    // Always mark the first slide active/visible, even with just one slide
+    // — this used to happen after the "need 2+ slides" bail-out below, so a
+    // single-slide hero (e.g. only one admin slide, or the product-photo
+    // fallback finding just one product) rendered fully invisible
+    // (.wd-slide defaults to opacity:0 until .gms-slide-active is added).
     slides.forEach(function (s, i) {
       s.classList.remove('wd-active', 'wd-slide-prev', 'wd-slide-next');
       if (i === 0) {
@@ -425,6 +422,15 @@ document.addEventListener('DOMContentLoaded', function () {
         s.classList.remove('gms-slide-active');
       }
     });
+
+    if (slides.length < 2) return; // nothing to autoplay/navigate between
+
+    var carousel = slider.querySelector('.wd-carousel');
+    if (carousel) carousel.classList.add('wd-fade');
+
+    var wrap = slides[0].parentNode;
+    var current = 0;
+    var timer = null;
 
     function goTo(index) {
       if (index === current) return;

@@ -29,6 +29,28 @@ class HomePageController extends Controller
     public function index()
     {
         $sliders = Slider::active()->orderByDesc('id')->get();
+
+        // No admin-configured slides (empty table, or everything toggled
+        // off) — fall back to real product photos so the hero never
+        // renders empty, instead of an empty carousel wrapper. Prefer
+        // products with an actual photo over the "photo coming soon"
+        // placeholder SVGs, so the fallback is genuinely eye-catching
+        // rather than 3 identical placeholder icons.
+        if ($sliders->isEmpty()) {
+            $sliders = Product::published()
+                ->whereNotNull('thumbnail')
+                ->orderByRaw("thumbnail LIKE 'frontend/products/placeholders/%' ASC")
+                ->orderByDesc('id')
+                ->limit(3)
+                ->get()
+                ->map(fn (Product $p) => (object) [
+                    'title'    => $p->name,
+                    'subtitle' => $p->short_description,
+                    'image'    => $p->thumbnail,
+                    'url'      => route('product-details') . '?slug=' . $p->slug,
+                ]);
+        }
+
         $homeCategories = Category::where('status', true)
             ->where('home_visible', true)
             ->withCount(['products' => fn ($q) => $q->where('publish_status', 'published')])

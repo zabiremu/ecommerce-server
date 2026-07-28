@@ -7,27 +7,36 @@
             <div class="wd-carousel-wrap">
                 @foreach($sliders as $slider)
                 @php
-                    $slideImage = \Illuminate\Support\Facades\Storage::disk('public')->exists($slider->image)
+                    $slideImage = !empty($slider->image) && \Illuminate\Support\Facades\Storage::disk('public')->exists($slider->image)
                         ? \Illuminate\Support\Facades\Storage::url($slider->image)
-                        : asset($slider->image);
+                        : (!empty($slider->image) ? asset($slider->image) : null);
+                    $slideUrl = $slider->url ?? null;
                 @endphp
                 <div
                     class="wp-block-wd-slider-item wd-slide wd-carousel-item {{ $loop->even ? 'color-scheme-dark' : 'color-scheme-light' }}">
                     <div class="wd-slide-container">
                         <h2 class="wp-block-wd-title title wd-custom-width text-center">{{ $slider->title }}</h2>
 
-                        @if($slider->subtitle)
+                        @if(!empty($slider->subtitle))
                         <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->subtitle }}</p>
                         @endif
 
-                        @if($slider->description)
+                        @if(!empty($slider->description))
                         <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->description }}</p>
                         @endif
 
-
+                        <a href="{{ $slideUrl ?: route('all-products') }}" class="gms-hero-slide-cta">
+                            <span>Shop Now</span>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
                     </div>
-                    <div class="wd-slide-bg wd-fill"><img decoding="async" width="1294" height="600"
-                            src="{{ $slideImage }}" alt="{{ $slider->title }}" /></div>
+                    <div class="wd-slide-bg wd-fill">
+                        @if($slideImage)
+                            <img decoding="async" width="1294" height="600" src="{{ $slideImage }}" alt="{{ $slider->title }}" />
+                        @else
+                            <div class="gms-slide-fallback-bg" aria-hidden="true"></div>
+                        @endif
+                    </div>
                 </div>
                 @endforeach
             </div>

@@ -770,6 +770,33 @@ input[type="submit"] {
   display: block;
   /* Richer, more editorial look than the flat source photo. */
   filter: saturate(1.12) contrast(1.06);
+  transform: scale(1.06);
+}
+/* Slow "Ken Burns" zoom while a slide is active — a static photo reads
+   much less alive than one with continuous subtle motion. Duration is
+   longer than the 5s autoplay interval (GMS_CONFIG.sliderInterval) so
+   it's still gently moving when the next slide crossfades in, never
+   visibly resetting/snapping back. */
+.gms-slide-active .wd-slide-bg.wd-fill img {
+  animation: gmsHeroZoom 8s ease-out forwards;
+}
+@keyframes gmsHeroZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.09); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gms-slide-active .wd-slide-bg.wd-fill img {
+    animation: none;
+    transform: scale(1);
+  }
+}
+/* Fallback background for the rare case where even the product-photo
+   fallback in the controller finds nothing resolvable — a styled
+   gradient instead of a blank box. */
+.gms-slide-fallback-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #3B2F17, #8A6C2E 55%, #C9A24B);
 }
 /* Gradient scrim so text stays legible over any photo, and gives the
    banner more visual depth than a flat image. */
@@ -806,6 +833,31 @@ input[type="submit"] {
   margin: 0;
   text-shadow: 0 1px 8px rgba(0,0,0,.3);
   max-width: 560px;
+}
+.gms-hero-slide-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 11px 24px;
+  border-radius: 999px;
+  background: #FFFDF5;
+  color: var(--gms-ink) !important;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: background var(--gms-ease), color var(--gms-ease), transform var(--gms-ease);
+}
+.gms-hero-slide-cta svg {
+  transition: transform var(--gms-ease);
+}
+.gms-hero-slide-cta:hover {
+  background: var(--gms-red);
+  color: #FFF !important;
+  transform: translateY(-2px);
+}
+.gms-hero-slide-cta:hover svg {
+  transform: translateX(3px);
 }
 @media (max-width: 768.98px) {
   .wd-slide-container {
