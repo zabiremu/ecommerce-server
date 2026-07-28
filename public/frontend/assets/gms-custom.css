@@ -1676,3 +1676,184 @@ body {
   border-left-color: #C9A24B;
   padding-left: 14px;
 }
+
+/* ==========================================================
+   21. INFO PAGES — Privacy/Refund/Terms/FAQ/Track Order
+   ========================================================== */
+/* .breadcrumb + .page-header are shared markup across all 5 info
+   pages (privacy-policy, refund-policy, terms-conditions, faq,
+   track-order) — previously completely unstyled: no banner, no
+   readable content width, browser-default bullets. */
+.breadcrumb {
+  padding: 14px 0;
+  font-size: 13px;
+  color: var(--gms-text);
+  border-bottom: 1px solid var(--gms-line);
+}
+.breadcrumb a {
+  color: var(--gms-text);
+  text-decoration: none;
+  transition: color var(--gms-ease);
+}
+.breadcrumb a:hover {
+  color: var(--gms-red);
+}
+.breadcrumb i {
+  font-size: 10px;
+  margin: 0 8px;
+  color: var(--gms-line);
+  vertical-align: middle;
+}
+.breadcrumb span {
+  color: var(--gms-title);
+  font-weight: 600;
+}
+
+.page-header {
+  position: relative;
+  padding: 56px 24px;
+  text-align: center;
+  color: #FFFDF5;
+  background: linear-gradient(135deg, var(--gms-ink), #3B2F17 65%, #8A6C2E);
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--gms-red), #C9A24B 55%, var(--gms-red));
+  opacity: .9;
+  height: 4px;
+}
+.page-header h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 2em;
+  font-weight: 800;
+  color: #FFFDF5;
+}
+.page-header h1 i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .12);
+  font-size: .5em;
+  color: #C9A24B;
+}
+.page-header p {
+  margin: 12px 0 0;
+  font-size: 1.05em;
+  color: rgba(255, 255, 255, .68);
+}
+
+.policy-section {
+  padding: 48px 24px 72px;
+  background: var(--gms-bg-soft);
+}
+.policy-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #FFF;
+  border-radius: var(--gms-radius);
+  box-shadow: var(--gms-shadow);
+  padding: 40px 48px;
+}
+@media (max-width: 576px) {
+  .policy-card {
+    padding: 28px 22px;
+  }
+}
+.policy-date {
+  display: inline-block;
+  margin: 0 0 24px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--gms-bg-soft);
+  color: var(--gms-text);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Rich-text content from the admin CMS (Page model) — generic tag
+   styling scoped to this wrapper only. */
+.policy-content h2 {
+  margin: 36px 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gms-line);
+  font-size: 1.3em;
+  font-weight: 800;
+  color: var(--gms-title);
+}
+.policy-content h2:first-child {
+  margin-top: 0;
+}
+.policy-content h3 {
+  margin: 22px 0 10px;
+  font-size: 1.08em;
+  font-weight: 700;
+  color: var(--gms-title);
+}
+.policy-content p {
+  margin: 0 0 14px;
+  color: var(--gms-text);
+  line-height: 1.75;
+}
+.policy-content ul,
+.policy-content ol {
+  margin: 0 0 18px;
+  padding-left: 4px;
+  list-style: none;
+}
+.policy-content ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  color: var(--gms-text);
+  line-height: 1.6;
+}
+.policy-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gms-red);
+}
+.policy-content ol {
+  counter-reset: gms-policy-ol;
+  list-style: none;
+}
+.policy-content ol li {
+  counter-increment: gms-policy-ol;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 8px;
+  color: var(--gms-text);
+  line-height: 1.6;
+}
+.policy-content ol li::before {
+  content: counter(gms-policy-ol) '.';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: #C9A24B;
+}
+.policy-content a {
+  color: var(--gms-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.policy-content a:hover {
+  color: var(--gms-red-dark);
+}
+.policy-content strong {
+  color: var(--gms-title);
+}
