@@ -25,14 +25,38 @@
         object-fit: cover;
         border-radius: 0 !important;
     }
-    .wd-cats .wd-cat-image,
-    .wd-cats .wd-cat-image img,
-    .wd-cats .category-grid-item:hover .wd-cat-image,
-    .wd-cats .category-grid-item .wd-cat-inner,
-    .wd-cats .category-grid-item .wd-cat-thumb {
-        transition: none !important;
-        transform: none !important;
-        animation: none !important;
+    /* Hover: red ring on the thumbnail, card lift, image zoom, title
+       color. Selectors are prefixed with .wd-cats and use transform/
+       box-shadow/color only (no layout-affecting properties), so this
+       can't cause a layout shift regardless of load-order relative to
+       woo-categories-loop-old.css (which also targets .wd-cat-image
+       on hover — these selectors are more specific so ours wins
+       deterministically either way, rather than depending on which
+       stylesheet happens to load last). */
+    .wd-cats .wd-cat-thumb {
+        transition: box-shadow .3s ease;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .05);
+    }
+    .wd-cats .category-grid-item:hover .wd-cat-thumb {
+        box-shadow: 0 0 0 3px var(--gms-red, #E63946);
+    }
+    .wd-cats .category-grid-item .wd-cat-inner {
+        transition: transform .3s ease;
+    }
+    .wd-cats .category-grid-item:hover .wd-cat-inner {
+        transform: translateY(-4px);
+    }
+    .wd-cats .category-grid-item .wd-cat-image {
+        transition: transform .3s ease;
+    }
+    .wd-cats .category-grid-item:hover .wd-cat-image {
+        transform: scale(1.08);
+    }
+    .wd-cats .wd-entities-title {
+        transition: color .2s ease;
+    }
+    .wd-cats .category-grid-item:hover .wd-entities-title {
+        color: var(--gms-red, #E63946);
     }
     /* Categories without an uploaded photo yet get their icon in a
        colored circle instead of an unrelated stock placeholder image.
