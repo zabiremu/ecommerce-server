@@ -25,7 +25,7 @@
                         <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->description }}</p>
                         @endif
 
-                        <a href="{{ $slideUrl ?: route('all-products') }}" class="gms-hero-slide-cta">
+                        <a href="{{ route('all-products') }}" class="gms-hero-slide-cta">
                             <span>Shop Now</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>

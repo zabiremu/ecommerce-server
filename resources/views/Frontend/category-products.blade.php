@@ -262,7 +262,7 @@
 
             {{-- Sidebar --}}
             <aside class="gms-cat-sidebar" id="catSidebar">
-                <button class="gms-sidebar-close" onclick="closeCatSidebar()"><i class="fas fa-times"></i></button>
+
 
                 <div class="gms-sidebar-title"><i class="fas fa-filter"></i> Filters</div>
 

@@ -1,0 +1,544 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to navigation" [ref=e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=e5]:
+    - banner [ref=e6]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - link "Site logo" [ref=e13] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - navigation "Main navigation" [ref=e14]:
+            - list [ref=e15]:
+              - listitem [ref=e16]:
+                - link "Shop " [ref=e17] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/all-products
+                  - generic [ref=e18]: Shop
+                  - text: 
+                - button "Toggle submenu" [ref=e19] [cursor=pointer]
+              - listitem [ref=e20]:
+                - link "Footwear " [ref=e21] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=footwear
+                  - generic [ref=e22]: Footwear
+                  - text: 
+                - button "Toggle submenu" [ref=e23] [cursor=pointer]
+              - listitem [ref=e24]:
+                - link "Special Sections " [ref=e25] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=special-sections
+                  - generic [ref=e26]: Special Sections
+                  - text: 
+                - button "Toggle submenu" [ref=e27] [cursor=pointer]
+        - generic "Search" [ref=e29]:
+          - link "Search" [ref=e30] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e31]:  
+        - generic [ref=e32]:
+          - link "" [ref=e34] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/login
+          - generic "My Wishlist" [ref=e36]:
+            - link " 2" [ref=e37] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/wishlist
+              - generic [ref=e38]:
+                - text: 
+                - generic [ref=e39]: "2"
+          - link " 0 ৳0.00" [ref=e41] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/cart
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - text: 
+                - generic [ref=e44]: "0"
+              - generic [ref=e45]: ৳0.00
+        - text:  
+    - main [ref=e49]:
+      - article [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e55]:
+              - generic:
+                - generic:
+                  - heading "Knits Worth Noticing" [level=2]
+                  - paragraph: Statement sweaters and cozy layers for her, in bold colour.
+                  - link "Shop Now":
+                    - /url: http://127.0.0.1:8000/all-products
+                - generic:
+                  - img "Knits Worth Noticing"
+              - generic:
+                - generic:
+                  - heading "Effortless Everyday Basics" [level=2]
+                  - paragraph: Clean tees and easy staples for him, made for daily wear.
+                  - link "Shop Now":
+                    - /url: http://127.0.0.1:8000/all-products
+                - generic:
+                  - img "Effortless Everyday Basics"
+              - generic:
+                - generic:
+                  - heading "Gear Up, Move Free" [level=2]
+                  - paragraph: Bold athleisure and everyday activewear built for motion.
+                  - link "Shop Now":
+                    - /url: http://127.0.0.1:8000/all-products
+                - generic:
+                  - img "Gear Up, Move Free"
+            - button "Previous slide" [ref=e56] [cursor=pointer]
+            - button "Next slide" [ref=e57] [cursor=pointer]
+          - list [ref=e59]
+        - generic [ref=e60]:
+          - generic [ref=e66]:
+            - strong [ref=e67]: Secure Shopping
+            - generic [ref=e68]: Pay when you receive
+          - generic [ref=e76]:
+            - strong [ref=e77]: Fast Delivery
+            - generic [ref=e78]: Nationwide shipping
+          - generic [ref=e84]:
+            - strong [ref=e85]: Easy Returns
+            - generic [ref=e86]: Hassle-free exchange
+          - generic [ref=e93]:
+            - strong [ref=e94]: 24/7 Support
+            - generic [ref=e95]: Always here to help
+        - generic [ref=e97]:
+          - generic [ref=e98]: 🛍️ Explore
+          - heading "Shop by Category" [level=2] [ref=e99]
+        - generic [ref=e101]:
+          - generic [ref=e103]:
+            - generic [ref=e106]:
+              - link "T-Shirt" [ref=e108] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=t-shirt
+                - generic [ref=e109]: 
+              - generic [ref=e111]:
+                - heading "T-Shirt" [level=3] [ref=e112]
+                - text: 2 products
+              - link "Product category t-shirt" [ref=e113] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=t-shirt
+            - generic [ref=e116]:
+              - link "Polo T-Shirt" [ref=e118] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=polo-t-shirt
+                - generic [ref=e119]: 
+              - generic [ref=e121]:
+                - heading "Polo T-Shirt" [level=3] [ref=e122]
+                - text: 2 products
+              - link "Product category polo t-shirt" [ref=e123] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=polo-t-shirt
+            - generic [ref=e126]:
+              - link "Shirt" [ref=e128] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=shirt
+                - generic [ref=e129]: 
+              - generic [ref=e131]:
+                - heading "Shirt" [level=3] [ref=e132]
+                - text: 2 products
+              - link "Product category shirt" [ref=e133] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=shirt
+            - generic [ref=e136]:
+              - link "Boxy Shirt" [ref=e138] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=boxy-shirt
+                - generic [ref=e139]: 
+              - generic [ref=e141]:
+                - heading "Boxy Shirt" [level=3] [ref=e142]
+                - text: 2 products
+              - link "Product category boxy shirt" [ref=e143] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=boxy-shirt
+            - generic [ref=e146]:
+              - link "Jeans" [ref=e148] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=jeans
+                - generic [ref=e149]: 
+              - generic [ref=e151]:
+                - heading "Jeans" [level=3] [ref=e152]
+                - text: 2 products
+              - link "Product category jeans" [ref=e153] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=jeans
+            - generic [ref=e156]:
+              - link "Baggy Jeans" [ref=e158] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=baggy-jeans
+                - generic [ref=e159]: 
+              - generic [ref=e161]:
+                - heading "Baggy Jeans" [level=3] [ref=e162]
+                - text: 2 products
+              - link "Product category baggy jeans" [ref=e163] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=baggy-jeans
+            - generic [ref=e166]:
+              - link "Semi Baggy Jeans" [ref=e168] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=semi-baggy-jeans
+                - generic [ref=e169]: 
+              - generic [ref=e171]:
+                - heading "Semi Baggy Jeans" [level=3] [ref=e172]
+                - text: 2 products
+              - link "Product category semi baggy jeans" [ref=e173] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=semi-baggy-jeans
+            - generic [ref=e176]:
+              - link "Cargo Pant" [ref=e178] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=cargo-pant
+                - generic [ref=e179]: 
+              - generic [ref=e181]:
+                - heading "Cargo Pant" [level=3] [ref=e182]
+                - text: 2 products
+              - link "Product category cargo pant" [ref=e183] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=cargo-pant
+            - generic [ref=e186]:
+              - link "Formal Pant" [ref=e188] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=formal-pant
+                - generic [ref=e189]: 
+              - generic [ref=e191]:
+                - heading "Formal Pant" [level=3] [ref=e192]
+                - text: 2 products
+              - link "Product category formal pant" [ref=e193] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=formal-pant
+            - generic [ref=e196]:
+              - link "Chino Pant" [ref=e198] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=chino-pant
+                - generic [ref=e199]: 
+              - generic [ref=e201]:
+                - heading "Chino Pant" [level=3] [ref=e202]
+                - text: 2 products
+              - link "Product category chino pant" [ref=e203] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=chino-pant
+            - generic [ref=e206]:
+              - link "Shorts" [ref=e208] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=shorts
+                - generic [ref=e209]: 
+              - generic [ref=e211]:
+                - heading "Shorts" [level=3] [ref=e212]
+                - text: 2 products
+              - link "Product category shorts" [ref=e213] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=shorts
+            - generic [ref=e216]:
+              - link "Footwear" [ref=e218] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=footwear
+                - generic [ref=e219]: 
+              - heading "Footwear" [level=3] [ref=e222]
+              - link "Product category footwear" [ref=e223] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=footwear
+            - generic [ref=e226]:
+              - link "Special Sections" [ref=e228] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=special-sections
+                - generic [ref=e229]: 
+              - heading "Special Sections" [level=3] [ref=e232]
+              - link "Product category special sections" [ref=e233] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/category-products?cat=special-sections
+          - generic:
+            - generic: 
+            - generic: 
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]: ✨ Handpicked
+            - heading "Featured Products" [level=2] [ref=e237]
+          - link "View more" [ref=e238] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/all-products
+        - generic [ref=e242]:
+          - generic [ref=e244]:
+            - generic [ref=e247]:
+              - generic [ref=e248]:
+                - link "Suede Loafers" [ref=e249] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=suede-loafers-38
+                  - img "Suede Loafers" [ref=e250]
+                - generic [ref=e251]: New Arrival
+              - generic [ref=e254]:
+                - heading [level=3] [ref=e255]:
+                  - link "Suede Loafers" [ref=e256] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=suede-loafers-38
+                - generic [ref=e257]: ৳2,600.00
+                - generic [ref=e259]: In stock
+            - generic [ref=e262]:
+              - generic [ref=e263]:
+                - link "Classic Leather Loafers" [ref=e264] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=classic-leather-loafers-37
+                  - img "Classic Leather Loafers" [ref=e265]
+                - generic [ref=e266]: New Arrival
+              - generic [ref=e269]:
+                - heading [level=3] [ref=e270]:
+                  - link "Classic Leather Loafers" [ref=e271] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=classic-leather-loafers-37
+                - generic [ref=e272]: ৳2,400.00
+                - generic [ref=e274]: In stock
+            - generic [ref=e277]:
+              - generic [ref=e278]:
+                - link "All-Court Sports Shoes" [ref=e279] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=all-court-sports-shoes-36
+                  - img "All-Court Sports Shoes" [ref=e280]
+                - generic [ref=e281]: New Arrival
+              - generic [ref=e284]:
+                - heading [level=3] [ref=e285]:
+                  - link "All-Court Sports Shoes" [ref=e286] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=all-court-sports-shoes-36
+                - generic [ref=e287]: ৳1,900.00
+                - generic [ref=e289]: In stock
+            - generic [ref=e292]:
+              - generic [ref=e293]:
+                - link "Training Sports Shoes" [ref=e294] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=training-sports-shoes-35
+                  - img "Training Sports Shoes" [ref=e295]
+                - generic [ref=e296]: New Arrival
+              - generic [ref=e299]:
+                - heading [level=3] [ref=e300]:
+                  - link "Training Sports Shoes" [ref=e301] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=training-sports-shoes-35
+                - generic [ref=e302]: ৳2,100.00
+                - generic [ref=e304]: In stock
+            - generic [ref=e307]:
+              - generic [ref=e308]:
+                - link "Breathable Mesh Running Shoes" [ref=e309] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=breathable-mesh-running-shoes-34
+                  - img "Breathable Mesh Running Shoes" [ref=e310]
+                - generic [ref=e311]: New Arrival
+              - generic [ref=e314]:
+                - heading [level=3] [ref=e315]:
+                  - link "Breathable Mesh Running Shoes" [ref=e316] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=breathable-mesh-running-shoes-34
+                - generic [ref=e317]: ৳2,000.00
+                - generic [ref=e319]: In stock
+            - generic [ref=e322]:
+              - generic [ref=e323]:
+                - link "Lightweight Running Shoes" [ref=e324] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=lightweight-running-shoes-33
+                  - img "Lightweight Running Shoes" [ref=e325]
+                - generic [ref=e326]: New Arrival
+              - generic [ref=e329]:
+                - heading [level=3] [ref=e330]:
+                  - link "Lightweight Running Shoes" [ref=e331] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=lightweight-running-shoes-33
+                - generic [ref=e332]: ৳2,200.00
+                - generic [ref=e334]: In stock
+            - generic [ref=e337]:
+              - generic [ref=e338]:
+                - link "Memory Foam Slippers" [ref=e339] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=memory-foam-slippers-32
+                  - img "Memory Foam Slippers" [ref=e340]
+                - generic [ref=e341]: New Arrival
+              - generic [ref=e344]:
+                - heading [level=3] [ref=e345]:
+                  - link "Memory Foam Slippers" [ref=e346] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=memory-foam-slippers-32
+                - generic [ref=e347]: ৳450.00
+                - generic [ref=e349]: In stock
+            - generic [ref=e352]:
+              - generic [ref=e353]:
+                - link "Everyday Slippers" [ref=e354] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/product-details?slug=everyday-slippers-31
+                  - img "Everyday Slippers" [ref=e355]
+                - generic [ref=e356]: New Arrival
+              - generic [ref=e359]:
+                - heading [level=3] [ref=e360]:
+                  - link "Everyday Slippers" [ref=e361] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/product-details?slug=everyday-slippers-31
+                - generic [ref=e362]: ৳350.00
+                - generic [ref=e364]: In stock
+          - generic:
+            - generic: 
+            - generic: 
+        - generic [ref=e366]:
+          - heading "Get 10% Off Your First Order" [level=2] [ref=e368]
+          - paragraph [ref=e369]: Subscribe for new arrivals, restocks, and exclusive offers.
+          - paragraph [ref=e370]:
+            - text: Will be used in accordance with our
+            - link "Privacy Policy" [ref=e371] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/privacy-policy
+          - generic [ref=e372]:
+            - generic [ref=e373]:
+              - textbox "Your email address" [ref=e375]
+              - button "Sign up" [ref=e377] [cursor=pointer]
+            - textbox
+    - contentinfo [ref=e378]:
+      - generic [ref=e379]:
+        - generic [ref=e380]:
+          - generic [ref=e381]:
+            - link [ref=e383] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+            - paragraph [ref=e384]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=e386]:
+            - heading "Company" [level=2] [ref=e388]
+            - list [ref=e391]:
+              - listitem [ref=e392]:
+                - list [ref=e393]:
+                  - listitem [ref=e394]:
+                    - link "About Us" [ref=e395] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/about
+                  - listitem [ref=e396]:
+                    - link "Contact Us" [ref=e397] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/contact
+                  - listitem [ref=e398]:
+                    - link "F.A.Q." [ref=e399] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/faq
+          - generic [ref=e401]:
+            - heading "Info" [level=2] [ref=e403]
+            - list [ref=e406]:
+              - listitem [ref=e407]:
+                - list [ref=e408]:
+                  - listitem [ref=e409]:
+                    - link "Refund & Return Policy" [ref=e410] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/refund-policy
+                  - listitem [ref=e411]:
+                    - link "Terms & Conditions" [ref=e412] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/terms-conditions
+                  - listitem [ref=e413]:
+                    - link "Privacy Policy" [ref=e414] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/privacy-policy
+          - generic [ref=e416]:
+            - heading "Social Links" [level=2] [ref=e418]
+            - generic:
+              - generic:
+                - list
+        - generic [ref=e419]:
+          - generic [ref=e420]: Secure Checkout
+          - generic [ref=e425]: Cash on Delivery
+          - generic [ref=e430]: bKash
+          - generic [ref=e434]: Nagad
+          - generic [ref=e438]: Online Payment (UddoktaPay)
+        - paragraph [ref=e443]:
+          - link "Roventex" [ref=e444] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=e445]:
+    - search [ref=e447]:
+      - textbox "Search" [ref=e448]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=e449] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=e450]:
+      - listitem [ref=e451]:
+        - link "navigation-menu-t-shirt Products" [ref=e452] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/all-products
+          - img "navigation-menu-t-shirt" [ref=e453]
+          - generic [ref=e454]: Products
+        - button "Toggle submenu" [ref=e455] [cursor=pointer]
+        - list [ref=e456]:
+          - listitem [ref=e457]:
+            - generic [ref=e458] [cursor=pointer]: 
+            - link "Back" [ref=e459] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e460]:
+            - link "Shop" [ref=e461] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - button "Toggle submenu" [ref=e462] [cursor=pointer]
+            - list [ref=e463]:
+              - listitem [ref=e464]:
+                - generic [ref=e465] [cursor=pointer]: 
+                - link "Back" [ref=e466] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e467]:
+                - link "T-Shirt" [ref=e468] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=t-shirt
+              - listitem [ref=e469]:
+                - link "Polo T-Shirt" [ref=e470] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=polo-t-shirt
+              - listitem [ref=e471]:
+                - link "Shirt" [ref=e472] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=shirt
+              - listitem [ref=e473]:
+                - link "Boxy Shirt" [ref=e474] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=boxy-shirt
+              - listitem [ref=e475]:
+                - link "Jeans" [ref=e476] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=jeans
+              - listitem [ref=e477]:
+                - link "Baggy Jeans" [ref=e478] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=baggy-jeans
+              - listitem [ref=e479]:
+                - link "Semi Baggy Jeans" [ref=e480] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=semi-baggy-jeans
+              - listitem [ref=e481]:
+                - link "Cargo Pant" [ref=e482] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=cargo-pant
+              - listitem [ref=e483]:
+                - link "Formal Pant" [ref=e484] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=formal-pant
+              - listitem [ref=e485]:
+                - link "Chino Pant" [ref=e486] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=chino-pant
+              - listitem [ref=e487]:
+                - link "Shorts" [ref=e488] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=shorts
+            - generic [ref=e489] [cursor=pointer]: 
+          - listitem [ref=e490]:
+            - link "Footwear" [ref=e491] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?slug=footwear
+            - button "Toggle submenu" [ref=e492] [cursor=pointer]
+            - list [ref=e493]:
+              - listitem [ref=e494]:
+                - generic [ref=e495] [cursor=pointer]: 
+                - link "Back" [ref=e496] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e497]:
+                - link "Boots" [ref=e498] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=boots
+              - listitem [ref=e499]:
+                - link "Formal Shoes" [ref=e500] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=formal-shoes
+              - listitem [ref=e501]:
+                - link "Loafers" [ref=e502] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=loafers
+              - listitem [ref=e503]:
+                - link "Running Shoes" [ref=e504] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=running-shoes
+              - listitem [ref=e505]:
+                - link "Slides" [ref=e506] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=slides
+              - listitem [ref=e507]:
+                - link "Slippers" [ref=e508] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=slippers
+              - listitem [ref=e509]:
+                - link "Sneakers" [ref=e510] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=sneakers
+              - listitem [ref=e511]:
+                - link "Sports Shoes" [ref=e512] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=sports-shoes
+            - generic [ref=e513] [cursor=pointer]: 
+          - listitem [ref=e514]:
+            - link "Special Sections" [ref=e515] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?slug=special-sections
+            - button "Toggle submenu" [ref=e516] [cursor=pointer]
+            - list [ref=e517]:
+              - listitem [ref=e518]:
+                - generic [ref=e519] [cursor=pointer]: 
+                - link "Back" [ref=e520] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e521]:
+                - link "Best Seller" [ref=e522] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=best-seller
+              - listitem [ref=e523]:
+                - link "Clearance" [ref=e524] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=clearance
+              - listitem [ref=e525]:
+                - link "Combo Offer" [ref=e526] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=combo-offer
+              - listitem [ref=e527]:
+                - link "Flash Sale" [ref=e528] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=flash-sale
+              - listitem [ref=e529]:
+                - link "New Arrival" [ref=e530] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=new-arrival
+              - listitem [ref=e531]:
+                - link "Premium Collection" [ref=e532] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=premium-collection
+              - listitem [ref=e533]:
+                - link "Restock" [ref=e534] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=restock
+            - generic [ref=e535] [cursor=pointer]: 
+        - generic [ref=e536] [cursor=pointer]: 
+      - listitem [ref=e537]:
+        - link "navigation-menu-movie About Us" [ref=e538] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/about
+          - img "navigation-menu-movie" [ref=e539]
+          - generic [ref=e540]: About Us
+      - listitem [ref=e541]:
+        - link "navigation-menu-d-pad Contact Us" [ref=e542] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/contact
+          - img "navigation-menu-d-pad" [ref=e543]
+          - generic [ref=e544]: Contact Us
+      - listitem [ref=e545]:
+        - link "navigation-menu-star F.A.Q." [ref=e546] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/faq
+          - img "navigation-menu-star" [ref=e547]
+          - generic [ref=e548]: F.A.Q.
+  - complementary "Shopping cart sidebar" [ref=e549]:
+    - generic [ref=e550]:
+      - generic [ref=e551]: Shopping cart
+      - link " Close" [ref=e553] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e554]: 
+        - generic [ref=e555]: Close
+  - text:    
+  - button "Contact us" [ref=e559] [cursor=pointer]

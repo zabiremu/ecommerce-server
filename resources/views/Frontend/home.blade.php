@@ -1,7 +1,7 @@
 @extends('Frontend.Layout.app')
 
 @section('content')
-    <main id="main-content" class="wd-content-layout content-layout-wrapper container" role="main">
+    <main id="main-content" class="wd-content-layout content-layout-wrapper container" style="padding-top:0px!important" role="main">
 
         <div class="wd-content-area site-content">
             <article id="post-591" class="entry-content post-591 page type-page status-publish has-post-thumbnail hentry">
