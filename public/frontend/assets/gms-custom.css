@@ -466,6 +466,7 @@ input[type="submit"] {
 
 /* Image zoom on hover */
 .wd-product-thumb {
+  position: relative;
   overflow: hidden;
 }
 .wd-product-thumb img {
@@ -473,6 +474,36 @@ input[type="submit"] {
 }
 .wd-product.product-grid-item:hover .wd-product-thumb > a > img {
   transform: scale(1.05);
+}
+
+/* Product card badge → single hanging gold ribbon, top-right corner
+   (all applicable badges stack as lines inside one ribbon) */
+.gms-ribbon {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  z-index: 5;
+  width: 72px;
+}
+.gms-ribbon-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px 18px;
+  background: linear-gradient(180deg, #F3E4B8, #C9A24B 55%, #8A6C2E);
+  color: #FFFDF5;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 0 3px 8px rgba(0,0,0,.2);
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 50% 100%, 0 84%);
+}
+.gms-ribbon-inner span {
+  display: block;
 }
 
 /* Category card hover */

@@ -21,6 +21,12 @@
     $alertQty = (float) ($product->alert_quantity ?? 0);
     $outOfStock = $stock <= 0;
     $lowStock = !$outOfStock && $alertQty > 0 && $stock <= $alertQty;
+
+    $ribbonLabels = [];
+    if ($hasSale) $ribbonLabels[] = 'Sale';
+    if ($isNew) $ribbonLabels[] = 'New Arrival';
+    if ($isBestSeller) $ribbonLabels[] = 'Bestseller';
+    if ($lowStock) $ribbonLabels[] = 'Limited';
 @endphp
 <div class="wd-carousel-item">
     <div class="wd-product wd-hover-quick product-grid-item product type-product{{ $outOfStock ? ' outofstock' : ' instock' }} has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
@@ -34,20 +40,15 @@
                         class="attachment-263x300 size-263x300" alt="{{ $product->name }}" />
                 </a>
 
-                <div class="product-labels labels-rounded-sm">
-                    @if($hasSale)
-                        <span class="onsale product-label wd-shape-round-sm">Sale</span>
-                    @endif
-                    @if($isNew)
-                        <span class="product-label wd-shape-round-sm new">New</span>
-                    @endif
-                    @if($isBestSeller)
-                        <span class="product-label wd-shape-round-sm bestseller">Bestseller</span>
-                    @endif
-                    @if($lowStock)
-                        <span class="product-label wd-shape-round-sm limited">Limited</span>
-                    @endif
-                </div>
+                @if(count($ribbonLabels))
+                    <div class="gms-ribbon">
+                        <div class="gms-ribbon-inner">
+                            @foreach($ribbonLabels as $label)
+                                <span>{{ $label }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
 
                 @if($hoverUrl)
                     <div class="wd-product-img-hover hover-img">

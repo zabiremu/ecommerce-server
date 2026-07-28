@@ -2688,7 +2688,7 @@
                             <div class="container">
                                 <ul class="wd-checkout-steps">
                                     <li class="step-cart step-active">
-                                        <a href="cart.html">
+                                        <a href="{{ route('cart') }}">
                                             <span>Shopping cart</span>
                                         </a>
                                     </li>
@@ -2753,13 +2753,13 @@
                                             <tr class="woocommerce-cart-form__cart-item cart_item">
 
                                                 <td class="product-remove">
-                                                    <a href="cart.html" class="remove"
+                                                    <a href="{{ route('cart') }}" class="remove"
                                                         aria-label="Remove Dune Desert Mouse Plush from cart"
                                                         data-product_id="458" data-product_sku="GM-PL-8">&times;</a>
                                                 </td>
 
                                                 <td class="product-thumbnail">
-                                                    <a href="product_details.html"><img width="430" height="492"
+                                                    <a href="{{ route('all-products') }}"><img width="430" height="492"
                                                             src="merchandise/wp-content/uploads/sites/31/2025/11/dune-desert-mouse-plush-600x686.jpeg.webp"
                                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
                                                             alt="Dune Desert Mouse Plush" decoding="async"
@@ -2769,7 +2769,7 @@
                                                 </td>
 
                                                 <td class="product-name" data-title="Product">
-                                                    <a href="product_details.html">Dune Desert Mouse Plush</a>
+                                                    <a href="{{ route('all-products') }}">Dune Desert Mouse Plush</a>
                                                 </td>
 
                                                 <td class="product-price" data-title="Price">
@@ -3274,7 +3274,7 @@
 
                                         <div class="wc-proceed-to-checkout">
 
-                                            <a href="checkout.html" class="checkout-button button alt wc-forward">
+                                            <a href="{{ route('checkout') }}" class="checkout-button button alt wc-forward">
                                                 Proceed to checkout</a>
                                         </div>
 
