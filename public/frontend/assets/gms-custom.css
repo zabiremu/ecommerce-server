@@ -1608,3 +1608,71 @@ body {
 .wd-footer .gms-trust-badge-secure svg {
   color: #C9A24B;
 }
+
+/* ==========================================================
+   20. HEADER — MEGA-DROPDOWN REDESIGN (Shop / Footwear / Special Sections)
+   ========================================================== */
+.gms-mega-dropdown {
+  border-radius: var(--gms-radius) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .16) !important;
+  overflow: hidden;
+}
+.gms-mega-dropdown::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gms-red), #C9A24B 55%, var(--gms-red));
+}
+.gms-mega-dropdown .wp-block-wd-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.gms-mega-dropdown .wp-block-wd-column {
+  flex: 1 1 0;
+  min-width: 160px;
+  padding: 4px 22px;
+  border-right: 1px solid var(--gms-line);
+}
+.gms-mega-dropdown .wp-block-wd-column:last-child {
+  border-right: none;
+}
+/* Column "header" — the top-level category link each column is built
+   around (Boots, Sneakers, New Arrival, ...). */
+.gms-mega-dropdown .wd-sub-accented > li > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 8px;
+  font-size: 13px;
+  letter-spacing: .03em;
+  border-bottom: 2px solid transparent;
+  transition: color var(--gms-ease), border-color var(--gms-ease);
+}
+.gms-mega-dropdown .wd-sub-accented > li > a:hover {
+  color: var(--gms-red) !important;
+  border-bottom-color: var(--gms-red);
+}
+/* Sub-items (grandchildren) — lighter weight, indented, own hover accent */
+.gms-mega-dropdown .sub-sub-menu {
+  margin: 6px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.gms-mega-dropdown .sub-sub-menu > li > a {
+  display: block;
+  padding-left: 4px;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--gms-text) !important;
+  border-left: 2px solid var(--gms-line);
+  padding-left: 10px;
+  transition: color var(--gms-ease), border-color var(--gms-ease), padding-left var(--gms-ease);
+}
+.gms-mega-dropdown .sub-sub-menu > li > a:hover {
+  color: var(--gms-ink) !important;
+  border-left-color: #C9A24B;
+  padding-left: 14px;
+}

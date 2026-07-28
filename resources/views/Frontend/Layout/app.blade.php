@@ -70,7 +70,7 @@
                                                 <a href="{{ route('all-products') }}" class="woodmart-nav-link">
                                                     <span class="nav-link-text">Shop</span>
                                                 </a>
-                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark gms-mega-dropdown">
                                                     <div class="container wd-entry-content">
                                                         <link rel="stylesheet"
                                                               href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
@@ -93,10 +93,24 @@
                                             </li>
                                         @endif
 
+                                        @php
+                                            // Matches Product::SPECIAL_SECTIONS' emoji so the "Special Sections"
+                                            // nav dropdown visually ties in with the homepage feature of the
+                                            // same name — both are keyed off the same 7 labels.
+                                            $specialSectionEmoji = collect(\App\Models\Product::SPECIAL_SECTIONS)
+                                                ->mapWithKeys(fn ($meta) => [$meta['label'] => $meta['emoji']]);
+                                        @endphp
                                         @foreach($navGroupedCategories as $navCat)
                                             @php
-                                                $colCount = $navCat->children->count();
-                                                $dropdownWidth = min(660, max(220, $colCount * 220));
+                                                // Each child used to get its own dedicated column (colCount =
+                                                // child count), which made single-item columns absurdly narrow
+                                                // once a category had 7-8 children — e.g. "Running Shoes" wrapped
+                                                // across 2 lines. Cap at 4 columns and balance children across
+                                                // them instead, same chunking approach the "Shop" dropdown above
+                                                // already uses.
+                                                $colCount = min(4, max(1, $navCat->children->count()));
+                                                $dropdownWidth = min(760, max(280, $colCount * 200));
+                                                $childChunks = $navCat->children->chunk((int) ceil($navCat->children->count() / $colCount));
                                             @endphp
                                             <li id="menu-item-cat-{{ $navCat->id }}"
                                                 class="menu-item item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"
@@ -105,27 +119,29 @@
                                                    class="woodmart-nav-link">
                                                     <span class="nav-link-text">{{ $navCat->name }}</span>
                                                 </a>
-                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark gms-mega-dropdown">
                                                     <div class="container wd-entry-content">
                                                         <link rel="stylesheet"
                                                               href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}"
                                                               type="text/css" media="all"/>
                                                         <div class="wp-block-wd-row">
-                                                            @foreach($navCat->children as $child)
+                                                            @foreach($childChunks as $columnChildren)
                                                                 <div class="wp-block-wd-column">
                                                                     <ul class="wp-block-wd-menu-list wd-sub-menu wd-sub-accented">
-                                                                        <li>
-                                                                            <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $child->name }}</a>
-                                                                            @if($child->children->isNotEmpty())
-                                                                                <ul class="sub-sub-menu">
-                                                                                    @foreach($child->children as $grandchild)
-                                                                                        <li class="wp-block-wd-menu-list-item">
-                                                                                            <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
-                                                                                        </li>
-                                                                                    @endforeach
-                                                                                </ul>
-                                                                            @endif
-                                                                        </li>
+                                                                        @foreach($columnChildren as $child)
+                                                                            <li>
+                                                                                <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $specialSectionEmoji[$child->name] ?? '' }} {{ $child->name }}</a>
+                                                                                @if($child->children->isNotEmpty())
+                                                                                    <ul class="sub-sub-menu">
+                                                                                        @foreach($child->children as $grandchild)
+                                                                                            <li class="wp-block-wd-menu-list-item">
+                                                                                                <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                @endif
+                                                                            </li>
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             @endforeach
