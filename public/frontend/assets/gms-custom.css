@@ -1113,3 +1113,40 @@ input[type="submit"],
     padding-right: 16px !important;
   }
 }
+
+/* ==========================================================
+   13. FOOTER TRUST / PAYMENT BADGES
+   ========================================================== */
+.gms-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+  padding: 16px 0;
+  margin: 8px 0;
+  border-top: 1px solid var(--gms-line);
+  border-bottom: 1px solid var(--gms-line);
+}
+.gms-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--gms-bg-soft);
+  color: var(--gms-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+.gms-trust-badge svg {
+  flex-shrink: 0;
+  color: #8A6C2E;
+}
+.gms-trust-badge-secure {
+  background: #F3E4B8;
+  color: #3B2F17;
+}
+.gms-trust-badge-secure svg {
+  color: #8A6C2E;
+}
