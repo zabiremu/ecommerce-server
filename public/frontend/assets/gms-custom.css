@@ -1270,6 +1270,16 @@ input[type="submit"],
   font-size: 1.9em !important;
   font-weight: 700 !important;
 }
+/* Narrow phones (320-360px) — 1.9em still wraps the title, forcing
+   the "view more" arrow onto its own line below it. */
+@media (max-width: 380px) {
+  .gms-heading-tier-1.wp-block-wd-title.title {
+    font-size: 1.8em !important;
+  }
+  .gms-heading-tier-2.wp-block-wd-title.title {
+    font-size: 1.4em !important;
+  }
+}
 .gms-section-priority-2 {
   background: var(--gms-bg-soft);
   border-radius: var(--gms-radius);

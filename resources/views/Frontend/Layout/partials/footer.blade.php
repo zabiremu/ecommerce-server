@@ -98,6 +98,7 @@
                   }
 
                   .wd.wd .wd-5231162e {
+                      padding-top: 20px;
                       padding-bottom: 20px;
                   }
               }
