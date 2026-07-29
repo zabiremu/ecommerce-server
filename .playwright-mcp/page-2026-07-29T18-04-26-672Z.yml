@@ -1,0 +1,252 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - link "Skip to navigation" [ref=f6e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f6e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f6e5]:
+    - banner [ref=f6e6]:
+      - generic [ref=f6e10]:
+        - text:     
+        - link "Open mobile menu" [ref=f6e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f6e14]: 
+        - link "Site logo" [ref=f6e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123
+        - link "" [ref=f6e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/login
+    - generic [ref=f6e23]:
+      - generic [ref=f6e26]:
+        - heading "About Us" [level=1] [ref=f6e27]
+        - navigation [ref=f6e28]:
+          - link "Home" [ref=f6e29] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - generic [ref=f6e30]: /
+          - generic [ref=f6e31]: About Us
+      - main [ref=f6e32]:
+        - article [ref=f6e34]:
+          - heading "Bangladesh's trusted e-commerce destination" [level=2] [ref=f6e45]
+          - generic [ref=f6e47]:
+            - heading "Welcome to NF Shop 24" [level=2] [ref=f6e48]
+            - paragraph [ref=f6e49]: NF Shop 24 is Bangladesh's trusted e-commerce destination, offering quality products at unbeatable prices with hassle-free delivery across the country.
+            - heading "Our Story" [level=2] [ref=f6e50]
+            - paragraph [ref=f6e51]: NF Shop 24 started with a simple mission — to make quality products accessible to every Bangladeshi at fair prices. What began as a small online store has grown into a trusted national e-commerce platform serving thousands of happy customers. We partner directly with trusted brands and local suppliers to ensure every product meets our quality standards.
+            - heading "Our Mission" [level=2] [ref=f6e52]
+            - paragraph [ref=f6e53]: To provide every Bangladeshi with access to quality products at the best prices, delivered reliably to their doorstep.
+            - heading "Our Vision" [level=2] [ref=f6e54]
+            - paragraph [ref=f6e55]: To become Bangladesh's most trusted e-commerce platform, setting the standard for quality, service, and customer satisfaction.
+            - heading "Our Values" [level=2] [ref=f6e56]
+            - paragraph [ref=f6e57]: Integrity, transparency, and putting our customers first in everything we do.
+            - heading "Why Choose Us" [level=2] [ref=f6e58]
+            - list [ref=f6e59]:
+              - listitem [ref=f6e60]:
+                - strong [ref=f6e61]: Secure Shopping
+                - text: — Pay only when you receive your product. Your satisfaction is guaranteed.
+              - listitem [ref=f6e62]:
+                - strong [ref=f6e63]: Fast Delivery
+                - text: — Nationwide delivery network ensuring your order reaches you on time.
+              - listitem [ref=f6e64]:
+                - strong [ref=f6e65]: 24/7 Support
+                - text: — Dedicated customer service team ready to help you anytime.
+              - listitem [ref=f6e66]:
+                - strong [ref=f6e67]: Easy Returns
+                - text: — Hassle-free return policy. If you're not satisfied, we'll make it right.
+              - listitem [ref=f6e68]:
+                - strong [ref=f6e69]: Best Prices
+                - text: — Direct partnerships with brands and suppliers mean lower prices for you.
+              - listitem [ref=f6e70]:
+                - strong [ref=f6e71]: Trusted Quality
+                - text: — Every product is verified for quality before it reaches our customers.
+    - contentinfo [ref=f6e72]:
+      - generic [ref=f6e73]:
+        - generic [ref=f6e74]:
+          - generic [ref=f6e75]:
+            - link [ref=f6e77] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123
+            - paragraph [ref=f6e78]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f6e81]:
+            - heading "Company" [level=2] [ref=f6e82]
+            - generic "Toggle" [ref=f6e83]
+          - generic [ref=f6e87]:
+            - heading "Info" [level=2] [ref=f6e88]
+            - generic "Toggle" [ref=f6e89]
+          - generic [ref=f6e93]:
+            - heading "Social Links" [level=2] [ref=f6e94]
+            - generic "Toggle" [ref=f6e95]
+        - generic [ref=f6e97]:
+          - generic [ref=f6e98]: Secure Checkout
+          - generic [ref=f6e103]: Cash on Delivery
+          - generic [ref=f6e108]: bKash
+          - generic [ref=f6e112]: Nagad
+          - generic [ref=f6e116]: Online Payment (UddoktaPay)
+        - paragraph [ref=f6e121]:
+          - link "Roventex" [ref=f6e122] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f6e123]:
+    - search [ref=f6e125]:
+      - textbox "Search" [ref=f6e126]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f6e127] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f6e128]:
+      - listitem [ref=f6e129]:
+        - link "Products" [ref=f6e130] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/all-products
+        - list [ref=f6e134]:
+          - listitem [ref=f6e135]:
+            - generic [ref=f6e136] [cursor=pointer]: 
+            - link "Back" [ref=f6e137] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f6e138]:
+            - link "Shop" [ref=f6e139] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+            - list [ref=f6e140]:
+              - listitem [ref=f6e141]:
+                - generic [ref=f6e142] [cursor=pointer]: 
+                - link "Back" [ref=f6e143] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f6e144]:
+                - link "T-Shirt" [ref=f6e145] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=t-shirt
+              - listitem [ref=f6e146]:
+                - link "Polo T-Shirt" [ref=f6e147] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=polo-t-shirt
+              - listitem [ref=f6e148]:
+                - link "Shirt" [ref=f6e149] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shirt
+              - listitem [ref=f6e150]:
+                - link "Boxy Shirt" [ref=f6e151] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boxy-shirt
+              - listitem [ref=f6e152]:
+                - link "Jeans" [ref=f6e153] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=jeans
+              - listitem [ref=f6e154]:
+                - link "Baggy Jeans" [ref=f6e155] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=baggy-jeans
+              - listitem [ref=f6e156]:
+                - link "Semi Baggy Jeans" [ref=f6e157] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=semi-baggy-jeans
+              - listitem [ref=f6e158]:
+                - link "Cargo Pant" [ref=f6e159] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=cargo-pant
+              - listitem [ref=f6e160]:
+                - link "Formal Pant" [ref=f6e161] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-pant
+              - listitem [ref=f6e162]:
+                - link "Chino Pant" [ref=f6e163] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=chino-pant
+              - listitem [ref=f6e164]:
+                - link "Shorts" [ref=f6e165] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shorts
+            - generic [ref=f6e166] [cursor=pointer]: 
+          - listitem [ref=f6e167]:
+            - link "Footwear" [ref=f6e168] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=footwear
+            - list [ref=f6e169]:
+              - listitem [ref=f6e170]:
+                - generic [ref=f6e171] [cursor=pointer]: 
+                - link "Back" [ref=f6e172] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f6e173]:
+                - link "Boots" [ref=f6e174] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boots
+              - listitem [ref=f6e175]:
+                - link "Formal Shoes" [ref=f6e176] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-shoes
+              - listitem [ref=f6e177]:
+                - link "Loafers" [ref=f6e178] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=loafers
+              - listitem [ref=f6e179]:
+                - link "Running Shoes" [ref=f6e180] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=running-shoes
+              - listitem [ref=f6e181]:
+                - link "Slides" [ref=f6e182] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slides
+              - listitem [ref=f6e183]:
+                - link "Slippers" [ref=f6e184] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slippers
+              - listitem [ref=f6e185]:
+                - link "Sneakers" [ref=f6e186] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sneakers
+              - listitem [ref=f6e187]:
+                - link "Sports Shoes" [ref=f6e188] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sports-shoes
+            - generic [ref=f6e189] [cursor=pointer]: 
+          - listitem [ref=f6e190]:
+            - link "Special Sections" [ref=f6e191] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=special-sections
+            - list [ref=f6e192]:
+              - listitem [ref=f6e193]:
+                - generic [ref=f6e194] [cursor=pointer]: 
+                - link "Back" [ref=f6e195] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f6e196]:
+                - link "Best Seller" [ref=f6e197] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=best-seller
+              - listitem [ref=f6e198]:
+                - link "Clearance" [ref=f6e199] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=clearance
+              - listitem [ref=f6e200]:
+                - link "Combo Offer" [ref=f6e201] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=combo-offer
+              - listitem [ref=f6e202]:
+                - link "Flash Sale" [ref=f6e203] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=flash-sale
+              - listitem [ref=f6e204]:
+                - link "New Arrival" [ref=f6e205] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=new-arrival
+              - listitem [ref=f6e206]:
+                - link "Premium Collection" [ref=f6e207] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=premium-collection
+              - listitem [ref=f6e208]:
+                - link "Restock" [ref=f6e209] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=restock
+            - generic [ref=f6e210] [cursor=pointer]: 
+        - generic [ref=f6e211] [cursor=pointer]: 
+      - listitem [ref=f6e212]:
+        - link "About Us" [ref=f6e213] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/about
+      - listitem [ref=f6e218]:
+        - link "Contact Us" [ref=f6e219] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/contact
+      - listitem [ref=f6e223]:
+        - link "F.A.Q." [ref=f6e224] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/faq
+  - complementary "Shopping cart sidebar" [ref=f6e228]:
+    - generic [ref=f6e229]:
+      - generic [ref=f6e230]: Shopping cart
+      - link " Close" [ref=f6e232] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f6e233]: 
+        - generic [ref=f6e234]: Close
+  - complementary "Sticky toolbar" [ref=f6e237]:
+    - link " Menu" [ref=f6e239] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f6e240]: 
+      - generic [ref=f6e241]: Menu
+    - generic "My cart" [ref=f6e242]:
+      - link " 0 Cart" [ref=f6e243] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/cart
+        - generic [ref=f6e244]:
+          - text: 
+          - generic [ref=f6e245]: "0"
+        - generic [ref=f6e246]: Cart
+    - generic "My wishlist" [ref=f6e247]:
+      - link " 0 Wishlist" [ref=f6e248] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/wishlist
+        - generic [ref=f6e249]:
+          - text: 
+          - generic [ref=f6e250]: "0"
+        - generic [ref=f6e251]: Wishlist
+    - generic "My account" [ref=f6e252]:
+      - link " Account" [ref=f6e253] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/login
+        - generic [ref=f6e254]: 
+        - generic [ref=f6e255]: Account
+  - button "Contact us" [ref=f6e257] [cursor=pointer]

@@ -1941,3 +1941,23 @@ body {
 .policy-content strong {
   color: var(--gms-title);
 }
+
+/* ==========================================================
+   21. PAGE TITLE BAR — white text on the red background
+   ========================================================== */
+/* .wd-page-title gets background-color:rgb(230,57,70) from an inline
+   <style> block duplicated across ~12 pages (about, contact, cart,
+   checkout, login, register, wishlist, dashboard, etc.), but none of
+   them set a matching text color — the h1 and breadcrumb "current
+   page" text fall back to the theme's default near-black, unreadable
+   on red. One shared rule here fixes all of them. */
+.wd-page-title .entry-title,
+.wd-page-title .title {
+  color: #fff;
+}
+.wd-page-title .wd-breadcrumbs {
+  --wd-link-color: rgba(255, 255, 255, .75);
+  --wd-link-color-hover: #fff;
+  --wd-bcrumb-color-active: #fff;
+  --wd-bcrumb-delim-color: rgba(255, 255, 255, .5);
+}

@@ -2306,34 +2306,30 @@
 						<div id="wd-7f0748e6" class="wp-block-wd-row">
 							<div id="wd-2581e6d1" class="wp-block-wd-column">
 								<div id="wd-bf3d7474" class="wp-block-wd-image wd-block-image"><img fetchpriority="high"
-										decoding="async" width="316" height="316" class="wp-image-807"
-										src="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp" alt=""
-										srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1.jpg.webp 316w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-300x300.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-150x150.jpg.webp 150w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-290x290.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-1-100x100.jpg.webp 100w"
-										sizes="(max-width: 316px) 100vw, 316px" /></div>
+										decoding="async" width="316" height="362" class="wp-image-807"
+										src="{{ asset('frontend/products/unsplash/unsplash-1445205170230-053b83016050.jpg') }}"
+										alt="Rack of folded and hanging clothes" /></div>
 							</div>
 
 							<div id="wd-bde209e7" class="wp-block-wd-column">
 								<div id="wd-33932e98" class="wp-block-wd-image wd-block-image"><img decoding="async"
-										width="316" height="380" class="wp-image-809"
-										src="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp" alt=""
-										srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2.jpg.webp 316w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-249x300.jpg.webp 249w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-274x330.jpg.webp 274w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-83x100.jpg.webp 83w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-2-150x180.jpg.webp 150w"
-										sizes="(max-width: 316px) 100vw, 316px" /></div>
+										width="316" height="362" class="wp-image-809"
+										src="{{ asset('frontend/products/unsplash/unsplash-1512436991641-6745cdb1723f.jpg') }}"
+										alt="Colorful shirts and tops hanging on a clothing rack" /></div>
 							</div>
 
 							<div id="wd-c0be48ff" class="wp-block-wd-column">
 								<div id="wd-45900e23" class="wp-block-wd-image wd-block-image"><img decoding="async"
-										width="316" height="284" class="wp-image-806"
-										src="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp" alt=""
-										srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3.jpg.webp 316w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-300x270.jpg.webp 300w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-290x261.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-100x90.jpg.webp 100w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-3-150x135.jpg.webp 150w"
-										sizes="(max-width: 316px) 100vw, 316px" /></div>
+										width="316" height="178" class="wp-image-806"
+										src="{{ asset('frontend/products/unsplash/unsplash-1515886657613-9f3515b0c78f.jpg') }}"
+										alt="Person wearing a yellow hoodie and sweatpants outdoors" /></div>
 							</div>
 
 							<div id="wd-03cc1817" class="wp-block-wd-column">
 								<div id="wd-06623b74" class="wp-block-wd-image wd-block-image"><img loading="lazy"
-										decoding="async" width="316" height="348" class="wp-image-808"
-										src="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp" alt=""
-										srcset="merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4.jpg.webp 316w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-272x300.jpg.webp 272w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-290x319.jpg.webp 290w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-91x100.jpg.webp 91w, merchandise/wp-content/uploads/sites/31/2025/11/gms-img-4-150x165.jpg.webp 150w"
-										sizes="auto, (max-width: 316px) 100vw, 316px" /></div>
+										decoding="async" width="316" height="362" class="wp-image-808"
+										src="{{ asset('frontend/products/unsplash/unsplash-1517841905240-472988babdf9.jpg') }}"
+										alt="Woman smiling in a denim jacket over a hoodie" /></div>
 							</div>
 						</div>
 
