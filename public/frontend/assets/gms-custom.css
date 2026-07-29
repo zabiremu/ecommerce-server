@@ -1291,6 +1291,19 @@ input[type="submit"],
     padding-left: 0;
     padding-right: 0;
   }
+  /* Narrow mobile cards (2-col grid) don't leave enough width for
+     icon + "Add to Cart" side-by-side — the label wraps word-by-word
+     into 3 stacked lines. Stack icon above a single-line label instead. */
+  .wd-add-btn.wd-add-btn-replace .button.add_to_cart_button,
+  .wd-add-btn.wd-add-btn-replace .add-to-cart-loop {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 6px;
+  }
+  .wd-add-btn.wd-add-btn-replace .wd-action-text {
+    white-space: nowrap;
+    font-size: 12px;
+  }
 }
 
 /* ==========================================================
