@@ -1,0 +1,39 @@
+- generic [ref=f1e2]:
+  - generic [ref=f1e3]:
+    - generic [ref=f1e4]: 
+    - heading "ROVENTEX Admin" [level=1] [ref=f1e6]
+    - paragraph [ref=f1e7]: Secure administrator access
+  - generic [ref=f1e8]:
+    - heading "Welcome back" [level=2] [ref=f1e9]
+    - paragraph [ref=f1e10]: Sign in to manage your store
+    - generic [ref=f1e11]:
+      - generic [ref=f1e12]: 
+      - generic [ref=f1e13]: The provided credentials do not match our records.
+    - generic [ref=f1e14]:
+      - generic [ref=f1e15]:
+        - generic [ref=f1e16]: Email Address
+        - generic [ref=f1e17]:
+          - generic [ref=f1e18]: 
+          - textbox "Email Address" [ref=f1e19]:
+            - /placeholder: admin@example.com
+            - text: admin@nfshop24.com
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]: Password
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: 
+          - textbox "Password" [ref=f1e24]:
+            - /placeholder: Enter your password
+          - button "" [ref=f1e25] [cursor=pointer]
+      - generic [ref=f1e27]:
+        - generic [ref=f1e28] [cursor=pointer]:
+          - checkbox "Remember me" [ref=f1e29]
+          - generic [ref=f1e30]: Remember me
+        - link "Forgot password?" [ref=f1e31] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/admin/forgot-password
+      - button " Sign In" [ref=f1e32] [cursor=pointer]:
+        - generic [ref=f1e33]: 
+        - text: Sign In
+  - paragraph [ref=f1e34]:
+    - text: © 2026 ROVENTEX.
+    - link "Back to site" [ref=f1e35] [cursor=pointer]:
+      - /url: http://127.0.0.1:8123

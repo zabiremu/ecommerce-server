@@ -2310,38 +2310,19 @@
                                 margin-top: 30px;
                             }
 
-                            #wd-fc2645af {
-                                --wd-btn-align: var(--wd-stretch);
-                            }
-
-                            #wd-119ef17c {
-                                padding: 30px;
-                                background-color: #f5f5f5;
-                                border-radius: 16px;
-                                align-self: start;
-                            }
-
                             #wd-e3451e74 {
-                                --wd-width: 1000px;
+                                --wd-width: 480px;
                             }
 
                             @media (min-width: 769px) {
                                 #wd-fec2d908 {
-                                    flex: 0 1 calc(50% - var(--wd-col-gap) * 1 / 2);
-                                }
-
-                                #wd-119ef17c {
-                                    flex: 0 1 calc(50% - var(--wd-col-gap) * 1 / 2);
+                                    flex: 0 1 100%;
                                 }
                             }
 
                             @media (max-width: 768.98px) {
                                 #wd-fec2d908 {
                                     margin-top: 0px;
-                                }
-
-                                #wd-119ef17c {
-                                    padding: 20px;
                                 }
                             }
                         </style>
@@ -2442,65 +2423,10 @@
 
                                     </form>
 
-                                </div>
-                            </div>
-
-                            <div id="wd-119ef17c" class="wp-block-wd-column wd-align-s-start">
-                                <div id="wd-6dbd5f4a" class="wd-wc-notices wd-6dbd5f4a">
-                                    <div class="woocommerce-notices-wrapper"></div>
-                                </div>
-
-                                <h2 id="wd-88f5ed5a" class="wp-block-wd-title title">Register</h2>
-
-                                <div id="wd-fc2645af" class="wd-el-my-account-register wd-fc2645af">
-                                    <form method="post"
-                                        action="{{ route('register.submit') }}"
-                                        class="woocommerce-form woocommerce-form-register register">
-                                        @csrf
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_first_name">First Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="first_name" id="reg_first_name" value="{{ old('first_name') }}" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_last_name">Last Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="last_name" id="reg_last_name" value="{{ old('last_name') }}" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_email">Email address&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="email" id="reg_email" autocomplete="email" value="{{ old('email') }}" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_phone">Phone&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="phone" id="reg_phone" value="{{ old('phone') }}" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_password">Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="password" id="reg_password" autocomplete="new-password" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_password_confirmation">Confirm Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="password_confirmation" id="reg_password_confirmation" autocomplete="new-password" required />
-                                        </p>
-
-                                        <p class="woocommerce-form-row form-row form-row-btn">
-                                            <button type="submit"
-                                                class="woocommerce-Button woocommerce-button btn btn-accent button"
-                                                name="register" value="Register">Register</button>
-                                        </p>
-
-                                    </form>
+                                    <p class="gms-auth-switch" style="margin-top:16px;text-align:center;">
+                                        Don't have an account?
+                                        <a href="{{ route('register') }}">Register here</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -28,13 +28,18 @@ window.gmsBuildProductCard = function (p) {
     ? '<del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.old) + '</bdi></span></del> <ins aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.cur) + '</bdi></span></ins>'
     : '<span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(p.cur) + '</bdi></span>';
 
+  var isOutOfStock = p.stockStatus === 'out-of-stock';
   var ribbonLabels = [];
-  if (hasSale) ribbonLabels.push('Sale');
-  if (p.isNew) ribbonLabels.push('New Arrival');
-  if (p.isBestSeller) ribbonLabels.push('Bestseller');
-  if (p.stockStatus === 'low-stock') ribbonLabels.push('Limited');
+  if (isOutOfStock) {
+    ribbonLabels.push('Sold Out');
+  } else {
+    if (hasSale) ribbonLabels.push('Sale');
+    if (p.isNew) ribbonLabels.push('New Arrival');
+    if (p.isBestSeller) ribbonLabels.push('Bestseller');
+    if (p.stockStatus === 'low-stock') ribbonLabels.push('Limited');
+  }
   var ribbonHtml = ribbonLabels.length
-    ? '<div class="gms-ribbon"><div class="gms-ribbon-inner">' + ribbonLabels.map(function (l) { return '<span>' + l + '</span>'; }).join('') + '</div></div>'
+    ? '<div class="gms-ribbon' + (isOutOfStock ? ' gms-ribbon-soldout' : '') + '"><div class="gms-ribbon-inner">' + ribbonLabels.map(function (l) { return '<span>' + l + '</span>'; }).join('') + '</div></div>'
     : '';
 
   var ratingHtml = '';
@@ -46,7 +51,7 @@ window.gmsBuildProductCard = function (p) {
 
   var cartIconSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h3l2.7 13.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6"/></svg>';
   var hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
-  var addToCartHtml = p.stockStatus === 'out-of-stock'
+  var addToCartHtml = isOutOfStock
     ? '<span class="button add-to-cart-loop wd-disabled" aria-disabled="true"><span class="wd-action-text">Out of stock</span></span>'
     : hasVariants
     ? '<a href="' + p.url + '" class="button add_to_cart_button add-to-cart-loop" aria-label="View ' + p.title + '" rel="nofollow">' +
@@ -55,8 +60,8 @@ window.gmsBuildProductCard = function (p) {
       '<span class="wd-action-icon">' + cartIconSvg + '</span><span class="wd-action-text">Add to cart</span></a>';
 
   return '' +
-'<div class="wd-product wd-col wd-hover-quick product-grid-item product type-product' + (p.stockStatus === 'out-of-stock' ? ' outofstock' : ' instock') + ' has-post-thumbnail' + (hasSale ? ' sale' : '') + '" data-id="' + p.id + '">' +
-'  <div class="wd-product-wrapper product-wrapper">' +
+'<div class="wd-product wd-col product-grid-item product type-product' + (isOutOfStock ? ' outofstock' : ' instock') + ' has-post-thumbnail' + (hasSale ? ' sale' : '') + '" data-id="' + p.id + '">' +
+'  <div class="wd-product-wrapper product-wrapper pb-0">' +
 '    <div class="wd-product-thumb product-element-top wd-quick-shop">' +
 '      <a href="' + p.url + '" class="wd-product-img-link product-image-link" tabindex="-1" aria-label="' + p.title + '">' +
 '        <img loading="lazy" decoding="async" width="263" height="300" src="' + img + '" class="attachment-263x300 size-263x300" alt="' + p.title + '" />' +
@@ -77,7 +82,7 @@ window.gmsBuildProductCard = function (p) {
 '        </div>' +
 '      </div>' +
 '    </div>' +
-'    <div class="product-element-bottom">' +
+'    <div class="product-element-bottom text-left">' +
 '      <h3 class="wd-entities-title"><a href="' + p.url + '">' + p.title + '</a></h3>' +
        ratingHtml +
 '      <span class="price">' + priceHtml + '</span>' +

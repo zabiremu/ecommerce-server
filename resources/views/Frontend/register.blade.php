@@ -2306,10 +2306,6 @@
                                 --wd-btn-align: var(--wd-stretch);
                             }
 
-                            #wd-fec2d908 {
-                                margin-top: 30px;
-                            }
-
                             #wd-fc2645af {
                                 --wd-btn-align: var(--wd-stretch);
                             }
@@ -2322,24 +2318,16 @@
                             }
 
                             #wd-e3451e74 {
-                                --wd-width: 1000px;
+                                --wd-width: 480px;
                             }
 
                             @media (min-width: 769px) {
-                                #wd-fec2d908 {
-                                    flex: 0 1 calc(50% - var(--wd-col-gap) * 1 / 2);
-                                }
-
                                 #wd-119ef17c {
-                                    flex: 0 1 calc(50% - var(--wd-col-gap) * 1 / 2);
+                                    flex: 0 1 100%;
                                 }
                             }
 
                             @media (max-width: 768.98px) {
-                                #wd-fec2d908 {
-                                    margin-top: 0px;
-                                }
-
                                 #wd-119ef17c {
                                     padding: 20px;
                                 }
@@ -2368,67 +2356,6 @@
                         </div>
 
                         <div id="wd-e3451e74" class="wp-block-wd-row wd-custom-width">
-                            <div id="wd-fec2d908" class="wp-block-wd-column">
-                                <link rel="stylesheet" id="wd-woo-el-notices-builder-css"
-                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-el-notices-builder.css"
-                                    type="text/css" media="all" />
-                                <div id="wd-50f282d0" class="wd-wc-notices wd-50f282d0">
-                                    <div class="woocommerce-notices-wrapper"></div>
-                                </div>
-
-                                <h2 id="wd-fab693b4" class="wp-block-wd-title title">Login</h2>
-
-                                <link rel="stylesheet" id="wd-woo-mod-login-form-css"
-                                    href="merchandise/wp-content/themes/woodmart/css/parts/woo-mod-login-form.css"
-                                    type="text/css" media="all" />
-                                <div id="wd-455d40c3" class="wd-el-my-account-login wd-455d40c3">
-                                    <form method="post" class="login woocommerce-form woocommerce-form-login"
-                                        action="{{ route('login.submit') }}"
-                                        id="customer_login">
-                                        @csrf
-
-                                        <p
-                                            class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-username">
-                                            <label for="email">Email address&nbsp;<span class="required"
-                                                    aria-hidden="true">*</span><span
-                                                    class="screen-reader-text">Required</span></label>
-                                            <input type="email"
-                                                class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="email" id="email" autocomplete="email" value="{{ old('email') }}" />
-                                        </p>
-                                        <p
-                                            class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-password">
-                                            <label for="password">Password&nbsp;<span class="required"
-                                                    aria-hidden="true">*</span><span
-                                                    class="screen-reader-text">Required</span></label>
-                                            <input class="woocommerce-Input woocommerce-Input--text input-text"
-                                                type="password" name="password" id="password"
-                                                autocomplete="current-password" />
-                                        </p>
-
-                                        <p class="form-row form-row-btn">
-                                            <button type="submit"
-                                                class="button btn btn-accent woocommerce-button woocommerce-form-login__submit"
-                                                name="login" value="Log in">Log in</button>
-                                        </p>
-
-                                        <p class="login-form-footer">
-                                            <a href="{{ route('forgot-password') }}"
-                                                class="woocommerce-LostPassword lost_password">Lost your password?</a>
-                                            <label
-                                                class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
-                                                <input class="woocommerce-form__input woocommerce-form__input-checkbox"
-                                                    name="remember" type="checkbox" value="1"
-                                                    title="Remember me" aria-label="Remember me" /> <span>Remember
-                                                    me</span>
-                                            </label>
-                                        </p>
-
-                                    </form>
-
-                                </div>
-                            </div>
-
                             <div id="wd-119ef17c" class="wp-block-wd-column wd-align-s-start">
                                 <div id="wd-6dbd5f4a" class="wd-wc-notices wd-6dbd5f4a">
                                     <div class="woocommerce-notices-wrapper"></div>
@@ -2495,6 +2422,11 @@
                                         </p>
 
                                     </form>
+
+                                    <p class="gms-auth-switch" style="margin-top:16px;text-align:center;">
+                                        Already have an account?
+                                        <a href="{{ route('login') }}">Login here</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
