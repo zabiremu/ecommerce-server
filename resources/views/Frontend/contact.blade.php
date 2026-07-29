@@ -98,6 +98,14 @@
                     </div>
                 </div>
 
+                <div class="gms-contact-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q={{ urlencode($address) }}&output=embed"
+                        width="100%" height="350" style="border:0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="{{ $company }} location on map"></iframe>
+                </div>
+
                 <div id="wd-6152329d" class="wp-block-wd-container wd-dir-col wd-align wd-custom-width">
                     <h2 id="wd-3237cd08" class="wp-block-wd-title title">Get In Touch</h2>
 

@@ -1961,3 +1961,17 @@ body {
   --wd-bcrumb-color-active: #fff;
   --wd-bcrumb-delim-color: rgba(255, 255, 255, .5);
 }
+
+/* ==========================================================
+   22. CONTACT PAGE — MAP EMBED
+   ========================================================== */
+.gms-contact-map {
+  margin: 28px 0;
+  border-radius: var(--gms-radius);
+  overflow: hidden;
+  box-shadow: var(--gms-shadow);
+  line-height: 0;
+}
+.gms-contact-map iframe {
+  display: block;
+}
