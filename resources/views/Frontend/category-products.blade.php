@@ -137,7 +137,7 @@
     padding: 12px 18px;
     box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-.gms-toolbar-left { display: flex; align-items: center; gap: 12px; }
+.gms-toolbar-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .gms-filter-toggle {
     display: none;
     align-items: center;
@@ -152,7 +152,7 @@
     transition: background .15s;
 }
 .gms-filter-toggle:hover { background: var(--gms-line); }
-.gms-result-count { font-size: 13px; color: var(--gms-text, #555); }
+.gms-result-count { font-size: 13px; color: var(--gms-text, #555); min-width: 0; overflow-wrap: anywhere; }
 .gms-result-count strong { color: var(--gms-title, #242424); }
 .gms-sort-wrap { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gms-text); }
 .gms-sort-select {

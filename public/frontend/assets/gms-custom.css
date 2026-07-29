@@ -535,6 +535,12 @@ input[type="submit"] {
 .gms-ribbon-inner span {
   display: block;
 }
+/* Sold-out badge reuses the ribbon shape but in neutral dark tones —
+   a gold "promo" gradient reads as celebratory, which is wrong for
+   "this item is unavailable". */
+.gms-ribbon.gms-ribbon-soldout .gms-ribbon-inner {
+  background: linear-gradient(180deg, #6b6b6b, #3a3a3a 55%, #1f1f1f);
+}
 
 /* Visually-hidden accessible label (icon-only buttons still announce
    their purpose to screen readers even though the text is hidden) */

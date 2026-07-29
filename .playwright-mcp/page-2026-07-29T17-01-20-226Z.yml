@@ -1,0 +1,276 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to navigation" [ref=e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=e5]:
+    - banner [ref=e6]:
+      - generic [ref=e10]:
+        - text:     
+        - link "Open mobile menu" [ref=e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e14]: 
+        - link "Site logo" [ref=e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123
+        - link "" [ref=e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/login
+    - generic [ref=e22]:
+      - generic [ref=e24]:
+        - navigation [ref=e25]:
+          - link "Home" [ref=e26] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - generic [ref=e27]: ›
+          - generic [ref=e28]: All Products
+        - heading "All Products" [level=1] [ref=e29]
+      - generic [ref=e32]:
+        - complementary [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: 
+            - text: Filters
+          - generic [ref=e36]:
+            - heading "Category" [level=4] [ref=e37]
+            - generic [ref=e38] [cursor=pointer]: All Categories
+            - generic [ref=e40] [cursor=pointer]: Baggy Jeans
+            - generic [ref=e42] [cursor=pointer]: Boxy Shirt
+            - generic [ref=e44] [cursor=pointer]: Cargo Pant
+            - generic [ref=e46] [cursor=pointer]: Chino Pant
+            - generic [ref=e48] [cursor=pointer]: Footwear
+            - generic [ref=e50] [cursor=pointer]: Formal Pant
+            - generic [ref=e52] [cursor=pointer]: Jeans
+            - generic [ref=e54] [cursor=pointer]: Polo T-Shirt
+            - generic [ref=e56] [cursor=pointer]: Semi Baggy Jeans
+            - generic [ref=e58] [cursor=pointer]: Shirt
+            - generic [ref=e60] [cursor=pointer]: Shorts
+            - generic [ref=e62] [cursor=pointer]: Special Sections
+            - generic [ref=e64] [cursor=pointer]: T-Shirt
+          - generic [ref=e66]:
+            - heading "Price Range" [level=4] [ref=e67]
+            - generic [ref=e68] [cursor=pointer]: All Prices
+            - generic [ref=e70] [cursor=pointer]: Under ৳300
+            - generic [ref=e72] [cursor=pointer]: ৳300 – ৳600
+            - generic [ref=e74] [cursor=pointer]: ৳600 – ৳1,000
+            - generic [ref=e76] [cursor=pointer]: ৳1,000 – ৳2,000
+            - generic [ref=e78] [cursor=pointer]: ৳2,000+
+          - button " Clear Filters" [ref=e80] [cursor=pointer]:
+            - generic [ref=e81]: 
+            - text: Clear Filters
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - button " Filters" [ref=e85] [cursor=pointer]:
+                - generic [ref=e86]: 
+                - text: Filters
+              - generic [ref=e87]:
+                - text: Showing
+                - strong [ref=e88]: "0"
+                - text: products for "
+                - strong [ref=e89]: dasdasdadasdasdasdasdas
+                - text: "\""
+                - link "Clear search" [ref=e90] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/all-products
+            - generic [ref=e91]:
+              - generic [ref=e92]: "Sort:"
+              - combobox "Sort:" [ref=e93] [cursor=pointer]:
+                - option "Default" [selected]
+                - 'option "Price: Low to High"'
+                - 'option "Price: High to Low"'
+                - 'option "Name: A–Z"'
+          - generic [ref=e95]:
+            - generic [ref=e96]: 
+            - heading "No products found" [level=3] [ref=e97]
+            - paragraph [ref=e98]: Try adjusting your filters.
+    - contentinfo [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - link [ref=e104] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123
+            - paragraph [ref=e105]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=e108]:
+            - heading "Company" [level=2] [ref=e109]
+            - generic "Toggle" [ref=e110]
+          - generic [ref=e114]:
+            - heading "Info" [level=2] [ref=e115]
+            - generic "Toggle" [ref=e116]
+          - generic [ref=e120]:
+            - heading "Social Links" [level=2] [ref=e121]
+            - generic "Toggle" [ref=e122]
+        - generic [ref=e124]:
+          - generic [ref=e125]: Secure Checkout
+          - generic [ref=e130]: Cash on Delivery
+          - generic [ref=e135]: bKash
+          - generic [ref=e139]: Nagad
+          - generic [ref=e143]: Online Payment (UddoktaPay)
+        - paragraph [ref=e148]:
+          - link "Roventex" [ref=e149] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=e150]:
+    - search [ref=e152]:
+      - textbox "Search" [ref=e153]:
+        - /placeholder: Search for products
+        - text: dasdasdadasdasdasdasdas
+      - text: 
+      - button "Search " [ref=e154] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=e155]:
+      - listitem [ref=e156]:
+        - link "Products" [ref=e157] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/all-products
+        - list [ref=e161]:
+          - listitem [ref=e162]:
+            - generic [ref=e163] [cursor=pointer]: 
+            - link "Back" [ref=e164] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e165]:
+            - link "Shop" [ref=e166] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+            - list [ref=e167]:
+              - listitem [ref=e168]:
+                - generic [ref=e169] [cursor=pointer]: 
+                - link "Back" [ref=e170] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e171]:
+                - link "T-Shirt" [ref=e172] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=t-shirt
+              - listitem [ref=e173]:
+                - link "Polo T-Shirt" [ref=e174] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=polo-t-shirt
+              - listitem [ref=e175]:
+                - link "Shirt" [ref=e176] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shirt
+              - listitem [ref=e177]:
+                - link "Boxy Shirt" [ref=e178] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boxy-shirt
+              - listitem [ref=e179]:
+                - link "Jeans" [ref=e180] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=jeans
+              - listitem [ref=e181]:
+                - link "Baggy Jeans" [ref=e182] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=baggy-jeans
+              - listitem [ref=e183]:
+                - link "Semi Baggy Jeans" [ref=e184] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=semi-baggy-jeans
+              - listitem [ref=e185]:
+                - link "Cargo Pant" [ref=e186] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=cargo-pant
+              - listitem [ref=e187]:
+                - link "Formal Pant" [ref=e188] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-pant
+              - listitem [ref=e189]:
+                - link "Chino Pant" [ref=e190] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=chino-pant
+              - listitem [ref=e191]:
+                - link "Shorts" [ref=e192] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shorts
+            - generic [ref=e193] [cursor=pointer]: 
+          - listitem [ref=e194]:
+            - link "Footwear" [ref=e195] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=footwear
+            - list [ref=e196]:
+              - listitem [ref=e197]:
+                - generic [ref=e198] [cursor=pointer]: 
+                - link "Back" [ref=e199] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e200]:
+                - link "Boots" [ref=e201] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boots
+              - listitem [ref=e202]:
+                - link "Formal Shoes" [ref=e203] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-shoes
+              - listitem [ref=e204]:
+                - link "Loafers" [ref=e205] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=loafers
+              - listitem [ref=e206]:
+                - link "Running Shoes" [ref=e207] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=running-shoes
+              - listitem [ref=e208]:
+                - link "Slides" [ref=e209] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slides
+              - listitem [ref=e210]:
+                - link "Slippers" [ref=e211] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slippers
+              - listitem [ref=e212]:
+                - link "Sneakers" [ref=e213] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sneakers
+              - listitem [ref=e214]:
+                - link "Sports Shoes" [ref=e215] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sports-shoes
+            - generic [ref=e216] [cursor=pointer]: 
+          - listitem [ref=e217]:
+            - link "Special Sections" [ref=e218] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=special-sections
+            - list [ref=e219]:
+              - listitem [ref=e220]:
+                - generic [ref=e221] [cursor=pointer]: 
+                - link "Back" [ref=e222] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e223]:
+                - link "Best Seller" [ref=e224] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=best-seller
+              - listitem [ref=e225]:
+                - link "Clearance" [ref=e226] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=clearance
+              - listitem [ref=e227]:
+                - link "Combo Offer" [ref=e228] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=combo-offer
+              - listitem [ref=e229]:
+                - link "Flash Sale" [ref=e230] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=flash-sale
+              - listitem [ref=e231]:
+                - link "New Arrival" [ref=e232] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=new-arrival
+              - listitem [ref=e233]:
+                - link "Premium Collection" [ref=e234] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=premium-collection
+              - listitem [ref=e235]:
+                - link "Restock" [ref=e236] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=restock
+            - generic [ref=e237] [cursor=pointer]: 
+        - generic [ref=e238] [cursor=pointer]: 
+      - listitem [ref=e239]:
+        - link "About Us" [ref=e240] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/about
+      - listitem [ref=e245]:
+        - link "Contact Us" [ref=e246] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/contact
+      - listitem [ref=e250]:
+        - link "F.A.Q." [ref=e251] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/faq
+  - complementary "Shopping cart sidebar" [ref=e255]:
+    - generic [ref=e256]:
+      - generic [ref=e257]: Shopping cart
+      - link " Close" [ref=e259] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e260]: 
+        - generic [ref=e261]: Close
+  - complementary "Sticky toolbar" [ref=e264]:
+    - link " Menu" [ref=e266] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=e267]: 
+      - generic [ref=e268]: Menu
+    - generic "My cart" [ref=e269]:
+      - link " 0 Cart" [ref=e270] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/cart
+        - generic [ref=e271]:
+          - text: 
+          - generic [ref=e272]: "0"
+        - generic [ref=e273]: Cart
+    - generic "My wishlist" [ref=e274]:
+      - link " 0 Wishlist" [ref=e275] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/wishlist
+        - generic [ref=e276]:
+          - text: 
+          - generic [ref=e277]: "0"
+        - generic [ref=e278]: Wishlist
+    - generic "My account" [ref=e279]:
+      - link " Account" [ref=e280] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/login
+        - generic [ref=e281]: 
+        - generic [ref=e282]: Account
+  - button "Contact us" [ref=e284] [cursor=pointer]

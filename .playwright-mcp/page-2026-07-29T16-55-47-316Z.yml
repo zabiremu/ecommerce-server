@@ -1,0 +1,1164 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - link "Skip to navigation" [ref=f3e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f3e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f3e5]:
+    - banner [ref=f3e6]:
+      - generic [ref=f3e10]:
+        - text:     
+        - link "Open mobile menu" [ref=f3e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f3e14]: 
+        - link "Site logo" [ref=f3e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123
+        - link "" [ref=f3e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/login
+    - main [ref=f3e23]:
+      - article [ref=f3e25]:
+        - generic [ref=f3e26]:
+          - generic [ref=f3e27]:
+            - generic [ref=f3e29]:
+              - generic:
+                - generic:
+                  - img "Knits Worth Noticing"
+              - generic:
+                - generic:
+                  - img "Effortless Everyday Basics"
+              - generic:
+                - generic:
+                  - img "Gear Up, Move Free"
+            - button "Previous slide" [ref=f3e32] [cursor=pointer]
+            - button "Next slide" [ref=f3e33] [cursor=pointer]
+          - list [ref=f3e35]
+        - generic [ref=f3e36]:
+          - generic [ref=f3e42]:
+            - strong [ref=f3e43]: Secure Shopping
+            - generic [ref=f3e44]: Pay when you receive
+          - generic [ref=f3e52]:
+            - strong [ref=f3e53]: Fast Delivery
+            - generic [ref=f3e54]: Nationwide shipping
+          - generic [ref=f3e60]:
+            - strong [ref=f3e61]: Easy Returns
+            - generic [ref=f3e62]: Hassle-free exchange
+          - generic [ref=f3e69]:
+            - strong [ref=f3e70]: 24/7 Support
+            - generic [ref=f3e71]: Always here to help
+        - generic [ref=f3e73]:
+          - generic [ref=f3e74]: 🛍️ Explore
+          - heading "Shop by Category" [level=2] [ref=f3e75]
+        - generic [ref=f3e77]:
+          - generic [ref=f3e79]:
+            - generic [ref=f3e82]:
+              - link "T-Shirt" [ref=f3e84] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=t-shirt
+                - generic [ref=f3e85]: 
+              - generic [ref=f3e87]:
+                - heading "T-Shirt" [level=3] [ref=f3e88]
+                - text: 2 products
+              - link "Product category t-shirt" [ref=f3e89] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=t-shirt
+            - generic [ref=f3e92]:
+              - link "Polo T-Shirt" [ref=f3e94] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=polo-t-shirt
+                - generic [ref=f3e95]: 
+              - generic [ref=f3e97]:
+                - heading "Polo T-Shirt" [level=3] [ref=f3e98]
+                - text: 2 products
+              - link "Product category polo t-shirt" [ref=f3e99] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=polo-t-shirt
+            - generic [ref=f3e102]:
+              - link "Shirt" [ref=f3e104] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=shirt
+                - generic [ref=f3e105]: 
+              - generic [ref=f3e107]:
+                - heading "Shirt" [level=3] [ref=f3e108]
+                - text: 2 products
+              - link "Product category shirt" [ref=f3e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=shirt
+            - generic [ref=f3e112]:
+              - link "Boxy Shirt" [ref=f3e114] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=boxy-shirt
+                - generic [ref=f3e115]: 
+              - generic [ref=f3e117]:
+                - heading "Boxy Shirt" [level=3] [ref=f3e118]
+                - text: 2 products
+              - link "Product category boxy shirt" [ref=f3e119] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=boxy-shirt
+            - generic [ref=f3e122]:
+              - link "Jeans" [ref=f3e124] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=jeans
+                - generic [ref=f3e125]: 
+              - generic [ref=f3e127]:
+                - heading "Jeans" [level=3] [ref=f3e128]
+                - text: 2 products
+              - link "Product category jeans" [ref=f3e129] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=jeans
+            - generic [ref=f3e132]:
+              - link "Baggy Jeans" [ref=f3e134] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=baggy-jeans
+                - generic [ref=f3e135]: 
+              - generic [ref=f3e137]:
+                - heading "Baggy Jeans" [level=3] [ref=f3e138]
+                - text: 2 products
+              - link "Product category baggy jeans" [ref=f3e139] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=baggy-jeans
+            - generic [ref=f3e142]:
+              - link "Semi Baggy Jeans" [ref=f3e144] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=semi-baggy-jeans
+                - generic [ref=f3e145]: 
+              - generic [ref=f3e147]:
+                - heading "Semi Baggy Jeans" [level=3] [ref=f3e148]
+                - text: 2 products
+              - link "Product category semi baggy jeans" [ref=f3e149] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=semi-baggy-jeans
+            - generic [ref=f3e152]:
+              - link "Cargo Pant" [ref=f3e154] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=cargo-pant
+                - generic [ref=f3e155]: 
+              - generic [ref=f3e157]:
+                - heading "Cargo Pant" [level=3] [ref=f3e158]
+                - text: 2 products
+              - link "Product category cargo pant" [ref=f3e159] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=cargo-pant
+            - generic [ref=f3e162]:
+              - link "Formal Pant" [ref=f3e164] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=formal-pant
+                - generic [ref=f3e165]: 
+              - generic [ref=f3e167]:
+                - heading "Formal Pant" [level=3] [ref=f3e168]
+                - text: 2 products
+              - link "Product category formal pant" [ref=f3e169] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=formal-pant
+            - generic [ref=f3e172]:
+              - link "Chino Pant" [ref=f3e174] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=chino-pant
+                - generic [ref=f3e175]: 
+              - generic [ref=f3e177]:
+                - heading "Chino Pant" [level=3] [ref=f3e178]
+                - text: 2 products
+              - link "Product category chino pant" [ref=f3e179] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=chino-pant
+            - generic [ref=f3e182]:
+              - link "Shorts" [ref=f3e184] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=shorts
+                - generic [ref=f3e185]: 
+              - generic [ref=f3e187]:
+                - heading "Shorts" [level=3] [ref=f3e188]
+                - text: 2 products
+              - link "Product category shorts" [ref=f3e189] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=shorts
+            - generic [ref=f3e192]:
+              - link "Footwear" [ref=f3e194] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=footwear
+                - generic [ref=f3e195]: 
+              - heading "Footwear" [level=3] [ref=f3e198]
+              - link "Product category footwear" [ref=f3e199] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=footwear
+            - generic [ref=f3e202]:
+              - link "Special Sections" [ref=f3e204] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=special-sections
+                - generic [ref=f3e205]: 
+              - heading "Special Sections" [level=3] [ref=f3e208]
+              - link "Product category special sections" [ref=f3e209] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/category-products?cat=special-sections
+          - generic:
+            - generic: 
+            - generic: 
+        - generic [ref=f3e210]:
+          - generic [ref=f3e211]:
+            - generic [ref=f3e212]:
+              - generic [ref=f3e213]: Special Section
+              - heading "🔥 New Arrival" [level=2] [ref=f3e214]
+            - link "View more" [ref=f3e215] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e219]:
+            - generic [ref=f3e221]:
+              - generic [ref=f3e224]:
+                - generic [ref=f3e225]:
+                  - link "Classic Canvas Sneakers" [ref=f3e226] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=classic-canvas-sneakers-23
+                    - img "Classic Canvas Sneakers" [ref=f3e227]
+                  - generic [ref=f3e228]: New Arrival
+                  - link [ref=f3e233] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e234]: 
+                - generic [ref=f3e237]:
+                  - heading [level=3] [ref=f3e238]:
+                    - link "Classic Canvas Sneakers" [ref=f3e239] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=classic-canvas-sneakers-23
+                  - generic [ref=f3e240]: ৳1,800.00
+                  - generic [ref=f3e242]: In stock
+                  - link "Add Classic Canvas Sneakers to cart" [ref=f3e244] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e252]:
+                - generic [ref=f3e253]:
+                  - link "Slim Fit Jeans" [ref=f3e254] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-jeans-9
+                    - img "Slim Fit Jeans" [ref=f3e255]
+                  - generic [ref=f3e256]: New Arrival
+                  - link [ref=f3e261] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e262]: 
+                - generic [ref=f3e265]:
+                  - heading [level=3] [ref=f3e266]:
+                    - link "Slim Fit Jeans" [ref=f3e267] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-jeans-9
+                  - generic [ref=f3e268]: ৳1,450.00
+                  - generic [ref=f3e270]: In stock
+                  - link "Add Slim Fit Jeans to cart" [ref=f3e272] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e280]:
+                - generic [ref=f3e281]:
+                  - link "Casual Check Shirt" [ref=f3e282] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=casual-check-shirt-6
+                    - img "Casual Check Shirt" [ref=f3e283]
+                  - generic [ref=f3e284]: New Arrival
+                  - link [ref=f3e289] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e290]: 
+                - generic [ref=f3e293]:
+                  - heading [level=3] [ref=f3e294]:
+                    - link "Casual Check Shirt" [ref=f3e295] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=casual-check-shirt-6
+                  - generic [ref=f3e296]: ৳850.00
+                  - generic [ref=f3e298]: In stock
+                  - link "Add Casual Check Shirt to cart" [ref=f3e300] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e308]:
+                - generic [ref=f3e309]:
+                  - link "Classic Crew Neck T-Shirt" [ref=f3e310] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=classic-crew-neck-t-shirt-1
+                    - img "Classic Crew Neck T-Shirt" [ref=f3e311]
+                  - generic [ref=f3e312]: New Arrival
+                  - link [ref=f3e317] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e318]: 
+                - generic [ref=f3e321]:
+                  - heading [level=3] [ref=f3e322]:
+                    - link "Classic Crew Neck T-Shirt" [ref=f3e323] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=classic-crew-neck-t-shirt-1
+                  - generic [ref=f3e324]: ৳450.00
+                  - generic [ref=f3e326]: In stock
+                  - link "Add Classic Crew Neck T-Shirt to cart" [ref=f3e328] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e335]:
+          - generic [ref=f3e336]:
+            - generic [ref=f3e337]:
+              - generic [ref=f3e338]: Special Section
+              - heading "⭐ Best Seller" [level=2] [ref=f3e339]
+            - link "View more" [ref=f3e340] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e344]:
+            - generic [ref=f3e346]:
+              - generic [ref=f3e349]:
+                - generic [ref=f3e350]:
+                  - link "All-Court Sports Shoes" [ref=f3e351] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=all-court-sports-shoes-36
+                    - img "All-Court Sports Shoes" [ref=f3e352]
+                  - generic [ref=f3e353]: New Arrival
+                  - link [ref=f3e358] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e359]: 
+                - generic [ref=f3e362]:
+                  - heading [level=3] [ref=f3e363]:
+                    - link "All-Court Sports Shoes" [ref=f3e364] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=all-court-sports-shoes-36
+                  - generic [ref=f3e365]: ৳1,900.00
+                  - generic [ref=f3e367]: In stock
+                  - link "Add All-Court Sports Shoes to cart" [ref=f3e369] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e377]:
+                - generic [ref=f3e378]:
+                  - link "Lightweight Running Shoes" [ref=f3e379] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=lightweight-running-shoes-33
+                    - img "Lightweight Running Shoes" [ref=f3e380]
+                  - generic [ref=f3e381]: New Arrival
+                  - link [ref=f3e386] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e387]: 
+                - generic [ref=f3e390]:
+                  - heading [level=3] [ref=f3e391]:
+                    - link "Lightweight Running Shoes" [ref=f3e392] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=lightweight-running-shoes-33
+                  - generic [ref=f3e393]: ৳2,200.00
+                  - generic [ref=f3e395]: In stock
+                  - link "Add Lightweight Running Shoes to cart" [ref=f3e397] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e405]:
+                - generic [ref=f3e406]:
+                  - link "Straight Fit Jeans" [ref=f3e407] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=straight-fit-jeans-10
+                    - img "Straight Fit Jeans" [ref=f3e408]
+                  - generic [ref=f3e409]: New Arrival
+                  - link [ref=f3e414] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e415]: 
+                - generic [ref=f3e418]:
+                  - heading [level=3] [ref=f3e419]:
+                    - link "Straight Fit Jeans" [ref=f3e420] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=straight-fit-jeans-10
+                  - generic [ref=f3e421]: ৳1,350.00
+                  - generic [ref=f3e423]: In stock
+                  - link "Add Straight Fit Jeans to cart" [ref=f3e425] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e433]:
+                - generic [ref=f3e434]:
+                  - link "Classic Crew Neck T-Shirt" [ref=f3e435] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=classic-crew-neck-t-shirt-1
+                    - img "Classic Crew Neck T-Shirt" [ref=f3e436]
+                  - generic [ref=f3e437]: New Arrival
+                  - link [ref=f3e442] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e443]: 
+                - generic [ref=f3e446]:
+                  - heading [level=3] [ref=f3e447]:
+                    - link "Classic Crew Neck T-Shirt" [ref=f3e448] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=classic-crew-neck-t-shirt-1
+                  - generic [ref=f3e449]: ৳450.00
+                  - generic [ref=f3e451]: In stock
+                  - link "Add Classic Crew Neck T-Shirt to cart" [ref=f3e453] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e460]:
+          - generic [ref=f3e461]:
+            - generic [ref=f3e462]:
+              - generic [ref=f3e463]: Special Section
+              - heading "💎 Premium Collection" [level=2] [ref=f3e464]
+            - link "View more" [ref=f3e465] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e469]:
+            - generic [ref=f3e471]:
+              - generic [ref=f3e474]:
+                - generic [ref=f3e475]:
+                  - link "Suede Loafers" [ref=f3e476] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=suede-loafers-38
+                    - img "Suede Loafers" [ref=f3e477]
+                  - generic [ref=f3e478]: New Arrival
+                  - link [ref=f3e483] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e484]: 
+                - generic [ref=f3e487]:
+                  - heading [level=3] [ref=f3e488]:
+                    - link "Suede Loafers" [ref=f3e489] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=suede-loafers-38
+                  - generic [ref=f3e490]: ৳2,600.00
+                  - generic [ref=f3e492]: In stock
+                  - link "Add Suede Loafers to cart" [ref=f3e494] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e502]:
+                - generic [ref=f3e503]:
+                  - link "Combat Boots" [ref=f3e504] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=combat-boots-28
+                    - img "Combat Boots" [ref=f3e505]
+                  - generic [ref=f3e506]: New Arrival
+                  - link [ref=f3e511] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e512]: 
+                - generic [ref=f3e515]:
+                  - heading [level=3] [ref=f3e516]:
+                    - link "Combat Boots" [ref=f3e517] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=combat-boots-28
+                  - generic [ref=f3e518]: ৳2,900.00
+                  - generic [ref=f3e520]: In stock
+                  - link "Add Combat Boots to cart" [ref=f3e522] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e530]:
+                - generic [ref=f3e531]:
+                  - link "Oxford Formal Shoes" [ref=f3e532] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=oxford-formal-shoes-26
+                    - img "Oxford Formal Shoes" [ref=f3e533]
+                  - generic [ref=f3e534]: New Arrival
+                  - link [ref=f3e539] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e540]: 
+                - generic [ref=f3e543]:
+                  - heading [level=3] [ref=f3e544]:
+                    - link "Oxford Formal Shoes" [ref=f3e545] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=oxford-formal-shoes-26
+                  - generic [ref=f3e546]: ৳3,200.00
+                  - generic [ref=f3e548]: In stock
+                  - link "Add Oxford Formal Shoes to cart" [ref=f3e550] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e558]:
+                - generic [ref=f3e559]:
+                  - link "Leather Formal Shoes" [ref=f3e560] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=leather-formal-shoes-25
+                    - img "Leather Formal Shoes" [ref=f3e561]
+                  - generic [ref=f3e562]: New Arrival
+                  - link [ref=f3e567] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e568]: 
+                - generic [ref=f3e571]:
+                  - heading [level=3] [ref=f3e572]:
+                    - link "Leather Formal Shoes" [ref=f3e573] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=leather-formal-shoes-25
+                  - generic [ref=f3e574]: ৳2,800.00
+                  - generic [ref=f3e576]: In stock
+                  - link "Add Leather Formal Shoes to cart" [ref=f3e578] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e585]:
+          - generic [ref=f3e586]:
+            - generic [ref=f3e587]:
+              - generic [ref=f3e588]: Special Section
+              - heading "💥 Flash Sale" [level=2] [ref=f3e589]
+            - link "View more" [ref=f3e590] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e594]:
+            - generic [ref=f3e596]:
+              - generic [ref=f3e599]:
+                - generic [ref=f3e600]:
+                  - link "Sport Slides" [ref=f3e601] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=sport-slides-29
+                    - img "Sport Slides" [ref=f3e602]
+                  - generic [ref=f3e604]:
+                    - generic [ref=f3e605]: Sale
+                    - generic [ref=f3e606]: New Arrival
+                  - link [ref=f3e609] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e610]: 
+                - generic [ref=f3e613]:
+                  - heading [level=3] [ref=f3e614]:
+                    - link "Sport Slides" [ref=f3e615] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=sport-slides-29
+                  - generic [ref=f3e616]:
+                    - deletion [ref=f3e617]:
+                      - generic [ref=f3e618]: ৳550.00
+                    - insertion [ref=f3e619]:
+                      - generic [ref=f3e620]: ৳399.00
+                  - generic [ref=f3e621]: In stock
+                  - link "Add Sport Slides to cart" [ref=f3e623] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e631]:
+                - generic [ref=f3e632]:
+                  - link "Chunky Sole Sneakers" [ref=f3e633] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=chunky-sole-sneakers-24
+                    - img "Chunky Sole Sneakers" [ref=f3e634]
+                  - generic [ref=f3e636]:
+                    - generic [ref=f3e637]: Sale
+                    - generic [ref=f3e638]: New Arrival
+                  - link [ref=f3e641] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e642]: 
+                - generic [ref=f3e645]:
+                  - heading [level=3] [ref=f3e646]:
+                    - link "Chunky Sole Sneakers" [ref=f3e647] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=chunky-sole-sneakers-24
+                  - generic [ref=f3e648]:
+                    - deletion [ref=f3e649]:
+                      - generic [ref=f3e650]: ৳2,400.00
+                    - insertion [ref=f3e651]:
+                      - generic [ref=f3e652]: ৳1,899.00
+                  - generic [ref=f3e653]: In stock
+                  - link "Add Chunky Sole Sneakers to cart" [ref=f3e655] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e663]:
+                - generic [ref=f3e664]:
+                  - link "Casual Cotton Shorts" [ref=f3e665] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=casual-cotton-shorts-21
+                    - img "Casual Cotton Shorts" [ref=f3e666]
+                  - generic [ref=f3e668]:
+                    - generic [ref=f3e669]: Sale
+                    - generic [ref=f3e670]: New Arrival
+                  - link [ref=f3e673] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e674]: 
+                - generic [ref=f3e677]:
+                  - heading [level=3] [ref=f3e678]:
+                    - link "Casual Cotton Shorts" [ref=f3e679] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=casual-cotton-shorts-21
+                  - generic [ref=f3e680]:
+                    - deletion [ref=f3e681]:
+                      - generic [ref=f3e682]: ৳550.00
+                    - insertion [ref=f3e683]:
+                      - generic [ref=f3e684]: ৳420.00
+                  - generic [ref=f3e685]: In stock
+                  - link "Add Casual Cotton Shorts to cart" [ref=f3e687] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e695]:
+                - generic [ref=f3e696]:
+                  - link "Multi-Pocket Cargo Pant" [ref=f3e697] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=multi-pocket-cargo-pant-15
+                    - img "Multi-Pocket Cargo Pant" [ref=f3e698]
+                  - generic [ref=f3e700]:
+                    - generic [ref=f3e701]: Sale
+                    - generic [ref=f3e702]: New Arrival
+                  - link [ref=f3e705] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e706]: 
+                - generic [ref=f3e709]:
+                  - heading [level=3] [ref=f3e710]:
+                    - link "Multi-Pocket Cargo Pant" [ref=f3e711] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=multi-pocket-cargo-pant-15
+                  - generic [ref=f3e712]:
+                    - deletion [ref=f3e713]:
+                      - generic [ref=f3e714]: ৳1,250.00
+                    - insertion [ref=f3e715]:
+                      - generic [ref=f3e716]: ৳950.00
+                  - generic [ref=f3e717]: In stock
+                  - link "Add Multi-Pocket Cargo Pant to cart" [ref=f3e719] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e726]:
+          - generic [ref=f3e727]:
+            - generic [ref=f3e728]:
+              - generic [ref=f3e729]: Special Section
+              - heading "🎁 Combo Offer" [level=2] [ref=f3e730]
+            - link "View more" [ref=f3e731] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e735]:
+            - generic [ref=f3e737]:
+              - generic [ref=f3e740]:
+                - generic [ref=f3e741]:
+                  - link "Classic Chino Pant" [ref=f3e742] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=classic-chino-pant-19
+                    - img "Classic Chino Pant" [ref=f3e743]
+                  - generic [ref=f3e744]: New Arrival
+                  - link [ref=f3e749] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e750]: 
+                - generic [ref=f3e753]:
+                  - heading [level=3] [ref=f3e754]:
+                    - link "Classic Chino Pant" [ref=f3e755] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=classic-chino-pant-19
+                  - generic [ref=f3e756]: ৳1,050.00
+                  - generic [ref=f3e758]: In stock
+                  - link "Add Classic Chino Pant to cart" [ref=f3e760] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e768]:
+                - generic [ref=f3e769]:
+                  - link "Slim Fit Formal Pant" [ref=f3e770] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-formal-pant-17
+                    - img "Slim Fit Formal Pant" [ref=f3e771]
+                  - generic [ref=f3e772]: New Arrival
+                  - link [ref=f3e777] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e778]: 
+                - generic [ref=f3e781]:
+                  - heading [level=3] [ref=f3e782]:
+                    - link "Slim Fit Formal Pant" [ref=f3e783] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-formal-pant-17
+                  - generic [ref=f3e784]: ৳1,100.00
+                  - generic [ref=f3e786]: In stock
+                  - link "Add Slim Fit Formal Pant to cart" [ref=f3e788] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e796]:
+                - generic [ref=f3e797]:
+                  - link "Formal Cotton Shirt" [ref=f3e798] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=formal-cotton-shirt-5
+                    - img "Formal Cotton Shirt" [ref=f3e799]
+                  - generic [ref=f3e800]: New Arrival
+                  - link [ref=f3e805] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e806]: 
+                - generic [ref=f3e809]:
+                  - heading [level=3] [ref=f3e810]:
+                    - link "Formal Cotton Shirt" [ref=f3e811] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=formal-cotton-shirt-5
+                  - generic [ref=f3e812]: ৳950.00
+                  - generic [ref=f3e814]: In stock
+                  - link "Add Formal Cotton Shirt to cart" [ref=f3e816] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e824]:
+                - generic [ref=f3e825]:
+                  - link "Slim Fit Polo Shirt" [ref=f3e826] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-polo-shirt-4
+                    - img "Slim Fit Polo Shirt" [ref=f3e827]
+                  - generic [ref=f3e828]: New Arrival
+                  - link [ref=f3e833] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e834]: 
+                - generic [ref=f3e837]:
+                  - heading [level=3] [ref=f3e838]:
+                    - link "Slim Fit Polo Shirt" [ref=f3e839] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=slim-fit-polo-shirt-4
+                  - generic [ref=f3e840]: ৳750.00
+                  - generic [ref=f3e842]: In stock
+                  - link "Add Slim Fit Polo Shirt to cart" [ref=f3e844] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e851]:
+          - generic [ref=f3e852]:
+            - generic [ref=f3e853]:
+              - generic [ref=f3e854]: Special Section
+              - heading "🆕 Restock" [level=2] [ref=f3e855]
+            - link "View more" [ref=f3e856] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e860]:
+            - generic [ref=f3e862]:
+              - generic [ref=f3e865]:
+                - generic [ref=f3e866]:
+                  - link "Breathable Mesh Running Shoes" [ref=f3e867] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=breathable-mesh-running-shoes-34
+                    - img "Breathable Mesh Running Shoes" [ref=f3e868]
+                  - generic [ref=f3e869]: New Arrival
+                  - link [ref=f3e874] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e875]: 
+                - generic [ref=f3e878]:
+                  - heading [level=3] [ref=f3e879]:
+                    - link "Breathable Mesh Running Shoes" [ref=f3e880] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=breathable-mesh-running-shoes-34
+                  - generic [ref=f3e881]: ৳2,000.00
+                  - generic [ref=f3e883]: In stock
+                  - link "Add Breathable Mesh Running Shoes to cart" [ref=f3e885] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e893]:
+                - generic [ref=f3e894]:
+                  - link "Memory Foam Slippers" [ref=f3e895] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=memory-foam-slippers-32
+                    - img "Memory Foam Slippers" [ref=f3e896]
+                  - generic [ref=f3e897]: New Arrival
+                  - link [ref=f3e902] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e903]: 
+                - generic [ref=f3e906]:
+                  - heading [level=3] [ref=f3e907]:
+                    - link "Memory Foam Slippers" [ref=f3e908] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=memory-foam-slippers-32
+                  - generic [ref=f3e909]: ৳450.00
+                  - generic [ref=f3e911]: In stock
+                  - link "Add Memory Foam Slippers to cart" [ref=f3e913] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e921]:
+                - generic [ref=f3e922]:
+                  - link "Everyday Slippers" [ref=f3e923] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=everyday-slippers-31
+                    - img "Everyday Slippers" [ref=f3e924]
+                  - generic [ref=f3e925]: New Arrival
+                  - link [ref=f3e930] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e931]: 
+                - generic [ref=f3e934]:
+                  - heading [level=3] [ref=f3e935]:
+                    - link "Everyday Slippers" [ref=f3e936] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=everyday-slippers-31
+                  - generic [ref=f3e937]: ৳350.00
+                  - generic [ref=f3e939]: In stock
+                  - link "Add Everyday Slippers to cart" [ref=f3e941] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e949]:
+                - generic [ref=f3e950]:
+                  - link "Comfort Slides" [ref=f3e951] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=comfort-slides-30
+                    - img "Comfort Slides" [ref=f3e952]
+                  - generic [ref=f3e953]: New Arrival
+                  - link [ref=f3e958] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e959]: 
+                - generic [ref=f3e962]:
+                  - heading [level=3] [ref=f3e963]:
+                    - link "Comfort Slides" [ref=f3e964] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=comfort-slides-30
+                  - generic [ref=f3e965]: ৳450.00
+                  - generic [ref=f3e967]: In stock
+                  - link "Add Comfort Slides to cart" [ref=f3e969] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e976]:
+          - generic [ref=f3e977]:
+            - generic [ref=f3e978]:
+              - generic [ref=f3e979]: Special Section
+              - heading "🏷️ Clearance" [level=2] [ref=f3e980]
+            - link "View more" [ref=f3e981] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+          - generic [ref=f3e985]:
+            - generic [ref=f3e987]:
+              - generic [ref=f3e990]:
+                - generic [ref=f3e991]:
+                  - link "Cargo Shorts" [ref=f3e992] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=cargo-shorts-22
+                    - img "Cargo Shorts" [ref=f3e993]
+                  - generic [ref=f3e995]:
+                    - generic [ref=f3e996]: Sale
+                    - generic [ref=f3e997]: New Arrival
+                  - link [ref=f3e1000] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e1001]: 
+                - generic [ref=f3e1004]:
+                  - heading [level=3] [ref=f3e1005]:
+                    - link "Cargo Shorts" [ref=f3e1006] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=cargo-shorts-22
+                  - generic [ref=f3e1007]:
+                    - deletion [ref=f3e1008]:
+                      - generic [ref=f3e1009]: ৳650.00
+                    - insertion [ref=f3e1010]:
+                      - generic [ref=f3e1011]: ৳420.00
+                  - generic [ref=f3e1012]: In stock
+                  - link "Add Cargo Shorts to cart" [ref=f3e1014] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e1022]:
+                - generic [ref=f3e1023]:
+                  - link "Wide Leg Baggy Jeans" [ref=f3e1024] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=wide-leg-baggy-jeans-12
+                    - img "Wide Leg Baggy Jeans" [ref=f3e1025]
+                  - generic [ref=f3e1027]:
+                    - generic [ref=f3e1028]: Sale
+                    - generic [ref=f3e1029]: New Arrival
+                  - link [ref=f3e1032] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e1033]: 
+                - generic [ref=f3e1036]:
+                  - heading [level=3] [ref=f3e1037]:
+                    - link "Wide Leg Baggy Jeans" [ref=f3e1038] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=wide-leg-baggy-jeans-12
+                  - generic [ref=f3e1039]:
+                    - deletion [ref=f3e1040]:
+                      - generic [ref=f3e1041]: ৳1,650.00
+                    - insertion [ref=f3e1042]:
+                      - generic [ref=f3e1043]: ৳999.00
+                  - generic [ref=f3e1044]: In stock
+                  - link "Add Wide Leg Baggy Jeans to cart" [ref=f3e1046] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e1054]:
+                - generic [ref=f3e1055]:
+                  - link "Boxy Fit Denim Shirt" [ref=f3e1056] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=boxy-fit-denim-shirt-8
+                    - img "Boxy Fit Denim Shirt" [ref=f3e1057]
+                  - generic [ref=f3e1059]:
+                    - generic [ref=f3e1060]: Sale
+                    - generic [ref=f3e1061]: New Arrival
+                  - link [ref=f3e1064] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e1065]: 
+                - generic [ref=f3e1068]:
+                  - heading [level=3] [ref=f3e1069]:
+                    - link "Boxy Fit Denim Shirt" [ref=f3e1070] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=boxy-fit-denim-shirt-8
+                  - generic [ref=f3e1071]:
+                    - deletion [ref=f3e1072]:
+                      - generic [ref=f3e1073]: ৳900.00
+                    - insertion [ref=f3e1074]:
+                      - generic [ref=f3e1075]: ৳599.00
+                  - generic [ref=f3e1076]: In stock
+                  - link "Add Boxy Fit Denim Shirt to cart" [ref=f3e1078] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+              - generic [ref=f3e1086]:
+                - generic [ref=f3e1087]:
+                  - link "Oversized Boxy Shirt" [ref=f3e1088] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=oversized-boxy-shirt-7
+                    - img "Oversized Boxy Shirt" [ref=f3e1089]
+                  - generic [ref=f3e1091]:
+                    - generic [ref=f3e1092]: Sale
+                    - generic [ref=f3e1093]: New Arrival
+                  - link [ref=f3e1096] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/wishlist
+                    - generic [ref=f3e1097]: 
+                - generic [ref=f3e1100]:
+                  - heading [level=3] [ref=f3e1101]:
+                    - link "Oversized Boxy Shirt" [ref=f3e1102] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/product-details?slug=oversized-boxy-shirt-7
+                  - generic [ref=f3e1103]:
+                    - deletion [ref=f3e1104]:
+                      - generic [ref=f3e1105]: ৳700.00
+                    - insertion [ref=f3e1106]:
+                      - generic [ref=f3e1107]: ৳450.00
+                  - generic [ref=f3e1108]: In stock
+                  - link "Add Oversized Boxy Shirt to cart" [ref=f3e1110] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 
+            - generic:
+              - generic: 
+              - generic: 
+        - generic [ref=f3e1117]:
+          - generic [ref=f3e1118]:
+            - generic [ref=f3e1119]: ✨ Handpicked
+            - heading "Featured Products" [level=2] [ref=f3e1120]
+          - link "View more" [ref=f3e1121] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/all-products
+        - generic [ref=f3e1125]:
+          - generic [ref=f3e1127]:
+            - generic [ref=f3e1130]:
+              - generic [ref=f3e1131]:
+                - link "Suede Loafers" [ref=f3e1132] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=suede-loafers-38
+                  - img "Suede Loafers" [ref=f3e1133]
+                - generic [ref=f3e1134]: New Arrival
+                - link [ref=f3e1139] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1140]: 
+              - generic [ref=f3e1143]:
+                - heading [level=3] [ref=f3e1144]:
+                  - link "Suede Loafers" [ref=f3e1145] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=suede-loafers-38
+                - generic [ref=f3e1146]: ৳2,600.00
+                - generic [ref=f3e1148]: In stock
+                - link "Add Suede Loafers to cart" [ref=f3e1150] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1158]:
+              - generic [ref=f3e1159]:
+                - link "Classic Leather Loafers" [ref=f3e1160] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=classic-leather-loafers-37
+                  - img "Classic Leather Loafers" [ref=f3e1161]
+                - generic [ref=f3e1162]: New Arrival
+                - link [ref=f3e1167] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1168]: 
+              - generic [ref=f3e1171]:
+                - heading [level=3] [ref=f3e1172]:
+                  - link "Classic Leather Loafers" [ref=f3e1173] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=classic-leather-loafers-37
+                - generic [ref=f3e1174]: ৳2,400.00
+                - generic [ref=f3e1176]: In stock
+                - link "Add Classic Leather Loafers to cart" [ref=f3e1178] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1186]:
+              - generic [ref=f3e1187]:
+                - link "All-Court Sports Shoes" [ref=f3e1188] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=all-court-sports-shoes-36
+                  - img "All-Court Sports Shoes" [ref=f3e1189]
+                - generic [ref=f3e1190]: New Arrival
+                - link [ref=f3e1195] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1196]: 
+              - generic [ref=f3e1199]:
+                - heading [level=3] [ref=f3e1200]:
+                  - link "All-Court Sports Shoes" [ref=f3e1201] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=all-court-sports-shoes-36
+                - generic [ref=f3e1202]: ৳1,900.00
+                - generic [ref=f3e1204]: In stock
+                - link "Add All-Court Sports Shoes to cart" [ref=f3e1206] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1214]:
+              - generic [ref=f3e1215]:
+                - link "Training Sports Shoes" [ref=f3e1216] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=training-sports-shoes-35
+                  - img "Training Sports Shoes" [ref=f3e1217]
+                - generic [ref=f3e1218]: New Arrival
+                - link [ref=f3e1223] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1224]: 
+              - generic [ref=f3e1227]:
+                - heading [level=3] [ref=f3e1228]:
+                  - link "Training Sports Shoes" [ref=f3e1229] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=training-sports-shoes-35
+                - generic [ref=f3e1230]: ৳2,100.00
+                - generic [ref=f3e1232]: In stock
+                - link "Add Training Sports Shoes to cart" [ref=f3e1234] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1242]:
+              - generic [ref=f3e1243]:
+                - link "Breathable Mesh Running Shoes" [ref=f3e1244] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=breathable-mesh-running-shoes-34
+                  - img "Breathable Mesh Running Shoes" [ref=f3e1245]
+                - generic [ref=f3e1246]: New Arrival
+                - link [ref=f3e1251] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1252]: 
+              - generic [ref=f3e1255]:
+                - heading [level=3] [ref=f3e1256]:
+                  - link "Breathable Mesh Running Shoes" [ref=f3e1257] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=breathable-mesh-running-shoes-34
+                - generic [ref=f3e1258]: ৳2,000.00
+                - generic [ref=f3e1260]: In stock
+                - link "Add Breathable Mesh Running Shoes to cart" [ref=f3e1262] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1270]:
+              - generic [ref=f3e1271]:
+                - link "Lightweight Running Shoes" [ref=f3e1272] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=lightweight-running-shoes-33
+                  - img "Lightweight Running Shoes" [ref=f3e1273]
+                - generic [ref=f3e1274]: New Arrival
+                - link [ref=f3e1279] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1280]: 
+              - generic [ref=f3e1283]:
+                - heading [level=3] [ref=f3e1284]:
+                  - link "Lightweight Running Shoes" [ref=f3e1285] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=lightweight-running-shoes-33
+                - generic [ref=f3e1286]: ৳2,200.00
+                - generic [ref=f3e1288]: In stock
+                - link "Add Lightweight Running Shoes to cart" [ref=f3e1290] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1298]:
+              - generic [ref=f3e1299]:
+                - link "Memory Foam Slippers" [ref=f3e1300] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=memory-foam-slippers-32
+                  - img "Memory Foam Slippers" [ref=f3e1301]
+                - generic [ref=f3e1302]: New Arrival
+                - link [ref=f3e1307] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1308]: 
+              - generic [ref=f3e1311]:
+                - heading [level=3] [ref=f3e1312]:
+                  - link "Memory Foam Slippers" [ref=f3e1313] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=memory-foam-slippers-32
+                - generic [ref=f3e1314]: ৳450.00
+                - generic [ref=f3e1316]: In stock
+                - link "Add Memory Foam Slippers to cart" [ref=f3e1318] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+            - generic [ref=f3e1326]:
+              - generic [ref=f3e1327]:
+                - link "Everyday Slippers" [ref=f3e1328] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=everyday-slippers-31
+                  - img "Everyday Slippers" [ref=f3e1329]
+                - generic [ref=f3e1330]: New Arrival
+                - link [ref=f3e1335] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/wishlist
+                  - generic [ref=f3e1336]: 
+              - generic [ref=f3e1339]:
+                - heading [level=3] [ref=f3e1340]:
+                  - link "Everyday Slippers" [ref=f3e1341] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=everyday-slippers-31
+                - generic [ref=f3e1342]: ৳350.00
+                - generic [ref=f3e1344]: In stock
+                - link "Add Everyday Slippers to cart" [ref=f3e1346] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+          - generic:
+            - generic: 
+            - generic: 
+        - generic [ref=f3e1353]:
+          - heading "Get 10% Off Your First Order" [level=2] [ref=f3e1355]
+          - paragraph [ref=f3e1356]: Subscribe for new arrivals, restocks, and exclusive offers.
+          - paragraph [ref=f3e1357]:
+            - text: Will be used in accordance with our
+            - link "Privacy Policy" [ref=f3e1358] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/privacy-policy
+          - generic [ref=f3e1359]:
+            - generic [ref=f3e1360]:
+              - textbox "Your email address" [ref=f3e1362]
+              - button "Sign up" [ref=f3e1364] [cursor=pointer]
+            - textbox
+    - contentinfo [ref=f3e1365]:
+      - generic [ref=f3e1366]:
+        - generic [ref=f3e1367]:
+          - generic [ref=f3e1368]:
+            - link [ref=f3e1370] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123
+            - paragraph [ref=f3e1371]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f3e1374]:
+            - heading "Company" [level=2] [ref=f3e1375]
+            - generic "Toggle" [ref=f3e1376]
+          - generic [ref=f3e1380]:
+            - heading "Info" [level=2] [ref=f3e1381]
+            - generic "Toggle" [ref=f3e1382]
+          - generic [ref=f3e1386]:
+            - heading "Social Links" [level=2] [ref=f3e1387]
+            - generic "Toggle" [ref=f3e1388]
+        - generic [ref=f3e1390]:
+          - generic [ref=f3e1391]: Secure Checkout
+          - generic [ref=f3e1396]: Cash on Delivery
+          - generic [ref=f3e1401]: bKash
+          - generic [ref=f3e1405]: Nagad
+          - generic [ref=f3e1409]: Online Payment (UddoktaPay)
+        - paragraph [ref=f3e1414]:
+          - link "Roventex" [ref=f3e1415] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f3e1416]:
+    - search [ref=f3e1418]:
+      - textbox "Search" [ref=f3e1419]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f3e1420] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f3e1421]:
+      - listitem [ref=f3e1422]:
+        - link "Products" [ref=f3e1423] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/all-products
+        - list [ref=f3e1427]:
+          - listitem [ref=f3e1428]:
+            - generic [ref=f3e1429] [cursor=pointer]: 
+            - link "Back" [ref=f3e1430] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f3e1431]:
+            - link "Shop" [ref=f3e1432] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+            - list [ref=f3e1433]:
+              - listitem [ref=f3e1434]:
+                - generic [ref=f3e1435] [cursor=pointer]: 
+                - link "Back" [ref=f3e1436] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f3e1437]:
+                - link "T-Shirt" [ref=f3e1438] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=t-shirt
+              - listitem [ref=f3e1439]:
+                - link "Polo T-Shirt" [ref=f3e1440] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=polo-t-shirt
+              - listitem [ref=f3e1441]:
+                - link "Shirt" [ref=f3e1442] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shirt
+              - listitem [ref=f3e1443]:
+                - link "Boxy Shirt" [ref=f3e1444] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boxy-shirt
+              - listitem [ref=f3e1445]:
+                - link "Jeans" [ref=f3e1446] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=jeans
+              - listitem [ref=f3e1447]:
+                - link "Baggy Jeans" [ref=f3e1448] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=baggy-jeans
+              - listitem [ref=f3e1449]:
+                - link "Semi Baggy Jeans" [ref=f3e1450] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=semi-baggy-jeans
+              - listitem [ref=f3e1451]:
+                - link "Cargo Pant" [ref=f3e1452] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=cargo-pant
+              - listitem [ref=f3e1453]:
+                - link "Formal Pant" [ref=f3e1454] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-pant
+              - listitem [ref=f3e1455]:
+                - link "Chino Pant" [ref=f3e1456] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=chino-pant
+              - listitem [ref=f3e1457]:
+                - link "Shorts" [ref=f3e1458] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shorts
+            - generic [ref=f3e1459] [cursor=pointer]: 
+          - listitem [ref=f3e1460]:
+            - link "Footwear" [ref=f3e1461] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=footwear
+            - list [ref=f3e1462]:
+              - listitem [ref=f3e1463]:
+                - generic [ref=f3e1464] [cursor=pointer]: 
+                - link "Back" [ref=f3e1465] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f3e1466]:
+                - link "Boots" [ref=f3e1467] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boots
+              - listitem [ref=f3e1468]:
+                - link "Formal Shoes" [ref=f3e1469] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-shoes
+              - listitem [ref=f3e1470]:
+                - link "Loafers" [ref=f3e1471] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=loafers
+              - listitem [ref=f3e1472]:
+                - link "Running Shoes" [ref=f3e1473] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=running-shoes
+              - listitem [ref=f3e1474]:
+                - link "Slides" [ref=f3e1475] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slides
+              - listitem [ref=f3e1476]:
+                - link "Slippers" [ref=f3e1477] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slippers
+              - listitem [ref=f3e1478]:
+                - link "Sneakers" [ref=f3e1479] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sneakers
+              - listitem [ref=f3e1480]:
+                - link "Sports Shoes" [ref=f3e1481] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sports-shoes
+            - generic [ref=f3e1482] [cursor=pointer]: 
+          - listitem [ref=f3e1483]:
+            - link "Special Sections" [ref=f3e1484] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=special-sections
+            - list [ref=f3e1485]:
+              - listitem [ref=f3e1486]:
+                - generic [ref=f3e1487] [cursor=pointer]: 
+                - link "Back" [ref=f3e1488] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f3e1489]:
+                - link "Best Seller" [ref=f3e1490] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=best-seller
+              - listitem [ref=f3e1491]:
+                - link "Clearance" [ref=f3e1492] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=clearance
+              - listitem [ref=f3e1493]:
+                - link "Combo Offer" [ref=f3e1494] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=combo-offer
+              - listitem [ref=f3e1495]:
+                - link "Flash Sale" [ref=f3e1496] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=flash-sale
+              - listitem [ref=f3e1497]:
+                - link "New Arrival" [ref=f3e1498] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=new-arrival
+              - listitem [ref=f3e1499]:
+                - link "Premium Collection" [ref=f3e1500] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=premium-collection
+              - listitem [ref=f3e1501]:
+                - link "Restock" [ref=f3e1502] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=restock
+            - generic [ref=f3e1503] [cursor=pointer]: 
+        - generic [ref=f3e1504] [cursor=pointer]: 
+      - listitem [ref=f3e1505]:
+        - link "About Us" [ref=f3e1506] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/about
+      - listitem [ref=f3e1511]:
+        - link "Contact Us" [ref=f3e1512] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/contact
+      - listitem [ref=f3e1516]:
+        - link "F.A.Q." [ref=f3e1517] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/faq
+  - complementary "Shopping cart sidebar" [ref=f3e1521]:
+    - generic [ref=f3e1522]:
+      - generic [ref=f3e1523]: Shopping cart
+      - link " Close" [ref=f3e1525] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f3e1526]: 
+        - generic [ref=f3e1527]: Close
+  - complementary "Sticky toolbar" [ref=f3e1530]:
+    - link " Menu" [ref=f3e1532] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f3e1533]: 
+      - generic [ref=f3e1534]: Menu
+    - generic "My cart" [ref=f3e1535]:
+      - link " 0 Cart" [ref=f3e1536] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/cart
+        - generic [ref=f3e1537]:
+          - text: 
+          - generic [ref=f3e1538]: "0"
+        - generic [ref=f3e1539]: Cart
+    - generic "My wishlist" [ref=f3e1540]:
+      - link " 0 Wishlist" [ref=f3e1541] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/wishlist
+        - generic [ref=f3e1542]:
+          - text: 
+          - generic [ref=f3e1543]: "0"
+        - generic [ref=f3e1544]: Wishlist
+    - generic "My account" [ref=f3e1545]:
+      - link " Account" [ref=f3e1546] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/login
+        - generic [ref=f3e1547]: 
+        - generic [ref=f3e1548]: Account
+  - button "Contact us" [ref=f3e1550] [cursor=pointer]

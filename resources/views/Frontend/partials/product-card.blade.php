@@ -23,10 +23,14 @@
     $lowStock = !$outOfStock && $alertQty > 0 && $stock <= $alertQty;
 
     $ribbonLabels = [];
-    if ($hasSale) $ribbonLabels[] = 'Sale';
-    if ($isNew) $ribbonLabels[] = 'New Arrival';
-    if ($isBestSeller) $ribbonLabels[] = 'Bestseller';
-    if ($lowStock) $ribbonLabels[] = 'Limited';
+    if ($outOfStock) {
+        $ribbonLabels[] = 'Sold Out';
+    } else {
+        if ($hasSale) $ribbonLabels[] = 'Sale';
+        if ($isNew) $ribbonLabels[] = 'New Arrival';
+        if ($isBestSeller) $ribbonLabels[] = 'Bestseller';
+        if ($lowStock) $ribbonLabels[] = 'Limited';
+    }
 @endphp
 <div class="wd-carousel-item">
     <div class="wd-product product-grid-item product type-product{{ $outOfStock ? ' outofstock' : ' instock' }} has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
@@ -41,7 +45,7 @@
                 </a>
 
                 @if(count($ribbonLabels))
-                    <div class="gms-ribbon">
+                    <div class="gms-ribbon{{ $outOfStock ? ' gms-ribbon-soldout' : '' }}">
                         <div class="gms-ribbon-inner">
                             @foreach($ribbonLabels as $label)
                                 <span>{{ $label }}</span>

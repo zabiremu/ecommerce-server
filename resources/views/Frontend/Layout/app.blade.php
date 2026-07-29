@@ -263,7 +263,7 @@
                                 <div class="site-logo whb-cqgb8qgsj8fpo4qz9frx">
                                     <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
                                         aria-label="Site logo">
-                                        <img width="201" height="32"
+                                        <img width="180" height="32"
                                             src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
                                             class="attachment-full size-full" alt=""
                                             style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
@@ -464,10 +464,13 @@
 
             <li id="menu-item-935"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-935 item-level-0">
-                <a href="{{ route('all-products') }}" class="woodmart-nav-link"><img
-                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-t-shirt-1.svg') }}"
-                        title="navigation-menu-t-shirt" loading="lazy" class="wd-nav-img" width="18"
-                        height="18"><span class="nav-link-text">Products</span></a>
+                <a href="{{ route('all-products') }}" class="woodmart-nav-link"><svg
+                        class="wd-nav-img" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path
+                            d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
+                    </svg><span class="nav-link-text">Products</span></a>
                 <ul class="wd-sub-menu">
                     <li class="wd-drilldown-back">
                         <span class="wd-nav-opener"></span>
@@ -516,22 +519,30 @@
             </li>
             <li id="menu-item-606"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-606 item-level-0"><a
-                    href="{{ route('about') }}" class="woodmart-nav-link"><img
-                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-movie-1.svg') }}"
-                        title="navigation-menu-movie" loading="lazy" class="wd-nav-img" width="18"
-                        height="18"><span class="nav-link-text">About Us</span></a></li>
+                    href="{{ route('about') }}" class="woodmart-nav-link"><svg
+                        class="wd-nav-img" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                        <path d="M7 3v18M17 3v18M3 7.5h4M17 7.5h4M3 12h18M3 16.5h4M17 16.5h4" />
+                    </svg><span class="nav-link-text">About Us</span></a></li>
             <li id="menu-item-607"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607 item-level-0"><a
-                    href="{{ route('contact') }}" class="woodmart-nav-link"><img
-                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-d-pad-1.svg') }}"
-                        title="navigation-menu-d-pad" loading="lazy" class="wd-nav-img" width="18"
-                        height="18"><span class="nav-link-text">Contact Us</span></a></li>
+                    href="{{ route('contact') }}" class="woodmart-nav-link"><svg
+                        class="wd-nav-img" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M9 2h6v5h5v6h-5v5H9v-5H4V7h5V2z" />
+                    </svg><span class="nav-link-text">Contact Us</span></a></li>
             <li id="menu-item-608"
                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-608 item-level-0"><a
-                    href="{{ route('faq') }}" class="woodmart-nav-link"><img
-                        src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/navigation-menu-star-1.svg') }}"
-                        title="navigation-menu-star" loading="lazy" class="wd-nav-img" width="18"
-                        height="18"><span class="nav-link-text">F.A.Q.</span></a></li>
+                    href="{{ route('faq') }}" class="woodmart-nav-link"><svg
+                        class="wd-nav-img" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path
+                            d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.612-1.878l-3.736-3.638a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                    </svg><span class="nav-link-text">F.A.Q.</span></a></li>
         </ul>
     </div>
     <link rel="stylesheet" id="wd-widget-general-css"
