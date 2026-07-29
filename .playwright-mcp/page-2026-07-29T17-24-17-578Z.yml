@@ -1,0 +1,263 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - link "Skip to navigation" [ref=f9e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f9e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f9e5]:
+    - banner [ref=f9e6]:
+      - generic [ref=f9e10]:
+        - text:     
+        - link "Open mobile menu" [ref=f9e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f9e14]: 
+        - link "Site logo" [ref=f9e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123
+        - link "" [ref=f9e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/login
+    - generic [ref=f9e22]:
+      - generic [ref=f9e24]:
+        - link "Home" [ref=f9e25] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123
+        - generic [ref=f9e26]: 
+        - text: Frequently Asked Questions
+      - generic [ref=f9e28]:
+        - heading " Frequently Asked Questions" [level=1] [ref=f9e29]:
+          - generic [ref=f9e30]: 
+          - text: Frequently Asked Questions
+        - paragraph [ref=f9e31]: Answers to common questions about ordering, shipping, and returns
+      - generic [ref=f9e35]:
+        - heading "Ordering" [level=2] [ref=f9e36]
+        - heading "How do I place an order?" [level=3] [ref=f9e37]
+        - paragraph [ref=f9e38]: Browse our products, add the items you want to your cart, and proceed to checkout. Fill in your delivery details and choose a payment method to confirm your order.
+        - heading "Can I change or cancel my order after placing it?" [level=3] [ref=f9e39]
+        - paragraph [ref=f9e40]: Orders can be canceled within 24 hours of placement. Please contact us as soon as possible with your order ID — once an order has shipped, it can no longer be changed or canceled.
+        - heading "Payment" [level=2] [ref=f9e41]
+        - heading "What payment methods do you accept?" [level=3] [ref=f9e42]
+        - paragraph [ref=f9e43]: We accept Cash on Delivery (COD), bKash, Nagad, Rocket, and Bank Transfer.
+        - heading "Is it safe to pay online on your site?" [level=3] [ref=f9e44]
+        - paragraph [ref=f9e45]: Yes. Online payments are processed securely through trusted third-party payment gateways — we never store your card or mobile banking credentials.
+        - heading "Shipping & Delivery" [level=2] [ref=f9e46]
+        - heading "How long does delivery take?" [level=3] [ref=f9e47]
+        - paragraph [ref=f9e48]: Delivery typically takes 2–5 business days within Bangladesh, depending on your location.
+        - heading "Do you offer free shipping?" [level=3] [ref=f9e49]
+        - paragraph [ref=f9e50]: Yes, we offer free shipping on orders above a minimum amount. The exact threshold is shown at checkout.
+        - heading "How can I track my order?" [level=3] [ref=f9e51]
+        - paragraph [ref=f9e52]:
+          - text: Use the
+          - link "Track Order" [ref=f9e53] [cursor=pointer]:
+            - /url: http://localhost/track-order
+          - text: page with your order ID to check the latest status, or log in to your account to view your order history.
+        - heading "Returns & Refunds" [level=2] [ref=f9e54]
+        - heading "What is your return policy?" [level=3] [ref=f9e55]
+        - paragraph [ref=f9e56]:
+          - text: We accept returns within 7 days of delivery for unused products in their original packaging. See our full
+          - link "Refund & Return Policy" [ref=f9e57] [cursor=pointer]:
+            - /url: http://localhost/refund-policy
+          - text: for details.
+        - heading "How long do refunds take?" [level=3] [ref=f9e58]
+        - paragraph [ref=f9e59]: Once your return is approved, refunds or replacements are processed within 5–7 business days.
+        - heading "Account" [level=2] [ref=f9e60]
+        - heading "Do I need an account to place an order?" [level=3] [ref=f9e61]
+        - paragraph [ref=f9e62]: No, you can check out as a guest. Creating an account lets you track orders, save your details for faster checkout, and view your order history.
+        - heading "I forgot my password. What do I do?" [level=3] [ref=f9e63]
+        - paragraph [ref=f9e64]: Use the "Forgot password" link on the login page to reset it via email.
+        - heading "Still have questions?" [level=2] [ref=f9e65]
+        - paragraph [ref=f9e66]:
+          - text: Reach out to us on our
+          - link "Contact Us" [ref=f9e67] [cursor=pointer]:
+            - /url: http://localhost/contact
+          - text: page — we're happy to help.
+    - contentinfo [ref=f9e68]:
+      - generic [ref=f9e69]:
+        - generic [ref=f9e70]:
+          - generic [ref=f9e71]:
+            - link [ref=f9e73] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123
+            - paragraph [ref=f9e74]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f9e77]:
+            - heading "Company" [level=2] [ref=f9e78]
+            - generic "Toggle" [ref=f9e79]
+          - generic [ref=f9e83]:
+            - heading "Info" [level=2] [ref=f9e84]
+            - generic "Toggle" [ref=f9e85]
+          - generic [ref=f9e89]:
+            - heading "Social Links" [level=2] [ref=f9e90]
+            - generic "Toggle" [ref=f9e91]
+        - generic [ref=f9e93]:
+          - generic [ref=f9e94]: Secure Checkout
+          - generic [ref=f9e99]: Cash on Delivery
+          - generic [ref=f9e104]: bKash
+          - generic [ref=f9e108]: Nagad
+          - generic [ref=f9e112]: Online Payment (UddoktaPay)
+        - paragraph [ref=f9e117]:
+          - link "Roventex" [ref=f9e118] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f9e119]:
+    - search [ref=f9e121]:
+      - textbox "Search" [ref=f9e122]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f9e123] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f9e124]:
+      - listitem [ref=f9e125]:
+        - link "Products" [ref=f9e126] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/all-products
+        - list [ref=f9e130]:
+          - listitem [ref=f9e131]:
+            - generic [ref=f9e132] [cursor=pointer]: 
+            - link "Back" [ref=f9e133] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f9e134]:
+            - link "Shop" [ref=f9e135] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+            - list [ref=f9e136]:
+              - listitem [ref=f9e137]:
+                - generic [ref=f9e138] [cursor=pointer]: 
+                - link "Back" [ref=f9e139] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f9e140]:
+                - link "T-Shirt" [ref=f9e141] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=t-shirt
+              - listitem [ref=f9e142]:
+                - link "Polo T-Shirt" [ref=f9e143] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=polo-t-shirt
+              - listitem [ref=f9e144]:
+                - link "Shirt" [ref=f9e145] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shirt
+              - listitem [ref=f9e146]:
+                - link "Boxy Shirt" [ref=f9e147] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boxy-shirt
+              - listitem [ref=f9e148]:
+                - link "Jeans" [ref=f9e149] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=jeans
+              - listitem [ref=f9e150]:
+                - link "Baggy Jeans" [ref=f9e151] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=baggy-jeans
+              - listitem [ref=f9e152]:
+                - link "Semi Baggy Jeans" [ref=f9e153] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=semi-baggy-jeans
+              - listitem [ref=f9e154]:
+                - link "Cargo Pant" [ref=f9e155] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=cargo-pant
+              - listitem [ref=f9e156]:
+                - link "Formal Pant" [ref=f9e157] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-pant
+              - listitem [ref=f9e158]:
+                - link "Chino Pant" [ref=f9e159] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=chino-pant
+              - listitem [ref=f9e160]:
+                - link "Shorts" [ref=f9e161] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=shorts
+            - generic [ref=f9e162] [cursor=pointer]: 
+          - listitem [ref=f9e163]:
+            - link "Footwear" [ref=f9e164] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=footwear
+            - list [ref=f9e165]:
+              - listitem [ref=f9e166]:
+                - generic [ref=f9e167] [cursor=pointer]: 
+                - link "Back" [ref=f9e168] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f9e169]:
+                - link "Boots" [ref=f9e170] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=boots
+              - listitem [ref=f9e171]:
+                - link "Formal Shoes" [ref=f9e172] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=formal-shoes
+              - listitem [ref=f9e173]:
+                - link "Loafers" [ref=f9e174] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=loafers
+              - listitem [ref=f9e175]:
+                - link "Running Shoes" [ref=f9e176] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=running-shoes
+              - listitem [ref=f9e177]:
+                - link "Slides" [ref=f9e178] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slides
+              - listitem [ref=f9e179]:
+                - link "Slippers" [ref=f9e180] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=slippers
+              - listitem [ref=f9e181]:
+                - link "Sneakers" [ref=f9e182] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sneakers
+              - listitem [ref=f9e183]:
+                - link "Sports Shoes" [ref=f9e184] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=sports-shoes
+            - generic [ref=f9e185] [cursor=pointer]: 
+          - listitem [ref=f9e186]:
+            - link "Special Sections" [ref=f9e187] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/category-products?slug=special-sections
+            - list [ref=f9e188]:
+              - listitem [ref=f9e189]:
+                - generic [ref=f9e190] [cursor=pointer]: 
+                - link "Back" [ref=f9e191] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f9e192]:
+                - link "Best Seller" [ref=f9e193] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=best-seller
+              - listitem [ref=f9e194]:
+                - link "Clearance" [ref=f9e195] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=clearance
+              - listitem [ref=f9e196]:
+                - link "Combo Offer" [ref=f9e197] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=combo-offer
+              - listitem [ref=f9e198]:
+                - link "Flash Sale" [ref=f9e199] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=flash-sale
+              - listitem [ref=f9e200]:
+                - link "New Arrival" [ref=f9e201] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=new-arrival
+              - listitem [ref=f9e202]:
+                - link "Premium Collection" [ref=f9e203] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=premium-collection
+              - listitem [ref=f9e204]:
+                - link "Restock" [ref=f9e205] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?slug=restock
+            - generic [ref=f9e206] [cursor=pointer]: 
+        - generic [ref=f9e207] [cursor=pointer]: 
+      - listitem [ref=f9e208]:
+        - link "About Us" [ref=f9e209] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/about
+      - listitem [ref=f9e214]:
+        - link "Contact Us" [ref=f9e215] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/contact
+      - listitem [ref=f9e219]:
+        - link "F.A.Q." [ref=f9e220] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/faq
+  - complementary "Shopping cart sidebar" [ref=f9e224]:
+    - generic [ref=f9e225]:
+      - generic [ref=f9e226]: Shopping cart
+      - link " Close" [ref=f9e228] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f9e229]: 
+        - generic [ref=f9e230]: Close
+  - complementary "Sticky toolbar" [ref=f9e233]:
+    - link " Menu" [ref=f9e235] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f9e236]: 
+      - generic [ref=f9e237]: Menu
+    - generic "My cart" [ref=f9e238]:
+      - link " 0 Cart" [ref=f9e239] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/cart
+        - generic [ref=f9e240]:
+          - text: 
+          - generic [ref=f9e241]: "0"
+        - generic [ref=f9e242]: Cart
+    - generic "My wishlist" [ref=f9e243]:
+      - link " 0 Wishlist" [ref=f9e244] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/wishlist
+        - generic [ref=f9e245]:
+          - text: 
+          - generic [ref=f9e246]: "0"
+        - generic [ref=f9e247]: Wishlist
+    - generic "My account" [ref=f9e248]:
+      - link " Account" [ref=f9e249] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/login
+        - generic [ref=f9e250]: 
+        - generic [ref=f9e251]: Account
+  - button "Contact us" [ref=f9e253] [cursor=pointer]

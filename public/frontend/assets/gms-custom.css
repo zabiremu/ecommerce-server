@@ -1579,6 +1579,15 @@ body {
 /* ==========================================================
    19. FOOTER — DARK BRANDED REDESIGN
    ========================================================== */
+/* The theme applies padding-block:40px (top AND bottom) to every
+   page's <main>. The homepage already zeroes the top half inline
+   (it opens with a full-bleed hero), but nothing zeroed the bottom
+   half, so every page — including pages without that inline
+   override — got a fixed 40px dead gap before the footer's own
+   top border/padding kicks in. */
+.wd-content-layout {
+  padding-bottom: 0;
+}
 .wd-footer.footer-container {
   position: relative;
   background: var(--gms-ink) !important;
@@ -1801,7 +1810,7 @@ body {
 }
 
 .policy-section {
-  padding: 48px 24px 72px;
+  padding: 48px 24px 32px;
   background: var(--gms-bg-soft);
 }
 .policy-card {

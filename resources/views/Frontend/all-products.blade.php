@@ -42,7 +42,7 @@
 }
 /* ── layout ── */
 .gms-cat-section {
-    padding: 36px 0 60px;
+    padding: 36px 0 32px;
     background: var(--gms-bg-soft, #f7f7f7);
 }
 .gms-cat-inner {
