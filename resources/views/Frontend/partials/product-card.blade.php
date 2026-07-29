@@ -32,7 +32,7 @@
     <div class="wd-product product-grid-item product type-product{{ $outOfStock ? ' outofstock' : ' instock' }} has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
         data-id="{{ $product->id }}">
 
-        <div class="wd-product-wrapper product-wrapper">
+        <div class="wd-product-wrapper product-wrapper p-0">
             <div class="wd-product-thumb product-element-top wd-quick-shop">
                 <a href="{{ $detailsUrl }}" class="wd-product-img-link product-image-link" tabindex="-1"
                     aria-label="{{ $product->name }}">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="product-element-bottom">
+            <div class="product-element-bottom text-left">
                 <h3 class="wd-entities-title"><a href="{{ $detailsUrl }}">{{ $product->name }}</a></h3>
 
                 @if($avgRating > 0)

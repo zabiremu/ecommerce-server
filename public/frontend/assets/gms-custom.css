@@ -630,6 +630,13 @@ input[type="submit"] {
   }
 }
 
+/* Product card text — left-aligned instead of the theme's centered
+   default (drives title/price/stock via the --text-align variable
+   the theme already reads in .wd-product { text-align: var(...) }). */
+.wd-product {
+  --text-align: left;
+}
+
 /* Add to cart — full-width solid button with icon */
 .wd-add-btn.wd-add-btn-replace {
   position: static !important;
@@ -645,7 +652,7 @@ input[type="submit"] {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 10px 14px;
+  padding: 6px 14px;
   border-radius: var(--gms-radius-sm);
   font-size: 13px;
   font-weight: 700;
@@ -1291,18 +1298,15 @@ input[type="submit"],
     padding-left: 0;
     padding-right: 0;
   }
-  /* Narrow mobile cards (2-col grid) don't leave enough width for
-     icon + "Add to Cart" side-by-side — the label wraps word-by-word
-     into 3 stacked lines. Stack icon above a single-line label instead. */
+  /* Narrow mobile cards (2-col grid) don't leave room for an
+     icon + "Add to Cart" label — icon only, centered, on phones. */
   .wd-add-btn.wd-add-btn-replace .button.add_to_cart_button,
   .wd-add-btn.wd-add-btn-replace .add-to-cart-loop {
-    flex-direction: column;
-    gap: 4px;
-    padding: 8px 6px;
+    flex-direction: row;
+    padding: 6px 8px;
   }
   .wd-add-btn.wd-add-btn-replace .wd-action-text {
-    white-space: nowrap;
-    font-size: 12px;
+    display: none;
   }
 }
 
@@ -1341,6 +1345,15 @@ input[type="submit"],
 }
 .gms-trust-badge-secure svg {
   color: #8A6C2E;
+}
+
+/* ==========================================================
+   13b. HEADER — MOBILE LOGO SIZE
+   ========================================================== */
+@media (max-width: 1024px) {
+  .whb-mobile-center .site-logo img {
+    transform: scale(2.1) !important;
+  }
 }
 
 /* ==========================================================
