@@ -85,7 +85,7 @@
 <div class="products wd-carousel-container wd-cats-element  wd-37bdf58d wd-img-width wd-cats">
     <div class="wd-carousel-inner">
         <div class="wd-carousel wd-grid scroll-init" data-scroll_per_page="yes"
-            style="--wd-col-lg:5;--wd-col-md:5;--wd-col-sm:3;--wd-gap-lg:20px;--wd-gap-sm:10px;">
+            style="--wd-col-lg:5;--wd-col-md:5;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
             <div class="wd-carousel-wrap">
                 @foreach($homeCategories as $cat)
                 <div class="wd-carousel-item">

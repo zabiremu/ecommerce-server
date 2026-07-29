@@ -369,29 +369,9 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Mobile nav: inject toggle arrows on parent items with children
-    var mobileParents = document.querySelectorAll('.wd-nav-mobile .menu-item-has-children');
-    mobileParents.forEach(function (li) {
-      var link = li.querySelector(':scope > a');
-      if (!link) return;
-
-      var arrow = document.createElement('span');
-      arrow.className = 'gms-dropdown-arrow';
-      arrow.setAttribute('role', 'button');
-      arrow.setAttribute('aria-label', 'Toggle submenu');
-      link.after(arrow);
-
-      arrow.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var sub = li.querySelector(':scope > .wd-sub-menu, :scope > .sub-sub-menu');
-        if (sub) {
-          var isOpen = sub.style.display === 'block';
-          sub.style.display = isOpen ? 'none' : 'block';
-          arrow.classList.toggle('gms-arrow-open', !isOpen);
-        }
-      });
-    });
+    // Mobile drilldown nav already gets its own working opener arrow from
+    // the theme's mobileNavigation.min.js (.wd-nav-opener) — injecting a
+    // second toggle here just duplicated it as a stray extra chevron.
 
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.wd-nav-header')) {

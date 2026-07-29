@@ -75,9 +75,6 @@ class SliderController extends Controller
     protected function validateData(Request $request, bool $imageOptional = false): array
     {
         return $request->validate([
-            'title'       => 'required|string|max:255',
-            'subtitle'    => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:1000',
             'image'       => ($imageOptional ? 'nullable' : 'required') . '|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
     }

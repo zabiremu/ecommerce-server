@@ -11,26 +11,7 @@
 <div class="grid grid-cols-12 gap-5 mt-3">
     <div class="col-span-12 lg:col-span-8 space-y-5">
 
-        <div class="wp-panel">
-            <div class="wp-panel-h">Slide Content</div>
-            <div class="wp-panel-body">
-                <div class="wp-field">
-                    <label>Title <span class="text-[#d63638]">*</span></label>
-                    <input type="text" name="title" value="{{ old('title', $s->title ?? '') }}" required maxlength="255" class="wp-input" placeholder="e.g. Premium Products">
-                    <p class="wp-help">The main heading. You can split into two lines using "Title" + "Subtitle".</p>
-                </div>
 
-                <div class="wp-field">
-                    <label>Subtitle (highlighted second line)</label>
-                    <input type="text" name="subtitle" value="{{ old('subtitle', $s->subtitle ?? '') }}" maxlength="255" class="wp-input" placeholder="e.g. At Best Prices">
-                </div>
-
-                <div class="wp-field">
-                    <label>Description</label>
-                    <textarea name="description" rows="3" maxlength="1000" class="wp-input">{{ old('description', $s->description ?? '') }}</textarea>
-                </div>
-            </div>
-        </div>
 
         <div class="wp-panel">
             <div class="wp-panel-h">Image</div>

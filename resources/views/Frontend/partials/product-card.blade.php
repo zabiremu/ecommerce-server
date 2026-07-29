@@ -29,7 +29,7 @@
     if ($lowStock) $ribbonLabels[] = 'Limited';
 @endphp
 <div class="wd-carousel-item">
-    <div class="wd-product wd-hover-quick product-grid-item product type-product{{ $outOfStock ? ' outofstock' : ' instock' }} has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
+    <div class="wd-product product-grid-item product type-product{{ $outOfStock ? ' outofstock' : ' instock' }} has-post-thumbnail{{ $hasSale ? ' sale' : '' }}"
         data-id="{{ $product->id }}">
 
         <div class="wd-product-wrapper product-wrapper">

@@ -14,22 +14,7 @@
                 @endphp
                 <div
                     class="wp-block-wd-slider-item wd-slide wd-carousel-item {{ $loop->even ? 'color-scheme-dark' : 'color-scheme-light' }}">
-                    <div class="wd-slide-container">
-                        <h2 class="wp-block-wd-title title wd-custom-width text-center">{{ $slider->title }}</h2>
 
-                        @if(!empty($slider->subtitle))
-                        <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->subtitle }}</p>
-                        @endif
-
-                        @if(!empty($slider->description))
-                        <p class="wp-block-wd-paragraph wd-hide-sm">{{ $slider->description }}</p>
-                        @endif
-
-                        <a href="{{ route('all-products') }}" class="gms-hero-slide-cta">
-                            <span>Shop Now</span>
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
                     <div class="wd-slide-bg wd-fill">
                         @if($slideImage)
                             <img decoding="async" width="1294" height="600" src="{{ $slideImage }}" alt="{{ $slider->title }}" />

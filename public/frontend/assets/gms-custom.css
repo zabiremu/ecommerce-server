@@ -1015,6 +1015,15 @@ input[type="submit"] {
   flex-wrap: nowrap;
 }
 
+/* Suppress the theme's native icon-font caret (woodmart-font, glyph \f129).
+   That font isn't loaded on this site, so the browser renders the raw
+   private-use-area codepoint as a stray glyph next to our injected
+   .gms-dropdown-arrow — the "broken icon" under Shop/Footwear/etc. */
+.wd-nav > li:is(.wd-has-children, .menu-item-has-children) > a::after,
+.wd-dropdown-menu .menu-item-has-children > a::after {
+  content: none !important;
+}
+
 .gms-dropdown-arrow {
   display: inline-flex;
   align-items: center;
@@ -1274,6 +1283,13 @@ input[type="submit"],
   .wd-deals-banner {
     padding-left: 16px !important;
     padding-right: 16px !important;
+  }
+  /* Product-carousel sections (Best Sellers, Special Sections) had
+     their own 24px side padding stacked on top of <main>'s container
+     padding, squeezing the cards into a narrow column on phones. */
+  .gms-section-priority-2 {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
