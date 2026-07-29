@@ -1276,6 +1276,15 @@ input[type="submit"],
   padding: 28px 24px;
   margin: 24px 0;
 }
+/* Mobile-only "view more" arrow next to the section title — hidden on
+   desktop, where the "View more" button (in the same header row) is
+   the primary way to reach all products. */
+.gms-mobile-more-arrow {
+  display: none;
+  vertical-align: middle;
+  margin-inline-start: 4px;
+  color: inherit;
+}
 
 /* ============================================================
    12. MOBILE — reduce homepage length / tighten spacing
@@ -1313,6 +1322,14 @@ input[type="submit"],
   }
   .wd-add-btn.wd-add-btn-replace .wd-action-text {
     display: none;
+  }
+  /* "View more" button removed on mobile — replaced by the small
+     arrow icon next to the section title (.gms-mobile-more-arrow). */
+  .wd-fedb8996 > .wp-block-wd-button {
+    display: none;
+  }
+  .gms-mobile-more-arrow {
+    display: inline-flex;
   }
 }
 

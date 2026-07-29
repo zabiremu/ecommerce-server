@@ -8,7 +8,13 @@
         <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
             <div>
                 <span class="gms-section-eyebrow">Special Section</span>
-                <h2 class="wp-block-wd-title title gms-heading-tier-2">{{ $meta['emoji'] }} {{ $meta['label'] }}</h2>
+                <h2 class="wp-block-wd-title title gms-heading-tier-2">{{ $meta['emoji'] }} {{ $meta['label'] }}
+                    <a href="{{ route('all-products') }}" class="gms-mobile-more-arrow" aria-label="View more {{ $meta['label'] }}">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </a>
+                </h2>
             </div>
 
             <a class="wp-block-wd-button btn btn-style-default btn-size-default btn-shape-semi-round btn-icon-pos-right"
