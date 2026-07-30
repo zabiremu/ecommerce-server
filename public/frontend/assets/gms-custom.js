@@ -390,6 +390,36 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   /* ==========================================================
+     5b. HOVER-TO-OPEN DROPDOWNS — explicit JS trigger
+     ========================================================== */
+  /* The theme ships a pure-CSS ":hover" reveal for .wd-event-hover
+     elements (base.css), but it only ever gets exercised together with
+     the theme's own hoverIntent/menu JS, which isn't loaded on this
+     build. Rather than depend on that CSS cascade working unassisted,
+     mouseenter/mouseleave here explicitly add/remove the same
+     .gms-dropdown-open class the click-arrow above already uses, so
+     hovering anywhere over the item (link, arrow, or the dropdown
+     itself) reliably shows its menu — covers the nav mega/simple
+     dropdowns and the my-account dropdown alike. */
+  (function initHoverDropdowns() {
+    var hoverItems = document.querySelectorAll('.wd-event-hover');
+
+    hoverItems.forEach(function (item) {
+      var arrow = item.querySelector(':scope > .gms-dropdown-arrow');
+
+      item.addEventListener('mouseenter', function () {
+        item.classList.add('gms-dropdown-open');
+        if (arrow) arrow.classList.add('gms-arrow-open');
+      });
+
+      item.addEventListener('mouseleave', function () {
+        item.classList.remove('gms-dropdown-open');
+        if (arrow) arrow.classList.remove('gms-arrow-open');
+      });
+    });
+  })();
+
+  /* ==========================================================
      7. SLIDER AUTOPLAY (self-contained, no Swiper dependency)
      ========================================================== */
   (function initSlider() {

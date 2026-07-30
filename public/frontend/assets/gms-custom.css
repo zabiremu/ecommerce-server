@@ -1066,12 +1066,16 @@ input[type="submit"] {
   transform: rotate(180deg);
 }
 
-/* Desktop: force-show dropdown when arrow-toggled */
-.menu-item-has-children.gms-dropdown-open > .wd-dropdown-menu,
-.menu-item-has-children.gms-dropdown-open > .wd-dropdown {
+/* Desktop: force-show dropdown when hovered/arrow-toggled. Scoped to
+   .gms-dropdown-open alone (not just .menu-item-has-children) so this
+   also covers the my-account dropdown, which shares the same
+   .wd-event-hover + .wd-dropdown pattern but isn't a nav menu item. */
+.gms-dropdown-open > .wd-dropdown-menu,
+.gms-dropdown-open > .wd-dropdown {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
+  transform: none !important;
 }
 
 /* ==========================================================

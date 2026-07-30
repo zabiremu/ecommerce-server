@@ -116,7 +116,7 @@
 
                                 <div class="whb-space-element whb-t200uqs8sl7900bl7f2r " style="width:10px;"></div>
                             </div>
-                            <div class="whb-column whb-col-center whb-column9 whb-visible-lg">
+                            <div class="whb-column whb-col-right whb-column10 whb-visible-lg">
                                 <div class="wd-header-search wd-tools-element wd-design-1 wd-style-icon wd-display-full-screen whb-1uanngn0n0tutsq8r5yw"
                                     title="Search">
                                     <link rel="stylesheet" id="wd-header-search-css"
@@ -127,8 +127,7 @@
                                         </span>
                                     </a>
                                 </div>
-                            </div>
-                            <div class="whb-column whb-col-right whb-column10 whb-visible-lg">
+
                                 <div
                                     class="wd-header-my-account wd-tools-element wd-event-hover wd-design-1 wd-style-icon whb-y2h188c83jht2ggqo16l">
                                     <a href="{{ Auth::guard('web')->check() ? route('dashboard') : route('login') }}"
