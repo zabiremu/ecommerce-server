@@ -47,14 +47,20 @@
                                             ->orderBy('name')
                                             ->get();
 
-                                        // Categories with real sub-categories (Footwear, Special Sections) get
-                                        // their own mega-dropdown. Flat/leaf categories (T-Shirt, Jeans, etc.)
-                                        // are grouped under one "Shop" dropdown instead of listing all of them
-                                        // in the top-level bar — with 11+ leaf categories that wrapped across
-                                        // two messy lines. Display-only grouping; doesn't touch the real
-                                        // category parent/child relationships other pages rely on.
+                                        // Categories with real sub-categories (Footwear) get their own
+                                        // dropdown. Flat/leaf categories (T-Shirt, Jeans, etc.) are grouped
+                                        // under one "Shop" dropdown instead of listing all of them in the
+                                        // top-level bar — with 11+ leaf categories that wrapped across two
+                                        // messy lines. Display-only grouping; doesn't touch the real category
+                                        // parent/child relationships other pages rely on.
+                                        //
+                                        // "Special Sections" is deliberately excluded from the nav — it stays
+                                        // in the database and still powers the homepage Special Sections
+                                        // feature, just isn't shown as a top-level menu item.
                                         $navLeafCategories = $navCategories->filter(fn($c) => $c->children->isEmpty())->values();
-                                        $navGroupedCategories = $navCategories->filter(fn($c) => $c->children->isNotEmpty())->values();
+                                        $navGroupedCategories = $navCategories
+                                            ->filter(fn($c) => $c->children->isNotEmpty() && $c->name !== 'Special Sections')
+                                            ->values();
                                     @endphp
                                     <ul id="menu-main-navigation"
                                         class="menu wd-nav wd-nav-header wd-nav-main wd-style-default wd-gap-s">
