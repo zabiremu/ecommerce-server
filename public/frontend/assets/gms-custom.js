@@ -549,37 +549,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderResults(container, data, input) {
-      var hasTerms = data.popular && data.popularTerms && data.popularTerms.length > 0;
       var hasProducts = data.products && data.products.length > 0;
 
-      if (!hasTerms && !hasProducts) {
+      if (!hasProducts) {
         container.innerHTML = '<div class="gms-search-empty">No products found.</div>';
         return;
       }
 
-      var html = '';
-
-      if (hasTerms) {
-        html += '<div class="gms-search-heading">Popular searches</div><div class="gms-search-terms">';
-        data.popularTerms.forEach(function (term) {
-          html += '<button type="button" class="gms-search-term">' + term + '</button>';
-        });
-        html += '</div>';
-      }
-
-      if (hasProducts) {
-        html += renderProductList(data.popular ? 'Trending products' : 'Search results', data.products);
-      }
-
-      container.innerHTML = html;
-
-      container.querySelectorAll('.gms-search-term').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var term = btn.textContent;
-          input.value = term;
-          runSearchFor(input, container, term);
-        });
-      });
+      container.innerHTML = renderProductList(data.popular ? 'Trending products' : 'Search results', data.products);
     }
 
     function runSearchFor(input, container, q) {
@@ -605,14 +582,16 @@ document.addEventListener('DOMContentLoaded', function () {
         runSearchFor(input, target, q);
       }
 
-      input.addEventListener('focus', function () {
-        if (input.value.trim() === '') runSearch('');
-      });
-
       input.addEventListener('input', function () {
         clearTimeout(timer);
         var q = input.value.trim();
-        timer = setTimeout(function () { runSearch(q); }, 250);
+        timer = setTimeout(function () {
+          if (q === '') {
+            target.innerHTML = '';
+          } else {
+            runSearch(q);
+          }
+        }, 250);
       });
     });
   })();

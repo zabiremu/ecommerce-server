@@ -2310,27 +2310,189 @@
                                 --wd-btn-align: var(--wd-stretch);
                             }
 
-                            #wd-119ef17c {
-                                padding: 30px;
-                                background-color: #f5f5f5;
-                                border-radius: 16px;
-                                align-self: start;
-                            }
-
+                            /* Register/login card redesign — was a plain grey
+                               #f5f5f5 box pinned to the left of the page with
+                               the whole right half empty. Now a centered
+                               split card: a branded panel on one side, the
+                               form on the other, matching the red/gold accent
+                               used across the rest of the site. */
                             #wd-e3451e74 {
-                                --wd-width: 480px;
+                                --wd-width: 900px;
+                                margin-inline: auto;
+                                display: flex;
+                                border-radius: 20px;
+                                overflow: hidden;
+                                box-shadow: 0 24px 60px rgba(0, 0, 0, .12), 0 4px 14px rgba(0, 0, 0, .06);
+                                background: var(--gms-bg, #fff);
                             }
 
-                            @media (min-width: 769px) {
+                            #wd-119ef17c {
+                                flex: 1 1 55%;
+                                padding: 44px 48px;
+                                background-color: var(--gms-bg, #fff);
+                                border-radius: 0;
+                                align-self: stretch;
+                            }
+
+                            .gms-auth-panel {
+                                flex: 1 1 45%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-end;
+                                gap: 22px;
+                                padding: 48px 42px;
+                                position: relative;
+                                overflow: hidden;
+                                color: #fff;
+                                background-image: url("{{ asset('frontend/products/unsplash/unsplash-1523381210434-271e8be1f52b.jpg') }}");
+                                background-size: cover;
+                                background-position: center;
+                            }
+                            .gms-auth-panel::before {
+                                content: '';
+                                position: absolute;
+                                inset: 0;
+                                background:
+                                    linear-gradient(0deg, rgba(15, 12, 8, .92) 0%, rgba(15, 12, 8, .55) 45%, rgba(15, 12, 8, .25) 100%),
+                                    radial-gradient(circle at 85% 15%, rgba(230, 57, 70, .35), transparent 55%);
+                                pointer-events: none;
+                            }
+                            .gms-auth-panel > * {
+                                position: relative;
+                                z-index: 1;
+                            }
+                            .gms-auth-panel h3 {
+                                font-size: 1.7em;
+                                font-weight: 800;
+                                margin: 0;
+                                line-height: 1.25;
+                                color: #fff !important;
+                            }
+                            .gms-auth-panel p {
+                                margin: 0;
+                                color: rgba(255, 255, 255, .75);
+                                font-size: 14.5px;
+                                line-height: 1.6;
+                            }
+                            .gms-auth-perks {
+                                list-style: none;
+                                margin: 6px 0 0;
+                                padding: 0;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 14px;
+                            }
+                            .gms-auth-perks li {
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                font-size: 14px;
+                                font-weight: 600;
+                                color: #fff;
+                            }
+                            .gms-auth-perks .gms-auth-perk-icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 34px;
+                                height: 34px;
+                                border-radius: 50%;
+                                background: rgba(255, 255, 255, .12);
+                                flex-shrink: 0;
+                            }
+
+                            #wd-88f5ed5a {
+                                font-size: 1.6em;
+                                font-weight: 800;
+                                margin-bottom: 6px;
+                            }
+                            .gms-auth-subtitle {
+                                color: var(--gms-text, #555);
+                                font-size: 14px;
+                                margin: 0 0 28px;
+                            }
+
+                            @media (max-width: 900px) {
+                                #wd-e3451e74 {
+                                    --wd-width: 100%;
+                                    flex-direction: column;
+                                    border-radius: 16px;
+                                }
+                                .gms-auth-panel {
+                                    display: none;
+                                }
                                 #wd-119ef17c {
-                                    flex: 0 1 100%;
+                                    flex: 1 1 100%;
                                 }
                             }
 
                             @media (max-width: 768.98px) {
                                 #wd-119ef17c {
-                                    padding: 20px;
+                                    padding: 28px 22px;
                                 }
+                            }
+
+                            /* Form fields — the plain input-text/label markup
+                               already there, just given real spacing, rounded
+                               borders, a focus ring in the brand red, and a
+                               solid CTA button instead of the theme default. */
+                            #wd-fc2645af .woocommerce-form-row {
+                                margin: 0 0 18px;
+                            }
+                            #wd-fc2645af label {
+                                display: block;
+                                margin-bottom: 6px;
+                                font-size: 13px;
+                                font-weight: 600;
+                                color: var(--gms-title, #242424);
+                            }
+                            #wd-fc2645af label .required {
+                                color: var(--gms-red, #e63946);
+                            }
+                            #wd-fc2645af .input-text {
+                                width: 100%;
+                                padding: 12px 16px;
+                                border: 1px solid var(--gms-line, #ececec);
+                                border-radius: 10px;
+                                font-size: 14px;
+                                background: var(--gms-bg, #fff);
+                                transition: border-color .2s ease, box-shadow .2s ease;
+                            }
+                            #wd-fc2645af .input-text:focus {
+                                outline: none;
+                                border-color: var(--gms-red, #e63946);
+                                box-shadow: 0 0 0 3px rgba(230, 57, 70, .12);
+                            }
+                            #wd-fc2645af .form-row-btn {
+                                margin-top: 26px !important;
+                            }
+                            #wd-fc2645af .form-row-btn button {
+                                width: 100% !important;
+                                padding: 13px 20px;
+                                border-radius: 10px;
+                                background: var(--gms-red, #e63946);
+                                border: none;
+                                color: #fff;
+                                font-weight: 700;
+                                font-size: 14px;
+                                letter-spacing: .02em;
+                                transition: background .2s ease, transform .2s ease;
+                            }
+                            #wd-fc2645af .form-row-btn button:hover {
+                                background: var(--gms-red-dark, #c5303c);
+                                transform: translateY(-1px);
+                            }
+                            .gms-auth-switch {
+                                color: var(--gms-text, #555);
+                                font-size: 14px;
+                            }
+                            .gms-auth-switch a {
+                                color: var(--gms-red, #e63946);
+                                font-weight: 600;
+                                text-decoration: none;
+                            }
+                            .gms-auth-switch a:hover {
+                                text-decoration: underline;
                             }
                         </style>
                         <link rel="stylesheet" id="wd-el-page-title-builder-css"
@@ -2356,12 +2518,43 @@
                         </div>
 
                         <div id="wd-e3451e74" class="wp-block-wd-row wd-custom-width">
+                            <div class="gms-auth-panel">
+                                <h3>Join Roventex and shop smarter</h3>
+                                <p>Create an account to check out faster, track every order, and keep your favorite pieces saved for later.</p>
+                                <ul class="gms-auth-perks">
+                                    <li>
+                                        <span class="gms-auth-perk-icon" aria-hidden="true">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                        </span>
+                                        Faster checkout, every time
+                                    </li>
+                                    <li>
+                                        <span class="gms-auth-perk-icon" aria-hidden="true">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                        </span>
+                                        Track orders in real time
+                                    </li>
+                                    <li>
+                                        <span class="gms-auth-perk-icon" aria-hidden="true">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                        </span>
+                                        Save items to your wishlist
+                                    </li>
+                                    <li>
+                                        <span class="gms-auth-perk-icon" aria-hidden="true">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                        </span>
+                                        Get first access to exclusive offers
+                                    </li>
+                                </ul>
+                            </div>
                             <div id="wd-119ef17c" class="wp-block-wd-column wd-align-s-start">
                                 <div id="wd-6dbd5f4a" class="wd-wc-notices wd-6dbd5f4a">
                                     <div class="woocommerce-notices-wrapper"></div>
                                 </div>
 
-                                <h2 id="wd-88f5ed5a" class="wp-block-wd-title title">Register</h2>
+                                <h2 id="wd-88f5ed5a" class="wp-block-wd-title title">Create your account</h2>
+                                <p class="gms-auth-subtitle">It only takes a minute — 10% off your first order is waiting.</p>
 
                                 @if ($errors->any())
                                 <div class="woocommerce-notices-wrapper">

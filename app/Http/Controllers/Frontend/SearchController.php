@@ -14,16 +14,8 @@ class SearchController extends Controller
     public function suggestions(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
-        $popularTerms = [];
 
         if ($q === '') {
-            $popularTerms = SearchLog::select('term')
-                ->selectRaw('COUNT(*) as cnt')
-                ->groupBy('term')
-                ->orderByDesc('cnt')
-                ->limit(6)
-                ->pluck('term');
-
             $products = Product::published()
                 ->withCount('orderItems as sold_count')
                 ->orderByDesc('sold_count')
@@ -46,10 +38,9 @@ class SearchController extends Controller
         }
 
         return response()->json([
-            'success'      => true,
-            'popular'      => $q === '',
-            'popularTerms' => $popularTerms,
-            'products'     => $products->map(function (Product $p) {
+            'success'  => true,
+            'popular'  => $q === '',
+            'products' => $products->map(function (Product $p) {
                 $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
                 return [
                     'id'    => $p->id,
