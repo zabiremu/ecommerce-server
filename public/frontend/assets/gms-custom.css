@@ -1694,71 +1694,59 @@ body {
 }
 
 /* ==========================================================
-   20. HEADER — MEGA-DROPDOWN REDESIGN (Shop / Footwear / Special Sections)
+   20. HEADER — SIMPLE DROPDOWN MENU (Shop / Footwear / Special Sections)
    ========================================================== */
-.gms-mega-dropdown {
-  border-radius: var(--gms-radius) !important;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .16) !important;
-  overflow: hidden;
+/* A single, plain vertical list per nav item — not a multi-column mega
+   panel. Opens purely on :hover via the theme's own .wd-event-hover
+   rule in base.css (li.wd-event-hover:hover > .wd-dropdown); nothing
+   here touches that trigger, only the panel's look. */
+.gms-simple-dropdown {
+  width: 250px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 46px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .06) !important;
+  border: 1px solid rgba(0, 0, 0, .06);
+  padding: 12px !important;
 }
-.gms-mega-dropdown::before {
-  content: '';
+.gms-simple-dropdown-list,
+.gms-simple-dropdown-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gms-simple-dropdown-list > li > a {
   display: block;
-  height: 4px;
-  background: linear-gradient(90deg, var(--gms-red), #C9A24B 55%, var(--gms-red));
-}
-.gms-mega-dropdown .wp-block-wd-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-}
-.gms-mega-dropdown .wp-block-wd-column {
-  flex: 1 1 0;
-  min-width: 160px;
-  padding: 4px 22px;
-  border-right: 1px solid var(--gms-line);
-}
-.gms-mega-dropdown .wp-block-wd-column:last-child {
-  border-right: none;
-}
-/* Column "header" — the top-level category link each column is built
-   around (Boots, Sneakers, New Arrival, ...). */
-.gms-mega-dropdown .wd-sub-accented > li > a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0 8px;
-  font-size: 13px;
-  letter-spacing: .03em;
-  border-bottom: 2px solid transparent;
-  transition: color var(--gms-ease), border-color var(--gms-ease);
-}
-.gms-mega-dropdown .wd-sub-accented > li > a:hover {
-  color: var(--gms-red) !important;
-  border-bottom-color: var(--gms-red);
-}
-/* Sub-items (grandchildren) — lighter weight, indented, own hover accent */
-.gms-mega-dropdown .sub-sub-menu {
-  margin: 6px 0 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.gms-mega-dropdown .sub-sub-menu > li > a {
-  display: block;
-  padding-left: 4px;
-  font-size: 12.5px;
-  font-weight: 500;
-  text-transform: none;
-  color: var(--gms-text) !important;
-  border-left: 2px solid var(--gms-line);
-  padding-left: 10px;
-  transition: color var(--gms-ease), border-color var(--gms-ease), padding-left var(--gms-ease);
-}
-.gms-mega-dropdown .sub-sub-menu > li > a:hover {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--gms-ink) !important;
-  border-left-color: #C9A24B;
-  padding-left: 14px;
+  white-space: normal;
+  transition: color var(--gms-ease), background var(--gms-ease);
+}
+.gms-simple-dropdown-list > li > a:hover {
+  color: var(--gms-red) !important;
+  background: rgba(230, 57, 70, .07);
+}
+
+/* Grandchildren (rare — only when a child category has its own further
+   sub-categories) — indented under their parent link, same simple
+   single-column list treatment, just smaller/lighter. */
+.gms-simple-dropdown-sublist {
+  margin: 2px 0 8px 14px;
+}
+.gms-simple-dropdown-sublist > li > a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gms-text) !important;
+  transition: color var(--gms-ease), background var(--gms-ease);
+}
+.gms-simple-dropdown-sublist > li > a:hover {
+  color: var(--gms-red) !important;
+  background: rgba(230, 57, 70, .06);
 }
 
 /* ==========================================================

@@ -28,6 +28,8 @@
     </style>
     <link rel='stylesheet' id='wd-header-base-css'
         href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/header-base.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='wd-block-menu-list-css'
+        href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/block-menu-list.css') }}" type='text/css' media='all' />
     <style id='wd-woocommerce-base-inline-css' type='text/css'>
         .amount {
             color: var(--wd-primary-color);

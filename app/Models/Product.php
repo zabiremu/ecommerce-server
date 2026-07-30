@@ -43,7 +43,7 @@ class Product extends Model
         'premium-collection' => ['label' => 'Premium Collection', 'emoji' => '💎'],
         'flash-sale'         => ['label' => 'Flash Sale', 'emoji' => '💥'],
         'combo-offer'        => ['label' => 'Combo Offer', 'emoji' => '🎁'],
-        'restock'            => ['label' => 'Restock', 'emoji' => '🆕'],
+        'restock'            => ['label' => 'Restock', 'emoji' => '🔄'],
         'clearance'          => ['label' => 'Clearance', 'emoji' => '🏷️'],
     ];
 
