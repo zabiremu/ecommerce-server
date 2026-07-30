@@ -1538,9 +1538,29 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* Mobile only — desktop (4-col) and tablet (2-col grid, above) stay
+   untouched. Below 576px this used to just stack into a plain 1-column
+   list (each item full-width, no visual separation) — replaced with a
+   horizontal swipeable row of actual cards instead. */
 @media (max-width: 576px) {
   .gms-usp-strip {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x pan-y;
+    gap: 12px;
+    padding: 20px 4px;
+    margin: 16px 0;
+  }
+  .gms-usp-item {
+    flex: 0 0 76%;
+    scroll-snap-align: start;
+    background: var(--gms-bg);
+    border: 1px solid var(--gms-line);
+    border-radius: var(--gms-radius);
+    box-shadow: var(--gms-shadow);
+    padding: 16px;
   }
 }
 

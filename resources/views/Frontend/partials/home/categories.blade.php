@@ -5,6 +5,30 @@
     href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/woo-categories-loop-old.css') }}"
     type="text/css" media="all" />
 <style>
+    /* .wd-cat-inner is the whole card box (border/shadow come from
+       gms-custom.css); it has no padding by default since that shared
+       rule is written for edge-to-edge product photos, not a smaller
+       centered icon circle — without this the circle sits flush
+       against the card's top edge. */
+    .wd-cats .wd-cat-inner {
+        padding-top: 24px;
+        height: 100%;
+    }
+    /* Cards were different heights side-by-side because the theme's
+       carousel row uses align-items:flex-start (lib-swiper.css) — each
+       card just took its own content height, so a 2-line category name
+       ("Semi Baggy Jeans") made that card taller than a 1-line one
+       ("Jeans") right next to it. Stretch the row so every card fills
+       the tallest one instead. */
+    .wd-cats .wd-carousel-wrap {
+        align-items: stretch;
+    }
+    .wd-cats .wd-carousel-item {
+        height: auto;
+    }
+    .wd-cats .category-grid-item {
+        height: 100%;
+    }
     .wd-cats .wd-cat-thumb {
         border-radius: 50% !important;
         overflow: hidden;
@@ -75,6 +99,33 @@
     .gms-cat-icon-fallback-2 { background: linear-gradient(135deg, #DCE6DA, #A9C0A4); color: #3E5A38; }
     .gms-cat-icon-fallback-3 { background: linear-gradient(135deg, #DCE1EA, #A9B7CC); color: #34435C; }
     .gms-cat-icon-fallback-4 { background: linear-gradient(135deg, #E9DCEF, #C6A8D6); color: #5A3A6B; }
+
+    /* Mobile: turn this into a real swipeable slider. The theme's own
+       carousel needs Swiper JS to reposition .wd-carousel-wrap and
+       reveal items past the first --wd-col — that init never reliably
+       fires on this build, so on narrow screens the row's default
+       overflow-x:clip (lib-swiper.css) just clips every category past
+       the 2nd one, with no way to reach them. A plain scroll-snap row
+       sidesteps that dependency entirely. Desktop is untouched — at
+       --wd-col-lg:5 every card already fits in one row, no slider
+       needed there. */
+    @media (max-width: 768.98px) {
+        .wd-cats .wd-carousel {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            touch-action: pan-x pan-y;
+        }
+        .wd-cats .wd-carousel-wrap {
+            transform: none !important;
+        }
+        .wd-cats .wd-carousel-item {
+            scroll-snap-align: start;
+        }
+        .wd-cats .wd-nav-arrows {
+            display: none;
+        }
+    }
 </style>
 <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-fedb8996">
     <div>
