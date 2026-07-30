@@ -76,11 +76,23 @@
 }
 .gms-filter-section { margin-bottom: 22px; }
 .gms-filter-section h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 13px;
     font-weight: 600;
     color: var(--gms-title, #242424);
     margin: 0 0 10px;
+    cursor: pointer;
+    user-select: none;
 }
+.gms-filter-chevron {
+    font-size: 10px;
+    color: var(--gms-text, #555);
+    transition: transform .2s;
+}
+.gms-filter-section.gms-filter-collapsed .gms-filter-chevron { transform: rotate(-90deg); }
+.gms-filter-section.gms-filter-collapsed .gms-filter-option { display: none; }
 .gms-filter-option {
     display: flex;
     align-items: center;
@@ -303,7 +315,7 @@
                 <div class="gms-sidebar-title"><i class="fas fa-filter"></i> Filters</div>
 
                 <div class="gms-filter-section">
-                    <h4>Category</h4>
+                    <h4 onclick="toggleGmsFilterSection(this)">Category <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
                     <label class="gms-filter-option active" data-cat="" onclick="setApCategory(this, '')">
                         <span class="check"></span> All Categories
                     </label>
@@ -315,8 +327,8 @@
                 </div>
 
                 @if($filterBrands->isNotEmpty())
-                    <div class="gms-filter-section">
-                        <h4>Brand</h4>
+                    <div class="gms-filter-section gms-filter-collapsed">
+                        <h4 onclick="toggleGmsFilterSection(this)">Brand <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
                         <label class="gms-filter-option active" data-brand="" onclick="setApBrand(this, '')">
                             <span class="check"></span> All Brands
                         </label>
@@ -328,8 +340,8 @@
                     </div>
                 @endif
 
-                <div class="gms-filter-section">
-                    <h4>Price Range</h4>
+                <div class="gms-filter-section gms-filter-collapsed">
+                    <h4 onclick="toggleGmsFilterSection(this)">Price Range <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
                     <label class="gms-filter-option active" data-price onclick="setApPrice(this, 0, Infinity)">
                         <span class="check"></span> All Prices
                     </label>
@@ -477,6 +489,19 @@ window.NF_PRODUCTS = @json($products);
         currentPage = n;
         renderApPage();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // ── filter section accordion (Category / Brand / Price Range) ────
+    window.toggleGmsFilterSection = function (headerEl) {
+        var section = headerEl.closest('.gms-filter-section');
+        var sidebar = headerEl.closest('.gms-cat-sidebar') || document;
+        var wasCollapsed = section.classList.contains('gms-filter-collapsed');
+        sidebar.querySelectorAll('.gms-filter-section').forEach(function (s) {
+            s.classList.add('gms-filter-collapsed');
+        });
+        if (wasCollapsed) {
+            section.classList.remove('gms-filter-collapsed');
+        }
     };
 
     // ── category / brand / price filters ─────────────────────────────

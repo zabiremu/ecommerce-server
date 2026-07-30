@@ -1376,6 +1376,16 @@ input[type="submit"],
   flex-shrink: 0;
   color: #8A6C2E;
 }
+/* Real bKash/Nagad marks — full color, unlike the monochrome outline
+   icons used for the other badges, since they're recognizable brand
+   logos rather than generic pictograms. */
+.gms-trust-badge img {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+}
 .gms-trust-badge-secure {
   background: #F3E4B8;
   color: #3B2F17;
@@ -2126,5 +2136,37 @@ body {
   #newsletter-form input[type="submit"] {
     width: 100%;
     border-radius: var(--gms-radius-sm) !important;
+  }
+}
+
+/* ==========================================================
+   24. FOOTER — MOBILE: ALWAYS-OPEN SECTIONS + 2-COL LAYOUT
+   ========================================================== */
+/* Company/Info/Social Links use the theme's accordion-toggle block
+   (block-toggle.css). Desktop/tablet already render them permanently
+   open (wd-state-static-lg/md-sm hides the chevron and keeps content
+   visible) — only the "sm" tier ships wd-state-closed-sm, collapsing
+   each section behind a click. Force the same always-open behavior on
+   mobile and drop the now-pointless chevron button. */
+@media (max-width: 768.98px) {
+  .wd-footer .wd-toggle-content {
+    display: block !important;
+  }
+  .wd-footer .wd-toggle-content-inner {
+    opacity: 1 !important;
+  }
+  .wd-footer .wd-toggle-head .wp-block-wd-icon.wd-toggle-icon {
+    display: none !important;
+  }
+  .wd-footer .wd-toggle-head {
+    cursor: default !important;
+  }
+
+  /* Company + Info side by side; the logo column and Social Links stay
+     full-width, same as the theme's default mobile stacking. */
+  .wd-footer .wp-block-wd-column.wd-aec94b59,
+  .wd-footer .wp-block-wd-column.wd-4a52106e {
+    flex: 1 1 calc(50% - 10px) !important;
+    max-width: calc(50% - 10px) !important;
   }
 }

@@ -76,11 +76,23 @@
 }
 .gms-filter-section { margin-bottom: 22px; }
 .gms-filter-section h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 13px;
     font-weight: 600;
     color: var(--gms-title, #242424);
     margin: 0 0 10px;
+    cursor: pointer;
+    user-select: none;
 }
+.gms-filter-chevron {
+    font-size: 10px;
+    color: var(--gms-text, #555);
+    transition: transform .2s;
+}
+.gms-filter-section.gms-filter-collapsed .gms-filter-chevron { transform: rotate(-90deg); }
+.gms-filter-section.gms-filter-collapsed .gms-filter-option { display: none; }
 .gms-filter-option {
     display: flex;
     align-items: center;
@@ -305,7 +317,7 @@
                 <div class="gms-sidebar-title"><i class="fas fa-filter"></i> Filters</div>
 
                 <div class="gms-filter-section">
-                    <h4>Price Range</h4>
+                    <h4 onclick="toggleGmsFilterSection(this)">Price Range <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
                     <label class="gms-filter-option active" onclick="setCatPrice(this, 0, Infinity)">
                         <span class="check"></span> All Prices
                     </label>
@@ -453,6 +465,19 @@ window.NF_CATEGORIES = @json($categories);
         currentPage = n;
         renderCatPage();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // ── filter section accordion (Price Range, etc.) ──────────────────
+    window.toggleGmsFilterSection = function (headerEl) {
+        var section = headerEl.closest('.gms-filter-section');
+        var sidebar = headerEl.closest('.gms-cat-sidebar') || document;
+        var wasCollapsed = section.classList.contains('gms-filter-collapsed');
+        sidebar.querySelectorAll('.gms-filter-section').forEach(function (s) {
+            s.classList.add('gms-filter-collapsed');
+        });
+        if (wasCollapsed) {
+            section.classList.remove('gms-filter-collapsed');
+        }
     };
 
     // ── price filter ────────────────────────────────────────────────

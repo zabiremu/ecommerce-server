@@ -16,18 +16,12 @@
         </svg>
         <span>Cash on Delivery</span>
     </div>
-    <div class="gms-trust-badge">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="6" y="2" width="12" height="20" rx="2" />
-            <line x1="6" y1="18" x2="18" y2="18" />
-        </svg>
+    <div class="gms-trust-badge gms-trust-badge-payment">
+        <img src="{{ asset('frontend/assets/payment-icons/bkash-logo.png') }}" width="16" height="16" alt="" aria-hidden="true" loading="lazy" />
         <span>bKash</span>
     </div>
-    <div class="gms-trust-badge">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="6" y="2" width="12" height="20" rx="2" />
-            <line x1="6" y1="18" x2="18" y2="18" />
-        </svg>
+    <div class="gms-trust-badge gms-trust-badge-payment">
+        <img src="{{ asset('frontend/assets/payment-icons/nagad-logo.png') }}" width="16" height="16" alt="" aria-hidden="true" loading="lazy" />
         <span>Nagad</span>
     </div>
     <div class="gms-trust-badge">
