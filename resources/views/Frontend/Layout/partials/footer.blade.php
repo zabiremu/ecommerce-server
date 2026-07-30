@@ -11,8 +11,8 @@
               type="text/css" media="all" />
           <style id="wd-style-blocks-589-inline-css" data-type="wd-style-blocks-589">
               .wd.wd .wd-35aff150 {
-                  --wd-img-width: 245px;
-                  --wd-width: 245px;
+                  --wd-img-width: 150px;
+                  --wd-width: 150px;
               }
 
               .wd.wd .wd-35aff150 img {

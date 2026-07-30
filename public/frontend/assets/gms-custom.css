@@ -1565,6 +1565,38 @@ body {
 }
 
 /* ==========================================================
+   16b. HOMEPAGE PRODUCT CAROUSELS — MOBILE SLIDER
+   ========================================================== */
+/* Shared by Best Sellers, Special Sections (New Arrival, Best Seller,
+   Flash Sale, etc. — up to 8 products each) and Featured Products, all
+   of which use the exact same .wd-products-element carousel markup.
+   Same root cause as the "Shop by Category" fix above: the theme's
+   carousel needs Swiper JS to reposition .wd-carousel-wrap and reveal
+   items past the first --wd-col, and that init never reliably fires on
+   this build — so on mobile (--wd-col-sm:2) only the first 2 products
+   were reachable, the rest silently clipped by overflow-x:clip
+   (lib-swiper.css). A plain scroll-snap row sidesteps that dependency;
+   desktop/tablet grids are untouched. */
+@media (max-width: 768.98px) {
+  .wd-products-element .wd-carousel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x pan-y;
+  }
+  .wd-products-element .wd-carousel-wrap {
+    transform: none !important;
+    align-items: stretch;
+  }
+  .wd-products-element .wd-carousel-item {
+    scroll-snap-align: start;
+  }
+  .wd-products-element .wd-nav-arrows {
+    display: none;
+  }
+}
+
+/* ==========================================================
    17. PRODUCT CARD — INFO SECTION SPACING
    ========================================================== */
 /* .product-element-bottom (title/rating/price/stock/add-to-cart) had
@@ -1986,4 +2018,113 @@ body {
 }
 .gms-contact-map iframe {
   display: block;
+}
+
+/* ==========================================================
+   23. NEWSLETTER SECTION — REDESIGN
+   ========================================================== */
+/* Previously flat theme defaults with zero custom styling: a plain
+   grey box, a bare unstyled <input type="submit"> (no class at all,
+   so it rendered as the browser's native grey system button — the
+   biggest reason it looked unfinished). */
+.wd-newsletter-section {
+  padding: 56px 24px;
+  border-radius: var(--gms-radius);
+  background: linear-gradient(135deg, #FFF8ED, #FBEFE0 55%, #F7E4D0);
+  text-align: center;
+}
+/* !important because .wd-block-image inherits --wd-width:100% from its
+   .wp-block-wd-container ancestor (block-container.css) — without a
+   hard override here the icon wrapper stretched to the section's full
+   width, and with border-radius:50% on that wide-short box it rendered
+   as a big pink ellipse smeared across the top instead of a badge. */
+.wd-newsletter-section .wd-block-image {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 64px !important;
+  height: 64px !important;
+  flex: 0 0 auto;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(230, 57, 70, .1);
+}
+.wd-newsletter-section .wd-block-image img {
+  width: 28px;
+  height: 28px;
+}
+.wd-newsletter-section .title {
+  font-size: 1.9em;
+  font-weight: 800;
+  color: var(--gms-title);
+  margin: 0 0 10px;
+}
+.wd-newsletter-section p.wp-block-wd-paragraph {
+  color: var(--gms-text);
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+.wd-newsletter-section .wd-highlight {
+  color: var(--gms-red);
+  font-weight: 600;
+}
+
+#newsletter-form {
+  margin-top: 26px;
+}
+#newsletter-form .wd-grid-f-stretch {
+  display: flex;
+  align-items: center;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--gms-bg);
+  border-radius: 999px;
+  box-shadow: var(--gms-shadow);
+  padding: 6px;
+}
+#newsletter-form input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 12px 18px;
+  font-size: 14px;
+  background: transparent;
+  color: var(--gms-ink);
+}
+#newsletter-form input[type="email"]:focus {
+  outline: none;
+}
+#newsletter-form input[type="submit"] {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px !important;
+  padding: 12px 28px;
+  background: var(--gms-red);
+  color: #FFF;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background var(--gms-ease), transform var(--gms-ease);
+}
+#newsletter-form input[type="submit"]:hover {
+  background: var(--gms-red-dark);
+  transform: translateY(-1px);
+}
+@media (max-width: 576px) {
+  .wd-newsletter-section {
+    padding: 40px 20px;
+  }
+  #newsletter-form .wd-grid-f-stretch {
+    flex-direction: column;
+    border-radius: var(--gms-radius);
+    padding: 8px;
+    gap: 8px;
+  }
+  #newsletter-form input[type="email"],
+  #newsletter-form input[type="submit"] {
+    width: 100%;
+    border-radius: var(--gms-radius-sm) !important;
+  }
 }
