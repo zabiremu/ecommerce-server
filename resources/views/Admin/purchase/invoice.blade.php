@@ -54,7 +54,7 @@
             margin-bottom: 10px;
         }
         .head .shop-logo { max-height: 80px; max-width: 260px; display: block; }
-        .head h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; }
+        .head h2 { margin: 0 0 4px; font-size: 15px; font-weight: 800; }
         .head p { margin: 2px 0; font-size: 12.5px; color: rgba(255,255,255,.8); }
         .head .meta { text-align: right; }
         .head .meta .title { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.7); margin: 0 0 4px; }
