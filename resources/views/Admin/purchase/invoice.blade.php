@@ -51,10 +51,9 @@
         }
         .head .shop-logo-wrap {
             display: inline-flex; align-items: center; justify-content: center;
-            background: #fff; border-radius: 10px; padding: 8px 12px;
             margin-bottom: 10px;
         }
-        .head .shop-logo { max-height: 40px; max-width: 160px; display: block; }
+        .head .shop-logo { max-height: 80px; max-width: 260px; display: block; }
         .head h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; }
         .head p { margin: 2px 0; font-size: 12.5px; color: rgba(255,255,255,.8); }
         .head .meta { text-align: right; }
