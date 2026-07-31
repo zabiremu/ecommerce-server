@@ -4,6 +4,8 @@
     $email   = \App\Models\SiteSetting::get('contact_email', '');
     $address = \App\Models\SiteSetting::get('contact_address', '');
     $logo    = \App\Models\SiteSetting::get('logo', '');
+    $colorPrimary   = \App\Models\SiteSetting::get('color_primary', '#2D1B69');
+    $colorSecondary = \App\Models\SiteSetting::get('color_secondary', '#5E2590');
 
     $statusStyle = match ($purchase->status) {
         'completed' => ['#166534', '#f0fdf4', '#bbf7d0'],
@@ -35,7 +37,7 @@
             padding: 9px 16px; border-radius: 6px; font-size: 13px; font-weight: 600;
             text-decoration: none; cursor: pointer; border: 1px solid transparent;
         }
-        .btn-print { background: #2D1B69; color: #fff; }
+        .btn-print { background: {{ $colorPrimary }}; color: #fff; }
         .btn-back { background: #fff; color: #334155; border-color: #e2e8f0; }
 
         .sheet {
@@ -45,9 +47,14 @@
         }
         .head {
             display: flex; justify-content: space-between; align-items: flex-start;
-            padding: 32px 40px; background: linear-gradient(135deg,#2D1B69 0%,#5E2590 100%); color: #fff;
+            padding: 32px 40px; background: linear-gradient(135deg,{{ $colorPrimary }} 0%,{{ $colorSecondary }} 100%); color: #fff;
         }
-        .head .shop-logo { max-height: 44px; margin-bottom: 8px; display: block; }
+        .head .shop-logo-wrap {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #fff; border-radius: 10px; padding: 8px 12px;
+            margin-bottom: 10px;
+        }
+        .head .shop-logo { max-height: 40px; max-width: 160px; display: block; }
         .head h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; }
         .head p { margin: 2px 0; font-size: 12.5px; color: rgba(255,255,255,.8); }
         .head .meta { text-align: right; }
@@ -101,7 +108,9 @@
         <div class="head">
             <div>
                 @if ($logo)
-                    <img src="{{ asset('storage/' . $logo) }}" alt="{{ $shop }}" class="shop-logo">
+                    <div class="shop-logo-wrap">
+                        <img src="{{ asset('storage/' . $logo) }}" alt="{{ $shop }}" class="shop-logo">
+                    </div>
                 @endif
                 <h2>{{ $shop }}</h2>
                 @if ($address) <p>{{ $address }}</p> @endif
