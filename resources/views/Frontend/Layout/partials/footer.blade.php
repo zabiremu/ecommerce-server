@@ -107,10 +107,19 @@
           <div class="wp-block-wd-row wd-5231162e">
               <div class="wp-block-wd-column wd-c6cd3918">
                   <div class="wp-block-wd-image wd-block-image wd-35aff150 wd-custom-width"><a href="{{ route('home') }}"
-                          class="wd-block-image-link"><img loading="lazy" decoding="async" width="201" height="32"
-                              class="wp-image-996" style="filter: brightness(0.45) contrast(1.8) saturate(3);"
-                              src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
-                              alt="" /></a></div>
+                          class="wd-block-image-link">
+                          @if (!empty($siteSettings['logo']))
+                              <img loading="lazy" decoding="async" width="201" height="32"
+                                  class="wp-image-996"
+                                  src="{{ asset('storage/' . $siteSettings['logo']) }}"
+                                  alt="" />
+                          @else
+                              <img loading="lazy" decoding="async" width="201" height="32"
+                                  class="wp-image-996" style="filter: brightness(0.45) contrast(1.8) saturate(3);"
+                                  src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
+                                  alt="" />
+                          @endif
+                      </a></div>
 
                   <p class="wp-block-wd-paragraph wd-5f577beb">Each piece reflects a perfect balance of timeless
                       artistry and modern innovation.</p>

@@ -1607,11 +1607,16 @@
             }
         </style>
     </noscript>
-    <link rel="icon" href="{{ asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-45x45.png') }}" sizes="32x32" />
-    <link rel="icon" href="{{ asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" sizes="192x192" />
-    <link rel="apple-touch-icon" href="{{ asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" />
+    @php
+        $faviconUrl = !empty($siteSettings['favicon'] ?? null)
+            ? asset('storage/' . $siteSettings['favicon'])
+            : null;
+    @endphp
+    <link rel="icon" href="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-45x45.png') }}" sizes="32x32" />
+    <link rel="icon" href="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" />
     <meta name="msapplication-TileImage"
-        content="{{ asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" />
+        content="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" />
     <style>
 
     </style>

@@ -8,6 +8,7 @@ use App\Services\MailConfigService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class SiteSettingController extends Controller
 {
@@ -103,6 +104,9 @@ class SiteSettingController extends Controller
             }
         }
 
+        $rules['logo'] = 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048';
+        $rules['favicon'] = 'nullable|image|mimes:jpg,jpeg,png,ico,webp|max:1024';
+
         $data = $request->validate($rules);
 
         // Normalise values before saving
@@ -113,13 +117,30 @@ class SiteSettingController extends Controller
             $data['mail_encryption'] = '';
         }
 
-        DB::transaction(function () use ($data) {
+        DB::transaction(function () use ($data, $request) {
             foreach ($this->fields as $groupName => $keys) {
                 foreach ($keys as $key => $_) {
                     SiteSetting::updateOrCreate(
                         ['key' => $key],
                         ['value' => $data[$key] ?? null, 'group' => $groupName]
                     );
+                }
+            }
+
+            foreach (['logo', 'favicon'] as $key) {
+                if ($request->hasFile($key)) {
+                    $old = SiteSetting::where('key', $key)->value('value');
+                    if ($old) {
+                        Storage::disk('public')->delete($old);
+                    }
+                    $path = $request->file($key)->store('site', 'public');
+                    SiteSetting::updateOrCreate(['key' => $key], ['value' => $path, 'group' => 'branding']);
+                } elseif ($request->boolean("remove_{$key}")) {
+                    $old = SiteSetting::where('key', $key)->value('value');
+                    if ($old) {
+                        Storage::disk('public')->delete($old);
+                    }
+                    SiteSetting::updateOrCreate(['key' => $key], ['value' => null, 'group' => 'branding']);
                 }
             }
         });

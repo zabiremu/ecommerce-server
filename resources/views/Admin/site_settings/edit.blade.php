@@ -24,7 +24,7 @@
     <h1 class="wp-h1">Site Settings</h1>
 </div>
 
-<form method="POST" action="{{ route('admin.site-settings.update') }}">
+<form method="POST" action="{{ route('admin.site-settings.update') }}" enctype="multipart/form-data">
     @csrf @method('PUT')
 
     @if ($errors->any())
@@ -35,6 +35,62 @@
 
     <div class="grid grid-cols-12 gap-5 mt-3">
         <div class="col-span-12 lg:col-span-8 space-y-5">
+
+            <!-- Branding: Logo & Favicon -->
+            <div class="wp-panel">
+                <div class="wp-panel-h"><i class="fas fa-image mr-1.5 text-slate-400"></i> Logo & Favicon</div>
+                <div class="wp-panel-body">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        {{-- Logo --}}
+                        <div class="wp-field mb-0">
+                            <label>Site Logo</label>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-20 h-20 flex items-center justify-center bg-[#f6f7f7] border border-[#e0e0e0] rounded overflow-hidden">
+                                    @if (!empty($settings['logo']))
+                                        <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo" class="max-w-full max-h-full object-contain">
+                                    @else
+                                        <i class="fas fa-image text-slate-300 text-xl"></i>
+                                    @endif
+                                </div>
+                                <div class="flex-1">
+                                    <input type="file" name="logo" accept="image/*" class="wp-input">
+                                    @if (!empty($settings['logo']))
+                                        <label class="mt-1 flex items-center gap-1.5 text-[12px] text-[#b91c1c]">
+                                            <input type="checkbox" name="remove_logo" value="1"> Remove current logo
+                                        </label>
+                                    @endif
+                                </div>
+                            </div>
+                            <p class="wp-help">Shown in the storefront header & footer. PNG/SVG with transparent background recommended, max 2MB.</p>
+                        </div>
+
+                        {{-- Favicon --}}
+                        <div class="wp-field mb-0">
+                            <label>Favicon</label>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-20 h-20 flex items-center justify-center bg-[#f6f7f7] border border-[#e0e0e0] rounded overflow-hidden">
+                                    @if (!empty($settings['favicon']))
+                                        <img src="{{ asset('storage/' . $settings['favicon']) }}" alt="Favicon" class="max-w-full max-h-full object-contain">
+                                    @else
+                                        <i class="fas fa-star text-slate-300 text-xl"></i>
+                                    @endif
+                                </div>
+                                <div class="flex-1">
+                                    <input type="file" name="favicon" accept="image/*" class="wp-input">
+                                    @if (!empty($settings['favicon']))
+                                        <label class="mt-1 flex items-center gap-1.5 text-[12px] text-[#b91c1c]">
+                                            <input type="checkbox" name="remove_favicon" value="1"> Remove current favicon
+                                        </label>
+                                    @endif
+                                </div>
+                            </div>
+                            <p class="wp-help">Shown in the browser tab. Square image (e.g. 512×512) recommended, max 1MB.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <!-- Homepage -->
             <div class="wp-panel">

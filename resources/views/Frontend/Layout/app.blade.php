@@ -27,11 +27,20 @@
                                 <div class="site-logo whb-vq6q7g5o9lxjza5urabd">
                                     <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
                                         aria-label="Site logo">
-                                        <img width="201" height="32"
-                                            src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
-                                            class="attachment-full size-full" alt=""
-                                            style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
-                                            decoding="async" /> </a>
+                                        @if (!empty($siteSettings['logo']))
+                                            <img width="201" height="32"
+                                                src="{{ asset('storage/' . $siteSettings['logo']) }}"
+                                                class="attachment-full size-full" alt=""
+                                                style="max-width:320px;"
+                                                decoding="async" />
+                                        @else
+                                            <img width="201" height="32"
+                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
+                                                class="attachment-full size-full" alt=""
+                                                style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
+                                                decoding="async" />
+                                        @endif
+                                    </a>
                                 </div>
 
                                 <div class="whb-space-element whb-nhk1nrs4bqpvtm7wjy76 " style="width:120px;"></div>
@@ -229,11 +238,20 @@
                                 <div class="site-logo whb-cqgb8qgsj8fpo4qz9frx">
                                     <a href="{{ route('home') }}" class="wd-logo wd-main-logo" rel="home"
                                         aria-label="Site logo">
-                                        <img width="180" height="32"
-                                            src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
-                                            class="attachment-full size-full" alt=""
-                                            style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
-                                            decoding="async" /> </a>
+                                        @if (!empty($siteSettings['logo']))
+                                            <img width="180" height="32"
+                                                src="{{ asset('storage/' . $siteSettings['logo']) }}"
+                                                class="attachment-full size-full" alt=""
+                                                style="max-width:320px;"
+                                                decoding="async" />
+                                        @else
+                                            <img width="180" height="32"
+                                                src="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/3dlm0001.jpg-removebg-preview.png') }}"
+                                                class="attachment-full size-full" alt=""
+                                                style="max-width:320px; transform: scale(1.6); transform-origin: left center; filter: brightness(0.45) contrast(1.8) saturate(3);"
+                                                decoding="async" />
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                             <div class="whb-column whb-mobile-right whb-column_mobile4 whb-hidden-lg">
