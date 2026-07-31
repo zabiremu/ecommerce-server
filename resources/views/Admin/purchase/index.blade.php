@@ -37,6 +37,7 @@
                     <strong><a href="{{ route('admin.purchases.show', $p) }}" class="text-[#2271b1] hover:text-[#135e96] font-mono text-[12.5px]">{{ $p->invoice_no }}</a></strong>
                     <div class="wp-row-actions">
                         <span><a href="{{ route('admin.purchases.show', $p) }}">View</a> |</span>
+                        <span><a href="{{ route('admin.purchases.invoice', $p) }}" target="_blank">Invoice</a> |</span>
                         <span>
                             <form method="POST" action="{{ route('admin.purchases.destroy', $p) }}" style="display:inline" onsubmit="return confirm('Delete this purchase?')">
                                 @csrf @method('DELETE')

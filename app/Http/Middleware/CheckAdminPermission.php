@@ -46,6 +46,8 @@ class CheckAdminPermission
         'admin.products.landing.update'          => 'landings.edit',
         // Categories
         'admin.categories.toggle-status'         => 'categories.edit',
+        // Purchases
+        'admin.purchases.invoice'                => 'purchases.view',
         // GRN
         'admin.grn.create-from-purchase'         => 'grn.create',
         // Stock

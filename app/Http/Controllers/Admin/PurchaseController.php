@@ -85,6 +85,12 @@ class PurchaseController extends Controller
         return view('Admin.purchase.show', compact('purchase'));
     }
 
+    public function invoice(Purchase $purchase)
+    {
+        $purchase->load('supplier', 'warehouse', 'items');
+        return view('Admin.purchase.invoice', compact('purchase'));
+    }
+
     public function destroy(Purchase $purchase)
     {
         $purchase->delete();

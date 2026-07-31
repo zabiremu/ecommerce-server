@@ -160,6 +160,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/purchases/{purchase}', [AdminPurchaseController::class, 'show'])->name('purchases.show');
         Route::delete('/purchases/{purchase}', [AdminPurchaseController::class, 'destroy'])->name('purchases.destroy');
         Route::patch('/purchases/{purchase}/status', [AdminPurchaseController::class, 'updateStatus'])->name('purchases.status');
+        Route::get('/purchases/{purchase}/invoice', [AdminPurchaseController::class, 'invoice'])->name('purchases.invoice');
 
         Route::get('/grn', [AdminGRNController::class, 'index'])->name('grn.index');
         Route::get('/grn/create', [AdminGRNController::class, 'create'])->name('grn.create');

@@ -124,7 +124,10 @@
 
         <div class="wp-panel">
             <div class="wp-panel-h">Actions</div>
-            <div class="wp-panel-body">
+            <div class="wp-panel-body space-y-2">
+                <a href="{{ route('admin.purchases.invoice', $purchase) }}" target="_blank" class="wp-btn w-full justify-center">
+                    <i class="fas fa-print mr-1"></i> View / Print Invoice
+                </a>
                 <form method="POST" action="{{ route('admin.purchases.destroy', $purchase) }}" onsubmit="return confirm('Delete this purchase?')">
                     @csrf @method('DELETE')
                     <button type="submit" class="wp-btn-link text-[#b32d2e]"><i class="fas fa-trash mr-1"></i> Move to Trash</button>
