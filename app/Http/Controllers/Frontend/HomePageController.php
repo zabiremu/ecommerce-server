@@ -583,6 +583,7 @@ class HomePageController extends Controller
 
         $galleryImages = collect([$product->thumbnail])
             ->merge($product->gallery ?? [])
+            ->map(fn ($item) => is_array($item) ? ($item['path'] ?? null) : $item)
             ->filter()
             ->unique()
             ->values()
