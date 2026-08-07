@@ -726,6 +726,8 @@
             null
         @endif;
     </script>
+    <script defer src="{{ asset('frontend/assets/vendor/slick/slick.min.js') }}"></script>
+    <script defer src="{{ asset('frontend/assets/gms-slick-init.js') }}"></script>
     <script defer src="{{ asset('frontend/assets/gms-custom.js') }}"></script>
     <script defer src="{{ asset('frontend/assets/js/shop-cart.js') }}"></script>
     @auth('web')

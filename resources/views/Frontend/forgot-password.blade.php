@@ -2279,8 +2279,8 @@
             --wd-form-brd-radius: 5px;
             --btn-default-color: #fff;
             --btn-default-color-hover: #fff;
-            --btn-accented-color: #333;
-            --btn-accented-color-hover: #333;
+            --btn-accented-color: #fff;
+            --btn-accented-color-hover: #fff;
             --btn-default-brd-radius: 5px;
             --btn-default-box-shadow: none;
             --btn-default-box-shadow-hover: none;

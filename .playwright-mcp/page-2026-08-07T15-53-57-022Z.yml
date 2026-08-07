@@ -1,0 +1,285 @@
+- generic [active] [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - link "Skip to navigation" [ref=f11e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f11e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f11e5]:
+    - banner [ref=f11e6]:
+      - generic [ref=f11e10]:
+        - text:     
+        - link "Open mobile menu" [ref=f11e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f11e14]: 
+        - link "Site logo" [ref=f11e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000
+        - link "" [ref=f11e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/login
+    - main [ref=f11e24]:
+      - generic [ref=f11e26]:
+        - list [ref=f11e31]:
+          - listitem [ref=f11e32]:
+            - link "Shopping cart" [ref=f11e33] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/cart
+        - generic [ref=f11e34]:
+          - generic [ref=f11e35]:
+            - paragraph [ref=f11e39]:
+              - text: Add
+              - generic [ref=f11e40]: ৳971.52
+              - text: to cart and get free shipping!
+            - table [ref=f11e46]:
+              - rowgroup [ref=f11e47]:
+                - row [ref=f11e48]:
+                  - cell [ref=f11e49]:
+                    - link "Remove Dune Desert Mouse Plush from cart" [ref=f11e50] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/cart
+                      - text:  ×
+                  - cell [ref=f11e51]:
+                    - link [ref=f11e52] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/all-products
+                      - img "Dune Desert Mouse Plush" [ref=f11e53]
+                  - cell [ref=f11e54]:
+                    - link "Dune Desert Mouse Plush" [ref=f11e55] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/all-products
+                  - cell "Price ৳28.48" [ref=f11e56]:
+                    - text: Price
+                    - generic [ref=f11e57]: ৳28.48
+                  - cell [ref=f11e59]:
+                    - text: Quantity
+                    - generic [ref=f11e60]:
+                      - button "Decrease quantity" [ref=f11e61] [cursor=pointer]: "-"
+                      - generic: Dune Desert Mouse Plush quantity
+                      - spinbutton "Product quantity" [ref=f11e62]: "1"
+                      - button "Increase quantity" [ref=f11e63] [cursor=pointer]: +
+                  - cell "Subtotal ৳28.48" [ref=f11e64]:
+                    - text: Subtotal
+                    - generic [ref=f11e65]: ৳28.48
+                - row [ref=f11e67]:
+                  - cell [ref=f11e68]:
+                    - generic [ref=f11e70]:
+                      - generic: "Coupon:"
+                      - textbox "Coupon:" [ref=f11e71]:
+                        - /placeholder: Coupon code
+                      - button "Apply coupon" [ref=f11e72] [cursor=pointer]
+          - generic [ref=f11e73]:
+            - heading "Cart totals" [level=2] [ref=f11e74]
+            - generic [ref=f11e77]:
+              - table [ref=f11e78]:
+                - rowgroup [ref=f11e79]:
+                  - row [ref=f11e80]:
+                    - cell "Subtotal ৳28.48" [ref=f11e81]:
+                      - text: Subtotal
+                      - generic [ref=f11e82]: ৳28.48
+                  - row [ref=f11e84]:
+                    - 'cell "Shipment Free shipping Flat rate: ৳12.00 Local pickup: ৳25.00 Shipping options will be updated during checkout. Calculate shipping" [ref=f11e85]':
+                      - text: Shipment
+                      - list [ref=f11e86]:
+                        - listitem [ref=f11e87]:
+                          - radio "Free shipping" [checked] [ref=f11e88] [cursor=pointer]
+                          - generic [ref=f11e89]: Free shipping
+                        - listitem [ref=f11e90]:
+                          - 'radio "Flat rate: ৳12.00" [ref=f11e91] [cursor=pointer]'
+                          - generic [ref=f11e92]:
+                            - text: "Flat rate:"
+                            - generic [ref=f11e93]: ৳12.00
+                        - listitem [ref=f11e95]:
+                          - 'radio "Local pickup: ৳25.00" [ref=f11e96] [cursor=pointer]'
+                          - generic [ref=f11e97]:
+                            - text: "Local pickup:"
+                            - generic [ref=f11e98]: ৳25.00
+                      - paragraph [ref=f11e100]: Shipping options will be updated during checkout.
+                      - button "Calculate shipping" [ref=f11e102] [cursor=pointer]
+                  - row [ref=f11e103]:
+                    - cell "Total ৳28.48" [ref=f11e104]:
+                      - text: Total
+                      - strong [ref=f11e105]:
+                        - generic [ref=f11e106]: ৳28.48
+              - link "Proceed to checkout" [ref=f11e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/checkout
+    - contentinfo [ref=f11e110]:
+      - generic [ref=f11e111]:
+        - generic [ref=f11e112]:
+          - generic [ref=f11e113]:
+            - link [ref=f11e115] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+            - paragraph [ref=f11e116]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f11e118]:
+            - heading "Company" [level=2] [ref=f11e120]
+            - list [ref=f11e123]:
+              - listitem [ref=f11e124]:
+                - list [ref=f11e125]:
+                  - listitem [ref=f11e126]:
+                    - link "About Us" [ref=f11e127] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/about
+                  - listitem [ref=f11e128]:
+                    - link "Contact Us" [ref=f11e129] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/contact
+                  - listitem [ref=f11e130]:
+                    - link "F.A.Q." [ref=f11e131] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/faq
+          - generic [ref=f11e133]:
+            - heading "Info" [level=2] [ref=f11e135]
+            - list [ref=f11e138]:
+              - listitem [ref=f11e139]:
+                - list [ref=f11e140]:
+                  - listitem [ref=f11e141]:
+                    - link "Refund & Return Policy" [ref=f11e142] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/refund-policy
+                  - listitem [ref=f11e143]:
+                    - link "Terms & Conditions" [ref=f11e144] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/terms-conditions
+                  - listitem [ref=f11e145]:
+                    - link "Privacy Policy" [ref=f11e146] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8000/privacy-policy
+          - generic [ref=f11e148]:
+            - heading "Social Links" [level=2] [ref=f11e150]
+            - generic:
+              - generic:
+                - list
+        - generic [ref=f11e151]:
+          - generic [ref=f11e152]: Secure Checkout
+          - generic [ref=f11e157]: Cash on Delivery
+          - generic [ref=f11e162]: bKash
+          - generic [ref=f11e165]: Nagad
+          - generic [ref=f11e168]: Online Payment (UddoktaPay)
+        - paragraph [ref=f11e173]:
+          - link "Roventex" [ref=f11e174] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f11e175]:
+    - search [ref=f11e177]:
+      - textbox "Search" [ref=f11e178]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f11e179] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f11e180]:
+      - listitem [ref=f11e181]:
+        - link "Products" [ref=f11e182] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/all-products
+        - list [ref=f11e186]:
+          - listitem [ref=f11e187]:
+            - generic [ref=f11e188] [cursor=pointer]: 
+            - link "Back" [ref=f11e189] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f11e190]:
+            - link "Shop" [ref=f11e191] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/all-products
+            - list [ref=f11e192]:
+              - listitem [ref=f11e193]:
+                - generic [ref=f11e194] [cursor=pointer]: 
+                - link "Back" [ref=f11e195] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f11e196]:
+                - link "T-Shirt" [ref=f11e197] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=t-shirt
+              - listitem [ref=f11e198]:
+                - link "Polo T-Shirt" [ref=f11e199] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=polo-t-shirt
+              - listitem [ref=f11e200]:
+                - link "Shirt" [ref=f11e201] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=shirt
+              - listitem [ref=f11e202]:
+                - link "Boxy Shirt" [ref=f11e203] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=boxy-shirt
+              - listitem [ref=f11e204]:
+                - link "Jeans" [ref=f11e205] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=jeans
+              - listitem [ref=f11e206]:
+                - link "Baggy Jeans" [ref=f11e207] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=baggy-jeans
+              - listitem [ref=f11e208]:
+                - link "Semi Baggy Jeans" [ref=f11e209] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=semi-baggy-jeans
+              - listitem [ref=f11e210]:
+                - link "Cargo Pant" [ref=f11e211] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=cargo-pant
+              - listitem [ref=f11e212]:
+                - link "Formal Pant" [ref=f11e213] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=formal-pant
+              - listitem [ref=f11e214]:
+                - link "Chino Pant" [ref=f11e215] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=chino-pant
+              - listitem [ref=f11e216]:
+                - link "Shorts" [ref=f11e217] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=shorts
+            - generic [ref=f11e218] [cursor=pointer]: 
+          - listitem [ref=f11e219]:
+            - link "Footwear" [ref=f11e220] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/category-products?slug=footwear
+            - list [ref=f11e221]:
+              - listitem [ref=f11e222]:
+                - generic [ref=f11e223] [cursor=pointer]: 
+                - link "Back" [ref=f11e224] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f11e225]:
+                - link "Boots" [ref=f11e226] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=boots
+              - listitem [ref=f11e227]:
+                - link "Formal Shoes" [ref=f11e228] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=formal-shoes
+              - listitem [ref=f11e229]:
+                - link "Loafers" [ref=f11e230] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=loafers
+              - listitem [ref=f11e231]:
+                - link "Running Shoes" [ref=f11e232] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=running-shoes
+              - listitem [ref=f11e233]:
+                - link "Slides" [ref=f11e234] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=slides
+              - listitem [ref=f11e235]:
+                - link "Slippers" [ref=f11e236] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=slippers
+              - listitem [ref=f11e237]:
+                - link "Sneakers" [ref=f11e238] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=sneakers
+              - listitem [ref=f11e239]:
+                - link "Sports Shoes" [ref=f11e240] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/category-products?slug=sports-shoes
+            - generic [ref=f11e241] [cursor=pointer]: 
+        - generic [ref=f11e242] [cursor=pointer]: 
+      - listitem [ref=f11e243]:
+        - link "About Us" [ref=f11e244] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/about
+      - listitem [ref=f11e249]:
+        - link "Contact Us" [ref=f11e250] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/contact
+      - listitem [ref=f11e254]:
+        - link "F.A.Q." [ref=f11e255] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/faq
+  - complementary "Shopping cart sidebar" [ref=f11e259]:
+    - generic [ref=f11e260]:
+      - generic [ref=f11e261]: Shopping cart
+      - link " Close" [ref=f11e263] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f11e264]: 
+        - generic [ref=f11e265]: Close
+  - complementary "Sticky toolbar" [ref=f11e268]:
+    - link " Menu" [ref=f11e270] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f11e271]: 
+      - generic [ref=f11e272]: Menu
+    - generic "My cart" [ref=f11e273]:
+      - link " 0 Cart" [ref=f11e274] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/cart
+        - generic [ref=f11e275]:
+          - text: 
+          - generic [ref=f11e276]: "0"
+        - generic [ref=f11e277]: Cart
+    - generic "My wishlist" [ref=f11e278]:
+      - link " 0 Wishlist" [ref=f11e279] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/wishlist
+        - generic [ref=f11e280]:
+          - text: 
+          - generic [ref=f11e281]: "0"
+        - generic [ref=f11e282]: Wishlist
+    - generic "My account" [ref=f11e283]:
+      - link " Account" [ref=f11e284] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/login
+        - generic [ref=f11e285]: 
+        - generic [ref=f11e286]: Account
+  - button "Contact us" [ref=f11e288] [cursor=pointer]

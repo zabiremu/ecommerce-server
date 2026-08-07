@@ -123,7 +123,12 @@
   z-index: 9999;
   font-family: 'Lexend Deca', sans-serif;
 }
-.gms-dm-toggle {
+/* "html" prefix bumps specificity to (0,0,1,1) — some pages (login,
+   register, ...) re-link the theme's base.css after gms-custom.css, and
+   its ":is(.btn, .button, button, ...)" reset has the same (0,0,1,0)
+   specificity as a plain ".gms-dm-toggle" would, so whichever loaded
+   last was winning and flattening this into a plain gray button. */
+html .gms-dm-toggle {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -140,7 +145,7 @@
   position: relative;
   z-index: 2;
 }
-.gms-dm-toggle:hover {
+html .gms-dm-toggle:hover {
   background: var(--gms-red-dark);
   transform: scale(1.07);
 }
@@ -193,6 +198,17 @@
   width: 28px;
   height: 28px;
   flex-shrink: 0;
+}
+/* The login/register footer row ("Remember me" / "Lost your password?")
+   and the auth-switch line ("Register here" / "Login here") render low
+   enough on short mobile viewports to sit right under the DM button's
+   fixed corner (bottom:64px, 56px tall, right:24px) — reserve space so
+   their text clears that column instead of disappearing behind it. */
+@media (max-width: 768.98px) {
+  html .login-form-footer,
+  html .gms-auth-switch {
+    padding-right: 90px;
+  }
 }
 
 /* ==========================================================
@@ -540,6 +556,25 @@ input[type="submit"] {
    "this item is unavailable". */
 .gms-ribbon.gms-ribbon-soldout .gms-ribbon-inner {
   background: linear-gradient(180deg, #6b6b6b, #3a3a3a 55%, #1f1f1f);
+}
+/* Scale the ribbon down on narrow product cards — the fixed 72px size
+   was designed for desktop grids and dwarfs the thumbnail on mobile.
+   Sized as a % of the thumb (not a fixed px) so it stays proportional
+   at any card width; the breakpoint matches the 2-col mobile carousel
+   layout further down this file (§16b), not just phone-width screens. */
+@media (max-width: 768.98px) {
+  .gms-ribbon {
+    right: 6%;
+    width: 26%;
+    min-width: 38px;
+    max-width: 56px;
+  }
+  .gms-ribbon-inner {
+    gap: 1px;
+    padding: 5px 4px 10px;
+    font-size: 7px;
+    line-height: 1.25;
+  }
 }
 
 /* Visually-hidden accessible label (icon-only buttons still announce
@@ -1585,25 +1620,39 @@ body {
    items past the first --wd-col, and that init never reliably fires on
    this build — so on mobile (--wd-col-sm:2) only the first 2 products
    were reachable, the rest silently clipped by overflow-x:clip
-   (lib-swiper.css). A plain scroll-snap row sidesteps that dependency;
-   desktop/tablet grids are untouched. */
+   (lib-swiper.css). Slick (see gms-slick-init.js) now drives the mobile
+   swipe/paging directly instead — desktop/tablet grids are untouched,
+   Slick unslicks itself above the 768.98 breakpoint. Only the theme's
+   own prev/next arrows still need hiding here; Slick's dots replace them. */
 @media (max-width: 768.98px) {
-  .wd-products-element .wd-carousel {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    touch-action: pan-x pan-y;
-  }
-  .wd-products-element .wd-carousel-wrap {
-    transform: none !important;
-    align-items: stretch;
-  }
-  .wd-products-element .wd-carousel-item {
-    scroll-snap-align: start;
-  }
   .wd-products-element .wd-nav-arrows {
     display: none;
   }
+}
+/* Slick-specific layout for these same carousels — gutter between slides
+   (Slick has no built-in gap, only slide width) and dot styling to match
+   the gold accent used elsewhere instead of the plugin's default black. */
+.wd-products-element .wd-carousel-wrap.slick-slider {
+  display: block;
+}
+.wd-products-element .slick-slide {
+  padding: 0 6px;
+}
+.wd-products-element .slick-list {
+  margin: 0 -6px;
+}
+.wd-products-element .slick-dots {
+  position: static;
+  margin-top: 8px;
+}
+.wd-products-element .slick-dots li button:before {
+  font-size: 8px;
+  color: var(--gms-primary, #C9A24B);
+  opacity: .3;
+}
+.wd-products-element .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: var(--gms-primary, #C9A24B);
 }
 
 /* ==========================================================
@@ -2168,5 +2217,16 @@ body {
   .wd-footer .wp-block-wd-column.wd-4a52106e {
     flex: 1 1 calc(50% - 10px) !important;
     max-width: calc(50% - 10px) !important;
+  }
+
+  /* The sticky bottom toolbar (55px, .wd-toolbar) and the floating
+     WhatsApp/Messenger button (.gms-dm-wrap, bottom:64px + 56px tall)
+     are both position:fixed, so at full scroll they sit on top of
+     whatever footer content is last — the trust-badges row and
+     copyright line were getting covered/unreadable behind them.
+     Reserve dead space below the footer so real content scrolls
+     clear of both before the page actually ends. */
+  .wd-footer {
+    padding-bottom: 140px;
   }
 }

@@ -2333,8 +2333,8 @@
             --wd-form-brd-radius: 5px;
             --btn-default-color: #fff;
             --btn-default-color-hover: #fff;
-            --btn-accented-color: #333;
-            --btn-accented-color-hover: #333;
+            --btn-accented-color: #fff;
+            --btn-accented-color-hover: #fff;
             --btn-default-brd-radius: 5px;
             --btn-default-box-shadow: none;
             --btn-default-box-shadow-hover: none;
@@ -2429,6 +2429,8 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/slick/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/gms-custom.css') }}">
     @stack('styles')
 </head>

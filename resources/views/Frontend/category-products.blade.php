@@ -369,7 +369,7 @@
 
                 {{-- Product Grid --}}
                 <div class="products wd-products wd-grid-g grid-columns-4 elements-grid wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                     style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;"
+                     style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:1;--wd-gap-lg:20px;--wd-gap-sm:10px;"
                      id="productGrid"></div>
 
                 {{-- Pagination --}}
