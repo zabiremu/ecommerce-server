@@ -2440,6 +2440,10 @@
             color: #fff;
         }
 
+        html .progress-msg p {
+            color: var(--wd-primary-color);
+        }
+
         html table th {
             text-transform: none;
         }
