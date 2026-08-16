@@ -1571,7 +1571,6 @@
         src="merchandise/wp-content/themes/woodmart/js/scripts/global/scrollBar.min.js"
         id="wd-scrollbar-js"></script>
 <meta name="theme-color" content="rgb(245,245,245)">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="icon"
         href="wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-45x45.png"
         sizes="32x32" />

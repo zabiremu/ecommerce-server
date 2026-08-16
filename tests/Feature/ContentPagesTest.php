@@ -4,12 +4,54 @@ namespace Tests\Feature;
 
 use App\Models\Page;
 use App\Models\SiteSetting;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\CreatesProducts;
 use Tests\TestCase;
 
 class ContentPagesTest extends TestCase
 {
     use RefreshDatabase;
+    use CreatesProducts;
+
+    /**
+     * product-details/cart/checkout/wishlist/login/register/about/
+     * forgot-password/reset-password/order-complete/dashboard each carry a
+     * large leftover static HTML block (the same "old scraped theme page"
+     * pattern that once put a phantom product on /cart) ahead of their real
+     * @section('content'). That leftover block leaks into the actual
+     * response and included its own <meta name="viewport" ... user-scalable
+     * =no maximum-scale=1.0> — a SECOND viewport tag after the layout's
+     * normal one, which browsers treat as authoritative, silently disabling
+     * pinch-to-zoom (an accessibility regression) on exactly those pages
+     * while every other page stayed normally zoomable. Locks down that no
+     * page ever ships more than one viewport tag, and that it never
+     * disables zoom.
+     */
+    public function test_no_page_disables_pinch_to_zoom_or_ships_a_duplicate_viewport_tag(): void
+    {
+        $product = $this->makeProduct();
+
+        $paths = [
+            '/', '/all-products', '/faq', '/terms-conditions', '/privacy-policy', '/refund-policy',
+            '/about', '/contact', '/cart', '/checkout', '/wishlist', '/login', '/register',
+            '/forgot-password', '/reset-password', '/order-complete',
+            '/product-details?slug=' . $product->slug,
+        ];
+
+        foreach ($paths as $path) {
+            $html = $this->get($path)->assertOk()->getContent();
+            $count = substr_count($html, '<meta name="viewport"');
+            $this->assertSame(1, $count, "'{$path}' should render exactly one viewport meta tag, found {$count}");
+            $this->assertStringNotContainsString('user-scalable=no', $html, "'{$path}' disables pinch-to-zoom");
+            $this->assertStringNotContainsString('maximum-scale=1.0', $html, "'{$path}' caps zoom via maximum-scale");
+        }
+
+        $user = User::factory()->create();
+        $html = $this->actingAs($user, 'web')->get('/dashboard')->assertOk()->getContent();
+        $this->assertSame(1, substr_count($html, '<meta name="viewport"'), "'/dashboard' should render exactly one viewport meta tag");
+        $this->assertStringNotContainsString('user-scalable=no', $html, "'/dashboard' disables pinch-to-zoom");
+    }
 
     /**
      * About/Terms/Privacy/Refund page content once said "NF Shop 24" /
