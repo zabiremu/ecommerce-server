@@ -94,10 +94,29 @@
     }
 
     function renderCartBadge() {
-        const count = cartCount();
-        document.querySelectorAll('[data-cart-count]').forEach(function (el) {
-            el.textContent = count;
-            el.style.display = count > 0 ? '' : 'none';
+        const items = getCart();
+        const count = items.reduce(function (sum, it) { return sum + it.qty; }, 0);
+
+        document.querySelectorAll('.wd-cart-number').forEach(function (el) {
+            el.innerHTML = count + ' <span>' + (count === 1 ? 'item' : 'items') + '</span>';
+        });
+
+        if (!items.length) {
+            document.querySelectorAll('.wd-cart-subtotal').forEach(function (el) {
+                el.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(0) + '</bdi></span>';
+            });
+            return;
+        }
+
+        fetchProducts(items.map(function (it) { return it.id; })).then(function (products) {
+            const byId = {};
+            products.forEach(function (p) { byId[p.id] = p; });
+            const subtotal = items.reduce(function (sum, it) {
+                return sum + (byId[it.id] ? byId[it.id].price * it.qty : 0);
+            }, 0);
+            document.querySelectorAll('.wd-cart-subtotal').forEach(function (el) {
+                el.innerHTML = '<span class="woocommerce-Price-amount amount"><bdi>' + window.formatPrice(subtotal) + '</bdi></span>';
+            });
         });
     }
 
