@@ -199,6 +199,25 @@ class ProductCatalogTest extends TestCase
         $this->assertStringContainsString('slug=' . $product->slug, $url);
     }
 
+    /**
+     * The quick-view modal's <img> is populated client-side (its `src` is
+     * set once the AJAX response comes back), but the static markup itself
+     * had no `src` attribute at all — a real <img> with no src, present on
+     * every page since the modal lives in the shared layout. This locks
+     * down that it always ships with at least a placeholder src, so the
+     * element is never genuinely broken/empty before JS runs.
+     */
+    public function test_quick_view_image_placeholder_always_has_a_src_attribute(): void
+    {
+        $html = $this->get('/')->assertOk()->getContent();
+
+        preg_match('/<img([^>]*)id="gms-quick-view-img"([^>]*)>/', $html, $m);
+        $this->assertNotEmpty($m, 'Could not find the quick-view image markup');
+
+        $tag = $m[0];
+        $this->assertStringContainsString('src="', $tag, 'Quick-view <img> has no src attribute');
+    }
+
     public function test_search_suggestions_matches_by_name_and_logs_the_term(): void
     {
         $this->makeProduct(['name' => 'Wireless Mouse']);

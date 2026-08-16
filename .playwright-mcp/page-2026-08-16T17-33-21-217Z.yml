@@ -1,0 +1,212 @@
+- generic [active] [ref=f19e1]:
+  - generic [ref=f19e2]:
+    - link "Skip to navigation" [ref=f19e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f19e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f19e5]:
+    - banner [ref=f19e6]:
+      - generic [ref=f19e10]:
+        - text:     
+        - link "Open mobile menu" [ref=f19e13] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f19e14]: 
+        - link "Site logo" [ref=f19e17] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134
+        - link "" [ref=f19e20] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134/login
+    - generic [ref=f19e24]:
+      - generic [ref=f19e25]:
+        - link "Home" [ref=f19e26] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134
+        - generic [ref=f19e27]: /
+        - generic [ref=f19e28]: Wishlist
+      - heading "My Wishlist" [level=1] [ref=f19e29]
+      - generic [ref=f19e30]: Loading your wishlist…
+    - contentinfo [ref=f19e31]:
+      - generic [ref=f19e32]:
+        - generic [ref=f19e33]:
+          - generic [ref=f19e34]:
+            - link [ref=f19e36] [cursor=pointer]:
+              - /url: http://127.0.0.1:8134
+            - paragraph [ref=f19e37]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f19e39]:
+            - heading "Company" [level=2] [ref=f19e41]
+            - list [ref=f19e44]:
+              - listitem [ref=f19e45]:
+                - list [ref=f19e46]:
+                  - listitem [ref=f19e47]:
+                    - link "About Us" [ref=f19e48] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/about
+                  - listitem [ref=f19e49]:
+                    - link "Contact Us" [ref=f19e50] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/contact
+                  - listitem [ref=f19e51]:
+                    - link "F.A.Q." [ref=f19e52] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/faq
+          - generic [ref=f19e54]:
+            - heading "Info" [level=2] [ref=f19e56]
+            - list [ref=f19e59]:
+              - listitem [ref=f19e60]:
+                - list [ref=f19e61]:
+                  - listitem [ref=f19e62]:
+                    - link "Refund & Return Policy" [ref=f19e63] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/refund-policy
+                  - listitem [ref=f19e64]:
+                    - link "Terms & Conditions" [ref=f19e65] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/terms-conditions
+                  - listitem [ref=f19e66]:
+                    - link "Privacy Policy" [ref=f19e67] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8134/privacy-policy
+          - generic [ref=f19e69]:
+            - heading "Social Links" [level=2] [ref=f19e71]
+            - generic:
+              - generic:
+                - list
+        - generic [ref=f19e72]:
+          - generic [ref=f19e73]: Secure Checkout
+          - generic [ref=f19e78]: Cash on Delivery
+          - generic [ref=f19e83]: bKash
+          - generic [ref=f19e86]: Nagad
+          - generic [ref=f19e89]: Online Payment (UddoktaPay)
+        - paragraph [ref=f19e94]:
+          - link "Roventex" [ref=f19e95] [cursor=pointer]:
+            - /url: http://127.0.0.1:8134
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f19e96]:
+    - search [ref=f19e98]:
+      - textbox "Search" [ref=f19e99]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f19e100] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f19e101]:
+      - listitem [ref=f19e102]:
+        - link "Products" [ref=f19e103] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134/all-products
+        - list [ref=f19e107]:
+          - listitem [ref=f19e108]:
+            - generic [ref=f19e109] [cursor=pointer]: 
+            - link "Back" [ref=f19e110] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f19e111]:
+            - link "Shop" [ref=f19e112] [cursor=pointer]:
+              - /url: http://127.0.0.1:8134/all-products
+            - list [ref=f19e113]:
+              - listitem [ref=f19e114]:
+                - generic [ref=f19e115] [cursor=pointer]: 
+                - link "Back" [ref=f19e116] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f19e117]:
+                - link "T-Shirt" [ref=f19e118] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=t-shirt
+              - listitem [ref=f19e119]:
+                - link "Polo T-Shirt" [ref=f19e120] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=polo-t-shirt
+              - listitem [ref=f19e121]:
+                - link "Shirt" [ref=f19e122] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=shirt
+              - listitem [ref=f19e123]:
+                - link "Boxy Shirt" [ref=f19e124] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=boxy-shirt
+              - listitem [ref=f19e125]:
+                - link "Jeans" [ref=f19e126] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=jeans
+              - listitem [ref=f19e127]:
+                - link "Baggy Jeans" [ref=f19e128] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=baggy-jeans
+              - listitem [ref=f19e129]:
+                - link "Semi Baggy Jeans" [ref=f19e130] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=semi-baggy-jeans
+              - listitem [ref=f19e131]:
+                - link "Cargo Pant" [ref=f19e132] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=cargo-pant
+              - listitem [ref=f19e133]:
+                - link "Formal Pant" [ref=f19e134] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=formal-pant
+              - listitem [ref=f19e135]:
+                - link "Chino Pant" [ref=f19e136] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=chino-pant
+              - listitem [ref=f19e137]:
+                - link "Shorts" [ref=f19e138] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=shorts
+            - generic [ref=f19e139] [cursor=pointer]: 
+          - listitem [ref=f19e140]:
+            - link "Footwear" [ref=f19e141] [cursor=pointer]:
+              - /url: http://127.0.0.1:8134/category-products?cat=footwear
+            - list [ref=f19e142]:
+              - listitem [ref=f19e143]:
+                - generic [ref=f19e144] [cursor=pointer]: 
+                - link "Back" [ref=f19e145] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f19e146]:
+                - link "Boots" [ref=f19e147] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=boots
+              - listitem [ref=f19e148]:
+                - link "Formal Shoes" [ref=f19e149] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=formal-shoes
+              - listitem [ref=f19e150]:
+                - link "Loafers" [ref=f19e151] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=loafers
+              - listitem [ref=f19e152]:
+                - link "Running Shoes" [ref=f19e153] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=running-shoes
+              - listitem [ref=f19e154]:
+                - link "Slides" [ref=f19e155] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=slides
+              - listitem [ref=f19e156]:
+                - link "Slippers" [ref=f19e157] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=slippers
+              - listitem [ref=f19e158]:
+                - link "Sneakers" [ref=f19e159] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=sneakers
+              - listitem [ref=f19e160]:
+                - link "Sports Shoes" [ref=f19e161] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8134/category-products?cat=sports-shoes
+            - generic [ref=f19e162] [cursor=pointer]: 
+        - generic [ref=f19e163] [cursor=pointer]: 
+      - listitem [ref=f19e164]:
+        - link "About Us" [ref=f19e165] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134/about
+      - listitem [ref=f19e170]:
+        - link "Contact Us" [ref=f19e171] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134/contact
+      - listitem [ref=f19e175]:
+        - link "F.A.Q." [ref=f19e176] [cursor=pointer]:
+          - /url: http://127.0.0.1:8134/faq
+  - complementary "Shopping cart sidebar" [ref=f19e180]:
+    - generic [ref=f19e181]:
+      - generic [ref=f19e182]: Shopping cart
+      - link " Close" [ref=f19e184] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f19e185]: 
+        - generic [ref=f19e186]: Close
+  - complementary "Sticky toolbar" [ref=f19e189]:
+    - link " Menu" [ref=f19e191] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=f19e192]: 
+      - generic [ref=f19e193]: Menu
+    - generic "My cart" [ref=f19e194]:
+      - link " 0 Cart" [ref=f19e195] [cursor=pointer]:
+        - /url: http://127.0.0.1:8134/cart
+        - generic [ref=f19e196]:
+          - text: 
+          - generic [ref=f19e197]: "0"
+        - generic [ref=f19e198]: Cart
+    - generic "My wishlist" [ref=f19e199]:
+      - link " 0 Wishlist" [ref=f19e200] [cursor=pointer]:
+        - /url: http://127.0.0.1:8134/wishlist
+        - generic [ref=f19e201]:
+          - text: 
+          - generic [ref=f19e202]: "0"
+        - generic [ref=f19e203]: Wishlist
+    - generic "My account" [ref=f19e204]:
+      - link " Account" [ref=f19e205] [cursor=pointer]:
+        - /url: http://127.0.0.1:8134/login
+        - generic [ref=f19e206]: 
+        - generic [ref=f19e207]: Account
+  - button "Contact us" [ref=f19e209] [cursor=pointer]

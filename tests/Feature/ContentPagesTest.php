@@ -84,6 +84,31 @@ class ContentPagesTest extends TestCase
     }
 
     /**
+     * The wishlist page's loading/empty/grid states used to be toggled
+     * independently at several different call sites (including a fetch
+     * .catch() handler that only changed the loading text without ever
+     * hiding it), so it was possible for "Loading your wishlist…" and
+     * "Your wishlist is empty." to end up visible at the same time. They
+     * now route through a single showState() switch that always hides all
+     * three before showing one, making that combination structurally
+     * impossible. This locks down that every remaining display toggle for
+     * these elements goes through showState() rather than a scattered
+     * inline style assignment.
+     */
+    public function test_wishlist_page_states_are_mutually_exclusive_by_construction(): void
+    {
+        $html = $this->get('/wishlist')->assertOk()->getContent();
+
+        $this->assertStringContainsString('function showState(name)', $html);
+
+        // Only the three assignments inside showState() itself should touch
+        // these elements' display — any other occurrence means a call site
+        // is bypassing the mutual-exclusion switch again.
+        $count = substr_count($html, '.style.display');
+        $this->assertSame(3, $count, 'A wishlist state toggle is bypassing showState(), risking two states shown at once');
+    }
+
+    /**
      * The FAQ page's seeded content once had its Track Order / Refund &
      * Return Policy / Contact Us links frozen as absolute http://localhost
      * URLs (baked in at migration-run time via url(), which resolves

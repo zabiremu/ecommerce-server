@@ -1814,15 +1814,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var empty = document.getElementById('wl-empty');
     var grid = document.getElementById('wl-grid');
 
-    function render(products) {
-        loading.style.display = 'none';
+    // Mutual exclusion by construction — always hides all three states
+    // before showing the requested one, so "loading" and "empty" (or any
+    // other combination) can never end up visible at the same time no
+    // matter which code path triggers the switch.
+    function showState(name) {
+        loading.style.display = name === 'loading' ? 'block' : 'none';
+        empty.style.display = name === 'empty' ? 'block' : 'none';
+        grid.style.display = name === 'grid' ? 'grid' : 'none';
+    }
 
+    function render(products) {
         if (!products.length) {
-            empty.style.display = 'block';
+            showState('empty');
             return;
         }
 
-        grid.style.display = 'grid';
+        showState('grid');
         grid.innerHTML = products.map(function (p) {
             var priceHtml = p.old_price
                 ? '<del><span class="woocommerce-Price-amount amount">' + window.formatPrice(p.old_price) + '</span></del> ' +
@@ -1865,18 +1873,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 ShopCart.removeFromWishlist(id);
                 btn.closest('[data-id]').remove();
                 if (ShopCart.getWishlist().length === 0) {
-                    grid.style.display = 'none';
-                    empty.style.display = 'block';
+                    showState('empty');
                 }
             });
         });
     }
 
     if (!ids.length) {
-        loading.style.display = 'none';
-        empty.style.display = 'block';
+        showState('empty');
     } else {
+        showState('loading');
         ShopCart.fetchProducts(ids).then(render).catch(function () {
+            showState('loading');
             loading.textContent = 'Could not load your wishlist. Please try again.';
         });
     }

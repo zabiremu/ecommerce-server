@@ -738,7 +738,7 @@
         <div class="gms-quick-view" role="dialog" aria-modal="true" aria-label="Quick view">
             <button type="button" class="gms-quick-view-close" id="gms-quick-view-close" aria-label="Close">&times;</button>
             <div class="gms-quick-view-image">
-                <img alt="" id="gms-quick-view-img">
+                <img alt="" id="gms-quick-view-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7">
             </div>
             <div class="gms-quick-view-body">
                 <div class="gms-quick-view-badges" id="gms-quick-view-badges"></div>
