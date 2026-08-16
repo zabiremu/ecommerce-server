@@ -177,6 +177,28 @@ class ProductCatalogTest extends TestCase
         ]);
     }
 
+    /**
+     * The quick-view modal's "View Full Details" link is wired up purely
+     * client-side, by setting its href to this endpoint's `url` field once
+     * the AJAX response comes back — if that field is ever missing or
+     * malformed, the link silently stays at its static href="#" and clicking
+     * it does nothing. This locks down that the endpoint always returns a
+     * real, well-formed product-details url.
+     */
+    public function test_product_quick_view_returns_a_working_product_details_url(): void
+    {
+        $product = $this->makeProduct();
+
+        $response = $this->getJson('/product-quick-view/' . $product->id);
+        $response->assertOk();
+
+        $url = $response->json('url');
+        $this->assertIsString($url);
+        $this->assertNotSame('', $url);
+        $this->assertStringContainsString('product-details', $url);
+        $this->assertStringContainsString('slug=' . $product->slug, $url);
+    }
+
     public function test_search_suggestions_matches_by_name_and_logs_the_term(): void
     {
         $this->makeProduct(['name' => 'Wireless Mouse']);

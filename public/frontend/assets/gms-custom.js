@@ -794,12 +794,20 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
 
       fetch(url, { headers: { 'Accept': 'application/json' } })
-        .then(function (res) { return res.json(); })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Quick view request failed with status ' + res.status);
+          return res.json();
+        })
         .then(function (data) {
+          // A response without a product url can't build a working "View Full
+          // Details" link — treat it as a failure instead of silently leaving
+          // the link at its static href="#" fallback.
+          if (!data || !data.url) throw new Error('Quick view response missing product url');
           renderProduct(data);
           openModal();
         })
-        .catch(function () {
+        .catch(function (err) {
+          console.error('Quick view failed, navigating to product page instead:', err);
           window.location.href = trigger.getAttribute('href');
         });
     });

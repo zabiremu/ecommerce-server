@@ -30,11 +30,11 @@ return new class extends Migration
 <h3>Do you offer free shipping?</h3>
 <p>Yes, we offer free shipping on orders above a minimum amount. The exact threshold is shown at checkout.</p>
 <h3>How can I track my order?</h3>
-<p>Use the <a href="' . url('/track-order') . '">Track Order</a> page with your order ID to check the latest status, or log in to your account to view your order history.</p>
+<p>Use the <a href="/track-order">Track Order</a> page with your order ID to check the latest status, or log in to your account to view your order history.</p>
 
 <h2>Returns &amp; Refunds</h2>
 <h3>What is your return policy?</h3>
-<p>We accept returns within 7 days of delivery for unused products in their original packaging. See our full <a href="' . url('/refund-policy') . '">Refund &amp; Return Policy</a> for details.</p>
+<p>We accept returns within 7 days of delivery for unused products in their original packaging. See our full <a href="/refund-policy">Refund &amp; Return Policy</a> for details.</p>
 <h3>How long do refunds take?</h3>
 <p>Once your return is approved, refunds or replacements are processed within 5–7 business days.</p>
 
@@ -45,7 +45,7 @@ return new class extends Migration
 <p>Use the "Forgot password" link on the login page to reset it via email.</p>
 
 <h2>Still have questions?</h2>
-<p>Reach out to us on our <a href="' . url('/contact') . '">Contact Us</a> page — we\'re happy to help.</p>',
+<p>Reach out to us on our <a href="/contact">Contact Us</a> page — we\'re happy to help.</p>',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
