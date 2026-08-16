@@ -12,11 +12,11 @@ return new class extends Migration
             'title'   => 'About Us',
             'subtitle'=> 'Bangladesh\'s trusted e-commerce destination',
             'icon'    => 'fas fa-circle-info',
-            'content' => '<h2>Welcome to NF Shop 24</h2>
-<p>NF Shop 24 is Bangladesh\'s trusted e-commerce destination, offering quality products at unbeatable prices with hassle-free delivery across the country.</p>
+            'content' => '<h2>Welcome to Roventex</h2>
+<p>Roventex is Bangladesh\'s trusted e-commerce destination, offering quality products at unbeatable prices with hassle-free delivery across the country.</p>
 
 <h2>Our Story</h2>
-<p>NF Shop 24 started with a simple mission — to make quality products accessible to every Bangladeshi at fair prices. What began as a small online store has grown into a trusted national e-commerce platform serving thousands of happy customers. We partner directly with trusted brands and local suppliers to ensure every product meets our quality standards.</p>
+<p>Roventex started with a simple mission — to make quality products accessible to every Bangladeshi at fair prices. What began as a small online store has grown into a trusted national e-commerce platform serving thousands of happy customers. We partner directly with trusted brands and local suppliers to ensure every product meets our quality standards.</p>
 
 <h2>Our Mission</h2>
 <p>To provide every Bangladeshi with access to quality products at the best prices, delivered reliably to their doorstep.</p>

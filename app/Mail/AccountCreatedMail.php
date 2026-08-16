@@ -21,7 +21,7 @@ class AccountCreatedMail extends Mailable
 
     public function envelope(): Envelope
     {
-        $shop = \App\Models\SiteSetting::get('company_name', 'ROVENTEX');
+        $shop = \App\Models\SiteSetting::get('company_name', 'Roventex');
         return new Envelope(
             subject: 'Your ' . $shop . ' account has been created',
         );

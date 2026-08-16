@@ -5,7 +5,7 @@
     $email = \App\Models\SiteSetting::get('contact_email', '');
     $address = \App\Models\SiteSetting::get('contact_address', 'Bangladesh');
     $hours = \App\Models\SiteSetting::get('contact_hours', 'Sat – Thu: 9AM – 10PM');
-    $company = \App\Models\SiteSetting::get('company_name', 'ROVENTEX');
+    $company = \App\Models\SiteSetting::get('company_name', 'Roventex');
     $socialFacebook = \App\Models\SiteSetting::get('social_facebook', '');
     $socialInstagram = \App\Models\SiteSetting::get('social_instagram', '');
     $socialYoutube = \App\Models\SiteSetting::get('social_youtube', '');

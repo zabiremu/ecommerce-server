@@ -2519,7 +2519,7 @@
 
                         <div id="wd-e3451e74" class="wp-block-wd-row wd-custom-width">
                             <div class="gms-auth-panel">
-                                <h3>Join Roventex and shop smarter</h3>
+                                <h3>Join {{ \App\Models\SiteSetting::get('company_name', 'Roventex') }} and shop smarter</h3>
                                 <p>Create an account to check out faster, track every order, and keep your favorite pieces saved for later.</p>
                                 <ul class="gms-auth-perks">
                                     <li>

@@ -31,7 +31,7 @@ return new class extends Migration
                 'icon'              => 'fas fa-shield-alt',
                 'last_updated_label'=> 'May 8, 2026',
                 'content'           => '<h2>1. Introduction</h2>
-<p>NF Shop 24 ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+<p>Roventex ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
 <p>By using our website, you agree to the collection and use of information in accordance with this policy.</p>
 
 <h2>2. Information We Collect</h2>
@@ -88,7 +88,7 @@ return new class extends Migration
 </ul>
 
 <h2>8. Contact Us</h2>
-<p>If you have any questions about this Privacy Policy, please contact us at info@nfshop24.com.</p>',
+<p>If you have any questions about this Privacy Policy, please contact us at info@roventex.com.</p>',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -99,7 +99,7 @@ return new class extends Migration
                 'icon'              => 'fas fa-file-contract',
                 'last_updated_label'=> 'May 8, 2026',
                 'content'           => '<h2>1. Acceptance of Terms</h2>
-<p>By accessing and using the NF Shop 24 website, you agree to be bound by these Terms and Conditions.</p>
+<p>By accessing and using the Roventex website, you agree to be bound by these Terms and Conditions.</p>
 
 <h2>2. Account Registration</h2>
 <p>When you create an account with us, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials.</p>
@@ -127,7 +127,7 @@ return new class extends Migration
 </ul>
 
 <h2>7. Intellectual Property</h2>
-<p>All content on this website is the property of NF Shop 24 and protected by applicable intellectual property laws.</p>
+<p>All content on this website is the property of Roventex and protected by applicable intellectual property laws.</p>
 
 <h2>8. Governing Law</h2>
 <p>These terms shall be governed by the laws of Bangladesh.</p>',
@@ -141,7 +141,7 @@ return new class extends Migration
                 'icon'              => 'fas fa-undo-alt',
                 'last_updated_label'=> 'May 8, 2026',
                 'content'           => '<h2>1. Overview</h2>
-<p>At NF Shop 24, customer satisfaction is our top priority. If you are not satisfied with your purchase, we are here to help.</p>
+<p>At Roventex, customer satisfaction is our top priority. If you are not satisfied with your purchase, we are here to help.</p>
 
 <h2>2. Return Eligibility</h2>
 <ul>
@@ -182,7 +182,7 @@ return new class extends Migration
 </ul>
 
 <h2>7. Contact Us</h2>
-<p>Phone: +8801820834086 | Email: info@nfshop24.com</p>',
+<p>Phone: +8801820834086 | Email: info@roventex.com</p>',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

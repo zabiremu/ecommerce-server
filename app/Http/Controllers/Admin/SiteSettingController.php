@@ -161,7 +161,7 @@ class SiteSettingController extends Controller
         try {
             MailConfigService::apply();
 
-            Mail::raw('This is a test email from your ROVENTEX admin panel. Your mail settings are working correctly!', function ($msg) use ($to) {
+            Mail::raw('This is a test email from your Roventex admin panel. Your mail settings are working correctly!', function ($msg) use ($to) {
                 $msg->to($to)->subject('✅ Test Email — Mail Settings Working');
             });
 

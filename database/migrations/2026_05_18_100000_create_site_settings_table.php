@@ -20,11 +20,11 @@ return new class extends Migration
         $now = now();
         $defaults = [
             // Company
-            ['company',  'company_name',        'NF Shop 24'],
-            ['company',  'company_tagline',     'NF Shop 24 — Largest E-commerce platform in Bangladesh. Quality products at the best prices with reliable delivery across the country.'],
+            ['company',  'company_name',        'Roventex'],
+            ['company',  'company_tagline',     'Roventex — Largest E-commerce platform in Bangladesh. Quality products at the best prices with reliable delivery across the country.'],
             // Contact
             ['contact',  'contact_address',     'Chittagong, Bangladesh'],
-            ['contact',  'contact_email',       'info@nfshop24.com'],
+            ['contact',  'contact_email',       'info@roventex.com'],
             ['contact',  'contact_phone',       '+8801820834086'],
             ['contact',  'contact_hours',       'Sat-Thu: 9AM - 10PM'],
             // Social

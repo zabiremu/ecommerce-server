@@ -260,8 +260,9 @@
           @include('Frontend.partials.trust-badges')
 
           <div class="wp-block-wd-container wd-dir-row wd-align-is-lg-center wd-7c5e9f7c ">
-              <p class="wp-block-wd-paragraph text-center    wd-aae3cee5"><a href="{{ route('home') }}">Roventex</a>
-                  © 2026 Roventex.</p>
+              @php($companyName = \App\Models\SiteSetting::get('company_name', 'Roventex'))
+              <p class="wp-block-wd-paragraph text-center    wd-aae3cee5"><a href="{{ route('home') }}">{{ $companyName }}</a>
+                  © {{ date('Y') }} {{ $companyName }}.</p>
 
 
           </div>
