@@ -54,4 +54,26 @@ class CartPageCouponsTest extends TestCase
             return $codes->contains($valid->code) && !$codes->contains($expired->code);
         });
     }
+
+    /**
+     * The coupon-rejection message on /api/cart/quote used to build its
+     * minimum-spend figure with a bare number_format() call instead of the
+     * shared Money::format() helper — so it showed as "...minimum spend of
+     * 1,000.00." (no currency symbol) right next to a subtotal/total that
+     * both correctly show "৳1,000.00". Locks down the message always goes
+     * through the same formatter as the rest of the page.
+     */
+    public function test_quote_coupon_minimum_spend_message_uses_the_shared_money_format(): void
+    {
+        $product = $this->makeProduct(['selling_price' => 100]);
+        $coupon = Coupon::create($this->baseCoupon(['code' => 'BIGSPEND', 'minimum_spend' => 1000]));
+
+        $response = $this->postJson('/api/cart/quote', [
+            'items' => [['id' => $product->id, 'qty' => 1]],
+            'coupon_code' => $coupon->code,
+        ]);
+
+        $response->assertOk();
+        $this->assertStringContainsString('৳1,000.00', $response->json('coupon_message'));
+    }
 }

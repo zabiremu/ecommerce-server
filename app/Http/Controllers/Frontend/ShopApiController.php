@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use App\Support\Money;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
@@ -113,7 +114,7 @@ class ShopApiController extends Controller
             if (!$coupon || !$coupon->isUsable()) {
                 $couponMessage = 'This coupon code is not valid.';
             } elseif ($coupon->minimum_spend && $subtotal < (float) $coupon->minimum_spend) {
-                $couponMessage = 'This coupon requires a minimum spend of ' . number_format((float) $coupon->minimum_spend, 2) . '.';
+                $couponMessage = 'This coupon requires a minimum spend of ' . Money::format($coupon->minimum_spend) . '.';
             } else {
                 $discount = $coupon->discountFor($subtotal);
                 $freeShipping = (bool) $coupon->free_shipping;

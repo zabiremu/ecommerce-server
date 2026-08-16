@@ -88,6 +88,26 @@ class LandingPageTest extends TestCase
         $response->assertStatus(422)->assertJsonValidationErrors(['payment_method']);
     }
 
+    /**
+     * The landing-page layout deliberately never loads gms-custom.js (kept
+     * lean for ad-campaign traffic), so its inline window.formatPrice
+     * fallback is the ONLY formatter ever used on this page — it used to
+     * be `toFixed(2)` with no thousands separator, showing "৳12000.00"
+     * while every other page (via the real window.formatPrice / PHP
+     * Money::format()) shows "৳12,000.00" for the same amount. Locks down
+     * that the fallback uses toLocaleString (comma grouping) like the
+     * canonical formatters, not a bare toFixed(2).
+     */
+    public function test_landing_page_price_formatter_uses_comma_grouping_like_the_shared_formatter(): void
+    {
+        $landing = $this->makeLanding();
+
+        $html = $this->get('/lp/' . $landing->slug)->assertOk()->getContent();
+
+        $this->assertStringContainsString('toLocaleString', $html);
+        $this->assertStringNotContainsString("Number(n || 0).toFixed(2)", $html);
+    }
+
     public function test_landing_page_order_is_rejected_when_stock_is_insufficient(): void
     {
         $product = $this->makeProduct(['stock' => 1]);

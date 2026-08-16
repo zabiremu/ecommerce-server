@@ -420,8 +420,13 @@ window.LP = {
     csrf:     @json(csrf_token()),
 };
 
-/* Mirrors App\Support\Money::format() / window.formatPrice() in gms-custom.js */
-window.formatPrice = window.formatPrice || function (n) { return '৳' + Number(n || 0).toFixed(2); };
+/* Mirrors App\Support\Money::format() — this landing layout deliberately
+   doesn't load gms-custom.js (kept lean for ad-campaign traffic), so
+   window.formatPrice is never actually defined here; toFixed(2) alone
+   (no thousands separator) was silently running on every page view. */
+window.formatPrice = window.formatPrice || function (n) {
+    return '৳' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+};
 function lpFmt(n){ return window.formatPrice(n); }
 
 function lpState(){
