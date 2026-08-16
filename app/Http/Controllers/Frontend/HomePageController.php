@@ -200,13 +200,21 @@ class HomePageController extends Controller
             return Storage::disk('public')->exists($path) ? Storage::url($path) : asset($path);
         };
 
+        // A single product with an invalid-UTF-8 byte sequence (e.g. from a bulk
+        // import) would otherwise make json_encode() fail for the whole catalog
+        // payload, silently killing every listing page's client-side render.
+        $clean = function (?string $value) {
+            if ($value === null) return null;
+            return mb_convert_encoding($value, 'UTF-8', 'UTF-8');
+        };
+
         return Product::published()
             ->with('category:id,slug', 'brand:id,slug', 'variants')
             ->withAvg(['reviews as avg_rating' => fn ($q) => $q->approved()], 'rating')
             ->withCount(['reviews as reviews_count' => fn ($q) => $q->approved()])
             ->orderByDesc('id')
             ->get()
-            ->map(function (Product $p) use ($bestSellerIds, $resolveImage) {
+            ->map(function (Product $p) use ($bestSellerIds, $resolveImage, $clean) {
                 $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
                 $stock = (float) ($p->stock ?? 0);
                 $alertQty = (float) ($p->alert_quantity ?? 0);
@@ -215,9 +223,9 @@ class HomePageController extends Controller
 
                 return [
                     'id'    => $p->id,
-                    'slug'  => $p->slug,
+                    'slug'  => $clean($p->slug),
                     'img'   => $resolveImage($p->thumbnail),
-                    'title' => $p->name,
+                    'title' => $clean($p->name),
                     'cur'   => (float) ($hasSale ? $p->sale_price : $p->selling_price),
                     'old'   => (float) $p->selling_price,
                     'stock' => (int) $stock,
@@ -233,12 +241,12 @@ class HomePageController extends Controller
                     'reviewsCount' => (int) ($p->reviews_count ?? 0),
                     'variants' => $p->variants->map(fn ($v) => [
                         'id'    => $v->id,
-                        'color' => $v->color,
-                        'size'  => $v->size,
-                        'label' => trim(implode(' / ', array_filter([$v->color, $v->size])) ?: $v->name),
+                        'color' => $clean($v->color),
+                        'size'  => $clean($v->size),
+                        'label' => $clean(trim(implode(' / ', array_filter([$v->color, $v->size])) ?: $v->name)),
                         'price' => (float) $v->price,
                         'stock' => (int) $v->stock,
-                        'sku'   => $v->sku,
+                        'sku'   => $clean($v->sku),
                     ])->values(),
                 ];
             });

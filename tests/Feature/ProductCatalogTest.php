@@ -76,6 +76,95 @@ class ProductCatalogTest extends TestCase
         });
     }
 
+    /**
+     * Both listing pages filter entirely client-side against a window.NF_PRODUCTS
+     * JSON blob embedded in the response — assertViewHas() only proves the
+     * server-side view-data is correct, not what the browser actually renders.
+     * These tests decode that embedded JSON to catch the class of bug where the
+     * page returns 200 with correct view-data but ships an empty/broken payload.
+     */
+    private function extractNfProducts(string $html): array
+    {
+        $this->assertMatchesRegularExpression('/window\.NF_PRODUCTS\s*=\s*(\[.*?\]);/s', $html);
+        preg_match('/window\.NF_PRODUCTS\s*=\s*(\[.*?\]);/s', $html, $m);
+        $decoded = json_decode($m[1], true);
+        $this->assertIsArray($decoded, 'window.NF_PRODUCTS did not decode as valid JSON');
+
+        return $decoded;
+    }
+
+    public function test_all_products_page_embeds_the_full_published_catalog_as_json(): void
+    {
+        $published = $this->makeProduct(['name' => 'Published Item']);
+        $draft = $this->makeProduct(['name' => 'Draft Item', 'publish_status' => 'draft']);
+
+        $response = $this->get('/all-products');
+        $response->assertOk();
+
+        $products = $this->extractNfProducts($response->getContent());
+        $ids = array_column($products, 'id');
+
+        $this->assertSame(\App\Models\Product::published()->count(), count($products));
+        $this->assertContains($published->id, $ids);
+        $this->assertNotContains($draft->id, $ids);
+    }
+
+    public function test_category_products_page_embeds_matching_products_for_both_cat_and_slug_params(): void
+    {
+        $categorySlug = 'catalog-test-tshirts-' . uniqid();
+        $tshirts = $this->makeCategory(['name' => 'T-Shirt', 'slug' => $categorySlug]);
+        $shoes = $this->makeCategory(['name' => 'Shoes']);
+        $shirt1 = $this->makeProduct(['name' => 'Red Tee', 'category_id' => $tshirts->id]);
+        $shirt2 = $this->makeProduct(['name' => 'Blue Tee', 'category_id' => $tshirts->id]);
+        $shoe = $this->makeProduct(['name' => 'Running Shoe', 'category_id' => $shoes->id]);
+
+        foreach (['cat', 'slug'] as $param) {
+            $response = $this->get('/category-products?' . $param . '=' . $categorySlug);
+            $response->assertOk();
+
+            $products = $this->extractNfProducts($response->getContent());
+            $this->assertNotEmpty($products, "NF_PRODUCTS was empty for ?{$param}={$categorySlug}");
+
+            // Filtering itself happens client-side, so the endpoint must at
+            // least ship every product needed to satisfy this filter.
+            $ids = array_column($products, 'id');
+            $this->assertContains($shirt1->id, $ids);
+            $this->assertContains($shirt2->id, $ids);
+        }
+    }
+
+    public function test_all_products_page_survives_a_product_with_unusual_characters_in_its_name(): void
+    {
+        $this->makeProduct(['name' => 'Emoji Tee 🔥 </script> "quoted" & <b>bold</b>']);
+
+        $response = $this->get('/all-products');
+        $response->assertOk();
+
+        $products = $this->extractNfProducts($response->getContent());
+        $this->assertNotEmpty($products);
+    }
+
+    /**
+     * Header nav, mega-menu, mobile nav, homepage category tiles, and the
+     * product-details breadcrumb all link to /category-products — they must
+     * all use the same query param (`cat`), or a visitor arriving via one
+     * link surface sees an empty listing while another works. Rendering
+     * /all-products exercises the shared header/nav partial the same way
+     * every other page does.
+     */
+    public function test_header_navigation_links_to_categories_using_the_cat_param_consistently(): void
+    {
+        $category = $this->makeCategory(['name' => 'Nav Test Category', 'status' => true]);
+        $this->makeProduct(['category_id' => $category->id]);
+
+        $response = $this->get('/all-products');
+        $response->assertOk();
+
+        $html = $response->getContent();
+        $this->assertStringContainsString('category-products?cat=' . $category->slug, $html);
+        $this->assertStringNotContainsString('category-products?slug=', $html);
+    }
+
     public function test_product_quick_view_returns_pricing_and_stock_status(): void
     {
         $product = $this->makeProduct(['selling_price' => 1000, 'sale_price' => 800, 'stock' => 5]);

@@ -409,7 +409,7 @@
 </section>
 
 <script>
-window.NF_PRODUCTS = @json($products);
+window.NF_PRODUCTS = @json($products ?? []);
 
 (function () {
     const PER_PAGE = 12;
@@ -446,27 +446,37 @@ window.NF_PRODUCTS = @json($products);
 
     // ── render page ─────────────────────────────────────────────────
     window.renderApPage = function () {
-        const all    = getFiltered();
-        const total  = all.length;
-        const pages  = Math.max(1, Math.ceil(total / PER_PAGE));
-        currentPage  = Math.min(currentPage, pages);
-        const slice  = all.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
+        try {
+            const all    = getFiltered();
+            const total  = all.length;
+            const pages  = Math.max(1, Math.ceil(total / PER_PAGE));
+            currentPage  = Math.min(currentPage, pages);
+            const slice  = all.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
 
-        document.getElementById('resultCount').textContent = total;
+            document.getElementById('resultCount').textContent = total;
 
-        const grid = document.getElementById('productGrid');
-        if (slice.length === 0) {
-            grid.innerHTML = `<div class="gms-empty" style="grid-column:1/-1">
-                <i class="fas fa-box-open"></i>
-                <h3>No products found</h3>
-                <p>Try adjusting your filters.</p>
+            const grid = document.getElementById('productGrid');
+            if (slice.length === 0) {
+                grid.innerHTML = `<div class="gms-empty" style="grid-column:1/-1">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your filters.</p>
+                </div>`;
+            } else {
+                grid.innerHTML = slice.map(buildCard).join('');
+            }
+
+            window.dispatchEvent(new Event('gms:wishlist-updated'));
+            renderPagination(pages);
+        } catch (err) {
+            console.error('Failed to render product listing:', err);
+            document.getElementById('resultCount').textContent = '—';
+            document.getElementById('productGrid').innerHTML = `<div class="gms-empty" style="grid-column:1/-1">
+                <i class="fas fa-triangle-exclamation"></i>
+                <h3>Couldn't load products</h3>
+                <p>Please refresh the page. If this keeps happening, let us know.</p>
             </div>`;
-        } else {
-            grid.innerHTML = slice.map(buildCard).join('');
         }
-
-        window.dispatchEvent(new Event('gms:wishlist-updated'));
-        renderPagination(pages);
     };
 
     function renderPagination(pages) {
@@ -567,13 +577,17 @@ window.NF_PRODUCTS = @json($products);
 
     // ── init: reflect incoming ?cat=/?brand= query params in the sidebar ──
     function init() {
-        if (catSlug) {
-            const opt = document.querySelector(`#apSidebar [data-cat="${catSlug}"]`);
-            if (opt) { document.querySelectorAll('[data-cat]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
-        }
-        if (brandSlug) {
-            const opt = document.querySelector(`#apSidebar [data-brand="${brandSlug}"]`);
-            if (opt) { document.querySelectorAll('[data-brand]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
+        try {
+            if (catSlug) {
+                const opt = document.querySelector(`#apSidebar [data-cat="${catSlug}"]`);
+                if (opt) { document.querySelectorAll('[data-cat]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
+            }
+            if (brandSlug) {
+                const opt = document.querySelector(`#apSidebar [data-brand="${brandSlug}"]`);
+                if (opt) { document.querySelectorAll('[data-brand]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
+            }
+        } catch (err) {
+            console.error('Failed to apply catalog filters from query string:', err);
         }
         renderApPage();
     }

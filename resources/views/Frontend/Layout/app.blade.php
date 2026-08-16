@@ -84,7 +84,7 @@
                                                     <ul class="wd-sub-menu gms-simple-dropdown-list">
                                                         @foreach($navLeafCategories as $leafCat)
                                                             <li>
-                                                                <a href="{{ route('category-products') }}?slug={{ $leafCat->slug }}">{{ $leafCat->name }}</a>
+                                                                <a href="{{ route('category-products') }}?cat={{ $leafCat->slug }}">{{ $leafCat->name }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -102,7 +102,7 @@
                                         @foreach($navGroupedCategories as $navCat)
                                             <li id="menu-item-cat-{{ $navCat->id }}"
                                                 class="menu-item item-level-0 wd-event-hover menu-item-has-children">
-                                                <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}"
+                                                <a href="{{ route('category-products') }}?cat={{ $navCat->slug }}"
                                                    class="woodmart-nav-link">
                                                     <span class="nav-link-text">{{ $navCat->name }}</span>
                                                 </a>
@@ -110,12 +110,12 @@
                                                     <ul class="wd-sub-menu gms-simple-dropdown-list">
                                                         @foreach($navCat->children as $child)
                                                             <li>
-                                                                <a href="{{ route('category-products') }}?slug={{ $child->slug }}">{{ $specialSectionEmoji[$child->name] ?? '' }} {{ $child->name }}</a>
+                                                                <a href="{{ route('category-products') }}?cat={{ $child->slug }}">{{ $specialSectionEmoji[$child->name] ?? '' }} {{ $child->name }}</a>
                                                                 @if($child->children->isNotEmpty())
                                                                     <ul class="gms-simple-dropdown-sublist">
                                                                         @foreach($child->children as $grandchild)
                                                                             <li>
-                                                                                <a href="{{ route('category-products') }}?slug={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
+                                                                                <a href="{{ route('category-products') }}?cat={{ $grandchild->slug }}">{{ $grandchild->name }}</a>
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
@@ -474,7 +474,7 @@
                                 @foreach($navLeafCategories as $leafCat)
                                     <li id="menu-item-cat-mobile-{{ $leafCat->id }}"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
-                                        <a href="{{ route('category-products') }}?slug={{ $leafCat->slug }}" class="woodmart-nav-link">{{ $leafCat->name }}</a>
+                                        <a href="{{ route('category-products') }}?cat={{ $leafCat->slug }}" class="woodmart-nav-link">{{ $leafCat->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -483,7 +483,7 @@
                     @foreach($navGroupedCategories as $navCat)
                         <li id="menu-item-cat-mobile-{{ $navCat->id }}"
                             class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children item-level-1">
-                            <a href="{{ route('category-products') }}?slug={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
+                            <a href="{{ route('category-products') }}?cat={{ $navCat->slug }}" class="woodmart-nav-link">{{ $navCat->name }}</a>
                             <ul class="sub-sub-menu">
                                 <li class="wd-drilldown-back">
                                     <span class="wd-nav-opener"></span>
@@ -493,7 +493,7 @@
                                 @foreach($navCat->children as $child)
                                     <li id="menu-item-cat-mobile-{{ $child->id }}"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat item-level-2">
-                                        <a href="{{ route('category-products') }}?slug={{ $child->slug }}" class="woodmart-nav-link">{{ $child->name }}</a>
+                                        <a href="{{ route('category-products') }}?cat={{ $child->slug }}" class="woodmart-nav-link">{{ $child->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
