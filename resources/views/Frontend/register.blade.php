@@ -2555,56 +2555,71 @@
                                 <h2 id="wd-88f5ed5a" class="wp-block-wd-title title">Create your account</h2>
                                 <p class="gms-auth-subtitle">It only takes a minute — 10% off your first order is waiting.</p>
 
-                                @if ($errors->any())
-                                <div class="woocommerce-notices-wrapper">
-                                    <ul class="woocommerce-error" role="alert">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
-
                                 <div id="wd-fc2645af" class="wd-el-my-account-register wd-fc2645af">
                                     <form method="post"
                                         action="{{ route('register.submit') }}"
                                         class="woocommerce-form woocommerce-form-register register">
                                         @csrf
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('first_name') woocommerce-invalid @enderror">
                                             <label for="reg_first_name">First Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                             <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="first_name" id="reg_first_name" value="{{ old('first_name') }}" required />
+                                                name="first_name" id="reg_first_name" value="{{ old('first_name') }}"
+                                                pattern="[\p{L}\s\-']+" maxlength="100" required />
+                                            @error('first_name')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('last_name') woocommerce-invalid @enderror">
                                             <label for="reg_last_name">Last Name&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                             <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="last_name" id="reg_last_name" value="{{ old('last_name') }}" required />
+                                                name="last_name" id="reg_last_name" value="{{ old('last_name') }}"
+                                                pattern="[\p{L}\s\-']+" maxlength="100" required />
+                                            @error('last_name')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('email') woocommerce-invalid @enderror">
                                             <label for="reg_email">Email address&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                             <input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="email" id="reg_email" autocomplete="email" value="{{ old('email') }}" required />
+                                                name="email" id="reg_email" autocomplete="email" value="{{ old('email') }}"
+                                                maxlength="255" required />
+                                            @error('email')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('phone') woocommerce-invalid @enderror">
                                             <label for="reg_phone">Phone&nbsp;<span class="required" aria-hidden="true">*</span></label>
-                                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="phone" id="reg_phone" value="{{ old('phone') }}" required />
+                                            <input type="tel" class="woocommerce-Input woocommerce-Input--text input-text"
+                                                name="phone" id="reg_phone" value="{{ old('phone') }}"
+                                                pattern="[0-9+\-\s()]{7,20}" maxlength="20" required />
+                                            @error('phone')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('password') woocommerce-invalid @enderror">
                                             <label for="reg_password">Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                             <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="password" id="reg_password" autocomplete="new-password" required />
+                                                name="password" id="reg_password" autocomplete="new-password"
+                                                minlength="8" required />
+                                            <small style="display:block;color:#767676;font-size:12px;margin-top:4px;">At least 8 characters, including a letter and a number.</small>
+                                            @error('password')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide @error('password_confirmation') woocommerce-invalid @enderror">
                                             <label for="reg_password_confirmation">Confirm Password&nbsp;<span class="required" aria-hidden="true">*</span></label>
                                             <input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
-                                                name="password_confirmation" id="reg_password_confirmation" autocomplete="new-password" required />
+                                                name="password_confirmation" id="reg_password_confirmation" autocomplete="new-password"
+                                                minlength="8" required />
+                                            @error('password_confirmation')
+                                                <span class="gms-field-error" role="alert" style="display:block;color:#d63638;font-size:12px;margin-top:4px;">{{ $message }}</span>
+                                            @enderror
                                         </p>
 
                                         <p class="woocommerce-form-row form-row form-row-btn">

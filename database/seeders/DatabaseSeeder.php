@@ -24,17 +24,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
-            // CategorySeeder::class,
-            // BrandSeeder::class,
+            DemoCatalogSeeder::class,
             // UnitSeeder::class,
             // SupplierSeeder::class,
             // WarehouseSeeder::class,
-            // ProductSeeder::class,
-            // ApparelProductSeeder::class,
             // PurchaseSeeder::class,
             // GRNSeeder::class,
-            // CustomerSeeder::class,
-            // OrderSeeder::class,
             // CouponSeeder::class,
             // SocialLinkSeeder::class,
         ]);

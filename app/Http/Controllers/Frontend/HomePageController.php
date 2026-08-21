@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 class HomePageController extends Controller
@@ -628,11 +629,15 @@ class HomePageController extends Controller
     public function registerSubmit(Request $request)
     {
         $data = $request->validate([
-            'first_name' => 'required|string|max:100',
-            'last_name'  => 'required|string|max:100',
-            'email'      => 'required|email|unique:users,email',
-            'phone'      => 'required|string|max:20',
-            'password'   => 'required|string|min:6|confirmed',
+            'first_name' => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-\']+$/u'],
+            'last_name'  => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-\']+$/u'],
+            'email'      => ['required', 'string', 'email:rfc', 'max:255', 'unique:users,email'],
+            'phone'      => ['required', 'string', 'max:20', 'regex:/^[0-9+\-\s()]{7,20}$/'],
+            'password'   => ['required', 'string', 'confirmed', Password::min(8)->letters()->numbers()],
+        ], [
+            'first_name.regex' => 'The first name may only contain letters, spaces, and hyphens.',
+            'last_name.regex'  => 'The last name may only contain letters, spaces, and hyphens.',
+            'phone.regex'      => 'Please enter a valid phone number.',
         ]);
 
         $user = User::create([
