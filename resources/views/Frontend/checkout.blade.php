@@ -2770,12 +2770,7 @@
                         <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
                             <input type="radio" name="payment_method" value="cod" checked> Cash on Delivery
                         </label>
-                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
-                            <input type="radio" name="payment_method" value="bkash"> bKash (manual)
-                        </label>
-                        <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
-                            <input type="radio" name="payment_method" value="nagad"> Nagad (manual)
-                        </label>
+
                         <label style="display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;">
                             <input type="radio" name="payment_method" value="uddoktapay"> Pay online (UddoktaPay)
                         </label>

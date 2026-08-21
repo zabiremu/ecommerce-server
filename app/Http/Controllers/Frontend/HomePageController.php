@@ -359,6 +359,7 @@ class HomePageController extends Controller
 
     public function dashboardData(Request $request)
     {
+        $userId = Auth::guard('web')->id();
         $email = trim((string) $request->query('email', ''));
         $phone = trim((string) $request->query('phone', ''));
 
@@ -372,14 +373,10 @@ class HomePageController extends Controller
 
         $ordersQuery = Order::with(['items'])->orderByDesc('placed_at')->orderByDesc('id');
 
-        if ($customer) {
-            $ordersQuery->where(function ($q) use ($customer, $email, $phone) {
-                $q->where('customer_id', $customer->id);
-                if ($email !== '') $q->orWhere('shipping_email', $email);
-                if ($phone !== '') $q->orWhere('shipping_phone', $phone);
-            });
-        } elseif ($email !== '' || $phone !== '') {
-            $ordersQuery->where(function ($q) use ($email, $phone) {
+        if ($userId || $customer || $email !== '' || $phone !== '') {
+            $ordersQuery->where(function ($q) use ($userId, $customer, $email, $phone) {
+                if ($userId) $q->orWhere('user_id', $userId);
+                if ($customer) $q->orWhere('customer_id', $customer->id);
                 if ($email !== '') $q->orWhere('shipping_email', $email);
                 if ($phone !== '') $q->orWhere('shipping_phone', $phone);
             });
@@ -701,7 +698,20 @@ class HomePageController extends Controller
 
     public function trackOrder()
     {
-        return view('Frontend.track-order');
+        $authUser = Auth::guard('web')->user();
+
+        $recentOrders = collect();
+        if ($authUser) {
+            $recentOrders = Order::where('user_id', $authUser->id)
+                ->when($authUser->email, fn ($q) => $q->orWhere('shipping_email', $authUser->email))
+                ->when($authUser->phone, fn ($q) => $q->orWhere('shipping_phone', $authUser->phone))
+                ->orderByDesc('placed_at')
+                ->orderByDesc('id')
+                ->limit(3)
+                ->get(['order_no', 'status']);
+        }
+
+        return view('Frontend.track-order', compact('recentOrders'));
     }
 
     public function trackOrderLookup(Request $request)

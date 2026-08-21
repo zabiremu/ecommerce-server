@@ -14,6 +14,7 @@ use App\Mail\WelcomeMail;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -69,6 +70,7 @@ class OrderService
             $order = Order::create([
                 'order_no'         => $orderNo,
                 'customer_id'      => $customer->id,
+                'user_id'          => Auth::guard('web')->id(),
                 'shipping_name'    => $data['shipping_name'],
                 'shipping_phone'   => $data['shipping_phone'],
                 'shipping_email'   => $data['shipping_email'] ?? null,

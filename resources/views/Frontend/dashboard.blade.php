@@ -2076,6 +2076,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Order</th>
+                                                        <th>Products</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
                                                         <th>Total</th>
@@ -2142,11 +2143,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const email = @json($authUser->email ?? '');
     const phone = @json($authUser->phone ?? '');
-    if (!email && !phone) {
-        document.getElementById('orders-loading').style.display = 'none';
-        document.getElementById('orders-empty').style.display = 'block';
-        return;
-    }
 
     const params = new URLSearchParams();
     if (email) params.set('email', email);
@@ -2177,14 +2173,29 @@ document.addEventListener('DOMContentLoaded', function() {
             shipped: '#06B6D4', delivered: '#459647', cancelled: '#EF4444', returned: '#6B7280'
         };
 
+        const escHtml = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+
         orders.forEach(o => {
             const color = statusColors[o.status] || '#767676';
             const tr = document.createElement('tr');
+            const items = o.items || [];
+            const shown = items.slice(0, 2);
+            const extra = items.length - shown.length;
+            const productsHtml = shown.map(i => `
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                    <div style="width:32px; height:32px; flex-shrink:0; border-radius:4px; overflow:hidden; background:#f5f5f5; display:flex; align-items:center; justify-content:center;">
+                        ${i.thumbnail ? `<img src="${i.thumbnail}" alt="${escHtml(i.name)}" style="width:100%; height:100%; object-fit:cover;">` : '<i class="fas fa-box" style="color:#ccc; font-size:12px;"></i>'}
+                    </div>
+                    <span style="font-size:13px; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${escHtml(i.name)}">${escHtml(i.name)} <span style="color:#999;">&times;${i.qty}</span></span>
+                </div>
+            `).join('') + (extra > 0 ? `<div style="font-size:12px; color:#999;">+${extra} more</div>` : '');
+
             tr.innerHTML = `
                 <td data-title="Order"><strong>#${o.order_no}</strong></td>
+                <td data-title="Products">${productsHtml}</td>
                 <td data-title="Date">${o.date}</td>
                 <td data-title="Status"><span style="color:${color}; font-weight:600; text-transform:capitalize;">${o.status}</span></td>
-                <td data-title="Total"><span class="amount">${window.formatPrice(o.total)}</span> (${o.items.length} item${o.items.length > 1 ? 's' : ''})</td>
+                <td data-title="Total"><span class="amount">${window.formatPrice(o.total)}</span> (${items.length} item${items.length > 1 ? 's' : ''})</td>
                 <td data-title="Actions"><a href="{{ route('track-order') }}?id=${o.order_no}" class="button btn btn-accent" style="padding:5px 14px; min-height:36px; font-size:12px;">View</a></td>
             `;
             tbody.appendChild(tr);
