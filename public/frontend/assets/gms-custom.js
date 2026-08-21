@@ -750,6 +750,8 @@ document.addEventListener('DOMContentLoaded', function () {
       imgEl.alt = data.name || '';
       titleEl.textContent = data.name || '';
       linkEl.href = data.url || '#';
+      linkEl.removeAttribute('aria-disabled');
+      linkEl.classList.remove('gms-disabled');
 
       badgesEl.innerHTML = '';
       (data.badges || []).forEach(function (badge) {
@@ -785,6 +787,13 @@ document.addEventListener('DOMContentLoaded', function () {
       descEl.textContent = data.shortDescription || '';
     }
 
+    // Guards against two race conditions that both leave "View Full Details"
+    // pointing nowhere useful: (1) clicking it before the fetch for the
+    // currently-open product has resolved, while it's still showing the
+    // previous product's link, and (2) an older request resolving after a
+    // newer one and clobbering the link with the wrong product's URL.
+    var requestSeq = 0;
+
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('.open-quick-view');
       if (!trigger) return;
@@ -792,6 +801,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!url) return;
 
       e.preventDefault();
+
+      var seq = ++requestSeq;
+      linkEl.removeAttribute('href');
+      linkEl.setAttribute('aria-disabled', 'true');
+      linkEl.classList.add('gms-disabled');
 
       fetch(url, { headers: { 'Accept': 'application/json' } })
         .then(function (res) {
@@ -803,10 +817,12 @@ document.addEventListener('DOMContentLoaded', function () {
           // Details" link — treat it as a failure instead of silently leaving
           // the link at its static href="#" fallback.
           if (!data || !data.url) throw new Error('Quick view response missing product url');
+          if (seq !== requestSeq) return; // a newer quick-view click superseded this one
           renderProduct(data);
           openModal();
         })
         .catch(function (err) {
+          if (seq !== requestSeq) return;
           console.error('Quick view failed, navigating to product page instead:', err);
           window.location.href = trigger.getAttribute('href');
         });

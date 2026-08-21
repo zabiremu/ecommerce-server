@@ -381,6 +381,11 @@ a.wp-block-wd-button.btn-color-primary:hover {
   margin: 8px 0;
   font-size: 18px;
 }
+#gms-quick-view-link.gms-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+}
 .gms-quick-view-body p.gms-quick-view-desc {
   font-size: 14px;
   color: var(--gms-text);
