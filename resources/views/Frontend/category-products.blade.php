@@ -381,8 +381,8 @@
 </section>
 
 <script>
-window.NF_PRODUCTS   = @json($products ?? []);
-window.NF_CATEGORIES = @json($categories ?? []);
+window.NF_PRODUCTS   = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?: '[]' !!};
+window.NF_CATEGORIES = {!! json_encode($categories ?? [], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?: '[]' !!};
 
 (function () {
     const PER_PAGE = 12;

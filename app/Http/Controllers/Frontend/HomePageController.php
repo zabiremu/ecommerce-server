@@ -250,7 +250,12 @@ class HomePageController extends Controller
                         'sku'   => $clean($v->sku),
                     ])->values(),
                 ];
-            });
+            })
+            // A single product that still can't be safely JSON-encoded (e.g. an
+            // edge case the UTF-8 cleanup above doesn't catch) must not blank out
+            // the entire catalog for every other product — drop just that one.
+            ->filter(fn (array $item) => json_encode($item) !== false)
+            ->values();
     }
 
     public function cart()

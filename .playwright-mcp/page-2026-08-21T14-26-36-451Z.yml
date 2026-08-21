@@ -1,0 +1,404 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - link "Skip to navigation" [ref=f7e3] [cursor=pointer]:
+      - /url: "#menu-main-navigation"
+    - link "Skip to main content" [ref=f7e4] [cursor=pointer]:
+      - /url: "#main-content"
+  - generic [ref=f7e5]:
+    - banner [ref=f7e6]:
+      - generic [ref=f7e10]:
+        - generic [ref=f7e11]:
+          - link "Site logo" [ref=f7e13] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - navigation "Main navigation" [ref=f7e14]:
+            - list [ref=f7e15]:
+              - listitem [ref=f7e16]:
+                - link "Shop" [ref=f7e17] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/all-products
+                - button "Toggle submenu" [ref=f7e19] [cursor=pointer]
+        - generic [ref=f7e20]:
+          - generic "Search" [ref=f7e21]:
+            - link "Search" [ref=f7e22] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f7e23]:  
+          - link "" [ref=f7e25] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/login
+          - generic "My Wishlist" [ref=f7e27]:
+            - link " 0" [ref=f7e28] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/wishlist
+              - generic [ref=f7e29]:
+                - text: 
+                - generic [ref=f7e30]: "0"
+          - link " 0 ৳0.00" [ref=f7e32] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/cart
+            - generic [ref=f7e33]:
+              - generic [ref=f7e34]:
+                - text: 
+                - generic [ref=f7e35]: "0"
+              - generic [ref=f7e36]: ৳0.00
+        - text:  
+    - generic [ref=f7e39]:
+      - generic [ref=f7e41]:
+        - navigation [ref=f7e42]:
+          - link "Home" [ref=f7e43] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - generic [ref=f7e44]: ›
+          - generic [ref=f7e45]: All Products
+        - heading "All Products" [level=1] [ref=f7e46]
+      - generic [ref=f7e49]:
+        - complementary [ref=f7e50]:
+          - generic [ref=f7e51]:
+            - generic [ref=f7e52]: 
+            - text: Filters
+          - generic [ref=f7e53]:
+            - heading "Category " [level=4] [ref=f7e54] [cursor=pointer]:
+              - text: Category
+              - generic [ref=f7e55]: 
+            - generic [ref=f7e56] [cursor=pointer]: All Categories
+            - generic [ref=f7e58] [cursor=pointer]: Accessories
+            - generic [ref=f7e60] [cursor=pointer]: Jeans
+            - generic [ref=f7e62] [cursor=pointer]: Shoes
+            - generic [ref=f7e64] [cursor=pointer]: T-Shirt
+          - heading "Brand " [level=4] [ref=f7e67] [cursor=pointer]:
+            - text: Brand
+            - generic [ref=f7e68]: 
+          - heading "Price Range " [level=4] [ref=f7e70] [cursor=pointer]:
+            - text: Price Range
+            - generic [ref=f7e71]: 
+          - button " Clear Filters" [ref=f7e72] [cursor=pointer]:
+            - generic [ref=f7e73]: 
+            - text: Clear Filters
+        - generic [ref=f7e74]:
+          - generic [ref=f7e75]:
+            - generic [ref=f7e76]:
+              - text: 
+              - generic [ref=f7e77]:
+                - text: Showing
+                - strong [ref=f7e78]: "36"
+                - text: products
+            - generic [ref=f7e79]:
+              - generic [ref=f7e80]: "Sort:"
+              - combobox "Sort:" [ref=f7e81] [cursor=pointer]:
+                - option "Default" [selected]
+                - 'option "Price: Low to High"'
+                - 'option "Price: High to Low"'
+                - 'option "Name: A–Z"'
+          - generic [ref=f7e82]:
+            - generic [ref=f7e84]:
+              - generic [ref=f7e85]:
+                - link "Product 36" [ref=f7e86] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-36
+                  - img "Product 36" [ref=f7e87]
+                - generic [ref=f7e88]: New Arrival
+              - generic [ref=f7e91]:
+                - heading [level=3] [ref=f7e92]:
+                  - link "Product 36" [ref=f7e93] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-36
+                - generic [ref=f7e94]: ৳56.00
+                - generic [ref=f7e96]: In stock
+                - link "View Product 36" [ref=f7e98] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-36
+                  - text: 
+                  - generic [ref=f7e104]: Select options
+            - generic [ref=f7e106]:
+              - generic [ref=f7e107]:
+                - link "Product 35" [ref=f7e108] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-35
+                  - img "Product 35" [ref=f7e109]
+                - generic [ref=f7e110]: Sold Out
+              - generic [ref=f7e113]:
+                - heading [level=3] [ref=f7e114]:
+                  - link "Product 35" [ref=f7e115] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-35
+                - generic [ref=f7e116]:
+                  - deletion [ref=f7e117]:
+                    - generic [ref=f7e118]: ৳55.00
+                  - insertion [ref=f7e119]:
+                    - generic [ref=f7e120]: ৳50.00
+                - generic [ref=f7e121]: Out of stock
+                - generic [ref=f7e122]: Out of stock
+            - generic [ref=f7e126]:
+              - generic [ref=f7e127]:
+                - link "Product 34" [ref=f7e128] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-34
+                  - img "Product 34" [ref=f7e129]
+                - generic [ref=f7e130]: New Arrival
+              - generic [ref=f7e133]:
+                - heading [level=3] [ref=f7e134]:
+                  - link "Product 34" [ref=f7e135] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-34
+                - generic [ref=f7e136]: ৳54.00
+                - generic [ref=f7e138]: In stock
+                - link "Add Product 34 to cart" [ref=f7e140] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e146]: Add to cart
+            - generic [ref=f7e148]:
+              - generic [ref=f7e149]:
+                - link "Product 33" [ref=f7e150] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-33
+                  - img "Product 33" [ref=f7e151]
+                - generic [ref=f7e152]: New Arrival
+              - generic [ref=f7e155]:
+                - heading [level=3] [ref=f7e156]:
+                  - link "Product 33" [ref=f7e157] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-33
+                - generic [ref=f7e158]: ৳53.00
+                - generic [ref=f7e160]: In stock
+                - link "Add Product 33 to cart" [ref=f7e162] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e168]: Add to cart
+            - generic [ref=f7e170]:
+              - generic [ref=f7e171]:
+                - link "Product 32" [ref=f7e172] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-32
+                  - img "Product 32" [ref=f7e173]
+                - generic [ref=f7e174]: New Arrival
+              - generic [ref=f7e177]:
+                - heading [level=3] [ref=f7e178]:
+                  - link "Product 32" [ref=f7e179] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-32
+                - generic [ref=f7e180]: ৳52.00
+                - generic [ref=f7e182]: In stock
+                - link "View Product 32" [ref=f7e184] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-32
+                  - text: 
+                  - generic [ref=f7e190]: Select options
+            - generic [ref=f7e192]:
+              - generic [ref=f7e193]:
+                - link "Product 31" [ref=f7e194] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-31
+                  - img "Product 31" [ref=f7e195]
+                - generic [ref=f7e196]: New Arrival
+              - generic [ref=f7e199]:
+                - heading [level=3] [ref=f7e200]:
+                  - link "Product 31" [ref=f7e201] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-31
+                - generic [ref=f7e202]: ৳51.00
+                - generic [ref=f7e204]: In stock
+                - link "Add Product 31 to cart" [ref=f7e206] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e212]: Add to cart
+            - generic [ref=f7e214]:
+              - generic [ref=f7e215]:
+                - link "Product 30" [ref=f7e216] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-30
+                  - img "Product 30" [ref=f7e217]
+                - generic [ref=f7e219]:
+                  - generic [ref=f7e220]: Sale
+                  - generic [ref=f7e221]: New Arrival
+              - generic [ref=f7e222]:
+                - heading [level=3] [ref=f7e223]:
+                  - link "Product 30" [ref=f7e224] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-30
+                - generic [ref=f7e225]:
+                  - deletion [ref=f7e226]:
+                    - generic [ref=f7e227]: ৳50.00
+                  - insertion [ref=f7e228]:
+                    - generic [ref=f7e229]: ৳45.00
+                - generic [ref=f7e230]: In stock
+                - link "Add Product 30 to cart" [ref=f7e232] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e238]: Add to cart
+            - generic [ref=f7e240]:
+              - generic [ref=f7e241]:
+                - link "Product 29" [ref=f7e242] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-29
+                  - img "Product 29" [ref=f7e243]
+                - generic [ref=f7e244]: New Arrival
+              - generic [ref=f7e247]:
+                - heading [level=3] [ref=f7e248]:
+                  - link "Product 29" [ref=f7e249] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-29
+                - generic [ref=f7e250]: ৳49.00
+                - generic [ref=f7e252]: In stock
+                - link "Add Product 29 to cart" [ref=f7e254] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e260]: Add to cart
+            - generic [ref=f7e262]:
+              - generic [ref=f7e263]:
+                - link "Product 28" [ref=f7e264] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-28
+                  - img "Product 28" [ref=f7e265]
+                - generic [ref=f7e266]: Sold Out
+              - generic [ref=f7e269]:
+                - heading [level=3] [ref=f7e270]:
+                  - link "Product 28" [ref=f7e271] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-28
+                - generic [ref=f7e272]: ৳48.00
+                - generic [ref=f7e274]: Out of stock
+                - generic [ref=f7e275]: Out of stock
+            - generic [ref=f7e279]:
+              - generic [ref=f7e280]:
+                - link "Product 27" [ref=f7e281] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-27
+                  - img "Product 27" [ref=f7e282]
+                - generic [ref=f7e283]: New Arrival
+              - generic [ref=f7e286]:
+                - heading [level=3] [ref=f7e287]:
+                  - link "Product 27" [ref=f7e288] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-27
+                - generic [ref=f7e289]: ৳47.00
+                - generic [ref=f7e291]: In stock
+                - link "Add Product 27 to cart" [ref=f7e293] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e299]: Add to cart
+            - generic [ref=f7e301]:
+              - generic [ref=f7e302]:
+                - link "Product 26" [ref=f7e303] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-26
+                  - img "Product 26" [ref=f7e304]
+                - generic [ref=f7e305]: New Arrival
+              - generic [ref=f7e308]:
+                - heading [level=3] [ref=f7e309]:
+                  - link "Product 26" [ref=f7e310] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-26
+                - generic [ref=f7e311]: ৳46.00
+                - generic [ref=f7e313]: In stock
+                - link "Add Product 26 to cart" [ref=f7e315] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e321]: Add to cart
+            - generic [ref=f7e323]:
+              - generic [ref=f7e324]:
+                - link "Product 25" [ref=f7e325] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/product-details?slug=product-25
+                  - img "Product 25" [ref=f7e326]
+                - generic [ref=f7e328]:
+                  - generic [ref=f7e329]: Sale
+                  - generic [ref=f7e330]: New Arrival
+              - generic [ref=f7e331]:
+                - heading [level=3] [ref=f7e332]:
+                  - link "Product 25" [ref=f7e333] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/product-details?slug=product-25
+                - generic [ref=f7e334]:
+                  - deletion [ref=f7e335]:
+                    - generic [ref=f7e336]: ৳45.00
+                  - insertion [ref=f7e337]:
+                    - generic [ref=f7e338]: ৳40.00
+                - generic [ref=f7e339]: In stock
+                - link "Add Product 25 to cart" [ref=f7e341] [cursor=pointer]:
+                  - /url: "#"
+                  - text: 
+                  - generic [ref=f7e347]: Add to cart
+          - generic [ref=f7e348]:
+            - button "←" [disabled]
+            - button "1" [ref=f7e349] [cursor=pointer]
+            - button "2" [ref=f7e350] [cursor=pointer]
+            - button "3" [ref=f7e351] [cursor=pointer]
+            - button "→" [ref=f7e352] [cursor=pointer]
+    - contentinfo [ref=f7e353]:
+      - generic [ref=f7e354]:
+        - generic [ref=f7e355]:
+          - generic [ref=f7e356]:
+            - link [ref=f7e358] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123
+            - paragraph [ref=f7e359]: Each piece reflects a perfect balance of timeless artistry and modern innovation.
+          - generic [ref=f7e361]:
+            - heading "Company" [level=2] [ref=f7e363]
+            - list [ref=f7e366]:
+              - listitem [ref=f7e367]:
+                - list [ref=f7e368]:
+                  - listitem [ref=f7e369]:
+                    - link "About Us" [ref=f7e370] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/about
+                  - listitem [ref=f7e371]:
+                    - link "Contact Us" [ref=f7e372] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/contact
+                  - listitem [ref=f7e373]:
+                    - link "F.A.Q." [ref=f7e374] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/faq
+          - generic [ref=f7e376]:
+            - heading "Info" [level=2] [ref=f7e378]
+            - list [ref=f7e381]:
+              - listitem [ref=f7e382]:
+                - list [ref=f7e383]:
+                  - listitem [ref=f7e384]:
+                    - link "Refund & Return Policy" [ref=f7e385] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/refund-policy
+                  - listitem [ref=f7e386]:
+                    - link "Terms & Conditions" [ref=f7e387] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/terms-conditions
+                  - listitem [ref=f7e388]:
+                    - link "Privacy Policy" [ref=f7e389] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8123/privacy-policy
+          - generic [ref=f7e391]:
+            - heading "Social Links" [level=2] [ref=f7e393]
+            - generic:
+              - generic:
+                - list
+        - generic [ref=f7e394]:
+          - generic [ref=f7e395]: Secure Checkout
+          - generic [ref=f7e400]: Cash on Delivery
+          - generic [ref=f7e405]: bKash
+          - generic [ref=f7e408]: Nagad
+          - generic [ref=f7e411]: Online Payment (UddoktaPay)
+        - paragraph [ref=f7e416]:
+          - link "Roventex" [ref=f7e417] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - text: © 2026 Roventex.
+  - link "Scroll to top button":
+    - /url: "#"
+    - text: 
+  - navigation "Mobile navigation" [ref=f7e418]:
+    - search [ref=f7e420]:
+      - textbox "Search" [ref=f7e421]:
+        - /placeholder: Search for products
+      - text: 
+      - button "Search " [ref=f7e422] [cursor=pointer]:
+        - generic: Search
+        - text: 
+    - list [ref=f7e423]:
+      - listitem [ref=f7e424]:
+        - link "Products" [ref=f7e425] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/all-products
+        - list [ref=f7e429]:
+          - listitem [ref=f7e430]:
+            - generic [ref=f7e431] [cursor=pointer]: 
+            - link "Back" [ref=f7e432] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=f7e433]:
+            - link "Shop" [ref=f7e434] [cursor=pointer]:
+              - /url: http://127.0.0.1:8123/all-products
+            - list [ref=f7e435]:
+              - listitem [ref=f7e436]:
+                - generic [ref=f7e437] [cursor=pointer]: 
+                - link "Back" [ref=f7e438] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f7e439]:
+                - link "Accessories" [ref=f7e440] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?cat=accessories
+              - listitem [ref=f7e441]:
+                - link "Jeans" [ref=f7e442] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?cat=jeans
+              - listitem [ref=f7e443]:
+                - link "Shoes" [ref=f7e444] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?cat=shoes
+              - listitem [ref=f7e445]:
+                - link "T-Shirt" [ref=f7e446] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8123/category-products?cat=t-shirt
+            - generic [ref=f7e447] [cursor=pointer]: 
+        - generic [ref=f7e448] [cursor=pointer]: 
+      - listitem [ref=f7e449]:
+        - link "About Us" [ref=f7e450] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/about
+      - listitem [ref=f7e455]:
+        - link "Contact Us" [ref=f7e456] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/contact
+      - listitem [ref=f7e460]:
+        - link "F.A.Q." [ref=f7e461] [cursor=pointer]:
+          - /url: http://127.0.0.1:8123/faq
+  - complementary "Shopping cart sidebar" [ref=f7e465]:
+    - generic [ref=f7e466]:
+      - generic [ref=f7e467]: Shopping cart
+      - link " Close" [ref=f7e469] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f7e470]: 
+        - generic [ref=f7e471]: Close
+  - text:    
+  - button "Contact us" [ref=f7e475] [cursor=pointer]

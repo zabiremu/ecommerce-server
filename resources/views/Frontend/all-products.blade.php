@@ -409,12 +409,12 @@
 </section>
 
 <script>
-window.NF_PRODUCTS = @json($products ?? []);
+window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?: '[]' !!};
 
 (function () {
     const PER_PAGE = 12;
     const params   = new URLSearchParams(location.search);
-    let catSlug    = params.get('cat')   || '';
+    let catSlug    = params.get('cat')   || params.get('slug') || '';
     let brandSlug  = params.get('brand') || '';
     let searchTerm = (params.get('q')    || '').trim().toLowerCase();
     let priceMin   = 0;
