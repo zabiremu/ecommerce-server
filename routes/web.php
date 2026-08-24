@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\SalesReportController as AdminSalesReportControll
 use App\Http\Controllers\Admin\PurchaseReportController as AdminPurchaseReportController;
 use App\Http\Controllers\Admin\CustomerReportController as AdminCustomerReportController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\PosController as AdminPosController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
@@ -221,6 +222,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/steadfast/{order}/send', [AdminSteadfastController::class, 'send'])->name('steadfast.send');
         Route::post('/steadfast/{order}/check-status', [AdminSteadfastController::class, 'checkStatus'])->name('steadfast.check-status');
         Route::get('/steadfast/balance', [AdminSteadfastController::class, 'balance'])->name('steadfast.balance');
+
+        // Point of Sale
+        Route::get('/pos', [AdminPosController::class, 'index'])->name('pos.index');
+        Route::get('/pos/products', [AdminPosController::class, 'products'])->name('pos.products');
+        Route::get('/pos/customers', [AdminPosController::class, 'customers'])->name('pos.customers');
+        Route::post('/pos/checkout', [AdminPosController::class, 'checkout'])->name('pos.checkout');
+        Route::get('/pos/orders/{order}/receipt', [AdminPosController::class, 'receipt'])->name('pos.receipt');
 
         // Orders
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

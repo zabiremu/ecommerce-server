@@ -224,6 +224,9 @@
                 <span class="font-mono text-[12px] text-[#1d2327] font-semibold">{{ $o->id }}</span>
             </div>
             <div class="text-[11px] text-[#50575e] mt-1 font-mono">#{{ $o->order_no }}</div>
+            @if ($o->source === 'pos')
+            <span class="inline-block mt-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700"><i class="fas fa-cash-register mr-0.5"></i> POS</span>
+            @endif
         </td>
 
         {{-- Customer --}}

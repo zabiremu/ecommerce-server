@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public const STATUSES = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'];
-    public const PAYMENT_METHODS = ['cod', 'bkash', 'nagad', 'rocket', 'bank', 'uddoktapay'];
+    public const PAYMENT_METHODS = ['cod', 'bkash', 'nagad', 'rocket', 'bank', 'uddoktapay', 'cash', 'card'];
     public const PAYMENT_STATUSES = ['unpaid', 'paid', 'refunded'];
+    public const SOURCES = ['online', 'pos'];
 
     protected $fillable = [
         'order_no',
+        'source',
         'customer_id',
+        'warehouse_id',
+        'served_by',
         'user_id',
         'shipping_name',
         'shipping_phone',
@@ -24,6 +28,8 @@ class Order extends Model
         'shipping_charge',
         'discount',
         'total',
+        'paid_amount',
+        'change_due',
         'payment_method',
         'payment_status',
         'status',
@@ -52,6 +58,8 @@ class Order extends Model
             'shipping_charge'  => 'decimal:2',
             'discount'         => 'decimal:2',
             'total'            => 'decimal:2',
+            'paid_amount'      => 'decimal:2',
+            'change_due'       => 'decimal:2',
             'stock_deducted'   => 'boolean',
             'placed_at'        => 'datetime',
             'steadfast_sent_at' => 'datetime',
@@ -91,6 +99,16 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
+
+    public function servedBy()
+    {
+        return $this->belongsTo(Admin::class, 'served_by');
     }
 
     public function items()

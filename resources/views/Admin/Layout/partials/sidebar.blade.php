@@ -116,10 +116,15 @@
             @endif
 
             {{-- ── SALES ── --}}
-            @if($_admin->hasPermission('orders.view') || $_admin->hasPermission('abandoned_carts.view') || $_admin->hasPermission('customers.view') || $_admin->hasPermission('phone_blacklist.view') || $_admin->hasPermission('coupons.view') || $_admin->hasPermission('contact_messages.view'))
+            @if($_admin->hasPermission('pos.view') || $_admin->hasPermission('orders.view') || $_admin->hasPermission('abandoned_carts.view') || $_admin->hasPermission('customers.view') || $_admin->hasPermission('phone_blacklist.view') || $_admin->hasPermission('coupons.view') || $_admin->hasPermission('contact_messages.view'))
             <div>
                 <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Sales</p>
                 <ul class="space-y-0.5">
+                    @if($_admin->hasPermission('pos.view'))
+                    <li><a href="{{ route('admin.pos.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.pos.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas fa-cash-register w-4 text-[12px] {{ request()->routeIs('admin.pos.*') ? 'text-accent-400' : '' }}"></i><span>Point of Sale</span>
+                    </a></li>
+                    @endif
                     @if($_admin->hasPermission('orders.view'))
                     @php($pendingOrderCount = \App\Models\Order::where('status','pending')->count())
                     <li><a href="{{ route('admin.orders.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.orders.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">

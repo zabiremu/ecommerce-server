@@ -22,6 +22,9 @@
 
 <div class="flex items-center gap-3 mb-3 flex-wrap">
     <h1 class="wp-h1">Order <span class="font-mono text-[#50575e] text-[18px]">#{{ $order->order_no }}</span></h1>
+    @if ($order->source === 'pos')
+    <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full bg-purple-100 text-purple-700"><i class="fas fa-cash-register"></i> POS Sale</span>
+    @endif
     @php
         $sMap = [
             'pending' => ['#fff4e5', '#d97706'],

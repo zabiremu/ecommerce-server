@@ -25,6 +25,11 @@ class CheckAdminPermission
 
     // Custom route-name → permission (for non-resourceful routes)
     private const CUSTOM = [
+        // POS
+        'admin.pos.products'                     => 'pos.view',
+        'admin.pos.customers'                     => 'pos.view',
+        'admin.pos.checkout'                      => 'pos.create',
+        'admin.pos.receipt'                       => 'pos.view',
         // Orders
         'admin.orders.status'                    => 'orders.edit',
         'admin.orders.payment-status'            => 'orders.edit',

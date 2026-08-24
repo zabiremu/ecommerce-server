@@ -39,6 +39,7 @@ class Role extends Model
                 'stock_report'      => ['view'],
             ],
             'Sales' => [
+                'pos'              => ['view', 'create'],
                 'orders'           => ['view', 'create', 'edit', 'delete'],
                 'abandoned_carts'  => ['view'],
                 'customers'        => ['view', 'edit', 'delete'],
