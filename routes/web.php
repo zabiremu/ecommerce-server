@@ -215,7 +215,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/stock-report', [AdminStockReportController::class, 'index'])->name('stock-report.index');
         Route::get('/sales-report', [AdminSalesReportController::class, 'index'])->name('sales-report.index');
+        Route::get('/sales-report/export', [AdminSalesReportController::class, 'export'])->name('sales-report.export');
         Route::get('/purchase-report', [AdminPurchaseReportController::class, 'index'])->name('purchase-report.index');
+        Route::get('/purchase-report/export', [AdminPurchaseReportController::class, 'export'])->name('purchase-report.export');
         Route::get('/customer-report', [AdminCustomerReportController::class, 'index'])->name('customer-report.index');
 
         // Steadfast courier

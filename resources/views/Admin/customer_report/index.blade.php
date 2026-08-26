@@ -101,7 +101,7 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($customers as $i => $customer)
+        @foreach ($customers as $i => $customer)
         <tr>
             <td>
                 @if ($i < 3)
@@ -136,9 +136,7 @@
                 </span>
             </td>
         </tr>
-        @empty
-        <tr><td colspan="11" class="wc-empty">No customers found.</td></tr>
-        @endforelse
+        @endforeach
     </tbody>
     @if ($customers->isNotEmpty())
     <tfoot>
@@ -173,7 +171,11 @@
     $(function () {
         $('#customerTable').DataTable({
             pageLength: 25,
-            language: { search: "_INPUT_", searchPlaceholder: "Search customers..." }
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search customers...",
+                emptyTable: "No customers found."
+            }
         });
     });
 </script>

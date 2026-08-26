@@ -1,0 +1,435 @@
+- generic [ref=f1e2]:
+  - complementary [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link " ROVENTEX" [ref=f1e5] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/admin/dashboard
+        - generic [ref=f1e6]: 
+        - paragraph [ref=f1e8]: ROVENTEX
+      - text: 
+    - navigation [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - generic [ref=f1e11]:
+          - paragraph [ref=f1e12]: Main
+          - list [ref=f1e13]:
+            - listitem [ref=f1e14]:
+              - link " Dashboard" [ref=f1e15] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/dashboard
+                - generic [ref=f1e16]: 
+                - generic [ref=f1e17]: Dashboard
+        - generic [ref=f1e18]:
+          - paragraph [ref=f1e19]: Catalog
+          - list [ref=f1e20]:
+            - listitem [ref=f1e21]:
+              - link " Products" [ref=f1e22] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/products
+                - generic [ref=f1e23]: 
+                - generic [ref=f1e24]: Products
+            - listitem [ref=f1e25]:
+              - link " Categories" [ref=f1e26] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/categories
+                - generic [ref=f1e27]: 
+                - generic [ref=f1e28]: Categories
+            - listitem [ref=f1e29]:
+              - link " Brands" [ref=f1e30] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/brands
+                - generic [ref=f1e31]: 
+                - generic [ref=f1e32]: Brands
+            - listitem [ref=f1e33]:
+              - link " Units" [ref=f1e34] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/units
+                - generic [ref=f1e35]: 
+                - generic [ref=f1e36]: Units
+            - listitem [ref=f1e37]:
+              - link " Suppliers" [ref=f1e38] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/suppliers
+                - generic [ref=f1e39]: 
+                - generic [ref=f1e40]: Suppliers
+            - listitem [ref=f1e41]:
+              - link " Warehouses" [ref=f1e42] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/warehouses
+                - generic [ref=f1e43]: 
+                - generic [ref=f1e44]: Warehouses
+        - generic [ref=f1e45]:
+          - paragraph [ref=f1e46]: Inventory
+          - list [ref=f1e47]:
+            - listitem [ref=f1e48]:
+              - link " Purchases" [ref=f1e49] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/purchases
+                - generic [ref=f1e50]: 
+                - generic [ref=f1e51]: Purchases
+            - listitem [ref=f1e52]:
+              - link " GRN" [ref=f1e53] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/grn
+                - generic [ref=f1e54]: 
+                - generic [ref=f1e55]: GRN
+            - listitem [ref=f1e56]:
+              - link " GRN Returns" [ref=f1e57] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/grn-returns
+                - generic [ref=f1e58]: 
+                - generic [ref=f1e59]: GRN Returns
+            - listitem [ref=f1e60]:
+              - link " Stock Transfers" [ref=f1e61] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-transfers
+                - generic [ref=f1e62]: 
+                - generic [ref=f1e63]: Stock Transfers
+            - listitem [ref=f1e64]:
+              - link " Adjustments" [ref=f1e65] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-adjustments
+                - generic [ref=f1e66]: 
+                - generic [ref=f1e67]: Adjustments
+            - listitem [ref=f1e68]:
+              - link " Stock Report" [ref=f1e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-report
+                - generic [ref=f1e70]: 
+                - generic [ref=f1e71]: Stock Report
+        - generic [ref=f1e72]:
+          - paragraph [ref=f1e73]: Sales
+          - list [ref=f1e74]:
+            - listitem [ref=f1e75]:
+              - link " Point of Sale" [ref=f1e76] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/pos
+                - generic [ref=f1e77]: 
+                - generic [ref=f1e78]: Point of Sale
+            - listitem [ref=f1e79]:
+              - link " Orders 8" [ref=f1e80] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/orders
+                - generic [ref=f1e81]: 
+                - generic [ref=f1e82]: Orders
+                - generic [ref=f1e83]: "8"
+            - listitem [ref=f1e84]:
+              - link " Abandoned Carts 3" [ref=f1e85] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/abandoned-carts
+                - generic [ref=f1e86]: 
+                - generic [ref=f1e87]: Abandoned Carts
+                - generic [ref=f1e88]: "3"
+            - listitem [ref=f1e89]:
+              - link " Customers" [ref=f1e90] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/customers
+                - generic [ref=f1e91]: 
+                - generic [ref=f1e92]: Customers
+            - listitem [ref=f1e93]:
+              - link " Phone Blacklist" [ref=f1e94] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/phone-blacklist
+                - generic [ref=f1e95]: 
+                - generic [ref=f1e96]: Phone Blacklist
+            - listitem [ref=f1e97]:
+              - link "% Coupons" [ref=f1e98] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/coupons
+                - generic [ref=f1e99]: "%"
+                - generic [ref=f1e100]: Coupons
+            - listitem [ref=f1e101]:
+              - link " Messages" [ref=f1e102] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/contact-messages
+                - generic [ref=f1e103]: 
+                - generic [ref=f1e104]: Messages
+        - generic [ref=f1e105]:
+          - paragraph [ref=f1e106]: Content
+          - list [ref=f1e107]:
+            - listitem [ref=f1e108]:
+              - link " Landings" [ref=f1e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/landings
+                - generic [ref=f1e110]: 
+                - generic [ref=f1e111]: Landings
+            - listitem [ref=f1e112]:
+              - button " Home Page " [ref=f1e113] [cursor=pointer]:
+                - generic [ref=f1e114]: 
+                - generic [ref=f1e115]: Home Page
+                - generic [ref=f1e116]: 
+              - text:    
+            - listitem [ref=f1e117]:
+              - link " About Us" [ref=f1e118] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/about-page
+                - generic [ref=f1e119]: 
+                - generic [ref=f1e120]: About Us
+        - generic [ref=f1e121]:
+          - paragraph [ref=f1e122]: Reports
+          - list [ref=f1e123]:
+            - listitem [ref=f1e124]:
+              - link " Sales Report" [ref=f1e125] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/sales-report
+                - generic [ref=f1e126]: 
+                - generic [ref=f1e127]: Sales Report
+            - listitem [ref=f1e128]:
+              - link " Purchase Report" [ref=f1e129] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/purchase-report
+                - generic [ref=f1e130]: 
+                - generic [ref=f1e131]: Purchase Report
+            - listitem [ref=f1e132]:
+              - link " Customer Report" [ref=f1e133] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/customer-report
+                - generic [ref=f1e134]: 
+                - generic [ref=f1e135]: Customer Report
+        - generic [ref=f1e136]:
+          - paragraph [ref=f1e137]: Settings
+          - list [ref=f1e138]:
+            - listitem [ref=f1e139]:
+              - link " Pages" [ref=f1e140] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/pages
+                - generic [ref=f1e141]: 
+                - generic [ref=f1e142]: Pages
+            - listitem [ref=f1e143]:
+              - link " Site Settings" [ref=f1e144] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/site-settings
+                - generic [ref=f1e145]: 
+                - generic [ref=f1e146]: Site Settings
+            - listitem [ref=f1e147]:
+              - link " Admins" [ref=f1e148] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/admins
+                - generic [ref=f1e149]: 
+                - generic [ref=f1e150]: Admins
+            - listitem [ref=f1e151]:
+              - link " Roles" [ref=f1e152] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/roles
+                - generic [ref=f1e153]: 
+                - generic [ref=f1e154]: Roles
+    - generic [ref=f1e156] [cursor=pointer]:
+      - generic [ref=f1e157]: S
+      - generic [ref=f1e158]:
+        - paragraph [ref=f1e159]: Super Admin
+        - paragraph [ref=f1e160]: Super Admin
+      - button "" [ref=f1e162]
+  - generic [ref=f1e164]:
+    - banner [ref=f1e165]:
+      - generic [ref=f1e166]:
+        - generic [ref=f1e167]:
+          - text: 
+          - heading "Sales Report" [level=1] [ref=f1e169]
+          - generic [ref=f1e171]:
+            - generic: 
+            - textbox "Search orders, products, customers…" [ref=f1e172]
+        - generic [ref=f1e173]:
+          - text: 
+          - link "" [ref=f1e174] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - generic [ref=f1e176]:
+            - button "" [ref=f1e177] [cursor=pointer]
+            - text: 
+          - generic [ref=f1e180]:
+            - button "S Super " [ref=f1e181] [cursor=pointer]:
+              - generic [ref=f1e182]: S
+              - generic [ref=f1e183]: Super
+              - generic [ref=f1e184]: 
+            - text:   
+    - main [ref=f1e185]:
+      - generic [ref=f1e186]:
+        - heading "Sales Report" [level=1] [ref=f1e187]
+        - paragraph [ref=f1e188]: Revenue and order summary for the selected period.
+        - generic [ref=f1e189]:
+          - generic [ref=f1e190]:
+            - generic [ref=f1e191]: 
+            - text: "From:"
+            - textbox " From:" [ref=f1e192]: 2026-07-01
+          - generic [ref=f1e193]:
+            - text: "To:"
+            - textbox "To:" [ref=f1e194]: 2026-07-31
+          - generic [ref=f1e195]:
+            - generic [ref=f1e196]: 
+            - text: "Status:"
+            - combobox " Status:" [ref=f1e197]:
+              - option "All Statuses" [selected]
+              - option "Pending"
+              - option "Confirmed"
+              - option "Processing"
+              - option "Shipped"
+              - option "Delivered"
+              - option "Cancelled"
+              - option "Returned"
+          - button " Apply" [ref=f1e198] [cursor=pointer]:
+            - generic [ref=f1e199]: 
+            - text: Apply
+          - link "Reset" [ref=f1e200] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/admin/sales-report
+          - link " Export CSV" [ref=f1e201] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/admin/sales-report/export?from=2026-07-01&to=2026-07-31&status=
+            - generic [ref=f1e202]: 
+            - text: Export CSV
+        - generic [ref=f1e203]:
+          - generic [ref=f1e204]:
+            - generic [ref=f1e205]: Total Orders
+            - generic [ref=f1e206]: "8"
+            - generic [ref=f1e207]: 01 Jul – 31 Jul 2026
+          - generic [ref=f1e208]:
+            - generic [ref=f1e209]: Total Revenue
+            - generic [ref=f1e210]: ৳13,469.00
+            - generic [ref=f1e211]: Excl. cancelled & returned
+          - generic [ref=f1e212]:
+            - generic [ref=f1e213]: Avg Order Value
+            - generic [ref=f1e214]: ৳1,683.63
+            - generic [ref=f1e215]: Per completed order
+          - generic [ref=f1e216]:
+            - generic [ref=f1e217]: Delivered Revenue
+            - generic [ref=f1e218]: ৳0.00
+            - generic [ref=f1e219]: Delivered orders only
+        - generic [ref=f1e220]: "Pending: 8"
+        - generic [ref=f1e222]:
+          - generic [ref=f1e224]:
+            - text: Show
+            - combobox "Show entries" [ref=f1e225]:
+              - option "10"
+              - option "25" [selected]
+              - option "50"
+              - option "100"
+            - text: entries
+          - searchbox [ref=f1e228]
+          - table [ref=f1e229]:
+            - rowgroup [ref=f1e230]:
+              - row [ref=f1e231]:
+                - 'columnheader "Order #: activate to sort column ascending" [ref=f1e232] [cursor=pointer]': "Order #"
+                - 'columnheader "Date: activate to sort column ascending" [ref=f1e233] [cursor=pointer]': Date
+                - 'columnheader "Customer: activate to sort column ascending" [ref=f1e234] [cursor=pointer]': Customer
+                - 'columnheader "City: activate to sort column ascending" [ref=f1e235] [cursor=pointer]': City
+                - 'columnheader "Payment: activate to sort column ascending" [ref=f1e236] [cursor=pointer]': Payment
+                - 'columnheader "Status: activate to sort column ascending" [ref=f1e237] [cursor=pointer]': Status
+                - 'columnheader "Subtotal: activate to sort column ascending" [ref=f1e238] [cursor=pointer]': Subtotal
+                - 'columnheader "Shipping: activate to sort column ascending" [ref=f1e239] [cursor=pointer]': Shipping
+                - 'columnheader "Discount: activate to sort column ascending" [ref=f1e240] [cursor=pointer]': Discount
+                - 'columnheader "Total: activate to sort column ascending" [ref=f1e241] [cursor=pointer]': Total
+            - rowgroup [ref=f1e242]:
+              - row [ref=f1e243]:
+                - cell [ref=f1e244]:
+                  - link "#NF-20260731-221" [ref=f1e245] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/11
+                - cell "31 Jul 2026" [ref=f1e246]
+                - cell "Mohammad Zabir Raihan 01833086035" [ref=f1e247]:
+                  - generic [ref=f1e248]: Mohammad Zabir Raihan
+                  - generic [ref=f1e249]: "01833086035"
+                - cell "Dhaka, Bangladesh" [ref=f1e250]
+                - cell "Unpaid UDDOKTAPAY" [ref=f1e251]:
+                  - generic [ref=f1e252]: Unpaid
+                  - generic [ref=f1e253]: UDDOKTAPAY
+                - cell "Pending" [ref=f1e254]
+                - cell "৳2,031.00" [ref=f1e256]
+                - cell "৳0.00" [ref=f1e257]
+                - cell "—" [ref=f1e258]
+                - cell "৳2,031.00" [ref=f1e259]
+              - row [ref=f1e260]:
+                - cell [ref=f1e261]:
+                  - link "#NF-20260721-472" [ref=f1e262] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/10
+                - cell "21 Jul 2026" [ref=f1e263]
+                - cell "Deacon Bradford +1 (622) 251-9347" [ref=f1e264]:
+                  - generic [ref=f1e265]: Deacon Bradford
+                  - generic [ref=f1e266]: +1 (622) 251-9347
+                - cell "Aliquid in facilis eum suscipit dignissimos cillum proident magni dolores vel possimus irure qui f" [ref=f1e267]
+                - cell "Unpaid COD" [ref=f1e268]:
+                  - generic [ref=f1e269]: Unpaid
+                  - generic [ref=f1e270]: COD
+                - cell "Pending" [ref=f1e271]
+                - cell "৳1,708.00" [ref=f1e273]
+                - cell "৳0.00" [ref=f1e274]
+                - cell "—" [ref=f1e275]
+                - cell "৳1,708.00" [ref=f1e276]
+              - row [ref=f1e277]:
+                - cell [ref=f1e278]:
+                  - link "#NF-20260720-218" [ref=f1e279] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/8
+                - cell "20 Jul 2026" [ref=f1e280]
+                - cell "Mohammad Zabir Raihan 01833086035" [ref=f1e281]:
+                  - generic [ref=f1e282]: Mohammad Zabir Raihan
+                  - generic [ref=f1e283]: "01833086035"
+                - cell "Dhaka, Bangladesh" [ref=f1e284]
+                - cell "Unpaid UDDOKTAPAY" [ref=f1e285]:
+                  - generic [ref=f1e286]: Unpaid
+                  - generic [ref=f1e287]: UDDOKTAPAY
+                - cell "Pending" [ref=f1e288]
+                - cell "৳380.00" [ref=f1e290]
+                - cell "৳60.00" [ref=f1e291]
+                - cell "—" [ref=f1e292]
+                - cell "৳440.00" [ref=f1e293]
+              - row [ref=f1e294]:
+                - cell [ref=f1e295]:
+                  - link "#NF-20260719-671" [ref=f1e296] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/7
+                - cell "19 Jul 2026" [ref=f1e297]
+                - cell "Mohammad Zabir Raihan 01833086035" [ref=f1e298]:
+                  - generic [ref=f1e299]: Mohammad Zabir Raihan
+                  - generic [ref=f1e300]: "01833086035"
+                - cell "Dhaka, Bangladesh" [ref=f1e301]
+                - cell "Unpaid UDDOKTAPAY" [ref=f1e302]:
+                  - generic [ref=f1e303]: Unpaid
+                  - generic [ref=f1e304]: UDDOKTAPAY
+                - cell "Pending" [ref=f1e305]
+                - cell "৳1,568.00" [ref=f1e307]
+                - cell "৳0.00" [ref=f1e308]
+                - cell "—" [ref=f1e309]
+                - cell "৳1,568.00" [ref=f1e310]
+              - row [ref=f1e311]:
+                - cell [ref=f1e312]:
+                  - link "#NF-20260719-923" [ref=f1e313] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/4
+                - cell "19 Jul 2026" [ref=f1e314]
+                - cell "Mohammad Zabir Raihan 01833086035" [ref=f1e315]:
+                  - generic [ref=f1e316]: Mohammad Zabir Raihan
+                  - generic [ref=f1e317]: "01833086035"
+                - cell "Dhaka, Bangladesh" [ref=f1e318]
+                - cell "Unpaid UDDOKTAPAY" [ref=f1e319]:
+                  - generic [ref=f1e320]: Unpaid
+                  - generic [ref=f1e321]: UDDOKTAPAY
+                - cell "Pending" [ref=f1e322]
+                - cell "৳1,616.00" [ref=f1e324]
+                - cell "৳0.00" [ref=f1e325]
+                - cell "—" [ref=f1e326]
+                - cell "৳1,616.00" [ref=f1e327]
+              - row [ref=f1e328]:
+                - cell [ref=f1e329]:
+                  - link "#NF-20260719-569" [ref=f1e330] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/3
+                - cell "19 Jul 2026" [ref=f1e331]
+                - cell "Price Thomas +1 (404) 434-2381" [ref=f1e332]:
+                  - generic [ref=f1e333]: Price Thomas
+                  - generic [ref=f1e334]: +1 (404) 434-2381
+                - cell "Eum est voluptate consequuntur dolorem quasi molestiae at ut quis et consequat Nesciunt illo odio" [ref=f1e335]
+                - cell "Unpaid UDDOKTAPAY" [ref=f1e336]:
+                  - generic [ref=f1e337]: Unpaid
+                  - generic [ref=f1e338]: UDDOKTAPAY
+                - cell "Pending" [ref=f1e339]
+                - cell "৳250.00" [ref=f1e341]
+                - cell "৳60.00" [ref=f1e342]
+                - cell "—" [ref=f1e343]
+                - cell "৳310.00" [ref=f1e344]
+              - row [ref=f1e345]:
+                - cell [ref=f1e346]:
+                  - link "#NF-20260719-469" [ref=f1e347] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/2
+                - cell "19 Jul 2026" [ref=f1e348]
+                - cell "Ifeoma Clayton +1 (642) 962-7186" [ref=f1e349]:
+                  - generic [ref=f1e350]: Ifeoma Clayton
+                  - generic [ref=f1e351]: +1 (642) 962-7186
+                - cell "Sed sed sequi sit distinctio Enim quia commodi ad quia sunt aut libero consequuntur voluptatibus la" [ref=f1e352]
+                - cell "Unpaid BKASH" [ref=f1e353]:
+                  - generic [ref=f1e354]: Unpaid
+                  - generic [ref=f1e355]: BKASH
+                - cell "Pending" [ref=f1e356]
+                - cell "৳1,188.00" [ref=f1e358]
+                - cell "৳0.00" [ref=f1e359]
+                - cell "—" [ref=f1e360]
+                - cell "৳1,188.00" [ref=f1e361]
+              - row [ref=f1e362]:
+                - cell [ref=f1e363]:
+                  - link "#NF-20260719-932" [ref=f1e364] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/orders/1
+                - cell "19 Jul 2026" [ref=f1e365]
+                - cell "Thaddeus Phillips +1 (815) 499-6621" [ref=f1e366]:
+                  - generic [ref=f1e367]: Thaddeus Phillips
+                  - generic [ref=f1e368]: +1 (815) 499-6621
+                - cell "Aute voluptates impedit laboris quia velit aut corporis commodi dolorem odio fugiat dolore qui eli" [ref=f1e369]
+                - cell "Unpaid BKASH" [ref=f1e370]:
+                  - generic [ref=f1e371]: Unpaid
+                  - generic [ref=f1e372]: BKASH
+                - cell "Pending" [ref=f1e373]
+                - cell "৳4,608.00" [ref=f1e375]
+                - cell "৳0.00" [ref=f1e376]
+                - cell "—" [ref=f1e377]
+                - cell "৳4,608.00" [ref=f1e378]
+            - rowgroup [ref=f1e379]:
+              - row [ref=f1e380]:
+                - cell "Totals (8 orders)" [ref=f1e381]
+                - cell "৳13,349.00" [ref=f1e382]
+                - cell "৳120.00" [ref=f1e383]
+                - cell "-৳0.00" [ref=f1e384]
+                - cell "৳13,469.00" [ref=f1e385]
+          - status [ref=f1e386]: Showing 1 to 8 of 8 entries
+          - generic [ref=f1e387]:
+            - link "Previous" [disabled] [ref=f1e388]
+            - link "1" [ref=f1e390] [cursor=pointer]
+            - link "Next" [disabled] [ref=f1e391]

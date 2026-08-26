@@ -1,0 +1,404 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link " ROVENTEX" [ref=e5] [cursor=pointer]:
+        - /url: http://127.0.0.1:8123/admin/dashboard
+        - generic [ref=e6]: 
+        - paragraph [ref=e8]: ROVENTEX
+      - text: 
+    - navigation [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - paragraph [ref=e12]: Main
+          - list [ref=e13]:
+            - listitem [ref=e14]:
+              - link " Dashboard" [ref=e15] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/dashboard
+                - generic [ref=e16]: 
+                - generic [ref=e17]: Dashboard
+        - generic [ref=e18]:
+          - paragraph [ref=e19]: Catalog
+          - list [ref=e20]:
+            - listitem [ref=e21]:
+              - link " Products" [ref=e22] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/products
+                - generic [ref=e23]: 
+                - generic [ref=e24]: Products
+            - listitem [ref=e25]:
+              - link " Categories" [ref=e26] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/categories
+                - generic [ref=e27]: 
+                - generic [ref=e28]: Categories
+            - listitem [ref=e29]:
+              - link " Brands" [ref=e30] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/brands
+                - generic [ref=e31]: 
+                - generic [ref=e32]: Brands
+            - listitem [ref=e33]:
+              - link " Units" [ref=e34] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/units
+                - generic [ref=e35]: 
+                - generic [ref=e36]: Units
+            - listitem [ref=e37]:
+              - link " Suppliers" [ref=e38] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/suppliers
+                - generic [ref=e39]: 
+                - generic [ref=e40]: Suppliers
+            - listitem [ref=e41]:
+              - link " Warehouses" [ref=e42] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/warehouses
+                - generic [ref=e43]: 
+                - generic [ref=e44]: Warehouses
+        - generic [ref=e45]:
+          - paragraph [ref=e46]: Inventory
+          - list [ref=e47]:
+            - listitem [ref=e48]:
+              - link " Purchases" [ref=e49] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/purchases
+                - generic [ref=e50]: 
+                - generic [ref=e51]: Purchases
+            - listitem [ref=e52]:
+              - link " GRN" [ref=e53] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/grn
+                - generic [ref=e54]: 
+                - generic [ref=e55]: GRN
+            - listitem [ref=e56]:
+              - link " GRN Returns" [ref=e57] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/grn-returns
+                - generic [ref=e58]: 
+                - generic [ref=e59]: GRN Returns
+            - listitem [ref=e60]:
+              - link " Stock Transfers" [ref=e61] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-transfers
+                - generic [ref=e62]: 
+                - generic [ref=e63]: Stock Transfers
+            - listitem [ref=e64]:
+              - link " Adjustments" [ref=e65] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-adjustments
+                - generic [ref=e66]: 
+                - generic [ref=e67]: Adjustments
+            - listitem [ref=e68]:
+              - link " Stock Report" [ref=e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/stock-report
+                - generic [ref=e70]: 
+                - generic [ref=e71]: Stock Report
+        - generic [ref=e72]:
+          - paragraph [ref=e73]: Sales
+          - list [ref=e74]:
+            - listitem [ref=e75]:
+              - link " Point of Sale" [ref=e76] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/pos
+                - generic [ref=e77]: 
+                - generic [ref=e78]: Point of Sale
+            - listitem [ref=e79]:
+              - link " Orders 8" [ref=e80] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/orders
+                - generic [ref=e81]: 
+                - generic [ref=e82]: Orders
+                - generic [ref=e83]: "8"
+            - listitem [ref=e84]:
+              - link " Abandoned Carts 3" [ref=e85] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/abandoned-carts
+                - generic [ref=e86]: 
+                - generic [ref=e87]: Abandoned Carts
+                - generic [ref=e88]: "3"
+            - listitem [ref=e89]:
+              - link " Customers" [ref=e90] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/customers
+                - generic [ref=e91]: 
+                - generic [ref=e92]: Customers
+            - listitem [ref=e93]:
+              - link " Phone Blacklist" [ref=e94] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/phone-blacklist
+                - generic [ref=e95]: 
+                - generic [ref=e96]: Phone Blacklist
+            - listitem [ref=e97]:
+              - link "% Coupons" [ref=e98] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/coupons
+                - generic [ref=e99]: "%"
+                - generic [ref=e100]: Coupons
+            - listitem [ref=e101]:
+              - link " Messages" [ref=e102] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/contact-messages
+                - generic [ref=e103]: 
+                - generic [ref=e104]: Messages
+        - generic [ref=e105]:
+          - paragraph [ref=e106]: Content
+          - list [ref=e107]:
+            - listitem [ref=e108]:
+              - link " Landings" [ref=e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/landings
+                - generic [ref=e110]: 
+                - generic [ref=e111]: Landings
+            - listitem [ref=e112]:
+              - button " Home Page " [ref=e113] [cursor=pointer]:
+                - generic [ref=e114]: 
+                - generic [ref=e115]: Home Page
+                - generic [ref=e116]: 
+              - text:    
+            - listitem [ref=e117]:
+              - link " About Us" [ref=e118] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/about-page
+                - generic [ref=e119]: 
+                - generic [ref=e120]: About Us
+        - generic [ref=e121]:
+          - paragraph [ref=e122]: Reports
+          - list [ref=e123]:
+            - listitem [ref=e124]:
+              - link " Sales Report" [ref=e125] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/sales-report
+                - generic [ref=e126]: 
+                - generic [ref=e127]: Sales Report
+            - listitem [ref=e128]:
+              - link " Purchase Report" [ref=e129] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/purchase-report
+                - generic [ref=e130]: 
+                - generic [ref=e131]: Purchase Report
+            - listitem [ref=e132]:
+              - link " Customer Report" [ref=e133] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/customer-report
+                - generic [ref=e134]: 
+                - generic [ref=e135]: Customer Report
+        - generic [ref=e136]:
+          - paragraph [ref=e137]: Settings
+          - list [ref=e138]:
+            - listitem [ref=e139]:
+              - link " Pages" [ref=e140] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/pages
+                - generic [ref=e141]: 
+                - generic [ref=e142]: Pages
+            - listitem [ref=e143]:
+              - link " Site Settings" [ref=e144] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/site-settings
+                - generic [ref=e145]: 
+                - generic [ref=e146]: Site Settings
+            - listitem [ref=e147]:
+              - link " Admins" [ref=e148] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/admins
+                - generic [ref=e149]: 
+                - generic [ref=e150]: Admins
+            - listitem [ref=e151]:
+              - link " Roles" [ref=e152] [cursor=pointer]:
+                - /url: http://127.0.0.1:8123/admin/roles
+                - generic [ref=e153]: 
+                - generic [ref=e154]: Roles
+    - generic [ref=e156] [cursor=pointer]:
+      - generic [ref=e157]: S
+      - generic [ref=e158]:
+        - paragraph [ref=e159]: Super Admin
+        - paragraph [ref=e160]: Super Admin
+      - button "" [ref=e162]
+  - generic [ref=e164]:
+    - banner [ref=e165]:
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - text: 
+          - heading "Customer Report" [level=1] [ref=e169]
+          - generic [ref=e171]:
+            - generic: 
+            - textbox "Search orders, products, customers…" [ref=e172]
+        - generic [ref=e173]:
+          - text: 
+          - link "" [ref=e174] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123
+          - generic [ref=e176]:
+            - button "" [ref=e177] [cursor=pointer]
+            - text: 
+          - generic [ref=e180]:
+            - button "S Super " [ref=e181] [cursor=pointer]:
+              - generic [ref=e182]: S
+              - generic [ref=e183]: Super
+              - generic [ref=e184]: 
+            - text:   
+    - main [ref=e185]:
+      - generic [ref=e186]:
+        - heading "Customer Report" [level=1] [ref=e187]
+        - paragraph [ref=e188]: Customer overview and spending summary for the selected period.
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - generic [ref=e191]: 
+            - text: "From:"
+            - textbox " From:" [ref=e192]: 2026-08-01
+          - generic [ref=e193]:
+            - text: "To:"
+            - textbox "To:" [ref=e194]: 2026-08-26
+          - generic [ref=e195]:
+            - generic [ref=e196]: 
+            - text: "Status:"
+            - combobox " Status:" [ref=e197]:
+              - option "All Customers" [selected]
+              - option "Active"
+              - option "Inactive"
+          - generic [ref=e198]:
+            - generic [ref=e199]: 
+            - text: "Sort by:"
+            - combobox " Sort by:" [ref=e200]:
+              - option "Total Spent" [selected]
+              - option "Total Orders"
+              - option "Last Order"
+              - option "Joined Date"
+          - button " Apply" [ref=e201] [cursor=pointer]:
+            - generic [ref=e202]: 
+            - text: Apply
+          - link "Reset" [ref=e203] [cursor=pointer]:
+            - /url: http://127.0.0.1:8123/admin/customer-report
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - generic [ref=e206]: Total Customers
+            - generic [ref=e207]: "7"
+            - generic [ref=e208]: Matching filters
+          - generic [ref=e209]:
+            - generic [ref=e210]: Active Customers
+            - generic [ref=e211]: "7"
+            - generic [ref=e212]: Enabled accounts
+          - generic [ref=e213]:
+            - generic [ref=e214]: Period Revenue
+            - generic [ref=e215]: ৳0.00
+            - generic [ref=e216]: 01 Aug – 26 Aug 2026
+          - generic [ref=e217]:
+            - generic [ref=e218]: New Customers
+            - generic [ref=e219]: "0"
+            - generic [ref=e220]: Joined this period
+        - generic [ref=e221]:
+          - generic [ref=e223]:
+            - text: Show
+            - combobox "Show entries" [ref=e224]:
+              - option "10"
+              - option "25" [selected]
+              - option "50"
+              - option "100"
+            - text: entries
+          - searchbox [ref=e227]
+          - table [ref=e228]:
+            - rowgroup [ref=e229]:
+              - row [ref=e230]:
+                - 'columnheader "#: activate to sort column descending" [ref=e231] [cursor=pointer]': "#"
+                - 'columnheader "Customer: activate to sort column ascending" [ref=e232] [cursor=pointer]': Customer
+                - 'columnheader "Phone: activate to sort column ascending" [ref=e233] [cursor=pointer]': Phone
+                - 'columnheader "City: activate to sort column ascending" [ref=e234] [cursor=pointer]': City
+                - 'columnheader "Joined: activate to sort column ascending" [ref=e235] [cursor=pointer]': Joined
+                - 'columnheader "All Orders: activate to sort column ascending" [ref=e236] [cursor=pointer]': All Orders
+                - 'columnheader "All-Time Spent: activate to sort column ascending" [ref=e237] [cursor=pointer]': All-Time Spent
+                - 'columnheader "Period Orders: activate to sort column ascending" [ref=e238] [cursor=pointer]': Period Orders
+                - 'columnheader "Period Spent: activate to sort column ascending" [ref=e239] [cursor=pointer]': Period Spent
+                - 'columnheader "Last Order: activate to sort column ascending" [ref=e240] [cursor=pointer]': Last Order
+                - 'columnheader "Status: activate to sort column ascending" [ref=e241] [cursor=pointer]': Status
+            - rowgroup [ref=e242]:
+              - row [ref=e243]:
+                - cell "1" [ref=e244]
+                - cell "Mohammad Zabir Raihan zabirraihan570@gmail.com" [ref=e246]:
+                  - link "Mohammad Zabir Raihan" [ref=e247] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/4
+                  - generic [ref=e248]: zabirraihan570@gmail.com
+                - cell "01833086035" [ref=e249]
+                - cell "Dhaka, Bangladesh" [ref=e250]
+                - cell "19 Jul 2026" [ref=e251]
+                - cell "4" [ref=e252]
+                - cell "৳5,655.00" [ref=e253]
+                - cell "—" [ref=e254]
+                - cell "—" [ref=e255]
+                - cell "31 Jul 2026" [ref=e256]
+                - cell "Active" [ref=e257]
+              - row [ref=e259]:
+                - cell "2" [ref=e260]
+                - cell "Thaddeus Phillips boji@mailinator.com" [ref=e262]:
+                  - link "Thaddeus Phillips" [ref=e263] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/1
+                  - generic [ref=e264]: boji@mailinator.com
+                - cell "+1 (815) 499-6621" [ref=e265]
+                - cell "Aute voluptates impedit laboris quia velit aut corporis commodi dolorem odio fugiat dolore qui eli" [ref=e266]
+                - cell "19 Jul 2026" [ref=e267]
+                - cell "1" [ref=e268]
+                - cell "৳4,608.00" [ref=e269]
+                - cell "—" [ref=e270]
+                - cell "—" [ref=e271]
+                - cell "19 Jul 2026" [ref=e272]
+                - cell "Active" [ref=e273]
+              - row [ref=e275]:
+                - cell "3" [ref=e276]
+                - cell "Deacon Bradford sedef@mailinator.com" [ref=e278]:
+                  - link "Deacon Bradford" [ref=e279] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/8
+                  - generic [ref=e280]: sedef@mailinator.com
+                - cell "+1 (622) 251-9347" [ref=e281]
+                - cell "Aliquid in facilis eum suscipit dignissimos cillum proident magni dolores vel possimus irure qui f" [ref=e282]
+                - cell "21 Jul 2026" [ref=e283]
+                - cell "1" [ref=e284]
+                - cell "৳1,708.00" [ref=e285]
+                - cell "—" [ref=e286]
+                - cell "—" [ref=e287]
+                - cell "21 Jul 2026" [ref=e288]
+                - cell "Active" [ref=e289]
+              - row [ref=e291]:
+                - cell "4" [ref=e292]
+                - cell "Ifeoma Clayton bogome@mailinator.com" [ref=e294]:
+                  - link "Ifeoma Clayton" [ref=e295] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/2
+                  - generic [ref=e296]: bogome@mailinator.com
+                - cell "+1 (642) 962-7186" [ref=e297]
+                - cell "Sed sed sequi sit distinctio Enim quia commodi ad quia sunt aut libero consequuntur voluptatibus la" [ref=e298]
+                - cell "19 Jul 2026" [ref=e299]
+                - cell "1" [ref=e300]
+                - cell "৳1,188.00" [ref=e301]
+                - cell "—" [ref=e302]
+                - cell "—" [ref=e303]
+                - cell "19 Jul 2026" [ref=e304]
+                - cell "Active" [ref=e305]
+              - row [ref=e307]:
+                - cell "5" [ref=e308]
+                - cell "Test User test@example.com" [ref=e310]:
+                  - link "Test User" [ref=e311] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/5
+                  - generic [ref=e312]: test@example.com
+                - cell "01700000000" [ref=e313]
+                - cell "Dhaka" [ref=e314]
+                - cell "19 Jul 2026" [ref=e315]
+                - cell "1" [ref=e316]
+                - cell "৳358.00" [ref=e317]
+                - cell "—" [ref=e318]
+                - cell "—" [ref=e319]
+                - cell "19 Jul 2026" [ref=e320]
+                - cell "Active" [ref=e321]
+              - row [ref=e323]:
+                - cell "6" [ref=e324]
+                - cell "Test User test2@example.com" [ref=e326]:
+                  - link "Test User" [ref=e327] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/6
+                  - generic [ref=e328]: test2@example.com
+                - cell "01700000001" [ref=e329]
+                - cell "Dhaka" [ref=e330]
+                - cell "19 Jul 2026" [ref=e331]
+                - cell "1" [ref=e332]
+                - cell "৳358.00" [ref=e333]
+                - cell "—" [ref=e334]
+                - cell "—" [ref=e335]
+                - cell "19 Jul 2026" [ref=e336]
+                - cell "Active" [ref=e337]
+              - row [ref=e339]:
+                - cell "7" [ref=e340]
+                - cell "Price Thomas dybove@mailinator.com" [ref=e342]:
+                  - link "Price Thomas" [ref=e343] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8123/admin/customers/3
+                  - generic [ref=e344]: dybove@mailinator.com
+                - cell "+1 (404) 434-2381" [ref=e345]
+                - cell "Eum est voluptate consequuntur dolorem quasi molestiae at ut quis et consequat Nesciunt illo odio" [ref=e346]
+                - cell "19 Jul 2026" [ref=e347]
+                - cell "1" [ref=e348]
+                - cell "৳310.00" [ref=e349]
+                - cell "—" [ref=e350]
+                - cell "—" [ref=e351]
+                - cell "19 Jul 2026" [ref=e352]
+                - cell "Active" [ref=e353]
+            - rowgroup [ref=e355]:
+              - row [ref=e356]:
+                - cell "Totals (7 customers)" [ref=e357]
+                - cell "10" [ref=e358]
+                - cell "৳14,185.00" [ref=e359]
+                - cell "0" [ref=e360]
+                - cell "৳0.00" [ref=e361]
+                - cell [ref=e362]
+          - status [ref=e363]: Showing 1 to 7 of 7 entries
+          - generic [ref=e364]:
+            - link "Previous" [disabled] [ref=e365]
+            - link "1" [ref=e367] [cursor=pointer]
+            - link "Next" [disabled] [ref=e368]

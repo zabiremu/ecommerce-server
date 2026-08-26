@@ -46,6 +46,9 @@
     </label>
     <button type="submit" class="wp-btn wp-btn-primary"><i class="fas fa-search mr-1"></i> Apply</button>
     <a href="{{ route('admin.sales-report.index') }}" class="wp-btn">Reset</a>
+    <a href="{{ route('admin.sales-report.export', ['from' => $from->toDateString(), 'to' => $to->toDateString(), 'status' => $status]) }}" class="wp-btn">
+        <i class="fas fa-file-csv mr-1"></i> Export CSV
+    </a>
 </form>
 
 {{-- Stat Cards --}}
@@ -102,7 +105,7 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($orders as $order)
+        @foreach ($orders as $order)
         <tr>
             <td>
                 <a href="{{ route('admin.orders.show', $order) }}" class="text-[#2271b1] font-semibold hover:underline">
@@ -137,9 +140,7 @@
             </td>
             <td class="text-right font-semibold">{{ \App\Support\Money::format($order->total) }}</td>
         </tr>
-        @empty
-        <tr><td colspan="10" class="wc-empty">No orders found for the selected period.</td></tr>
-        @endforelse
+        @endforeach
     </tbody>
     @if ($orders->isNotEmpty())
     <tfoot>
@@ -164,7 +165,11 @@
         $('#salesTable').DataTable({
             pageLength: 25,
             order: [[1, 'desc']],
-            language: { search: "_INPUT_", searchPlaceholder: "Search orders..." }
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search orders...",
+                emptyTable: "No orders found for the selected period."
+            }
         });
     });
 </script>

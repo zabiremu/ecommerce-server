@@ -66,6 +66,9 @@
     </label>
     <button type="submit" class="wp-btn wp-btn-primary"><i class="fas fa-search mr-1"></i> Apply</button>
     <a href="{{ route('admin.purchase-report.index') }}" class="wp-btn">Reset</a>
+    <a href="{{ route('admin.purchase-report.export', ['from' => $from->toDateString(), 'to' => $to->toDateString(), 'supplier_id' => $supplierId, 'warehouse_id' => $warehouseId, 'status' => $status]) }}" class="wp-btn">
+        <i class="fas fa-file-csv mr-1"></i> Export CSV
+    </a>
 </form>
 
 {{-- Stat Cards --}}
@@ -121,7 +124,7 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($purchases as $purchase)
+        @foreach ($purchases as $purchase)
         @php
             $badgeMap = ['pending'=>'badge-pending','ordered'=>'badge-ordered','received'=>'badge-received','cancelled'=>'badge-cancelled'];
         @endphp
@@ -141,9 +144,7 @@
             </td>
             <td class="text-right font-semibold">{{ \App\Support\Money::format($purchase->total_amount) }}</td>
         </tr>
-        @empty
-        <tr><td colspan="6" class="wc-empty">No purchases found for the selected period.</td></tr>
-        @endforelse
+        @endforeach
     </tbody>
     @if ($purchases->isNotEmpty())
     <tfoot>
@@ -169,7 +170,11 @@
         $('#purchaseTable').DataTable({
             pageLength: 25,
             order: [[1, 'desc']],
-            language: { search: "_INPUT_", searchPlaceholder: "Search purchases..." }
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search purchases...",
+                emptyTable: "No purchases found for the selected period."
+            }
         });
     });
 </script>
