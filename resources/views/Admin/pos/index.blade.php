@@ -65,7 +65,10 @@
                             <div class="p-2.5">
                                 <p class="text-[12.5px] font-semibold text-slate-800 leading-tight line-clamp-2 min-h-[2.4em]" x-text="p.name"></p>
                                 <div class="flex items-center justify-between mt-1.5">
-                                    <span class="text-[13px] font-bold text-brand-600" x-text="fmt(p.price)"></span>
+                                    <span class="flex items-baseline gap-1">
+                                        <span class="text-[13px] font-bold text-brand-600" x-text="fmt(p.price)"></span>
+                                        <span x-show="p.old_price" class="text-[10.5px] text-slate-400 line-through" x-text="fmt(p.old_price)"></span>
+                                    </span>
                                     <span class="text-[10.5px] font-semibold px-1.5 py-0.5 rounded"
                                           :class="p.stock > 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'"
                                           x-show="p.variants.length === 0"

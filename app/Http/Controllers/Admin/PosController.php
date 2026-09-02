@@ -159,6 +159,9 @@ class PosController extends Controller
                 $available = $pw ? (float) $pw->stock : 0;
                 if ($available < $qty) {
                     $stockErrors[] = "\"{$product->name}\" — only {$available} left in this warehouse (requested {$qty})";
+                } elseif ($variant && (float) $variant->stock < $qty) {
+                    $variantLabel = trim(implode(' / ', array_filter([$variant->color, $variant->size])) ?: $variant->name);
+                    $stockErrors[] = "\"{$product->name}\" ({$variantLabel}) — only {$variant->stock} left (requested {$qty})";
                 }
             }
 
@@ -248,6 +251,10 @@ class PosController extends Controller
                         ->first();
                     if ($pw) {
                         $pw->update(['stock' => max(0, (float) $pw->stock - $li['quantity'])]);
+                    }
+
+                    if ($variant) {
+                        $variant->update(['stock' => max(0, (float) $variant->stock - $li['quantity'])]);
                     }
 
                     $alert = (int) ($product->alert_quantity ?? 5);
