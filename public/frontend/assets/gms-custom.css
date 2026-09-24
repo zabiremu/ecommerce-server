@@ -1374,8 +1374,17 @@ input[type="submit"],
     flex-direction: row;
     padding: 6px 8px;
   }
-  .wd-add-btn.wd-add-btn-replace .wd-action-text {
+  .wd-add-btn.wd-add-btn-replace .button:not(.wd-disabled) .wd-action-text {
     display: none;
+  }
+  /* Out-of-stock has no icon — hiding its label (rule above) left an
+     empty 42px block the same color as the card, which read as a big
+     blank gap under the stock pill. Keep the label and give it an
+     outline so it reads as a disabled button. */
+  .wd-add-btn.wd-add-btn-replace .button.wd-disabled {
+    padding: 8px 10px;
+    font-size: 12px;
+    border: 1px solid var(--gms-line, #ececec);
   }
   /* "View more" button removed on mobile — replaced by the small
      arrow icon next to the section title (.gms-mobile-more-arrow). */
@@ -2233,5 +2242,36 @@ body {
      clear of both before the page actually ends. */
   .wd-footer {
     padding-bottom: 140px;
+  }
+}
+
+/* ==========================================================
+   25. LISTING GRID + FLOATING BUTTONS — MOBILE FIXES
+   ========================================================== */
+/* All Products / Category pages: 2 columns on phones (set via
+   --wd-col-sm on the grid), single column only on very narrow
+   screens where a half-width card gets too cramped. */
+@media (max-width: 359.98px) {
+  .gms-cat-main .wd-products {
+    --wd-col-sm: 1 !important;
+  }
+}
+
+/* Theme's scroll-to-top (.scrollToTop) sat at the same bottom-right
+   corner as the WhatsApp/Messenger button (.gms-dm-wrap: bottom 64px,
+   right 24px, 56px tall), showing up as a white "ghost" circle behind
+   it. Stack it directly above the chat button instead, centered on
+   the same vertical line. "html" prefix beats the theme's
+   opt-scrolltotop.css / opt-bottom-toolbar.css, which load later. */
+html .scrollToTop,
+html .sticky-toolbar-on .scrollToTop,
+html .sticky-toolbar-on .wd-sticky-btn-shown.scrollToTop {
+  bottom: calc(64px + 56px + 12px);
+  inset-inline-end: calc(24px + (56px - 50px) / 2);
+}
+@media (max-width: 1024px) {
+  html .scrollToTop,
+  html .sticky-toolbar-on .scrollToTop {
+    inset-inline-end: calc(24px + (56px - 40px) / 2);
   }
 }
