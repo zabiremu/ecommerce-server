@@ -243,7 +243,12 @@
     }
 }
 @media (max-width: 768px) {
-    .gms-cat-inner { flex-direction: column; }
+    /* align-items:flex-start (set for the desktop row layout) made the
+       column-direction children shrink-to-fit on mobile, so the product
+       grid only grew as wide as its images and left a blank strip on
+       the right. Stretch them to full width instead. */
+    .gms-cat-inner { flex-direction: column; align-items: stretch; }
+    .gms-cat-main { width: 100%; }
     .gms-cat-title-bar h1 { font-size: 22px; }
     .gms-cat-toolbar {
         flex-direction: column;
