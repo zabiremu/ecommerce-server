@@ -186,11 +186,11 @@
         <div class="wc-panel">
             <div class="wc-panel-h"><i class="fas fa-truck text-amber-500"></i> Shipping (TK)</div>
             <div class="wc-panel-body">
-                <div class="wc-f"><label>Inside Dhaka</label>
+                <div class="wc-f"><label>Inside Chittagong</label>
                     <input type="number" step="0.01" min="0" name="shipping_inside_dhaka" class="wc-i"
                            value="{{ old('shipping_inside_dhaka', $landing->shipping_inside_dhaka ?? 0) }}">
                 </div>
-                <div class="wc-f"><label>Outside Dhaka</label>
+                <div class="wc-f"><label>Outside Chittagong</label>
                     <input type="number" step="0.01" min="0" name="shipping_outside_dhaka" class="wc-i"
                            value="{{ old('shipping_outside_dhaka', $landing->shipping_outside_dhaka ?? 80) }}">
                 </div>

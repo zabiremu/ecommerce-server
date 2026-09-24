@@ -129,7 +129,7 @@ class LandingPageController extends Controller
             'shipping_phone'   => $data['shipping_phone'],
             'shipping_email'   => null,
             'shipping_address' => $data['shipping_address'],
-            'shipping_city'    => $data['zone'] === 'inside' ? 'Inside Dhaka' : 'Outside Dhaka',
+            'shipping_city'    => $data['zone'] === 'inside' ? 'Inside Chittagong' : 'Outside Chittagong',
             'shipping_area'    => $data['zone'] === 'inside' ? 'inside' : 'outside',
             'payment_method'   => $data['payment_method'],
             'notes'            => 'Landing page order: ' . $landing->slug,

@@ -68,8 +68,8 @@ class LandingPageController extends Controller
             'layout'                 => $data['layout'],
             'is_active'              => false,
             'blocks'                 => [],
-            'shipping_inside_dhaka'  => 0,
-            'shipping_outside_dhaka' => 80,
+            'shipping_inside_dhaka'  => 100,
+            'shipping_outside_dhaka' => 150,
             'enable_online_payment'  => false,
             'cta_text'               => 'অর্ডার করতে চাই',
         ]);
@@ -102,8 +102,8 @@ class LandingPageController extends Controller
             'is_active'              => false,
             'layout'                 => 'default',
             'blocks'                 => [],
-            'shipping_inside_dhaka'  => 0,
-            'shipping_outside_dhaka' => 80,
+            'shipping_inside_dhaka'  => 100,
+            'shipping_outside_dhaka' => 150,
             'enable_online_payment'  => false,
             'cta_text'               => 'অর্ডার করতে চাই',
         ]);
