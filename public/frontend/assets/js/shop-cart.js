@@ -186,6 +186,14 @@
         }).then(function (r) { return r.json(); });
     }
 
+    function getZone() {
+        try { return localStorage.getItem('gms_zone') === 'outside' ? 'outside' : 'inside'; }
+        catch (e) { return 'inside'; }
+    }
+    function setZone(zone) {
+        try { localStorage.setItem('gms_zone', zone === 'outside' ? 'outside' : 'inside'); } catch (e) {}
+    }
+
     function fetchQuote(items, couponCode) {
         return fetch('/api/cart/quote', {
             method: 'POST',
@@ -194,7 +202,7 @@
                 'X-CSRF-TOKEN': csrfToken(),
                 'X-Requested-With': 'XMLHttpRequest',
             },
-            body: JSON.stringify({ items: items, coupon_code: couponCode || null }),
+            body: JSON.stringify({ items: items, coupon_code: couponCode || null, zone: getZone() }),
         }).then(function (r) { return r.json(); });
     }
 
@@ -263,6 +271,8 @@
         isWishlisted: isWishlisted,
         fetchProducts: fetchProducts,
         fetchQuote: fetchQuote,
+        getZone: getZone,
+        setZone: setZone,
         csrfToken: csrfToken,
         renderCartBadge: renderCartBadge,
         renderWishlistBadge: renderWishlistBadge,

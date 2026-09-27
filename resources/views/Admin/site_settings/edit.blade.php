@@ -245,6 +245,41 @@
 
 
 
+            <!-- Shipping / Delivery charges -->
+            <div class="wp-panel border-l-4 border-[#f97316]">
+                <div class="wp-panel-h"><i class="fas fa-truck mr-1.5 text-[#f97316]"></i> Shipping (Delivery Charge)</div>
+                <div class="wp-panel-body">
+                    <p class="text-[12.5px] text-[#50575e] mb-3">
+                        Cart ও Checkout এ customer zone বেছে নেবে, আর সেই অনুযায়ী delivery charge যোগ হবে।
+                        (Landing page এর charge আলাদা — প্রতিটি landing page এর settings থেকে দিন।)
+                    </p>
+                    @php
+                        $shipDefaults = [
+                            'shipping_inside_label'   => 'Inside Chittagong',
+                            'shipping_inside_charge'  => '100',
+                            'shipping_outside_label'  => 'Outside Chittagong',
+                            'shipping_outside_charge' => '150',
+                            'shipping_free_min'       => '0',
+                        ];
+                    @endphp
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        @foreach ($fields['shipping'] as $key => [$label, $rule])
+                            <div class="wp-field {{ $key === 'shipping_free_min' ? 'md:col-span-2' : '' }}">
+                                <label>{{ $label }}</label>
+                                <input type="{{ str_contains($key, 'label') ? 'text' : 'number' }}"
+                                       @unless(str_contains($key, 'label')) step="0.01" min="0" @endunless
+                                       name="{{ $key }}"
+                                       value="{{ old($key, $settings[$key] ?? $shipDefaults[$key]) }}"
+                                       class="wp-input">
+                                @if ($key === 'shipping_free_min')
+                                    <p class="wp-help">এই amount বা তার বেশি অর্ডারে delivery free। <strong>0</strong> দিলে কখনো free হবে না (শুধু free-shipping coupon দিয়ে হবে)।</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
             <!-- Steadfast Courier API -->
             <div class="wp-panel border-l-4 border-[#1a6b1a]">
                 <div class="wp-panel-h"><i class="fas fa-truck-fast mr-1.5 text-[#1a6b1a]"></i> Steadfast Courier API</div>
