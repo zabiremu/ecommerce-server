@@ -514,7 +514,10 @@
         <!-- Actions -->
         <div class="wp-panel">
             <div class="wp-panel-h">Actions</div>
-            <div class="wp-panel-body">
+            <div class="wp-panel-body space-y-2">
+                <a href="{{ route('admin.orders.invoice', $order) }}" target="_blank" class="wp-btn w-full justify-center">
+                    <i class="fas fa-print mr-1"></i> View / Print Invoice
+                </a>
                 <form method="POST" action="{{ route('admin.orders.destroy', $order) }}" onsubmit="return confirm('Delete this order? Stock will be restored if it was deducted.')">
                     @csrf @method('DELETE')
                     <button type="submit" class="wp-btn" style="width:100%;border-color:#b32d2e;color:#b32d2e">Delete Order</button>

@@ -73,6 +73,12 @@ class OrderController extends Controller
         return view('Admin.order.show', compact('order', 'availableStatuses', 'paymentStatuses', 'phoneAnalysis'));
     }
 
+    public function invoice(Order $order)
+    {
+        $order->load('customer', 'items.product');
+        return view('Admin.order.invoice', compact('order'));
+    }
+
     public function bdcourierCheck(Order $order)
     {
         if (!BdCourierFraudService::isEnabled()) {
