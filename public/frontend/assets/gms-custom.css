@@ -921,9 +921,16 @@ input[type="submit"] {
   transform: translateX(3px);
 }
 @media (max-width: 768.98px) {
+  /* Let the slide's height follow the banner image's own ratio instead of a
+     fixed min-height. A fixed height combined with object-fit:cover on the
+     image below was forcing a landscape banner into a taller/narrower box
+     on phones, cropping the left/right edges of the image off-screen. */
+  .wd-slide {
+    aspect-ratio: 1294 / 600;
+  }
   .wd-slide-container {
-    min-height: 340px;
-    padding: 24px 20px;
+    min-height: unset;
+    padding: 20px 16px;
   }
   .wd-slide-container .wp-block-wd-title.title {
     font-size: 1.6em;
