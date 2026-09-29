@@ -818,38 +818,26 @@ input[type="submit"] {
   position: relative;
   border-radius: var(--gms-radius);
   overflow: hidden;
+  /* Height follows the banner's own ratio at every screen size — no fixed
+     px height anywhere, so nothing forces a crop against object-fit. */
+  aspect-ratio: 1294 / 600;
 }
 .wd-slide-bg.wd-fill {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Shows behind the image on any size mismatch instead of a blank gap. */
+  background: #0c0c0c;
 }
 .wd-slide-bg.wd-fill img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain (not cover): guarantees the whole image is always visible,
+     regardless of the actual uploaded image's exact ratio — never crops. */
+  object-fit: contain;
   display: block;
   /* Richer, more editorial look than the flat source photo. */
   filter: saturate(1.12) contrast(1.06);
-  transform: scale(1.06);
-}
-/* Slow "Ken Burns" zoom while a slide is active — a static photo reads
-   much less alive than one with continuous subtle motion. Duration is
-   longer than the 5s autoplay interval (GMS_CONFIG.sliderInterval) so
-   it's still gently moving when the next slide crossfades in, never
-   visibly resetting/snapping back. */
-.gms-slide-active .wd-slide-bg.wd-fill img {
-  animation: gmsHeroZoom 8s ease-out forwards;
-}
-@keyframes gmsHeroZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.09); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .gms-slide-active .wd-slide-bg.wd-fill img {
-    animation: none;
-    transform: scale(1);
-  }
 }
 /* Fallback background for the rare case where even the product-photo
    fallback in the controller finds nothing resolvable — a styled
@@ -870,7 +858,8 @@ input[type="submit"] {
 .wd-slide-container {
   position: relative;
   z-index: 1;
-  min-height: 460px;
+  /* No fixed min-height — .wd-slide's aspect-ratio drives the box height
+     now, and this flex child stretches to fill it automatically. */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -921,32 +910,14 @@ input[type="submit"] {
   transform: translateX(3px);
 }
 @media (max-width: 768.98px) {
-  /* Let the slide's height follow the banner image's own ratio instead of a
-     fixed min-height. A fixed height combined with object-fit:cover on the
-     image below was forcing a landscape banner into a taller/narrower box
-     on phones, cropping the left/right edges of the image off-screen. */
-  .wd-slide {
-    aspect-ratio: 1294 / 600;
-  }
+  /* Auto-height + full-image-visible now apply at every screen size (see
+     .wd-slide / .wd-slide-bg.wd-fill img above) — this just tightens the
+     text padding and title size for narrow screens. */
   .wd-slide-container {
-    min-height: unset;
     padding: 20px 16px;
   }
   .wd-slide-container .wp-block-wd-title.title {
     font-size: 1.6em;
-  }
-  /* Guarantee the whole banner image is visible on mobile, regardless of
-     the actual uploaded image's exact ratio: contain instead of cover
-     (no cropping, ever — letterboxes instead), and the desktop zoom
-     transform/animation (which pushes the image past its box edges) is
-     switched off so it can't crop the image either. */
-  .wd-slide-bg.wd-fill {
-    background: #0c0c0c;
-  }
-  .wd-slide-bg.wd-fill img {
-    object-fit: contain;
-    transform: none !important;
-    animation: none !important;
   }
 }
 
