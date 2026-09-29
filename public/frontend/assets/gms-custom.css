@@ -935,6 +935,19 @@ input[type="submit"] {
   .wd-slide-container .wp-block-wd-title.title {
     font-size: 1.6em;
   }
+  /* Guarantee the whole banner image is visible on mobile, regardless of
+     the actual uploaded image's exact ratio: contain instead of cover
+     (no cropping, ever — letterboxes instead), and the desktop zoom
+     transform/animation (which pushes the image past its box edges) is
+     switched off so it can't crop the image either. */
+  .wd-slide-bg.wd-fill {
+    background: #0c0c0c;
+  }
+  .wd-slide-bg.wd-fill img {
+    object-fit: contain;
+    transform: none !important;
+    animation: none !important;
+  }
 }
 
 /* ==========================================================
