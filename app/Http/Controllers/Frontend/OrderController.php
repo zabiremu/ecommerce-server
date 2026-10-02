@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Support\Shipping;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\PhoneBlacklist;
@@ -22,6 +23,7 @@ class OrderController extends Controller
             'shipping_email'   => 'nullable|email|max:255',
             'shipping_address' => 'required|string|max:1000',
             'shipping_city'    => 'required|string|max:100',
+            'shipping_zone'    => 'required|in:inside,outside',
             'payment_method'   => 'required|in:cod,bkash,nagad,rocket,bank,uddoktapay',
             'notes'            => 'nullable|string|max:1000',
             'coupon_code'      => 'nullable|string|max:50',
@@ -146,7 +148,8 @@ class OrderController extends Controller
             }
         }
 
-        $shippingCharge = ($freeShipping || $subtotal >= 500) ? 0 : 60;
+        $shippingCharge = Shipping::calculate($subtotal, $data['shipping_zone'], $freeShipping);
+        $data['shipping_area'] = Shipping::label($data['shipping_zone']);
 
         return (new OrderService())->place(
             $data,

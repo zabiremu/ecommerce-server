@@ -346,8 +346,8 @@
                 <div class="lp-fld">
                     <label>ডেলিভারি এরিয়া</label>
                     <div class="lp-zone" id="lpZones">
-                        <label class="active"><span><input type="radio" name="lpZone" value="inside" checked> ঢাকা শহর</span> <span class="z-cost">{{ \App\Support\Money::format($shipIn) }}</span></label>
-                        <label><span><input type="radio" name="lpZone" value="outside"> ঢাকার বাইরে</span> <span class="z-cost">{{ \App\Support\Money::format($shipOut) }}</span></label>
+                        <label class="active"><span><input type="radio" name="lpZone" value="inside" checked> চট্টগ্রাম শহর</span> <span class="z-cost">{{ \App\Support\Money::format($shipIn) }}</span></label>
+                        <label><span><input type="radio" name="lpZone" value="outside"> চট্টগ্রামের বাইরে</span> <span class="z-cost">{{ \App\Support\Money::format($shipOut) }}</span></label>
                     </div>
                 </div>
                 <div class="lp-fld">

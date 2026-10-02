@@ -2676,6 +2676,10 @@
                 <table style="width:100%;">
                     <tr><td style="padding:6px 0;">Subtotal</td><td style="text-align:right;" id="cart-subtotal">৳0.00</td></tr>
                     <tr id="cart-discount-row" style="display:none;"><td style="padding:6px 0;">Discount</td><td style="text-align:right;color:#16a34a;" id="cart-discount">-৳0.00</td></tr>
+                    <tr><td colspan="2" style="padding:6px 0;">
+                        <div style="font-weight:600;margin-bottom:8px;">Delivery area</div>
+                        <div id="cart-zones" style="display:flex;flex-direction:column;gap:8px;"></div>
+                    </td></tr>
                     <tr><td style="padding:6px 0;">Shipping</td><td style="text-align:right;" id="cart-shipping">৳0.00</td></tr>
                     <tr style="border-top:1px solid #ddd;font-weight:700;font-size:16px;">
                         <td style="padding:10px 0;">Total</td><td style="text-align:right;" id="cart-total">৳0.00</td>
@@ -2770,12 +2774,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+
+    // Delivery-zone picker (labels + charges come from Admin → Site Settings → Shipping)
+    function renderZones(boxId, quote, onChange) {
+        var box = document.getElementById(boxId);
+        if (!box || !quote.zones) return;
+        box.innerHTML = quote.zones.map(function (z) {
+            var on = z.key === quote.zone;
+            return '<label style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border:1px solid ' + (on ? 'var(--gms-primary,#e63946)' : '#ddd') + ';border-radius:8px;cursor:pointer;background:#fff;">' +
+                '<span style="display:flex;align-items:center;gap:8px;"><input type="radio" name="shipping_zone" value="' + z.key + '"' + (on ? ' checked' : '') + ' required> ' + z.label + '</span>' +
+                '<strong>' + window.formatPrice(z.charge) + '</strong></label>';
+        }).join('');
+        box.querySelectorAll('input[name="shipping_zone"]').forEach(function (r) {
+            r.addEventListener('change', function () { ShopCart.setZone(r.value); onChange(); });
+        });
+    }
+
     function refreshQuote() {
         var coupon = localStorage.getItem('gms_coupon') || '';
         document.getElementById('cart-coupon-input').value = coupon;
 
         ShopCart.fetchQuote(ShopCart.getCart(), coupon).then(function (quote) {
             document.getElementById('cart-subtotal').textContent = window.formatPrice(quote.subtotal);
+            renderZones('cart-zones', quote, refreshQuote);
             document.getElementById('cart-shipping').textContent = quote.shipping > 0 ? window.formatPrice(quote.shipping) : 'Free';
             document.getElementById('cart-total').textContent = window.formatPrice(quote.total);
 

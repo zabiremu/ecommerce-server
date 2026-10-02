@@ -243,7 +243,12 @@
     }
 }
 @media (max-width: 768px) {
-    .gms-cat-inner { flex-direction: column; }
+    /* align-items:flex-start (set for the desktop row layout) made the
+       column-direction children shrink-to-fit on mobile, so the product
+       grid only grew as wide as its images and left a blank strip on
+       the right. Stretch them to full width instead. */
+    .gms-cat-inner { flex-direction: column; align-items: stretch; }
+    .gms-cat-main { width: 100%; }
     .gms-cat-title-bar h1 { font-size: 22px; }
     .gms-cat-toolbar {
         flex-direction: column;
@@ -369,7 +374,7 @@
 
                 {{-- Product Grid --}}
                 <div class="products wd-products wd-grid-g grid-columns-4 elements-grid wd-loop-builder-off title-line-one wd-stretch-cont-lg wd-stretch-cont-md wd-stretch-cont-sm products-bordered-grid-ins"
-                     style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:1;--wd-gap-lg:20px;--wd-gap-sm:10px;"
+                     style="--wd-col-lg:4;--wd-col-md:3;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;"
                      id="productGrid"></div>
 
                 {{-- Pagination --}}

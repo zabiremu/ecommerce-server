@@ -121,6 +121,7 @@
             <th>Warehouse</th>
             <th>Status</th>
             <th class="text-right" style="width:130px">Amount</th>
+            <th class="text-center" style="width:60px">Invoice</th>
         </tr>
     </thead>
     <tbody>
@@ -143,6 +144,11 @@
                 </span>
             </td>
             <td class="text-right font-semibold">{{ \App\Support\Money::format($purchase->total_amount) }}</td>
+            <td class="text-center">
+                <a href="{{ route('admin.purchases.invoice', $purchase) }}" target="_blank" title="View / Print Invoice" class="text-[#2271b1] hover:underline">
+                    <i class="fas fa-print"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -155,6 +161,7 @@
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
                 {{ \App\Support\Money::format($totalAmount) }}
             </td>
+            <td style="border-top:2px solid #c3c4c7;"></td>
         </tr>
     </tfoot>
     @endif

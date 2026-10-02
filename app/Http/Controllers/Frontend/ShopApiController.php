@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Support\Money;
+use App\Support\Shipping;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
@@ -66,7 +67,9 @@ class ShopApiController extends Controller
             'items.*.qty'        => 'required|integer|min:1',
             'items.*.variant_id' => 'nullable|integer',
             'coupon_code'        => 'nullable|string|max:50',
+            'zone'               => 'nullable|in:inside,outside',
         ]);
+        $zone = $data['zone'] ?? 'inside';
 
         $productIds = collect($data['items'])->pluck('id')->unique();
         $products = Product::published()->whereIn('id', $productIds)->get()->keyBy('id');
@@ -122,7 +125,7 @@ class ShopApiController extends Controller
             }
         }
 
-        $shipping = ($freeShipping || $subtotal >= 500) ? 0 : 60;
+        $shipping = empty($lines) ? 0 : Shipping::calculate($subtotal, $zone, $freeShipping);
         $total = max(0, $subtotal - $discount + $shipping);
 
         return response()->json([
@@ -130,6 +133,8 @@ class ShopApiController extends Controller
             'subtotal'       => round($subtotal, 2),
             'discount'       => round($discount, 2),
             'shipping'       => round($shipping, 2),
+            'zone'           => $zone,
+            'zones'          => Shipping::zones(),
             'total'          => round($total, 2),
             'coupon_message' => $couponMessage,
             'coupon_valid'   => $discount > 0 || $freeShipping,

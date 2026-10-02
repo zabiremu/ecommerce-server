@@ -37,6 +37,13 @@ class SiteSettingController extends Controller
             'developer_name'  => ['Developer Name',  'nullable|string|max:100'],
             'developer_url'   => ['Developer URL',   'nullable|string|max:500'],
         ],
+        'shipping' => [
+            'shipping_inside_label'   => ['Zone 1 Name',                  'nullable|string|max:60'],
+            'shipping_inside_charge'  => ['Zone 1 Delivery Charge (৳)',   'nullable|numeric|min:0'],
+            'shipping_outside_label'  => ['Zone 2 Name',                  'nullable|string|max:60'],
+            'shipping_outside_charge' => ['Zone 2 Delivery Charge (৳)',   'nullable|numeric|min:0'],
+            'shipping_free_min'       => ['Free Shipping Above (৳)',      'nullable|numeric|min:0'],
+        ],
         'steadfast' => [
             'steadfast_api_key'       => ['Steadfast API Key',      'nullable|string|max:255'],
             'steadfast_secret_key'    => ['Steadfast Secret Key',   'nullable|string|max:255'],

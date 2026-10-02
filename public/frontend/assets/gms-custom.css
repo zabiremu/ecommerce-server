@@ -818,38 +818,26 @@ input[type="submit"] {
   position: relative;
   border-radius: var(--gms-radius);
   overflow: hidden;
+  /* Height follows the banner's own ratio at every screen size — no fixed
+     px height anywhere, so nothing forces a crop against object-fit. */
+  aspect-ratio: 1294 / 600;
 }
 .wd-slide-bg.wd-fill {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Shows behind the image on any size mismatch instead of a blank gap. */
+  background: #0c0c0c;
 }
 .wd-slide-bg.wd-fill img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain (not cover): guarantees the whole image is always visible,
+     regardless of the actual uploaded image's exact ratio — never crops. */
+  object-fit: contain;
   display: block;
   /* Richer, more editorial look than the flat source photo. */
   filter: saturate(1.12) contrast(1.06);
-  transform: scale(1.06);
-}
-/* Slow "Ken Burns" zoom while a slide is active — a static photo reads
-   much less alive than one with continuous subtle motion. Duration is
-   longer than the 5s autoplay interval (GMS_CONFIG.sliderInterval) so
-   it's still gently moving when the next slide crossfades in, never
-   visibly resetting/snapping back. */
-.gms-slide-active .wd-slide-bg.wd-fill img {
-  animation: gmsHeroZoom 8s ease-out forwards;
-}
-@keyframes gmsHeroZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.09); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .gms-slide-active .wd-slide-bg.wd-fill img {
-    animation: none;
-    transform: scale(1);
-  }
 }
 /* Fallback background for the rare case where even the product-photo
    fallback in the controller finds nothing resolvable — a styled
@@ -870,7 +858,8 @@ input[type="submit"] {
 .wd-slide-container {
   position: relative;
   z-index: 1;
-  min-height: 460px;
+  /* No fixed min-height — .wd-slide's aspect-ratio drives the box height
+     now, and this flex child stretches to fill it automatically. */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -921,9 +910,11 @@ input[type="submit"] {
   transform: translateX(3px);
 }
 @media (max-width: 768.98px) {
+  /* Auto-height + full-image-visible now apply at every screen size (see
+     .wd-slide / .wd-slide-bg.wd-fill img above) — this just tightens the
+     text padding and title size for narrow screens. */
   .wd-slide-container {
-    min-height: 340px;
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
   .wd-slide-container .wp-block-wd-title.title {
     font-size: 1.6em;
@@ -1374,8 +1365,17 @@ input[type="submit"],
     flex-direction: row;
     padding: 6px 8px;
   }
-  .wd-add-btn.wd-add-btn-replace .wd-action-text {
+  .wd-add-btn.wd-add-btn-replace .button:not(.wd-disabled) .wd-action-text {
     display: none;
+  }
+  /* Out-of-stock has no icon — hiding its label (rule above) left an
+     empty 42px block the same color as the card, which read as a big
+     blank gap under the stock pill. Keep the label and give it an
+     outline so it reads as a disabled button. */
+  .wd-add-btn.wd-add-btn-replace .button.wd-disabled {
+    padding: 8px 10px;
+    font-size: 12px;
+    border: 1px solid var(--gms-line, #ececec);
   }
   /* "View more" button removed on mobile — replaced by the small
      arrow icon next to the section title (.gms-mobile-more-arrow). */
@@ -2233,5 +2233,36 @@ body {
      clear of both before the page actually ends. */
   .wd-footer {
     padding-bottom: 140px;
+  }
+}
+
+/* ==========================================================
+   25. LISTING GRID + FLOATING BUTTONS — MOBILE FIXES
+   ========================================================== */
+/* All Products / Category pages: 2 columns on phones (set via
+   --wd-col-sm on the grid), single column only on very narrow
+   screens where a half-width card gets too cramped. */
+@media (max-width: 359.98px) {
+  .gms-cat-main .wd-products {
+    --wd-col-sm: 1 !important;
+  }
+}
+
+/* Theme's scroll-to-top (.scrollToTop) sat at the same bottom-right
+   corner as the WhatsApp/Messenger button (.gms-dm-wrap: bottom 64px,
+   right 24px, 56px tall), showing up as a white "ghost" circle behind
+   it. Stack it directly above the chat button instead, centered on
+   the same vertical line. "html" prefix beats the theme's
+   opt-scrolltotop.css / opt-bottom-toolbar.css, which load later. */
+html .scrollToTop,
+html .sticky-toolbar-on .scrollToTop,
+html .sticky-toolbar-on .wd-sticky-btn-shown.scrollToTop {
+  bottom: calc(64px + 56px + 12px);
+  inset-inline-end: calc(24px + (56px - 50px) / 2);
+}
+@media (max-width: 1024px) {
+  html .scrollToTop,
+  html .sticky-toolbar-on .scrollToTop {
+    inset-inline-end: calc(24px + (56px - 40px) / 2);
   }
 }

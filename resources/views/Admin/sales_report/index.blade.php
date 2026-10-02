@@ -102,6 +102,7 @@
             <th class="text-right" style="width:100px">Shipping</th>
             <th class="text-right" style="width:90px">Discount</th>
             <th class="text-right" style="width:110px">Total</th>
+            <th class="text-center" style="width:60px">Invoice</th>
         </tr>
     </thead>
     <tbody>
@@ -139,6 +140,11 @@
                 @endif
             </td>
             <td class="text-right font-semibold">{{ \App\Support\Money::format($order->total) }}</td>
+            <td class="text-center">
+                <a href="{{ route('admin.orders.invoice', $order) }}" target="_blank" title="View / Print Invoice" class="text-[#2271b1] hover:underline">
+                    <i class="fas fa-print"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -150,6 +156,7 @@
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">{{ \App\Support\Money::format($orders->sum('shipping_charge')) }}</td>
             <td class="text-right text-emerald-700" style="padding:10px 8px; border-top:2px solid #c3c4c7;">-{{ \App\Support\Money::format($orders->sum('discount')) }}</td>
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">{{ \App\Support\Money::format($orders->sum('total')) }}</td>
+            <td style="border-top:2px solid #c3c4c7;"></td>
         </tr>
     </tfoot>
     @endif

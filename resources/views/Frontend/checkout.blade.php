@@ -2760,6 +2760,10 @@
                             <input type="text" name="shipping_city" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;">
                         </div>
                         <div style="grid-column:1/-1;">
+                            <label>Delivery area *</label>
+                            <div id="co-zones" style="display:flex;flex-direction:column;gap:8px;margin-top:6px;"></div>
+                        </div>
+                        <div style="grid-column:1/-1;">
                             <label>Order notes (optional)</label>
                             <textarea name="notes" rows="2" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"></textarea>
                         </div>
@@ -2817,6 +2821,22 @@ document.addEventListener('DOMContentLoaded', function () {
     var wrap = document.getElementById('co-wrap');
     var itemsBox = document.getElementById('co-items');
 
+
+    // Delivery-zone picker (labels + charges come from Admin → Site Settings → Shipping)
+    function renderZones(boxId, quote, onChange) {
+        var box = document.getElementById(boxId);
+        if (!box || !quote.zones) return;
+        box.innerHTML = quote.zones.map(function (z) {
+            var on = z.key === quote.zone;
+            return '<label style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border:1px solid ' + (on ? 'var(--gms-primary,#e63946)' : '#ddd') + ';border-radius:8px;cursor:pointer;background:#fff;">' +
+                '<span style="display:flex;align-items:center;gap:8px;"><input type="radio" name="shipping_zone" value="' + z.key + '"' + (on ? ' checked' : '') + ' required> ' + z.label + '</span>' +
+                '<strong>' + window.formatPrice(z.charge) + '</strong></label>';
+        }).join('');
+        box.querySelectorAll('input[name="shipping_zone"]').forEach(function (r) {
+            r.addEventListener('change', function () { ShopCart.setZone(r.value); onChange(); });
+        });
+    }
+
     function refreshQuote() {
         var cartItems = ShopCart.getCart();
         var coupon = localStorage.getItem('gms_coupon') || '';
@@ -2833,6 +2853,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }).join('');
 
             document.getElementById('co-subtotal').textContent = window.formatPrice(quote.subtotal);
+            renderZones('co-zones', quote, refreshQuote);
             document.getElementById('co-shipping').textContent = quote.shipping > 0 ? window.formatPrice(quote.shipping) : 'Free';
             document.getElementById('co-total').textContent = window.formatPrice(quote.total);
 
@@ -2889,6 +2910,7 @@ document.addEventListener('DOMContentLoaded', function () {
             shipping_email: formData.get('shipping_email') || null,
             shipping_address: formData.get('shipping_address'),
             shipping_city: formData.get('shipping_city'),
+            shipping_zone: ShopCart.getZone(),
             payment_method: formData.get('payment_method'),
             notes: formData.get('notes') || null,
             coupon_code: localStorage.getItem('gms_coupon') || null,
