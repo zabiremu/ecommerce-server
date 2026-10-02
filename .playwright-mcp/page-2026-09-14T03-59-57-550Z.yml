@@ -1,0 +1,343 @@
+- generic [ref=f1e2]:
+  - complementary [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link " ROVENTEX" [ref=f1e5] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/admin/dashboard
+        - generic [ref=f1e6]: 
+        - paragraph [ref=f1e8]: ROVENTEX
+      - text: 
+    - navigation [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - generic [ref=f1e11]:
+          - paragraph [ref=f1e12]: Main
+          - list [ref=f1e13]:
+            - listitem [ref=f1e14]:
+              - link " Dashboard" [ref=f1e15] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/dashboard
+                - generic [ref=f1e16]: 
+                - generic [ref=f1e17]: Dashboard
+        - generic [ref=f1e18]:
+          - paragraph [ref=f1e19]: Catalog
+          - list [ref=f1e20]:
+            - listitem [ref=f1e21]:
+              - link " Products" [ref=f1e22] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/products
+                - generic [ref=f1e23]: 
+                - generic [ref=f1e24]: Products
+            - listitem [ref=f1e25]:
+              - link " Categories" [ref=f1e26] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/categories
+                - generic [ref=f1e27]: 
+                - generic [ref=f1e28]: Categories
+            - listitem [ref=f1e29]:
+              - link " Brands" [ref=f1e30] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/brands
+                - generic [ref=f1e31]: 
+                - generic [ref=f1e32]: Brands
+            - listitem [ref=f1e33]:
+              - link " Units" [ref=f1e34] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/units
+                - generic [ref=f1e35]: 
+                - generic [ref=f1e36]: Units
+            - listitem [ref=f1e37]:
+              - link " Suppliers" [ref=f1e38] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/suppliers
+                - generic [ref=f1e39]: 
+                - generic [ref=f1e40]: Suppliers
+            - listitem [ref=f1e41]:
+              - link " Warehouses" [ref=f1e42] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/warehouses
+                - generic [ref=f1e43]: 
+                - generic [ref=f1e44]: Warehouses
+        - generic [ref=f1e45]:
+          - paragraph [ref=f1e46]: Inventory
+          - list [ref=f1e47]:
+            - listitem [ref=f1e48]:
+              - link " Purchases" [ref=f1e49] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/purchases
+                - generic [ref=f1e50]: 
+                - generic [ref=f1e51]: Purchases
+            - listitem [ref=f1e52]:
+              - link " GRN" [ref=f1e53] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/grn
+                - generic [ref=f1e54]: 
+                - generic [ref=f1e55]: GRN
+            - listitem [ref=f1e56]:
+              - link " GRN Returns" [ref=f1e57] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/grn-returns
+                - generic [ref=f1e58]: 
+                - generic [ref=f1e59]: GRN Returns
+            - listitem [ref=f1e60]:
+              - link " Stock Transfers" [ref=f1e61] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-transfers
+                - generic [ref=f1e62]: 
+                - generic [ref=f1e63]: Stock Transfers
+            - listitem [ref=f1e64]:
+              - link " Adjustments" [ref=f1e65] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-adjustments
+                - generic [ref=f1e66]: 
+                - generic [ref=f1e67]: Adjustments
+            - listitem [ref=f1e68]:
+              - link " Stock Report" [ref=f1e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-report
+                - generic [ref=f1e70]: 
+                - generic [ref=f1e71]: Stock Report
+        - generic [ref=f1e72]:
+          - paragraph [ref=f1e73]: Sales
+          - list [ref=f1e74]:
+            - listitem [ref=f1e75]:
+              - link " Point of Sale" [ref=f1e76] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/pos
+                - generic [ref=f1e77]: 
+                - generic [ref=f1e78]: Point of Sale
+            - listitem [ref=f1e79]:
+              - link " Orders" [ref=f1e80] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/orders
+                - generic [ref=f1e81]: 
+                - generic [ref=f1e82]: Orders
+            - listitem [ref=f1e83]:
+              - link " Abandoned Carts" [ref=f1e84] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/abandoned-carts
+                - generic [ref=f1e85]: 
+                - generic [ref=f1e86]: Abandoned Carts
+            - listitem [ref=f1e87]:
+              - link " Customers" [ref=f1e88] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/customers
+                - generic [ref=f1e89]: 
+                - generic [ref=f1e90]: Customers
+            - listitem [ref=f1e91]:
+              - link " Phone Blacklist" [ref=f1e92] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/phone-blacklist
+                - generic [ref=f1e93]: 
+                - generic [ref=f1e94]: Phone Blacklist
+            - listitem [ref=f1e95]:
+              - link "% Coupons" [ref=f1e96] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/coupons
+                - generic [ref=f1e97]: "%"
+                - generic [ref=f1e98]: Coupons
+            - listitem [ref=f1e99]:
+              - link " Messages" [ref=f1e100] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/contact-messages
+                - generic [ref=f1e101]: 
+                - generic [ref=f1e102]: Messages
+        - generic [ref=f1e103]:
+          - paragraph [ref=f1e104]: Content
+          - list [ref=f1e105]:
+            - listitem [ref=f1e106]:
+              - link " Landings" [ref=f1e107] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/landings
+                - generic [ref=f1e108]: 
+                - generic [ref=f1e109]: Landings
+            - listitem [ref=f1e110]:
+              - button " Home Page " [ref=f1e111] [cursor=pointer]:
+                - generic [ref=f1e112]: 
+                - generic [ref=f1e113]: Home Page
+                - generic [ref=f1e114]: 
+              - text:    
+            - listitem [ref=f1e115]:
+              - link " About Us" [ref=f1e116] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/about-page
+                - generic [ref=f1e117]: 
+                - generic [ref=f1e118]: About Us
+        - generic [ref=f1e119]:
+          - paragraph [ref=f1e120]: Reports
+          - list [ref=f1e121]:
+            - listitem [ref=f1e122]:
+              - link " Sales Report" [ref=f1e123] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/sales-report
+                - generic [ref=f1e124]: 
+                - generic [ref=f1e125]: Sales Report
+            - listitem [ref=f1e126]:
+              - link " Purchase Report" [ref=f1e127] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/purchase-report
+                - generic [ref=f1e128]: 
+                - generic [ref=f1e129]: Purchase Report
+            - listitem [ref=f1e130]:
+              - link " Customer Report" [ref=f1e131] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/customer-report
+                - generic [ref=f1e132]: 
+                - generic [ref=f1e133]: Customer Report
+        - generic [ref=f1e134]:
+          - paragraph [ref=f1e135]: Settings
+          - list [ref=f1e136]:
+            - listitem [ref=f1e137]:
+              - link " Pages" [ref=f1e138] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/pages
+                - generic [ref=f1e139]: 
+                - generic [ref=f1e140]: Pages
+            - listitem [ref=f1e141]:
+              - link " Site Settings" [ref=f1e142] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/site-settings
+                - generic [ref=f1e143]: 
+                - generic [ref=f1e144]: Site Settings
+            - listitem [ref=f1e145]:
+              - link " Admins" [ref=f1e146] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/admins
+                - generic [ref=f1e147]: 
+                - generic [ref=f1e148]: Admins
+            - listitem [ref=f1e149]:
+              - link " Roles" [ref=f1e150] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/roles
+                - generic [ref=f1e151]: 
+                - generic [ref=f1e152]: Roles
+    - generic [ref=f1e154] [cursor=pointer]:
+      - generic [ref=f1e155]: S
+      - generic [ref=f1e156]:
+        - paragraph [ref=f1e157]: Super Admin
+        - paragraph [ref=f1e158]: Super Admin
+      - button "" [ref=f1e160]
+  - generic [ref=f1e162]:
+    - banner [ref=f1e163]:
+      - generic [ref=f1e164]:
+        - generic [ref=f1e165]:
+          - text: 
+          - heading "Dashboard" [level=1] [ref=f1e167]
+          - generic [ref=f1e169]:
+            - generic: 
+            - textbox "Search orders, products, customers…" [ref=f1e170]
+        - generic [ref=f1e171]:
+          - text: 
+          - link "" [ref=f1e172] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - generic [ref=f1e174]:
+            - button " 2" [ref=f1e175] [cursor=pointer]:
+              - generic [ref=f1e176]: 
+              - generic [ref=f1e177]: "2"
+            - text:  
+          - generic [ref=f1e179]:
+            - button "S Super " [ref=f1e180] [cursor=pointer]:
+              - generic [ref=f1e181]: S
+              - generic [ref=f1e182]: Super
+              - generic [ref=f1e183]: 
+            - text:   
+    - main [ref=f1e184]:
+      - generic [ref=f1e185]:
+        - generic [ref=f1e186]:
+          - generic [ref=f1e187]:
+            - heading "Welcome back, Super" [level=2] [ref=f1e188]
+            - paragraph [ref=f1e189]: Monday, September 14, 2026 · 3 out of stock
+          - generic [ref=f1e190]:
+            - link " Orders" [ref=f1e191] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/admin/orders
+              - generic [ref=f1e192]: 
+              - generic [ref=f1e193]: Orders
+            - link "+ New Product" [ref=f1e194] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/admin/products/create
+              - generic [ref=f1e195]: +
+              - generic [ref=f1e196]: New Product
+        - generic [ref=f1e197]:
+          - generic [ref=f1e198]:
+            - generic [ref=f1e199]: Revenue (this month)
+            - paragraph [ref=f1e201]: ৳0.00
+            - paragraph [ref=f1e202]: "Last month: ৳0.00"
+          - link "Orders 0 0 this month" [ref=f1e204] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/admin/orders
+            - generic [ref=f1e205]: Orders
+            - paragraph [ref=f1e207]: "0"
+            - paragraph [ref=f1e208]: 0 this month
+          - link "Customers 0 0 new this week" [ref=f1e210] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/admin/customers
+            - generic [ref=f1e211]: Customers
+            - paragraph [ref=f1e213]: "0"
+            - paragraph [ref=f1e214]: 0 new this week
+          - link "Products  3 OOS 38 3 out of stock" [ref=f1e216] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/admin/products
+            - generic [ref=f1e217]:
+              - generic [ref=f1e218]: Products
+              - generic [ref=f1e219]:
+                - generic [ref=f1e220]: 
+                - text: 3 OOS
+            - paragraph [ref=f1e221]: "38"
+            - paragraph [ref=f1e222]: 3 out of stock
+          - generic [ref=f1e225]:
+            - generic [ref=f1e226]:
+              - generic [ref=f1e227]: Live Visitors
+              - generic [ref=f1e228]: LIVE
+            - paragraph [ref=f1e233]: "1"
+            - paragraph [ref=f1e234]: Active in last 5 min
+        - generic [ref=f1e237]:
+          - generic [ref=f1e238]:
+            - generic [ref=f1e239]:
+              - heading "Visitor Analytics" [level=3] [ref=f1e240]
+              - paragraph [ref=f1e241]: Unique visitors tracked by session
+            - generic [ref=f1e242]:
+              - generic [ref=f1e243]:
+                - generic [ref=f1e247]: "Live now:"
+                - generic [ref=f1e248]: "1"
+              - generic [ref=f1e249]:
+                - generic [ref=f1e250]: 
+                - generic [ref=f1e251]: "Today:"
+                - generic [ref=f1e252]: "1"
+          - generic [ref=f1e253]:
+            - generic [ref=f1e254]:
+              - generic [ref=f1e255]:
+                - generic [ref=f1e256]: From Date
+                - textbox [ref=f1e257]: 2026-09-14
+              - generic [ref=f1e258]:
+                - generic [ref=f1e259]: To Date (optional)
+                - textbox [ref=f1e260]
+              - button " Search" [ref=f1e261] [cursor=pointer]:
+                - generic [ref=f1e262]: 
+                - text: Search
+            - text: 
+        - generic [ref=f1e263]:
+          - generic [ref=f1e264]:
+            - generic [ref=f1e265]:
+              - generic [ref=f1e266]:
+                - heading "Sales Overview" [level=3] [ref=f1e267]
+                - paragraph [ref=f1e268]: Revenue for the last 7 days
+              - generic [ref=f1e269]: ৳0.00
+            - generic [ref=f1e271]:
+              - generic [ref=f1e272]:
+                - generic [ref=f1e273]: TK 0
+                - generic [ref=f1e274]: Tue
+              - generic [ref=f1e275]:
+                - generic [ref=f1e276]: TK 0
+                - generic [ref=f1e277]: Wed
+              - generic [ref=f1e278]:
+                - generic [ref=f1e279]: TK 0
+                - generic [ref=f1e280]: Thu
+              - generic [ref=f1e281]:
+                - generic [ref=f1e282]: TK 0
+                - generic [ref=f1e283]: Fri
+              - generic [ref=f1e284]:
+                - generic [ref=f1e285]: TK 0
+                - generic [ref=f1e286]: Sat
+              - generic [ref=f1e287]:
+                - generic [ref=f1e288]: TK 0
+                - generic [ref=f1e289]: Sun
+              - generic [ref=f1e290]:
+                - generic [ref=f1e291]: TK 0
+                - generic [ref=f1e292]: Mon
+          - generic [ref=f1e293]:
+            - generic [ref=f1e294]:
+              - heading "Recent Orders" [level=3] [ref=f1e295]
+              - link "View all" [ref=f1e296] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/orders
+            - generic [ref=f1e297]: No orders yet.
+        - generic [ref=f1e298]:
+          - generic [ref=f1e299]:
+            - generic [ref=f1e300]:
+              - generic [ref=f1e301]:
+                - heading "Top Selling Products" [level=3] [ref=f1e302]
+                - paragraph [ref=f1e303]: By total quantity ordered
+              - link "View all" [ref=f1e304] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/products
+            - generic [ref=f1e305]: No orders yet to rank products.
+          - generic [ref=f1e306]:
+            - heading "Recent Activity" [level=3] [ref=f1e308]
+            - list [ref=f1e309]:
+              - listitem [ref=f1e311]:
+                - generic [ref=f1e312]: 
+                - generic [ref=f1e314]:
+                  - paragraph [ref=f1e315]:
+                    - strong [ref=f1e316]: Straight Fit Jeans
+                    - text: is out of stock
+                  - paragraph [ref=f1e317]: 1 week ago
+              - listitem [ref=f1e318]:
+                - generic [ref=f1e319]: 
+                - generic [ref=f1e321]:
+                  - paragraph [ref=f1e322]:
+                    - strong [ref=f1e323]: Tapered Semi Baggy Jeans
+                    - text: is out of stock
+                  - paragraph [ref=f1e324]: 1 week ago

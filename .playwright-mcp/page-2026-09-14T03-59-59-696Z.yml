@@ -1,0 +1,308 @@
+- generic [ref=f2e2]:
+  - complementary [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - link " ROVENTEX" [ref=f2e5] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/admin/dashboard
+        - generic [ref=f2e6]: 
+        - paragraph [ref=f2e8]: ROVENTEX
+      - text: 
+    - navigation [ref=f2e9]:
+      - generic [ref=f2e10]:
+        - generic [ref=f2e11]:
+          - paragraph [ref=f2e12]: Main
+          - list [ref=f2e13]:
+            - listitem [ref=f2e14]:
+              - link " Dashboard" [ref=f2e15] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/dashboard
+                - generic [ref=f2e16]: 
+                - generic [ref=f2e17]: Dashboard
+        - generic [ref=f2e18]:
+          - paragraph [ref=f2e19]: Catalog
+          - list [ref=f2e20]:
+            - listitem [ref=f2e21]:
+              - link " Products" [ref=f2e22] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/products
+                - generic [ref=f2e23]: 
+                - generic [ref=f2e24]: Products
+            - listitem [ref=f2e25]:
+              - link " Categories" [ref=f2e26] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/categories
+                - generic [ref=f2e27]: 
+                - generic [ref=f2e28]: Categories
+            - listitem [ref=f2e29]:
+              - link " Brands" [ref=f2e30] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/brands
+                - generic [ref=f2e31]: 
+                - generic [ref=f2e32]: Brands
+            - listitem [ref=f2e33]:
+              - link " Units" [ref=f2e34] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/units
+                - generic [ref=f2e35]: 
+                - generic [ref=f2e36]: Units
+            - listitem [ref=f2e37]:
+              - link " Suppliers" [ref=f2e38] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/suppliers
+                - generic [ref=f2e39]: 
+                - generic [ref=f2e40]: Suppliers
+            - listitem [ref=f2e41]:
+              - link " Warehouses" [ref=f2e42] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/warehouses
+                - generic [ref=f2e43]: 
+                - generic [ref=f2e44]: Warehouses
+        - generic [ref=f2e45]:
+          - paragraph [ref=f2e46]: Inventory
+          - list [ref=f2e47]:
+            - listitem [ref=f2e48]:
+              - link " Purchases" [ref=f2e49] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/purchases
+                - generic [ref=f2e50]: 
+                - generic [ref=f2e51]: Purchases
+            - listitem [ref=f2e52]:
+              - link " GRN" [ref=f2e53] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/grn
+                - generic [ref=f2e54]: 
+                - generic [ref=f2e55]: GRN
+            - listitem [ref=f2e56]:
+              - link " GRN Returns" [ref=f2e57] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/grn-returns
+                - generic [ref=f2e58]: 
+                - generic [ref=f2e59]: GRN Returns
+            - listitem [ref=f2e60]:
+              - link " Stock Transfers" [ref=f2e61] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-transfers
+                - generic [ref=f2e62]: 
+                - generic [ref=f2e63]: Stock Transfers
+            - listitem [ref=f2e64]:
+              - link " Adjustments" [ref=f2e65] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-adjustments
+                - generic [ref=f2e66]: 
+                - generic [ref=f2e67]: Adjustments
+            - listitem [ref=f2e68]:
+              - link " Stock Report" [ref=f2e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/stock-report
+                - generic [ref=f2e70]: 
+                - generic [ref=f2e71]: Stock Report
+        - generic [ref=f2e72]:
+          - paragraph [ref=f2e73]: Sales
+          - list [ref=f2e74]:
+            - listitem [ref=f2e75]:
+              - link " Point of Sale" [ref=f2e76] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/pos
+                - generic [ref=f2e77]: 
+                - generic [ref=f2e78]: Point of Sale
+            - listitem [ref=f2e79]:
+              - link " Orders" [ref=f2e80] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/orders
+                - generic [ref=f2e81]: 
+                - generic [ref=f2e82]: Orders
+            - listitem [ref=f2e83]:
+              - link " Abandoned Carts" [ref=f2e84] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/abandoned-carts
+                - generic [ref=f2e85]: 
+                - generic [ref=f2e86]: Abandoned Carts
+            - listitem [ref=f2e87]:
+              - link " Customers" [ref=f2e88] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/customers
+                - generic [ref=f2e89]: 
+                - generic [ref=f2e90]: Customers
+            - listitem [ref=f2e91]:
+              - link " Phone Blacklist" [ref=f2e92] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/phone-blacklist
+                - generic [ref=f2e93]: 
+                - generic [ref=f2e94]: Phone Blacklist
+            - listitem [ref=f2e95]:
+              - link "% Coupons" [ref=f2e96] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/coupons
+                - generic [ref=f2e97]: "%"
+                - generic [ref=f2e98]: Coupons
+            - listitem [ref=f2e99]:
+              - link " Messages" [ref=f2e100] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/contact-messages
+                - generic [ref=f2e101]: 
+                - generic [ref=f2e102]: Messages
+        - generic [ref=f2e103]:
+          - paragraph [ref=f2e104]: Content
+          - list [ref=f2e105]:
+            - listitem [ref=f2e106]:
+              - link " Landings" [ref=f2e107] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/landings
+                - generic [ref=f2e108]: 
+                - generic [ref=f2e109]: Landings
+            - listitem [ref=f2e110]:
+              - button " Home Page " [ref=f2e111] [cursor=pointer]:
+                - generic [ref=f2e112]: 
+                - generic [ref=f2e113]: Home Page
+                - generic [ref=f2e114]: 
+              - text:    
+            - listitem [ref=f2e115]:
+              - link " About Us" [ref=f2e116] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/about-page
+                - generic [ref=f2e117]: 
+                - generic [ref=f2e118]: About Us
+        - generic [ref=f2e119]:
+          - paragraph [ref=f2e120]: Reports
+          - list [ref=f2e121]:
+            - listitem [ref=f2e122]:
+              - link " Sales Report" [ref=f2e123] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/sales-report
+                - generic [ref=f2e124]: 
+                - generic [ref=f2e125]: Sales Report
+            - listitem [ref=f2e126]:
+              - link " Purchase Report" [ref=f2e127] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/purchase-report
+                - generic [ref=f2e128]: 
+                - generic [ref=f2e129]: Purchase Report
+            - listitem [ref=f2e130]:
+              - link " Customer Report" [ref=f2e131] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/customer-report
+                - generic [ref=f2e132]: 
+                - generic [ref=f2e133]: Customer Report
+        - generic [ref=f2e134]:
+          - paragraph [ref=f2e135]: Settings
+          - list [ref=f2e136]:
+            - listitem [ref=f2e137]:
+              - link " Pages" [ref=f2e138] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/pages
+                - generic [ref=f2e139]: 
+                - generic [ref=f2e140]: Pages
+            - listitem [ref=f2e141]:
+              - link " Site Settings" [ref=f2e142] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/site-settings
+                - generic [ref=f2e143]: 
+                - generic [ref=f2e144]: Site Settings
+            - listitem [ref=f2e145]:
+              - link " Admins" [ref=f2e146] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/admins
+                - generic [ref=f2e147]: 
+                - generic [ref=f2e148]: Admins
+            - listitem [ref=f2e149]:
+              - link " Roles" [ref=f2e150] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/admin/roles
+                - generic [ref=f2e151]: 
+                - generic [ref=f2e152]: Roles
+    - generic [ref=f2e154] [cursor=pointer]:
+      - generic [ref=f2e155]: S
+      - generic [ref=f2e156]:
+        - paragraph [ref=f2e157]: Super Admin
+        - paragraph [ref=f2e158]: Super Admin
+      - button "" [ref=f2e160]
+  - generic [ref=f2e162]:
+    - banner [ref=f2e163]:
+      - generic [ref=f2e164]:
+        - generic [ref=f2e165]:
+          - text: 
+          - heading "Point of Sale" [level=1] [ref=f2e167]
+          - generic [ref=f2e169]:
+            - generic: 
+            - textbox "Search orders, products, customers…" [ref=f2e170]
+        - generic [ref=f2e171]:
+          - text: 
+          - link "" [ref=f2e172] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+          - generic [ref=f2e174]:
+            - button "" [ref=f2e175] [cursor=pointer]
+            - text: 
+          - generic [ref=f2e178]:
+            - button "S Super " [ref=f2e179] [cursor=pointer]:
+              - generic [ref=f2e180]: S
+              - generic [ref=f2e181]: Super
+              - generic [ref=f2e182]: 
+            - text:   
+    - main [ref=f2e183]:
+      - generic [ref=f2e185]:
+        - generic [ref=f2e186]:
+          - generic [ref=f2e187]:
+            - generic [ref=f2e188]:
+              - combobox [ref=f2e189]:
+                - option "Barishal Storage Hub" [selected]
+                - option "Bogura Regional Hub"
+                - option "Chittagong Main Warehouse"
+                - option "Chittagong Port Depot"
+                - option "Cumilla Distribution Point"
+                - option "Dhaka Central Warehouse"
+                - option "Dhaka Mirpur Hub"
+                - option "Dhaka Uttara Depot"
+                - option "Gazipur Cold Storage"
+                - option "Khulna Warehouse"
+                - option "Mymensingh Warehouse"
+                - option "Narayanganj Warehouse"
+                - option "Rajshahi Distribution Center"
+                - option "Rangpur Depot"
+                - option "Sylhet Regional Warehouse"
+              - generic [ref=f2e190]:
+                - generic [ref=f2e191]: 
+                - textbox "Scan or type barcode, then press Enter" [active] [ref=f2e192]
+            - generic [ref=f2e193]:
+              - generic [ref=f2e194]: 
+              - textbox "Search products by name or SKU…" [ref=f2e195]
+            - generic [ref=f2e196]:
+              - button "All" [ref=f2e197] [cursor=pointer]
+              - button "Baggy Jeans" [ref=f2e198] [cursor=pointer]
+              - button "Best Seller" [ref=f2e199] [cursor=pointer]
+              - button "Boots" [ref=f2e200] [cursor=pointer]
+              - button "Boxy Shirt" [ref=f2e201] [cursor=pointer]
+              - button "Cargo Pant" [ref=f2e202] [cursor=pointer]
+              - button "Chino Pant" [ref=f2e203] [cursor=pointer]
+              - button "Clearance" [ref=f2e204] [cursor=pointer]
+              - button "Combo Offer" [ref=f2e205] [cursor=pointer]
+              - button "Flash Sale" [ref=f2e206] [cursor=pointer]
+              - button "Footwear" [ref=f2e207] [cursor=pointer]
+              - button "Formal Pant" [ref=f2e208] [cursor=pointer]
+              - button "Formal Shoes" [ref=f2e209] [cursor=pointer]
+              - button "Jeans" [ref=f2e210] [cursor=pointer]
+              - button "Loafers" [ref=f2e211] [cursor=pointer]
+              - button "New Arrival" [ref=f2e212] [cursor=pointer]
+              - button "Polo T-Shirt" [ref=f2e213] [cursor=pointer]
+              - button "Premium Collection" [ref=f2e214] [cursor=pointer]
+              - button "Restock" [ref=f2e215] [cursor=pointer]
+              - button "Running Shoes" [ref=f2e216] [cursor=pointer]
+              - button "Semi Baggy Jeans" [ref=f2e217] [cursor=pointer]
+              - button "Shirt" [ref=f2e218] [cursor=pointer]
+              - button "Shorts" [ref=f2e219] [cursor=pointer]
+              - button "Slides" [ref=f2e220] [cursor=pointer]
+              - button "Slippers" [ref=f2e221] [cursor=pointer]
+              - button "Sneakers" [ref=f2e222] [cursor=pointer]
+              - button "Special Sections" [ref=f2e223] [cursor=pointer]
+              - button "Sports Shoes" [ref=f2e224] [cursor=pointer]
+              - button "T-Shirt" [ref=f2e225] [cursor=pointer]
+          - generic [ref=f2e226]:
+            - generic [ref=f2e227]:
+              - generic [ref=f2e228]: 
+              - text: Loading products…
+            - text: 
+        - generic [ref=f2e229]:
+          - generic [ref=f2e230]:
+            - generic [ref=f2e231]:
+              - paragraph [ref=f2e232]: Customer
+              - button "Walk-in" [ref=f2e233] [cursor=pointer]
+            - textbox "Search by phone or name…" [ref=f2e235]
+            - generic [ref=f2e236]:
+              - textbox "Name *" [ref=f2e237]
+              - textbox "Phone *" [ref=f2e238]
+          - generic [ref=f2e240]:
+            - generic [ref=f2e241]: 
+            - text: Cart is empty — click a product to add it
+          - generic [ref=f2e242]:
+            - generic [ref=f2e243]:
+              - generic [ref=f2e244]: Subtotal
+              - generic [ref=f2e245]: ৳0.00
+            - generic [ref=f2e246]:
+              - generic [ref=f2e247]: Discount
+              - spinbutton [ref=f2e248]: "0"
+            - generic [ref=f2e249]:
+              - generic [ref=f2e250]: Total
+              - generic [ref=f2e251]: ৳0.00
+            - generic [ref=f2e252]:
+              - button "cash" [ref=f2e253] [cursor=pointer]
+              - button "card" [ref=f2e254] [cursor=pointer]
+              - button "bkash" [ref=f2e255] [cursor=pointer]
+              - button "nagad" [ref=f2e256] [cursor=pointer]
+              - button "bank" [ref=f2e257] [cursor=pointer]
+            - generic [ref=f2e258]:
+              - generic [ref=f2e259]:
+                - text: Amount received
+                - spinbutton [ref=f2e260]: "0"
+              - generic [ref=f2e261]:
+                - text: Change
+                - paragraph [ref=f2e262]: ৳0.00
+            - button "Complete Sale — ৳0.00" [disabled] [ref=f2e263]: 
