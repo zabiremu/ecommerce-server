@@ -61,6 +61,23 @@ class Product extends Model
         ];
     }
 
+    /**
+     * Whole-number discount percent derived from regular vs. sale price
+     * (0 when the product has no real sale price). Drives the dynamic
+     * "20% OFF" / "30% OFF" collections — see App\Support\DiscountCollections.
+     */
+    public function discountPercent(): int
+    {
+        $regular = (float) $this->selling_price;
+        $sale    = (float) $this->sale_price;
+
+        if ($regular <= 0 || $sale <= 0 || $sale >= $regular) {
+            return 0;
+        }
+
+        return (int) round(($regular - $sale) / $regular * 100);
+    }
+
     public function scopePublished($query)
     {
         return $query->where('publish_status', 'published');

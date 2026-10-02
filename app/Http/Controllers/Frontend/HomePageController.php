@@ -95,7 +95,9 @@ class HomePageController extends Controller
             return [$key => $products];
         });
 
-        return view('Frontend.home', compact('sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts', 'specialSections'));
+        $discountCollections = \App\Support\DiscountCollections::all();
+
+        return view('Frontend.home', compact('discountCollections', 'sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts', 'specialSections'));
     }
 
     public function about()
@@ -118,7 +120,44 @@ class HomePageController extends Controller
             ->orderBy('name')
             ->get(['id', 'name', 'slug']);
 
-        return view('Frontend.all-products', compact('products', 'filterCategories', 'filterBrands'));
+        $activeCollection = null;
+        $discountCollections = \App\Support\DiscountCollections::all();
+
+        return view('Frontend.all-products', compact('products', 'filterCategories', 'filterBrands', 'activeCollection', 'discountCollections'));
+    }
+
+    /**
+     * Dynamic discount collections: /offers (everything on sale) and
+     * /offers/20-off, /offers/30-off, /offers/clearance-sale, ...
+     * The product list itself is filtered client-side like /all-products.
+     */
+    public function offers(?string $collection = null)
+    {
+        $activeCollection = null;
+
+        if ($collection !== null) {
+            $activeCollection = \App\Support\DiscountCollections::find($collection);
+            // Unknown or now-empty collection (e.g. the sale ended) -> show all offers.
+            if (!$activeCollection) {
+                return redirect()->route('offers');
+            }
+        }
+
+        $products = $this->publishedProductsForJs();
+
+        $filterCategories = Category::where('status', true)
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug']);
+
+        $filterBrands = \App\Models\Brand::where('status', true)
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug']);
+
+        $isOffersPage = true;
+        $discountCollections = \App\Support\DiscountCollections::all();
+
+        return view('Frontend.all-products', compact('products', 'filterCategories', 'filterBrands', 'activeCollection', 'isOffersPage', 'discountCollections'));
     }
 
     public function productQuickView(Product $product)
@@ -229,6 +268,8 @@ class HomePageController extends Controller
                     'title' => $clean($p->name),
                     'cur'   => (float) ($hasSale ? $p->sale_price : $p->selling_price),
                     'old'   => (float) $p->selling_price,
+                    'disc'  => $p->discountPercent(),
+                    'clearance' => \in_array('clearance', (array) $p->special_sections, true),
                     'stock' => (int) $stock,
                     'stockStatus' => $outOfStock ? 'out-of-stock' : ($lowStock ? 'low-stock' : 'in-stock'),
                     'stockLabel'  => $outOfStock ? 'Out of stock' : ($lowStock ? 'Only ' . rtrim(rtrim(number_format($stock, 2), '0'), '.') . ' left' : 'In stock'),

@@ -53,6 +53,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/about', [HomePageController::class, 'about'])->name('about');
 Route::get('/all-products', [HomePageController::class, 'allProducts'])->name('all-products');
+Route::get('/offers/{collection?}', [HomePageController::class, 'offers'])->name('offers');
 Route::get('/cart', [HomePageController::class, 'cart'])->name('cart');
 Route::get('/category-products', [HomePageController::class, 'categoryProducts'])->name('category-products');
 Route::get('/checkout', [HomePageController::class, 'checkout'])->name('checkout');

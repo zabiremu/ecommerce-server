@@ -126,6 +126,24 @@
                                                 </div>
                                             </li>
                                         @endforeach
+
+                                        {{-- Dynamic discount collections (20% OFF, 30% OFF, Clearance Sale...) --}}
+                                        @if(!empty($discountCollections))
+                                            <li id="menu-item-offers"
+                                                class="menu-item item-level-0 wd-event-hover menu-item-has-children">
+                                                <a href="{{ route('offers') }}" class="woodmart-nav-link">
+                                                    <span class="nav-link-text">🔥 Offers</span>
+                                                </a>
+                                                <div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark gms-simple-dropdown">
+                                                    <ul class="wd-sub-menu gms-simple-dropdown-list">
+                                                        <li><a href="{{ route('offers') }}">🔥 All Offers</a></li>
+                                                        @foreach($discountCollections as $dc)
+                                                            <li><a href="{{ $dc['url'] }}">{{ $dc['emoji'] }} {{ $dc['label'] }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </nav>
 
@@ -501,6 +519,22 @@
                     @endforeach
                 </ul>
             </li>
+            @if(!empty($discountCollections))
+                <li id="menu-item-offers-mobile"
+                    class="menu-item menu-item-has-children menu-item-offers item-level-0">
+                    <a href="{{ route('offers') }}" class="woodmart-nav-link"><span class="nav-link-text">🔥 Offers</span></a>
+                    <ul class="wd-sub-menu">
+                        <li class="wd-drilldown-back">
+                            <span class="wd-nav-opener"></span>
+                            <a href="#">Back </a>
+                        </li>
+                        <li class="menu-item item-level-1"><a href="{{ route('offers') }}" class="woodmart-nav-link">🔥 All Offers</a></li>
+                        @foreach($discountCollections as $dc)
+                            <li class="menu-item item-level-1"><a href="{{ $dc['url'] }}" class="woodmart-nav-link">{{ $dc['emoji'] }} {{ $dc['label'] }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+            @endif
             <li id="menu-item-606"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-606 item-level-0"><a
                     href="{{ route('about') }}" class="woodmart-nav-link"><svg

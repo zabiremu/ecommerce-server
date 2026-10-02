@@ -113,6 +113,11 @@
                                 <input type="number" step="0.01" min="0" name="sale_price" value="{{ old('sale_price', $product->sale_price) }}" class="wc-input" placeholder="Optional — must be less than regular price">
                             </div>
                             <div class="wc-field">
+                                <label>Discount %</label>
+                                <input type="number" step="0.01" min="0" max="99.99" id="discountPercentInput" class="wc-input" placeholder="e.g. 20 — fills in the sale price for you">
+                                <p style="margin:4px 0 0;font-size:12px;color:#646970;">Products land automatically in the matching “X% OFF” collection on the storefront.</p>
+                            </div>
+                            <div class="wc-field">
                                 <label>Purchase price <span class="req">*</span></label>
                                 <input type="number" step="0.01" min="0" name="purchase_price" value="{{ old('purchase_price', $product->purchase_price) }}" required class="wc-input">
                             </div>
@@ -376,6 +381,31 @@
 @endsection
 
 @push('scripts')
+<script>
+(function () {
+    var regular = document.querySelector('input[name="selling_price"]');
+    var sale    = document.querySelector('input[name="sale_price"]');
+    var pct     = document.getElementById('discountPercentInput');
+    if (!regular || !sale || !pct) return;
+
+    function fromPrices() {
+        var r = parseFloat(regular.value), s = parseFloat(sale.value);
+        pct.value = (r > 0 && s > 0 && s < r) ? (Math.round((r - s) / r * 10000) / 100) : '';
+    }
+    pct.addEventListener('input', function () {
+        var r = parseFloat(regular.value), p = parseFloat(pct.value);
+        if (r > 0 && p > 0 && p < 100) sale.value = (Math.round(r * (100 - p)) / 100).toFixed(2);
+        else if (!pct.value) sale.value = '';
+    });
+    sale.addEventListener('input', fromPrices);
+    regular.addEventListener('input', function () {
+        // keep the chosen percentage when the regular price changes
+        var r = parseFloat(regular.value), p = parseFloat(pct.value);
+        if (r > 0 && p > 0 && p < 100) sale.value = (Math.round(r * (100 - p)) / 100).toFixed(2);
+    });
+    fromPrices();
+})();
+</script>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
     let galleryIndex = 0;

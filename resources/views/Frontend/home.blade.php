@@ -9,6 +9,7 @@
                 @include('Frontend.partials.home.hero')
                 @include('Frontend.partials.home.usp-strip')
                 @include('Frontend.partials.home.categories')
+                @include('Frontend.partials.home.discount-collections')
                 @include('Frontend.partials.home.best-sellers')
                 @include('Frontend.partials.home.special-sections')
                 @include('Frontend.partials.home.reviews')

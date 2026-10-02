@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Page;
 use App\Models\SiteSetting;
+use App\Support\DiscountCollections;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -71,6 +72,9 @@ class AppServiceProvider extends ServiceProvider
                 ->first();
 
             $view->with('popupCoupon', $coupon);
+
+            // Dynamic "20% OFF" / "30% OFF" / "Clearance Sale" collections for the nav.
+            $view->with('discountCollections', Schema::hasTable('products') ? DiscountCollections::all() : []);
         });
     }
 }

@@ -177,6 +177,20 @@
     cursor: pointer;
     outline: none;
 }
+/* ── discount collection chips (offers page) ── */
+.gms-offer-chips { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+.gms-offer-chip {
+    display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:999px;
+    background:#fff; border:1px solid var(--gms-line,#ececec); color:var(--gms-title,#242424);
+    font-size:13px; font-weight:600; text-decoration:none; box-shadow:0 1px 4px rgba(0,0,0,.05);
+    transition:background .15s,color .15s,border-color .15s;
+}
+.gms-offer-chip small { opacity:.7; font-weight:500; }
+.gms-offer-chip:hover, .gms-offer-chip.active { background:var(--gms-red,#e63946); color:#fff; border-color:var(--gms-red,#e63946); }
+@media (max-width:768px) {
+    .gms-offer-chips { flex-wrap:nowrap; overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
+    .gms-offer-chip { white-space:nowrap; flex-shrink:0; }
+}
 /* ── empty state ── */
 .gms-empty {
     text-align: center;
@@ -300,9 +314,23 @@
         <nav class="gms-cat-breadcrumb">
             <a href="{{ route('home') }}">Home</a>
             <span class="sep">›</span>
-            <span class="current">All Products</span>
+            @if(!empty($isOffersPage))
+                <a href="{{ route('offers') }}">Offers</a>
+                @if($activeCollection)
+                    <span class="sep">›</span>
+                    <span class="current">{{ $activeCollection['label'] }}</span>
+                @endif
+            @else
+                <span class="current">All Products</span>
+            @endif
         </nav>
-        <h1>All Products</h1>
+        <h1>
+            @if(!empty($isOffersPage))
+                {{ $activeCollection ? $activeCollection['emoji'] . ' ' . $activeCollection['label'] : '🔥 All Offers' }}
+            @else
+                All Products
+            @endif
+        </h1>
     </div>
 </div>
 
@@ -318,6 +346,23 @@
 
 
                 <div class="gms-sidebar-title"><i class="fas fa-filter"></i> Filters</div>
+
+                @if(!empty($discountCollections))
+                    <div class="gms-filter-section" id="apDiscountFilter">
+                        <h4 onclick="toggleGmsFilterSection(this)">Discount <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
+                        <label class="gms-filter-option active" data-disc="" onclick="setApDiscount(this, '')">
+                            <span class="check"></span> All Products
+                        </label>
+                        <label class="gms-filter-option" data-disc="offers" onclick="setApDiscount(this, 'offers')">
+                            <span class="check"></span> 🔥 All Offers
+                        </label>
+                        @foreach($discountCollections as $dc)
+                            <label class="gms-filter-option" data-disc="{{ $dc['key'] }}" onclick="setApDiscount(this, '{{ $dc['key'] }}')">
+                                <span class="check"></span> {{ $dc['emoji'] }} {{ $dc['label'] }} ({{ $dc['count'] }})
+                            </label>
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="gms-filter-section">
                     <h4 onclick="toggleGmsFilterSection(this)">Category <i class="fas fa-chevron-down gms-filter-chevron"></i></h4>
@@ -375,6 +420,15 @@
             {{-- Main --}}
             <div class="gms-cat-main">
 
+                @if(!empty($isOffersPage) && !empty($discountCollections))
+                    <div class="gms-offer-chips">
+                        <a href="{{ route('offers') }}" class="gms-offer-chip{{ $activeCollection ? '' : ' active' }}">🔥 All Offers</a>
+                        @foreach($discountCollections as $dc)
+                            <a href="{{ $dc['url'] }}" class="gms-offer-chip{{ $activeCollection && $activeCollection['key'] === $dc['key'] ? ' active' : '' }}">{{ $dc['emoji'] }} {{ $dc['label'] }} <small>({{ $dc['count'] }})</small></a>
+                        @endforeach
+                    </div>
+                @endif
+
                 {{-- Toolbar --}}
                 <div class="gms-cat-toolbar">
                     <div class="gms-toolbar-left">
@@ -425,6 +479,10 @@ window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_AP
     let priceMin   = 0;
     let priceMax   = Infinity;
     let currentPage = 1;
+    // Discount collection: '' = no filter, 'offers' = everything on sale,
+    // 'N-off' = products at exactly N% off, 'clearance-sale' = Clearance tag.
+    const initialDisc = @json($activeCollection['key'] ?? (!empty($isOffersPage) ? 'offers' : (request()->query('discount') ?: '')));
+    let discKey = @json($activeCollection['key'] ?? (!empty($isOffersPage) ? 'offers' : (request()->query('discount') ?: '')));
 
     // ── filter & sort ───────────────────────────────────────────────
     function getFiltered() {
@@ -433,6 +491,9 @@ window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_AP
             if (brandSlug && p.brand !== brandSlug) return false;
             if (searchTerm && !p.title.toLowerCase().includes(searchTerm)) return false;
             if (p.cur < priceMin || p.cur > priceMax) return false;
+            if (discKey === 'offers' && !(p.disc > 0 || p.clearance)) return false;
+            if (discKey === 'clearance-sale' && !p.clearance) return false;
+            if (/^\d+-off$/.test(discKey) && p.disc !== parseInt(discKey, 10)) return false;
             return true;
         });
         const sort = document.getElementById('apSortSelect')?.value || 'default';
@@ -536,6 +597,14 @@ window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_AP
         renderApPage();
     };
 
+    window.setApDiscount = function (el, key) {
+        discKey = key;
+        currentPage = 1;
+        el.parentElement.querySelectorAll('.gms-filter-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+        renderApPage();
+    };
+
     window.setApPrice = function (el, min, max) {
         priceMin = min;
         priceMax = max;
@@ -546,10 +615,11 @@ window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_AP
     };
 
     window.clearApFilters = function () {
-        catSlug = ''; brandSlug = ''; priceMin = 0; priceMax = Infinity; currentPage = 1;
+        catSlug = ''; brandSlug = ''; priceMin = 0; priceMax = Infinity; currentPage = 1; discKey = initialDisc;
         document.querySelectorAll('.gms-filter-section').forEach(section => {
             section.querySelectorAll('.gms-filter-option').forEach((o, i) => o.classList.toggle('active', i === 0));
         });
+        document.querySelectorAll('#apSidebar [data-disc]').forEach(o => o.classList.toggle('active', o.dataset.disc === discKey));
         document.getElementById('apSortSelect').value = 'default';
         renderApPage();
     };
@@ -586,6 +656,10 @@ window.NF_PRODUCTS = {!! json_encode($products ?? [], JSON_HEX_TAG | JSON_HEX_AP
             if (catSlug) {
                 const opt = document.querySelector(`#apSidebar [data-cat="${catSlug}"]`);
                 if (opt) { document.querySelectorAll('[data-cat]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
+            }
+            if (discKey) {
+                const opt = document.querySelector(`#apSidebar [data-disc="${discKey}"]`);
+                if (opt) { document.querySelectorAll('[data-disc]').forEach(o => o.classList.remove('active')); opt.classList.add('active'); }
             }
             if (brandSlug) {
                 const opt = document.querySelector(`#apSidebar [data-brand="${brandSlug}"]`);
