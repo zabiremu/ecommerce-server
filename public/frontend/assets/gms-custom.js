@@ -980,3 +980,20 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
 });
+
+
+/* Real scrollbar width -> CSS var, so the full-bleed hero banner lines up
+   exactly with the viewport edges (see HOMEPAGE HERO block in gms-custom.css). */
+(function () {
+  function setScrollW() {
+    // Gap between the viewport and the page's real layout width (scrollbar,
+    // or any gutter the theme reserves) — what 100vw over-counts by.
+    var b = document.body.getBoundingClientRect();
+    var w = Math.max(0, Math.round(window.innerWidth - b.left - b.width));
+    document.documentElement.style.setProperty('--gms-scroll-w', w + 'px');
+  }
+  setScrollW();
+  document.addEventListener('DOMContentLoaded', setScrollW);
+  window.addEventListener('load', setScrollW);
+  window.addEventListener('resize', setScrollW);
+})();

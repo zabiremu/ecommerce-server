@@ -2266,3 +2266,68 @@ html .sticky-toolbar-on .wd-sticky-btn-shown.scrollToTop {
     inset-inline-end: calc(24px + (56px - 40px) / 2);
   }
 }
+
+
+/* ==========================================================
+   HOMEPAGE HERO — natural image height, no background, no extra spacing
+   ----------------------------------------------------------
+   The hero used a fixed aspect-ratio / min-height (600px, 500px on
+   tablet), a #0c0c0c backing colour, a dark gradient scrim and a 20px
+   bottom margin. The slide now simply takes the uploaded image's own
+   height at every screen size, with nothing behind or around it.
+   (!important beats the .wd.wd .wd-14565c68 rules inlined in header.)
+   ========================================================== */
+.wd-slider .wd-slide,
+.wd.wd .wd-14565c68 .wd-slide {
+  aspect-ratio: auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: none !important;
+  /* theme default is padding:40px, which shrank the image and added 80px of height */
+  padding: 0 !important;
+}
+.wd-slider .wd-slide-bg.wd-fill {
+  position: static !important;
+  inset: auto !important;
+  background: none !important;
+  /* .wd-slide is a flex row (justify-content:center); without this the
+     wrapper shrinks to the image's natural width on wide screens. */
+  width: 100% !important;
+  flex: 1 1 100%;
+}
+.wd-slider .wd-slide-bg.wd-fill::after {
+  display: none !important;
+}
+.wd-slider .wd-slide-bg.wd-fill img {
+  width: 100%;
+  height: auto !important;
+  object-fit: fill;
+  filter: none;
+}
+.wd-slider .wd-slide-bg .gms-slide-fallback-bg {
+  position: static;
+  aspect-ratio: 1294 / 600;
+}
+.wd-slider.wd-carousel-container,
+.wd.wd .wd-14565c68 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+}
+/* True edge-to-edge: 100vw includes the page scrollbar on desktop, which
+   pushed the banner ~7px off-centre and clipped it. --gms-scroll-w is set
+   from JS (gms-custom.js) to the real scrollbar width (0 on mobile). */
+.wd-slider.wd-carousel-container {
+  left: 0 !important;
+  right: auto !important;
+  width: calc(100vw - var(--gms-scroll-w, 0px)) !important;
+  margin-left: calc(50% - 50vw + var(--gms-scroll-w, 0px) / 2) !important;
+  margin-right: 0 !important;
+}
+.wd-slider,
+.wd-slider > .wd-carousel-inner,
+.wd-slider > .wd-carousel-inner > .wd-carousel {
+  border-radius: 0 !important;
+}
