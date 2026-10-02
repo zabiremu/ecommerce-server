@@ -147,17 +147,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.body.appendChild(overlay);
 
+    function markShown() {
+      try {
+        if (GMS_CONFIG.popupFrequency === 'daily') {
+          localStorage.setItem(storageKey, new Date().toDateString());
+        } else {
+          sessionStorage.setItem(storageKey, '1');
+        }
+      } catch (e) {}
+    }
+
     function closePopup() {
       overlay.classList.remove('gms-visible');
-      if (GMS_CONFIG.popupFrequency === 'daily') {
-        localStorage.setItem(storageKey, new Date().toDateString());
-      } else {
-        sessionStorage.setItem(storageKey, '1');
-      }
+      markShown();
     }
 
     setTimeout(function () {
       overlay.classList.add('gms-visible');
+      // Record immediately so Shop Now / reload / back never re-opens it
+      markShown();
     }, GMS_CONFIG.popupDelay);
 
     overlay.querySelector('.gms-popup-close').addEventListener('click', closePopup);
