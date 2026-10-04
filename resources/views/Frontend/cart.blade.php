@@ -2622,6 +2622,23 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
     </style>
+    <style id="cart-mobile-left-align">
+        /* Mobile only: cart rows left-aligned (theme pushes them to the right) */
+        @media (max-width: 768.98px) {
+            #cart-wrap .shop_table_responsive tr {
+                align-items: flex-start;
+            }
+            #cart-wrap .shop_table_responsive td,
+            #cart-wrap .shop_table_responsive tr td:last-child {
+                justify-content: flex-start !important;
+                text-align: left !important;
+            }
+            #cart-wrap .shop_table_responsive td:before {
+                content: none !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
 @endpush
 
 @section('content')
