@@ -97,7 +97,10 @@ class HomePageController extends Controller
 
         $discountCollections = \App\Support\DiscountCollections::all();
 
-        return view('Frontend.home', compact('discountCollections', 'sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts', 'specialSections'));
+        // Sale countdown overlay on the hero — null unless a timer is running.
+        $saleCountdown = \App\Models\DealsBanner::live();
+
+        return view('Frontend.home', compact('saleCountdown', 'discountCollections', 'sliders', 'homeCategories', 'bestSellers', 'bestSellerIds', 'allProducts', 'homeReviews', 'instagramPosts', 'specialSections'));
     }
 
     public function about()

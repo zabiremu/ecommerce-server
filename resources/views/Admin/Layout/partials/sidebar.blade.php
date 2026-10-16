@@ -200,7 +200,7 @@
                             @endif
                             @if($_admin->hasPermission('deals_banner.view'))
                             <li><a href="{{ route('admin.deals-banner.edit') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.deals-banner.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
-                                <i class="fas fa-fire w-4 text-[12px] {{ request()->routeIs('admin.deals-banner.*') ? 'text-accent-400' : '' }}"></i><span>Deals Banner</span>
+                                <i class="fas fa-fire w-4 text-[12px] {{ request()->routeIs('admin.deals-banner.*') ? 'text-accent-400' : '' }}"></i><span>Sale Countdown</span>
                             </a></li>
                             @endif
                             @if($_admin->hasPermission('instagram_posts.view'))

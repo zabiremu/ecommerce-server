@@ -1,3 +1,4 @@
+<div class="gms-hero-wrap{{ !empty($saleCountdown) ? ' has-sale-countdown' : '' }}">
 
 <div class="wp-block-wd-slider wd-slider wd-carousel-container wd-anim-slide wd-autoplay-on wd-14565c68">
     <div class="wd-carousel-inner">
@@ -31,4 +32,6 @@
         class="wd-nav-pagin-wrap wd-slider-pagin wd-custom-style wd-style-shape-3 wd-align color-scheme-dark">
         <ul class="wd-nav-pagin"></ul>
     </div>
+</div>
+    @include('Frontend.partials.home.sale-countdown')
 </div>
