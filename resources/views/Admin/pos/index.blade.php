@@ -106,8 +106,23 @@
         <div class="p-3 border-b border-slate-200 shrink-0">
             <div class="flex items-center justify-between mb-1.5">
                 <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Customer</p>
-                <button type="button" @click="resetCustomer()" class="text-[11.5px] text-brand-600 hover:underline">Walk-in</button>
+                <label class="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-slate-700 cursor-pointer select-none">
+                    <input type="checkbox" x-model="walkIn" @change="walkIn ? resetCustomer() : null"
+                           class="rounded border-slate-300 text-brand-600 focus:ring-brand-400">
+                    Walk-in customer
+                </label>
             </div>
+
+            {{-- Walk-in: no name / phone required --}}
+            <div x-show="walkIn" class="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg bg-slate-50 border border-dashed border-slate-300">
+                <div class="flex items-center gap-2 text-[12.5px] text-slate-700">
+                    <i class="fas fa-person-walking text-slate-500"></i>
+                    <span><span class="font-semibold">Walk-in Customer</span> — name &amp; phone not needed</span>
+                </div>
+                <button type="button" @click="walkIn = false" class="text-[11.5px] text-brand-600 hover:underline shrink-0">Add customer</button>
+            </div>
+
+            <div x-show="!walkIn">
             <div class="relative">
                 <input type="text" x-model="customerQuery" @input.debounce.300ms="searchCustomers()"
                        placeholder="Search by phone or name…"
@@ -125,6 +140,7 @@
             <div class="grid grid-cols-2 gap-1.5 mt-1.5">
                 <input type="text" x-model="customer.name" placeholder="Name *" class="px-2.5 py-1.5 text-[12.5px] border border-slate-300 rounded-lg">
                 <input type="text" x-model="customer.phone" placeholder="Phone *" class="px-2.5 py-1.5 text-[12.5px] border border-slate-300 rounded-lg">
+            </div>
             </div>
         </div>
 
@@ -217,6 +233,7 @@ function posApp() {
         loading: false,
 
         cart: [],
+        walkIn: true,
         customer: { id: null, name: '', phone: '', email: '', address: '' },
         customerQuery: '',
         customerResults: [],
@@ -329,7 +346,8 @@ function posApp() {
         },
 
         resetCustomer() {
-            this.customer = { id: null, name: 'Walk-in Customer', phone: '', email: '', address: '' };
+            this.walkIn = true;
+            this.customer = { id: null, name: '', phone: '', email: '', address: '' };
             this.customerQuery = '';
             this.customerResults = [];
         },
@@ -342,6 +360,7 @@ function posApp() {
         },
 
         selectCustomer(c) {
+            this.walkIn = false;
             this.customer = { id: c.id, name: c.name, phone: c.phone, email: c.email, address: c.address };
             this.customerResults = [];
             this.customerQuery = '';
@@ -350,8 +369,8 @@ function posApp() {
         async checkout() {
             this.error = '';
             if (this.cart.length === 0) return;
-            if (!this.customer.name.trim() || !this.customer.phone.trim()) {
-                this.error = 'Customer name and phone are required.';
+            if (!this.walkIn && (!this.customer.name.trim() || !this.customer.phone.trim())) {
+                this.error = 'Customer name and phone are required (or tick "Walk-in customer").';
                 return;
             }
 
@@ -366,10 +385,11 @@ function posApp() {
                     },
                     body: JSON.stringify({
                         warehouse_id: this.warehouseId,
-                        customer_name: this.customer.name,
-                        customer_phone: this.customer.phone,
-                        customer_email: this.customer.email || null,
-                        customer_address: this.customer.address || null,
+                        walk_in: this.walkIn,
+                        customer_name: this.walkIn ? null : this.customer.name,
+                        customer_phone: this.walkIn ? null : this.customer.phone,
+                        customer_email: this.walkIn ? null : (this.customer.email || null),
+                        customer_address: this.walkIn ? null : (this.customer.address || null),
                         payment_method: this.paymentMethod,
                         discount: this.discount || 0,
                         paid_amount: this.paidAmount || this.total,

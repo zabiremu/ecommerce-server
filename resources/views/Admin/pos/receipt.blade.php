@@ -69,7 +69,9 @@
         <div class="row"><span class="lbl">Outlet</span><span>{{ $order->warehouse->name }}</span></div>
         @endif
         <div class="row"><span class="lbl">Customer</span><span>{{ $order->shipping_name }}</span></div>
+        @if ($order->shipping_phone)
         <div class="row"><span class="lbl">Phone</span><span>{{ $order->shipping_phone }}</span></div>
+        @endif
 
         <div class="divider"></div>
 

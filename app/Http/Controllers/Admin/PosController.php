@@ -109,8 +109,9 @@ class PosController extends Controller
     {
         $data = $request->validate([
             'warehouse_id'        => 'required|exists:warehouses,id',
-            'customer_name'       => 'required|string|max:255',
-            'customer_phone'      => 'required|string|max:30',
+            'walk_in'             => 'nullable|boolean',
+            'customer_name'       => 'exclude_if:walk_in,true|required|string|max:255',
+            'customer_phone'      => 'exclude_if:walk_in,true|required|string|max:30',
             'customer_email'      => 'nullable|email|max:255',
             'customer_address'    => 'nullable|string|max:1000',
             'payment_method'      => 'required|in:' . implode(',', Order::PAYMENT_METHODS),
@@ -187,28 +188,37 @@ class PosController extends Controller
         $paidAmount = $data['paid_amount'] ?? $total;
         $changeDue = max(0, $paidAmount - $total);
 
-        $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $warehouseId) {
-            $customer = Customer::firstOrNew(['phone' => $data['customer_phone']]);
-            $isNewCustomer = !$customer->exists;
-            $customer->fill([
-                'name'    => $data['customer_name'],
-                'email'   => $data['customer_email'] ?? $customer->email,
-                'address' => $data['customer_address'] ?? $customer->address,
-            ]);
-            if ($isNewCustomer) {
-                $customer->status = true;
+        // Walk-in sale: no name/phone needed and no customer record is created.
+        $isWalkIn = (bool) ($data['walk_in'] ?? false);
+        $customerName  = $isWalkIn ? 'Walk-in Customer' : $data['customer_name'];
+        $customerPhone = $isWalkIn ? '' : $data['customer_phone'];
+
+        $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
+            $customer = null;
+            $isNewCustomer = false;
+            if (!$isWalkIn) {
+                $customer = Customer::firstOrNew(['phone' => $customerPhone]);
+                $isNewCustomer = !$customer->exists;
+                $customer->fill([
+                    'name'    => $customerName,
+                    'email'   => $data['customer_email'] ?? $customer->email,
+                    'address' => $data['customer_address'] ?? $customer->address,
+                ]);
+                if ($isNewCustomer) {
+                    $customer->status = true;
+                }
+                $customer->save();
             }
-            $customer->save();
 
             $order = Order::create([
                 'order_no'         => $this->nextPosOrderNumber(),
                 'source'           => 'pos',
-                'customer_id'      => $customer->id,
+                'customer_id'      => $customer?->id,
                 'warehouse_id'     => $warehouseId,
                 'served_by'        => Auth::guard('admin')->id(),
-                'shipping_name'    => $data['customer_name'],
-                'shipping_phone'   => $data['customer_phone'],
-                'shipping_email'   => $data['customer_email'] ?? null,
+                'shipping_name'    => $customerName,
+                'shipping_phone'   => $customerPhone,
+                'shipping_email'   => $isWalkIn ? null : ($data['customer_email'] ?? null),
                 'shipping_address' => $data['customer_address'] ?? 'Walk-in / POS sale',
                 'subtotal'         => $subtotal,
                 'shipping_charge'  => 0,
@@ -264,11 +274,11 @@ class PosController extends Controller
                 }
             }
 
-            $customer->recalculateStats();
+            $customer?->recalculateStats();
 
-            AdminNotificationService::newOrder($order->order_no, $data['customer_name'], $total);
+            AdminNotificationService::newOrder($order->order_no, $customerName, $total);
             if ($isNewCustomer) {
-                AdminNotificationService::newCustomer($data['customer_name'], $data['customer_phone']);
+                AdminNotificationService::newCustomer($customerName, $customerPhone);
             }
 
             return $order;
