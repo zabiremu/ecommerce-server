@@ -8,7 +8,10 @@ class Order extends Model
 {
     public const STATUSES = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'returned'];
     public const PAYMENT_METHODS = ['cod', 'bkash', 'nagad', 'rocket', 'bank', 'uddoktapay', 'cash', 'card'];
-    public const PAYMENT_STATUSES = ['unpaid', 'paid', 'refunded'];
+    public const PAYMENT_STATUSES = ['unpaid', 'partial', 'paid', 'refunded'];
+
+    /** Orders whose due no longer counts (sale was undone). */
+    public const DUE_EXCLUDED_STATUSES = ['cancelled', 'returned'];
     public const SOURCES = ['online', 'pos'];
 
     protected $fillable = [
@@ -30,6 +33,8 @@ class Order extends Model
         'total',
         'paid_amount',
         'change_due',
+        'due_amount',
+        'due_date',
         'payment_method',
         'payment_status',
         'status',
@@ -60,6 +65,8 @@ class Order extends Model
             'total'            => 'decimal:2',
             'paid_amount'      => 'decimal:2',
             'change_due'       => 'decimal:2',
+            'due_amount'       => 'decimal:2',
+            'due_date'         => 'date',
             'stock_deducted'   => 'boolean',
             'placed_at'        => 'datetime',
             'steadfast_sent_at' => 'datetime',
@@ -111,6 +118,23 @@ class Order extends Model
         return $this->belongsTo(Admin::class, 'served_by');
     }
 
+    /** Sales that still have money owed and still count (not cancelled/returned). */
+    public function scopeWithOpenDue($query)
+    {
+        return $query->where('due_amount', '>', 0)->whereNotIn('status', self::DUE_EXCLUDED_STATUSES);
+    }
+
+    public function duePayments()
+    {
+        return $this->hasMany(DuePayment::class);
+    }
+
+    public function isOverdue(): bool
+    {
+        return $this->due_amount > 0 && $this->due_date
+            && $this->due_date->toDateString() < now(DealsBanner::LOCAL_TZ)->toDateString();
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class);
@@ -133,6 +157,7 @@ class Order extends Model
     {
         return [
             'unpaid'   => 'bg-orange-100 text-orange-800',
+            'partial'  => 'bg-amber-100 text-amber-800',
             'paid'     => 'bg-emerald-100 text-emerald-800',
             'refunded' => 'bg-purple-100 text-purple-800',
         ][$status] ?? 'bg-gray-100 text-gray-700';

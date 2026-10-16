@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\PurchaseReportController as AdminPurchaseReportCo
 use App\Http\Controllers\Admin\CustomerReportController as AdminCustomerReportController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\PosController as AdminPosController;
+use App\Http\Controllers\Admin\DueController as AdminDueController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
@@ -232,6 +233,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/pos/customers', [AdminPosController::class, 'customers'])->name('pos.customers');
         Route::post('/pos/checkout', [AdminPosController::class, 'checkout'])->name('pos.checkout');
         Route::get('/pos/orders/{order}/receipt', [AdminPosController::class, 'receipt'])->name('pos.receipt');
+
+        // Customer dues (credit sales from the POS)
+        Route::get('/dues', [AdminDueController::class, 'index'])->name('dues.index');
+        Route::get('/dues/{customer}', [AdminDueController::class, 'show'])->name('dues.show');
+        Route::post('/dues/{customer}/collect', [AdminDueController::class, 'collect'])->name('dues.collect');
 
         // Orders
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

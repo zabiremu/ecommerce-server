@@ -35,6 +35,17 @@ class Customer extends Model
         return $this->hasMany(Order::class)->orderByDesc('created_at');
     }
 
+    public function duePayments()
+    {
+        return $this->hasMany(DuePayment::class)->orderByDesc('paid_at');
+    }
+
+    /** Total still owed on this customer's due (credit) sales. */
+    public function outstandingDue(): float
+    {
+        return (float) Order::query()->where('customer_id', $this->id)->withOpenDue()->sum('due_amount');
+    }
+
     public function recalculateStats(): void
     {
         $stats = $this->orders()

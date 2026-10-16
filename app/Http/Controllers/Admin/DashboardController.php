@@ -15,6 +15,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // Fallback for hosting without cron: month-end due reminder (sent once per month).
+        \App\Services\DueReminderService::sendIfDue();
+
         $now       = Carbon::now();
         $thisMonth = $now->copy()->startOfMonth();
         $lastMonth = $now->copy()->subMonth()->startOfMonth();

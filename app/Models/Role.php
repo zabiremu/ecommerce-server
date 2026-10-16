@@ -40,6 +40,7 @@ class Role extends Model
             ],
             'Sales' => [
                 'pos'              => ['view', 'create'],
+                'dues'             => ['view', 'edit'],
                 'orders'           => ['view', 'create', 'edit', 'delete'],
                 'abandoned_carts'  => ['view'],
                 'customers'        => ['view', 'edit', 'delete'],

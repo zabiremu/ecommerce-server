@@ -30,6 +30,8 @@ class CheckAdminPermission
         'admin.pos.customers'                     => 'pos.view',
         'admin.pos.checkout'                      => 'pos.create',
         'admin.pos.receipt'                       => 'pos.view',
+        // Customer dues
+        'admin.dues.collect'                     => 'dues.edit',
         // Orders
         'admin.orders.status'                    => 'orders.edit',
         'admin.orders.payment-status'            => 'orders.edit',

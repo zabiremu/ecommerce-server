@@ -37,6 +37,7 @@
         .text-right { text-align: right; }
         .total-row { font-size: 14px; font-weight: 800; }
         .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .badge-due { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
         .footer { margin-top: 14px; font-size: 10.5px; color: #94a3b8; text-align: center; }
 
         @media print {
@@ -118,9 +119,15 @@
         @if ($order->change_due > 0)
         <div class="row"><span class="lbl">Change</span><span>{{ \App\Support\Money::format($order->change_due) }}</span></div>
         @endif
+        @if ($order->due_amount > 0)
+        <div class="row total-row"><span>Due</span><span>{{ \App\Support\Money::format($order->due_amount) }}</span></div>
+        @if ($order->due_date)
+        <div class="row"><span class="lbl">Pay by</span><span>{{ $order->due_date->format('d M, Y') }}</span></div>
+        @endif
+        @endif
 
         <div class="center" style="margin-top:10px;">
-            <span class="badge">PAID</span>
+            <span class="badge {{ $order->due_amount > 0 ? 'badge-due' : '' }}">{{ $order->due_amount > 0 ? 'DUE' : 'PAID' }}</span>
         </div>
 
         <div class="footer">

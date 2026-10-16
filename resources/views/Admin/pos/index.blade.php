@@ -141,6 +141,9 @@
                 <input type="text" x-model="customer.name" placeholder="Name *" class="px-2.5 py-1.5 text-[12.5px] border border-slate-300 rounded-lg">
                 <input type="text" x-model="customer.phone" placeholder="Phone *" class="px-2.5 py-1.5 text-[12.5px] border border-slate-300 rounded-lg">
             </div>
+            <p x-show="customer.due > 0" class="mt-1.5 px-2.5 py-1.5 rounded-lg bg-rose-50 border border-rose-200 text-[12px] text-rose-700">
+                <i class="fas fa-circle-exclamation mr-1"></i> Previous due: <strong x-text="fmt(customer.due)"></strong>
+            </p>
             </div>
         </div>
 
@@ -195,7 +198,27 @@
                 </template>
             </div>
 
-            <div class="grid grid-cols-2 gap-2" x-show="paymentMethod === 'cash'">
+            {{-- Due (credit) sale: customer pays part now, the rest later --}}
+            <label class="flex items-center gap-2 pt-1 text-[12.5px] font-semibold text-slate-700 cursor-pointer select-none">
+                <input type="checkbox" x-model="isDue" @change="onDueToggle()" class="rounded border-slate-300 text-rose-600 focus:ring-rose-400">
+                Due sale <span class="font-normal text-slate-500">(customer pays later)</span>
+            </label>
+            <div x-show="isDue" class="grid grid-cols-2 gap-2 p-2 rounded-lg bg-rose-50 border border-rose-200">
+                <div>
+                    <label class="text-[11px] text-slate-500">Paid now</label>
+                    <input type="number" min="0" step="0.01" x-model.number="duePaid" class="w-full px-2 py-1.5 text-[12.5px] border border-slate-300 rounded-lg bg-white">
+                </div>
+                <div>
+                    <label class="text-[11px] text-slate-500">Due</label>
+                    <p class="px-2 py-1.5 text-[13px] font-bold text-rose-600" x-text="fmt(dueAmount)"></p>
+                </div>
+                <div class="col-span-2">
+                    <label class="text-[11px] text-slate-500">Pay by (due date)</label>
+                    <input type="date" x-model="dueDate" class="w-full px-2 py-1.5 text-[12.5px] border border-slate-300 rounded-lg bg-white">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2" x-show="paymentMethod === 'cash' && !isDue">
                 <div>
                     <label class="text-[11px] text-slate-500">Amount received</label>
                     <input type="number" min="0" step="0.01" x-model.number="paidAmount" class="w-full px-2 py-1.5 text-[12.5px] border border-slate-300 rounded-lg">
@@ -210,7 +233,8 @@
 
             <button type="button" @click="checkout()" :disabled="cart.length === 0 || submitting"
                     class="w-full py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-[13.5px] font-bold disabled:opacity-50 disabled:cursor-not-allowed">
-                <span x-show="!submitting">Complete Sale — <span x-text="fmt(total)"></span></span>
+                <span x-show="!submitting && !isDue">Complete Sale — <span x-text="fmt(total)"></span></span>
+                <span x-show="!submitting && isDue">Complete Sale — <span x-text="fmt(dueAmount)"></span> due</span>
                 <span x-show="submitting"><i class="fas fa-circle-notch fa-spin mr-1"></i> Processing…</span>
             </button>
         </div>
@@ -242,6 +266,9 @@ function posApp() {
         paymentMethods: ['cash', 'card', 'bkash', 'nagad', 'bank'],
         paymentMethod: 'cash',
         paidAmount: 0,
+        isDue: false,
+        duePaid: 0,
+        dueDate: '',
         error: '',
         submitting: false,
 
@@ -250,6 +277,22 @@ function posApp() {
         },
         get total() {
             return Math.max(0, this.subtotal - (parseFloat(this.discount) || 0));
+        },
+        get dueAmount() {
+            return Math.max(0, this.total - (parseFloat(this.duePaid) || 0));
+        },
+        endOfMonth() {
+            // Last day of the current month in Bangladesh time (UTC+6)
+            const d = new Date(Date.now() + 6 * 3600000);
+            const last = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0));
+            return last.toISOString().slice(0, 10);
+        },
+        onDueToggle() {
+            if (this.isDue) {
+                this.walkIn = false;          // a due needs a real customer
+                this.duePaid = 0;
+                this.dueDate = this.endOfMonth();
+            }
         },
 
         init() {
@@ -347,6 +390,7 @@ function posApp() {
 
         resetCustomer() {
             this.walkIn = true;
+            this.isDue = false;
             this.customer = { id: null, name: '', phone: '', email: '', address: '' };
             this.customerQuery = '';
             this.customerResults = [];
@@ -361,7 +405,7 @@ function posApp() {
 
         selectCustomer(c) {
             this.walkIn = false;
-            this.customer = { id: c.id, name: c.name, phone: c.phone, email: c.email, address: c.address };
+            this.customer = { id: c.id, name: c.name, phone: c.phone, email: c.email, address: c.address, due: c.due || 0 };
             this.customerResults = [];
             this.customerQuery = '';
         },
@@ -369,8 +413,14 @@ function posApp() {
         async checkout() {
             this.error = '';
             if (this.cart.length === 0) return;
+            if (this.isDue && this.dueAmount <= 0) {
+                this.error = 'Nothing is due — paid amount covers the total. Untick "Due sale".';
+                return;
+            }
             if (!this.walkIn && (!this.customer.name.trim() || !this.customer.phone.trim())) {
-                this.error = 'Customer name and phone are required (or tick "Walk-in customer").';
+                this.error = this.isDue
+                    ? 'A due sale needs the customer\'s name and phone.'
+                    : 'Customer name and phone are required (or tick "Walk-in customer").';
                 return;
             }
 
@@ -392,7 +442,10 @@ function posApp() {
                         customer_address: this.walkIn ? null : (this.customer.address || null),
                         payment_method: this.paymentMethod,
                         discount: this.discount || 0,
-                        paid_amount: this.paidAmount || this.total,
+                        paid_amount: this.isDue ? (parseFloat(this.duePaid) || 0)
+                            : (this.paymentMethod === 'cash' ? (this.paidAmount || this.total) : this.total),
+                        is_due: this.isDue,
+                        due_date: this.isDue ? (this.dueDate || null) : null,
                         items: this.cart.map(l => ({ product_id: l.product_id, variant_id: l.variant_id, quantity: l.qty })),
                     }),
                 });

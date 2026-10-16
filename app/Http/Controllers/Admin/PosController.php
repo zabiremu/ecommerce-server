@@ -102,6 +102,12 @@ class PosController extends Controller
             ->limit(10)
             ->get(['id', 'name', 'phone', 'email', 'address', 'city', 'area']);
 
+        // Previous unpaid balance, so the cashier sees it before selling on credit again.
+        $dues = Order::query()->whereIn('customer_id', $customers->pluck('id'))->withOpenDue()
+            ->groupBy('customer_id')->selectRaw('customer_id, sum(due_amount) as due')
+            ->pluck('due', 'customer_id');
+        $customers->each(fn ($c) => $c->setAttribute('due', (float) ($dues[$c->id] ?? 0)));
+
         return response()->json(['data' => $customers]);
     }
 
@@ -110,6 +116,8 @@ class PosController extends Controller
         $data = $request->validate([
             'warehouse_id'        => 'required|exists:warehouses,id',
             'walk_in'             => 'nullable|boolean',
+            'is_due'              => 'nullable|boolean',
+            'due_date'            => 'nullable|date',
             'customer_name'       => 'exclude_if:walk_in,true|required|string|max:255',
             'customer_phone'      => 'exclude_if:walk_in,true|required|string|max:30',
             'customer_email'      => 'nullable|email|max:255',
@@ -185,15 +193,33 @@ class PosController extends Controller
 
         $discount = min((float) ($data['discount'] ?? 0), $subtotal);
         $total = max(0, $subtotal - $discount);
-        $paidAmount = $data['paid_amount'] ?? $total;
-        $changeDue = max(0, $paidAmount - $total);
+        $paidAmount = isset($data['paid_amount']) ? (float) $data['paid_amount'] : $total;
 
         // Walk-in sale: no name/phone needed and no customer record is created.
         $isWalkIn = (bool) ($data['walk_in'] ?? false);
         $customerName  = $isWalkIn ? 'Walk-in Customer' : $data['customer_name'];
         $customerPhone = $isWalkIn ? '' : $data['customer_phone'];
 
-        $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
+        // Due (credit) sale: the customer pays part now (or nothing) and owes the rest.
+        $isDue = (bool) ($data['is_due'] ?? false);
+        $dueAmount = 0.0;
+        if ($isDue) {
+            if ($isWalkIn) {
+                return response()->json(['success' => false, 'message' => 'A due sale needs the customer\'s name and phone — untick "Walk-in customer".'], 422);
+            }
+            $paidAmount = min($paidAmount, $total);
+            $dueAmount = round($total - $paidAmount, 2);
+        } elseif ($paidAmount < $total - 0.009) {
+            return response()->json(['success' => false, 'message' => 'Amount received is less than the total. Tick "Due sale" to sell the rest on credit.'], 422);
+        }
+
+        $changeDue = $dueAmount > 0 ? 0 : max(0, $paidAmount - $total);
+        $paymentStatus = $dueAmount > 0 ? ($paidAmount > 0 ? 'partial' : 'unpaid') : 'paid';
+        $dueDate = $dueAmount > 0
+            ? ($data['due_date'] ?? now(\App\Models\DealsBanner::LOCAL_TZ)->endOfMonth()->toDateString())
+            : null;
+
+        $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $dueAmount, $dueDate, $paymentStatus, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
             $customer = null;
             $isNewCustomer = false;
             if (!$isWalkIn) {
@@ -226,8 +252,10 @@ class PosController extends Controller
                 'total'            => $total,
                 'paid_amount'      => $paidAmount,
                 'change_due'       => $changeDue,
+                'due_amount'       => $dueAmount,
+                'due_date'         => $dueDate,
                 'payment_method'   => $data['payment_method'],
-                'payment_status'   => 'paid',
+                'payment_status'   => $paymentStatus,
                 'status'           => 'delivered',
                 'notes'            => $data['notes'] ?? null,
                 'stock_deducted'   => true,

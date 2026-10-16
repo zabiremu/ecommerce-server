@@ -27,6 +27,7 @@ class AdminNotification extends Model
             'new_order'    => ['icon' => 'fa-cart-shopping',      'bg' => 'bg-emerald-100', 'fg' => 'text-emerald-600'],
             'low_stock'    => ['icon' => 'fa-triangle-exclamation','bg' => 'bg-amber-100',   'fg' => 'text-amber-600'],
             'new_customer' => ['icon' => 'fa-user-plus',           'bg' => 'bg-blue-100',    'fg' => 'text-blue-600'],
+            'due_reminder' => ['icon' => 'fa-hand-holding-dollar', 'bg' => 'bg-rose-100',    'fg' => 'text-rose-600'],
             default        => ['icon' => 'fa-bell',                'bg' => 'bg-slate-100',   'fg' => 'text-slate-600'],
         };
     }
