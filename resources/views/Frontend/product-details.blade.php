@@ -2005,9 +2005,9 @@
                 </div>
                 @endif
 
-                <div class="wd-single-stock-status" style="margin-bottom:8px;">
+                <div class="wd-single-stock-status" id="pd-stock-status" style="margin-bottom:8px;">
                     @if($inStock)
-                        <p class="stock in-stock wd-style-default">
+                        <p class="stock in-stock wd-style-default" id="pd-stock-text">
                             {{ $product->type === 'physical' ? (int) $product->stock . ' in stock' : 'In stock' }}
                         </p>
                     @else
@@ -2050,10 +2050,11 @@
                                 @endphp
                                 <option value="{{ $variant->id }}" data-price="{{ $vPrice }}" data-stock="{{ $variant->stock }}"
                                     {{ $variant->stock <= 0 ? 'disabled' : '' }}>
-                                    {{ $label }} — {{ \App\Support\Money::format($vPrice) }}{{ $variant->stock <= 0 ? ' (out of stock)' : '' }}
+                                    {{ $label }} — {{ \App\Support\Money::format($vPrice) }} ({{ $variant->stock > 0 ? (int) $variant->stock . ' in stock' : 'out of stock' }})
                                 </option>
                             @endforeach
                         </select>
+                        <div id="pd-variant-stock" style="margin-top:8px;font-size:14px;font-weight:600;"></div>
                     </div>
                     @endif
 
@@ -2221,6 +2222,47 @@ document.addEventListener('DOMContentLoaded', function () {
     var variantSelect = document.getElementById('pd-variant-select');
     function currentVariantId() {
         return variantSelect ? parseInt(variantSelect.value, 10) : null;
+    }
+
+    // Variant stock sync — show the selected variant's stock, cap qty, toggle buttons
+    function syncVariantStock() {
+        if (!variantSelect) return;
+        var opt = variantSelect.options[variantSelect.selectedIndex];
+        if (!opt) return;
+        var stock = Math.max(0, parseInt(opt.getAttribute('data-stock'), 10) || 0);
+        var badge = document.getElementById('pd-variant-stock');
+        var qtyInput = document.getElementById('pd-qty');
+        var addBtn = document.getElementById('pd-add-to-cart-btn');
+        var buyBtn = document.getElementById('pd-buy-now-btn');
+        var topText = document.getElementById('pd-stock-text');
+
+        if (badge) {
+            if (stock > 0) {
+                badge.style.color = stock <= 5 ? '#e5533d' : '#2e7d32';
+                badge.textContent = stock <= 5
+                    ? 'Only ' + stock + ' left in stock — order soon!'
+                    : stock + ' in stock';
+            } else {
+                badge.style.color = '#e5533d';
+                badge.textContent = 'Out of stock';
+            }
+        }
+        if (topText && stock > 0) topText.textContent = stock + ' in stock';
+
+        if (qtyInput) {
+            qtyInput.max = Math.max(1, stock);
+            if ((parseInt(qtyInput.value, 10) || 1) > stock && stock > 0) qtyInput.value = stock;
+        }
+        [addBtn, buyBtn].forEach(function (b) { if (b) b.disabled = stock <= 0; });
+    }
+    if (variantSelect) {
+        // Never start on a disabled (out-of-stock) option
+        if (variantSelect.options[variantSelect.selectedIndex] && variantSelect.options[variantSelect.selectedIndex].disabled) {
+            var firstOk = Array.prototype.find.call(variantSelect.options, function (o) { return !o.disabled; });
+            if (firstOk) variantSelect.value = firstOk.value;
+        }
+        variantSelect.addEventListener('change', syncVariantStock);
+        syncVariantStock();
     }
 
     // Add to cart
