@@ -17,6 +17,7 @@ class OrderItem extends Model
         'thumbnail',
         'quantity',
         'unit_price',
+        'cost_price',
         'total',
     ];
 
@@ -25,8 +26,22 @@ class OrderItem extends Model
         return [
             'quantity' => 'decimal:2',
             'unit_price' => 'decimal:2',
+            'cost_price' => 'decimal:2',
             'total' => 'decimal:2',
         ];
+    }
+
+    /**
+     * Snapshot the product's purchase price when the line is created, so the
+     * profit of this sale stays correct even if the purchase price changes later.
+     */
+    protected static function booted(): void
+    {
+        static::creating(function (OrderItem $item) {
+            if ($item->cost_price === null && $item->product_id) {
+                $item->cost_price = (float) (Product::whereKey($item->product_id)->value('purchase_price') ?? 0);
+            }
+        });
     }
 
     public function order()

@@ -66,6 +66,13 @@ class CheckAdminPermission
         'admin.contact-messages.mark-read'       => 'contact_messages.edit',
         // Site settings
         'admin.site-settings.test-email'         => 'site_settings.edit',
+        // Accounts & Reports
+        'admin.accounts.daily'                   => 'accounts_report.view',
+        'admin.accounts.monthly'                 => 'accounts_report.view',
+        'admin.accounts.products'                => 'accounts_report.view',
+        'admin.accounts.export'                  => 'accounts_report.view',
+        'admin.expenses.categories.store'        => 'expenses.create',
+        'admin.investments.categories.store'     => 'investments.create',
         // Admins
         'admin.admins.index'                     => 'admins.view',
         'admin.admins.create'                    => 'admins.create',
