@@ -162,6 +162,34 @@
 
 </div>
 
+<!-- Accounts summary -->
+@if($accounts)
+@php($acc = [
+    ['Daily Sales',       $accounts['daily_sales'],    'Today, ' . now()->format('d M'),          route('admin.accounts.daily'),   'fa-cart-shopping', 'bg-blue-50 text-blue-600',      false],
+    ['Daily Profit',      $accounts['daily_profit'],   'Net, after cost & expenses',               route('admin.accounts.daily'),   'fa-coins',         'bg-emerald-50 text-emerald-600', true],
+    ['Monthly Sales',     $accounts['monthly_sales'],  now()->format('F Y'),                       route('admin.accounts.monthly'), 'fa-chart-column',  'bg-indigo-50 text-indigo-600',  false],
+    ['Monthly Profit',    $accounts['monthly_profit'], 'Net profit this month',                    route('admin.accounts.monthly'), 'fa-sack-dollar',   'bg-emerald-50 text-emerald-600', true],
+    ['Total Investment',  $accounts['investment'],     'All time',                                  route('admin.investments.index'),'fa-building-columns','bg-amber-50 text-amber-600',   false],
+    ['Total Expenses',    $accounts['expenses'],       'This month: ' . \App\Support\Money::format($accounts['month_expenses']), route('admin.expenses.index'), 'fa-receipt', 'bg-rose-50 text-rose-600', false],
+])
+<div class="flex items-center justify-between mb-2">
+    <h2 class="text-[13px] font-semibold text-slate-700 uppercase tracking-wider">Accounts</h2>
+    <a href="{{ route('admin.accounts.monthly') }}" class="text-[12px] text-brand-600 hover:underline">Full report →</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-5">
+    @foreach($acc as [$label, $value, $sub, $url, $icon, $tone, $signed])
+    <a href="{{ $url }}" class="block bg-white rounded-lg p-4 border border-slate-200 shadow-sm hover:border-slate-300 transition">
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">{{ $label }}</span>
+            <span class="w-7 h-7 rounded-md grid place-items-center {{ $tone }}"><i class="fas {{ $icon }} text-[11px]"></i></span>
+        </div>
+        <p class="text-[19px] font-bold tracking-tight tabular-nums {{ $signed ? ($value >= 0 ? 'text-emerald-600' : 'text-rose-600') : 'text-slate-900' }}">{{ \App\Support\Money::format($value) }}</p>
+        <p class="text-[11px] text-slate-400 mt-1 truncate">{{ $sub }}</p>
+    </a>
+    @endforeach
+</div>
+@endif
+
 <!-- Visitor Analytics -->
 <div class="bg-white rounded-lg border border-slate-200 shadow-sm mb-5">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border-b border-slate-100">

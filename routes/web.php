@@ -222,6 +222,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/purchase-report/export', [AdminPurchaseReportController::class, 'export'])->name('purchase-report.export');
         Route::get('/customer-report', [AdminCustomerReportController::class, 'index'])->name('customer-report.index');
 
+        // Accounts & Reports (profit, expenses, investments)
+        Route::get('/accounts/daily-report', [\App\Http\Controllers\Admin\AccountReportController::class, 'daily'])->name('accounts.daily');
+        Route::get('/accounts/monthly-report', [\App\Http\Controllers\Admin\AccountReportController::class, 'monthly'])->name('accounts.monthly');
+        Route::get('/accounts/product-profit', [\App\Http\Controllers\Admin\AccountReportController::class, 'products'])->name('accounts.products');
+        Route::get('/accounts/export', [\App\Http\Controllers\Admin\AccountReportController::class, 'export'])->name('accounts.export');
+        foreach (['expenses' => \App\Http\Controllers\Admin\ExpenseController::class, 'investments' => \App\Http\Controllers\Admin\InvestmentController::class] as $uri => $ctrl) {
+            Route::get("/$uri", [$ctrl, 'index'])->name("$uri.index");
+            Route::post("/$uri", [$ctrl, 'store'])->name("$uri.store");
+            Route::put("/$uri/{id}", [$ctrl, 'update'])->whereNumber('id')->name("$uri.update");
+            Route::delete("/$uri/{id}", [$ctrl, 'destroy'])->whereNumber('id')->name("$uri.destroy");
+            Route::post("/$uri/categories", [$ctrl, 'storeCategory'])->name("$uri.categories.store");
+        }
+
         // Steadfast courier
         Route::post('/steadfast/{order}/send', [AdminSteadfastController::class, 'send'])->name('steadfast.send');
         Route::post('/steadfast/{order}/check-status', [AdminSteadfastController::class, 'checkStatus'])->name('steadfast.check-status');

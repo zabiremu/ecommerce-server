@@ -229,6 +229,45 @@
             </div>
             @endif
 
+            {{-- ── ACCOUNTS & REPORTS ── --}}
+            @if($_admin->hasPermission('accounts_report.view') || $_admin->hasPermission('investments.view') || $_admin->hasPermission('expenses.view'))
+            @php($accountsActive = request()->routeIs('admin.accounts.*') || request()->routeIs('admin.investments.*') || request()->routeIs('admin.expenses.*'))
+            <div>
+                <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Accounts</p>
+                <ul class="space-y-0.5">
+                    <li x-data="{ open: {{ $accountsActive ? 'true' : 'false' }} }">
+                        <button @click="open = !open" type="button" class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ $accountsActive ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                            <i class="fas fa-calculator w-4 text-[12px] {{ $accountsActive ? 'text-accent-400' : '' }}"></i>
+                            <span>Accounts &amp; Reports</span>
+                            <i class="fas fa-chevron-down ml-auto text-[10px] transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        </button>
+                        <ul class="mt-0.5 ml-3.5 pl-2.5 border-l border-slate-800 space-y-0.5" x-show="open" x-cloak>
+                            @if($_admin->hasPermission('accounts_report.view'))
+                            <li><a href="{{ route('admin.accounts.daily') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.accounts.daily') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                                <i class="fas fa-calendar-day w-4 text-[12px] {{ request()->routeIs('admin.accounts.daily') ? 'text-accent-400' : '' }}"></i><span>Daily Report</span>
+                            </a></li>
+                            @endif
+                            @if($_admin->hasPermission('accounts_report.view'))
+                            <li><a href="{{ route('admin.accounts.monthly') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.accounts.monthly') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                                <i class="fas fa-calendar-days w-4 text-[12px] {{ request()->routeIs('admin.accounts.monthly') ? 'text-accent-400' : '' }}"></i><span>Monthly Report</span>
+                            </a></li>
+                            @endif
+                            @if($_admin->hasPermission('investments.view'))
+                            <li><a href="{{ route('admin.investments.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.investments.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                                <i class="fas fa-sack-dollar w-4 text-[12px] {{ request()->routeIs('admin.investments.*') ? 'text-accent-400' : '' }}"></i><span>Investment</span>
+                            </a></li>
+                            @endif
+                            @if($_admin->hasPermission('expenses.view'))
+                            <li><a href="{{ route('admin.expenses.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.expenses.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                                <i class="fas fa-receipt w-4 text-[12px] {{ request()->routeIs('admin.expenses.*') ? 'text-accent-400' : '' }}"></i><span>Expenses</span>
+                            </a></li>
+                            @endif
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            @endif
+
             {{-- ── REPORTS ── --}}
             @if($_admin->hasPermission('sales_report.view') || $_admin->hasPermission('purchase_report.view') || $_admin->hasPermission('customer_report.view'))
             <div>

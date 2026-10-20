@@ -188,12 +188,30 @@ class DashboardController extends Controller
 
         $activity = $activity->sortByDesc('ts')->values()->take(7);
 
+        // ── Accounts: today / this month profit (live, no caching) ──────
+        $accounts = null;
+        $admin = auth('admin')->user();
+        if ($admin && $admin->hasPermission('accounts_report.view')) {
+            $profit = app(\App\Services\ProfitService::class);
+            $today  = $profit->summary($now->copy()->startOfDay(), $now->copy()->endOfDay());
+            $month  = $profit->summary($thisMonth, $now->copy()->endOfDay());
+            $accounts = [
+                'daily_sales'    => $today['sales'],
+                'daily_profit'   => $today['net_profit'],
+                'monthly_sales'  => $month['sales'],
+                'monthly_profit' => $month['net_profit'],
+                'investment'     => $profit->totalInvestment(),
+                'expenses'       => $profit->totalExpenses(),
+                'month_expenses' => $month['expenses'],
+            ];
+        }
+
         return view('Admin.dashboard', compact(
             'revenueThisMonth', 'revenueLastMonth', 'revenuePct',
             'totalOrders', 'pendingOrders', 'ordersThisMonth', 'ordersLastMonth', 'ordersPct',
             'totalCustomers', 'newCustomers', 'customersPct',
             'totalProducts', 'outOfStockCount',
-            'bars', 'recentOrders', 'topProducts', 'activity'
+            'bars', 'recentOrders', 'topProducts', 'activity', 'accounts'
         ));
     }
 
