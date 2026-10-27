@@ -17,6 +17,7 @@ class OrderItem extends Model
         'thumbnail',
         'quantity',
         'unit_price',
+        'unit_cost',
         'total',
     ];
 
@@ -25,8 +26,20 @@ class OrderItem extends Model
         return [
             'quantity' => 'decimal:2',
             'unit_price' => 'decimal:2',
+            'unit_cost' => 'decimal:2',
             'total' => 'decimal:2',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        // Snapshot the purchase price at the time of sale so later price
+        // changes don't rewrite past profit.
+        static::creating(function (OrderItem $item) {
+            if ($item->unit_cost === null && $item->product_id) {
+                $item->unit_cost = Product::whereKey($item->product_id)->value('purchase_price');
+            }
+        });
     }
 
     public function order()

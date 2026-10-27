@@ -23,6 +23,9 @@ use App\Http\Controllers\Admin\CustomerReportController as AdminCustomerReportCo
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\PosController as AdminPosController;
 use App\Http\Controllers\Admin\DueController as AdminDueController;
+use App\Http\Controllers\Admin\AccountsReportController as AdminAccountsReportController;
+use App\Http\Controllers\Admin\ExpenseController as AdminExpenseController;
+use App\Http\Controllers\Admin\InvestmentController as AdminInvestmentController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
@@ -221,6 +224,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/purchase-report', [AdminPurchaseReportController::class, 'index'])->name('purchase-report.index');
         Route::get('/purchase-report/export', [AdminPurchaseReportController::class, 'export'])->name('purchase-report.export');
         Route::get('/customer-report', [AdminCustomerReportController::class, 'index'])->name('customer-report.index');
+
+        // Accounts & Reports (profit, expenses, investments)
+        Route::get('/accounts/daily', [AdminAccountsReportController::class, 'daily'])->name('accounts.daily');
+        Route::get('/accounts/monthly', [AdminAccountsReportController::class, 'monthly'])->name('accounts.monthly');
+        Route::get('/accounts/products', [AdminAccountsReportController::class, 'products'])->name('accounts.products');
+        foreach (['expenses' => AdminExpenseController::class, 'investments' => AdminInvestmentController::class] as $ledger => $ledgerController) {
+            Route::get("/{$ledger}", [$ledgerController, 'index'])->name("{$ledger}.index");
+            Route::post("/{$ledger}", [$ledgerController, 'store'])->name("{$ledger}.store");
+            Route::get("/{$ledger}/{id}/edit", [$ledgerController, 'edit'])->whereNumber('id')->name("{$ledger}.edit");
+            Route::put("/{$ledger}/{id}", [$ledgerController, 'update'])->whereNumber('id')->name("{$ledger}.update");
+            Route::delete("/{$ledger}/{id}", [$ledgerController, 'destroy'])->whereNumber('id')->name("{$ledger}.destroy");
+        }
 
         // Steadfast courier
         Route::post('/steadfast/{order}/send', [AdminSteadfastController::class, 'send'])->name('steadfast.send');

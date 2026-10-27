@@ -229,6 +229,32 @@
             </div>
             @endif
 
+            {{-- ── ACCOUNTS & REPORTS ── --}}
+            @if($_admin->hasPermission('accounts_reports.view') || $_admin->hasPermission('investments.view') || $_admin->hasPermission('expenses.view'))
+            <div>
+                <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Accounts &amp; Reports</p>
+                <ul class="space-y-0.5">
+                    @if($_admin->hasPermission('accounts_reports.view'))
+                    @foreach ([['admin.accounts.daily', 'fa-calendar-day', 'Daily Report'], ['admin.accounts.monthly', 'fa-calendar-days', 'Monthly Report'], ['admin.accounts.products', 'fa-tags', 'Product Profit']] as [$_route, $_icon, $_label])
+                    <li><a href="{{ route($_route) }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs($_route) ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas {{ $_icon }} w-4 text-[12px] {{ request()->routeIs($_route) ? 'text-accent-400' : '' }}"></i><span>{{ $_label }}</span>
+                    </a></li>
+                    @endforeach
+                    @endif
+                    @if($_admin->hasPermission('investments.view'))
+                    <li><a href="{{ route('admin.investments.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.investments.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas fa-sack-dollar w-4 text-[12px] {{ request()->routeIs('admin.investments.*') ? 'text-accent-400' : '' }}"></i><span>Investment</span>
+                    </a></li>
+                    @endif
+                    @if($_admin->hasPermission('expenses.view'))
+                    <li><a href="{{ route('admin.expenses.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.expenses.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas fa-receipt w-4 text-[12px] {{ request()->routeIs('admin.expenses.*') ? 'text-accent-400' : '' }}"></i><span>Expenses</span>
+                    </a></li>
+                    @endif
+                </ul>
+            </div>
+            @endif
+
             {{-- ── REPORTS ── --}}
             @if($_admin->hasPermission('sales_report.view') || $_admin->hasPermission('purchase_report.view') || $_admin->hasPermission('customer_report.view'))
             <div>

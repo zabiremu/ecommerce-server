@@ -162,6 +162,33 @@
 
 </div>
 
+<!-- Accounts -->
+@if ($accounts)
+@php
+    $accCards = [
+        ['Daily Sales',      $accounts['today']['sales'],  $accounts['today']['orders'] . ' orders today',                       route('admin.accounts.daily'),   'border-slate-200', false],
+        ['Daily Profit',     $accounts['today']['net'],    'After cost & expenses',                                              route('admin.accounts.daily'),   'border-emerald-200', true],
+        ['Monthly Sales',    $accounts['month']['sales'],  $accounts['month']['orders'] . ' orders in ' . now(\App\Models\DealsBanner::LOCAL_TZ)->format('F'), route('admin.accounts.monthly'), 'border-slate-200', false],
+        ['Monthly Profit',   $accounts['month']['net'],    'After cost & expenses',                                              route('admin.accounts.monthly'), 'border-emerald-200', true],
+        ['Total Investment', $accounts['investment']['total'], 'Stock + other investment',                                       route('admin.investments.index'), 'border-blue-200', false],
+        ['Total Expenses',   $accounts['expenses_total'], \App\Support\Money::format($accounts['month']['expenses']) . ' this month', route('admin.expenses.index'), 'border-amber-200', false],
+    ];
+@endphp
+<div class="flex items-center justify-between mb-2">
+    <h3 class="text-[14px] font-semibold text-slate-900">Accounts</h3>
+    <a href="{{ route('admin.accounts.monthly') }}" class="text-[12px] font-medium text-brand-600 hover:underline">Full report →</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-5">
+    @foreach ($accCards as [$label, $value, $sub, $url, $border, $isProfit])
+        <a href="{{ $url }}" class="block bg-white rounded-lg p-4 border {{ $border }} shadow-sm hover:border-slate-400 transition">
+            <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">{{ $isProfit && $value < 0 ? str_replace('Profit', 'Loss', $label) : $label }}</span>
+            <p class="text-[20px] font-bold tracking-tight mt-2 {{ $isProfit ? ($value < 0 ? 'text-rose-600' : 'text-emerald-600') : 'text-slate-900' }}">{{ \App\Support\Money::format($value) }}</p>
+            <p class="text-[11.5px] text-slate-400 mt-1">{{ $sub }}</p>
+        </a>
+    @endforeach
+</div>
+@endif
+
 <!-- Visitor Analytics -->
 <div class="bg-white rounded-lg border border-slate-200 shadow-sm mb-5">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border-b border-slate-100">

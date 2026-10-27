@@ -61,6 +61,11 @@ class Role extends Model
                 'purchase_report' => ['view'],
                 'customer_report' => ['view'],
             ],
+            'Accounts' => [
+                'accounts_reports' => ['view'],
+                'expenses'         => ['view', 'create', 'edit', 'delete'],
+                'investments'      => ['view', 'create', 'edit', 'delete'],
+            ],
             'Settings' => [
                 'pages'         => ['view', 'create', 'edit', 'delete'],
                 'site_settings' => ['view', 'edit'],

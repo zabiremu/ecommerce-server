@@ -188,7 +188,22 @@ class DashboardController extends Controller
 
         $activity = $activity->sortByDesc('ts')->values()->take(7);
 
+        // ── Accounts (sales, profit, investment, expenses) ─────────────
+        $accounts = null;
+        if (auth('admin')->user()?->hasPermission('accounts_reports.view')) {
+            $profit = app(\App\Services\ProfitReportService::class);
+            $today  = \App\Services\ProfitReportService::today();
+            $monthStart = substr($today, 0, 8) . '01';
+            $accounts = [
+                'today'          => $profit->summary($today, $today),
+                'month'          => $profit->summary($monthStart, $today),
+                'investment'     => $profit->investmentTotals(),
+                'expenses_total' => (float) \App\Models\Expense::sum('amount'),
+            ];
+        }
+
         return view('Admin.dashboard', compact(
+            'accounts',
             'revenueThisMonth', 'revenueLastMonth', 'revenuePct',
             'totalOrders', 'pendingOrders', 'ordersThisMonth', 'ordersLastMonth', 'ordersPct',
             'totalCustomers', 'newCustomers', 'customersPct',

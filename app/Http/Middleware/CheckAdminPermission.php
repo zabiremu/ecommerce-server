@@ -32,8 +32,12 @@ class CheckAdminPermission
         'admin.pos.receipt'                       => 'pos.view',
         // Customer dues
         'admin.dues.collect'                     => 'dues.edit',
+        // Accounts & Reports
+        'admin.accounts.daily'                   => 'accounts_reports.view',
+        'admin.accounts.monthly'                 => 'accounts_reports.view',
+        'admin.accounts.products'                => 'accounts_reports.view',
         // Orders
-        'admin.orders.status'                    => 'orders.edit',
+        'admin.orders.status'                   => 'orders.edit',
         'admin.orders.payment-status'            => 'orders.edit',
         'admin.orders.notes'                     => 'orders.edit',
         'admin.orders.bulk-action'               => 'orders.edit',
