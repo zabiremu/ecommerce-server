@@ -32,6 +32,7 @@ class Role extends Model
             ],
             'Inventory' => [
                 'purchases'         => ['view', 'create', 'edit', 'delete'],
+                'supplier_dues'     => ['view', 'edit'],
                 'grn'               => ['view', 'create', 'edit', 'delete'],
                 'grn_returns'       => ['view', 'create', 'edit', 'delete'],
                 'stock_transfers'   => ['view', 'create', 'edit', 'delete'],
@@ -71,6 +72,7 @@ class Role extends Model
                 'site_settings' => ['view', 'edit'],
                 'admins'        => ['view', 'create', 'edit', 'delete'],
                 'roles'         => ['view', 'create', 'edit', 'delete'],
+                'backups'       => ['view', 'create', 'delete'],
             ],
         ];
     }

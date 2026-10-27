@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\Investment;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Purchase;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
@@ -172,6 +173,104 @@ class ProfitReportService
         $stock  = (float) $stock->sum('total_amount');
 
         return ['manual' => $manual, 'stock' => $stock, 'total' => round($manual + $stock, 2)];
+    }
+
+    /**
+     * Money lost to cancelled / returned orders and given away as discount.
+     * Cancelled and returned orders are dated by when they were placed.
+     */
+    public function returnsAndDiscounts(string $from, string $to): array
+    {
+        $range = self::utcRange($from, $to);
+        $counted = $this->countedOrders($from, $to);
+        $lost = Order::query()->whereIn('status', ['cancelled', 'returned'])->whereBetween('placed_at', $range);
+
+        $byStatus = (clone $lost)->groupBy('status')
+            ->selectRaw('status, count(*) as orders, sum(total) as amount')
+            ->get()->keyBy('status');
+        $stat = fn ($s) => [
+            'orders' => (int) ($byStatus[$s]->orders ?? 0),
+            'amount' => round((float) ($byStatus[$s]->amount ?? 0), 2),
+        ];
+
+        $products = OrderItem::query()
+            ->join('orders', 'orders.id', '=', 'order_items.order_id')
+            ->whereIn('orders.status', ['cancelled', 'returned'])
+            ->whereBetween('orders.placed_at', $range)
+            ->groupBy('order_items.product_id')
+            ->selectRaw("order_items.product_id, max(order_items.product_name) as name,
+                sum(case when orders.status = 'returned' then order_items.quantity else 0 end) as returned_qty,
+                sum(case when orders.status = 'cancelled' then order_items.quantity else 0 end) as cancelled_qty,
+                sum(order_items.total) as amount")
+            ->orderByDesc('amount')
+            ->limit(20)
+            ->get();
+
+        return [
+            'gross'           => round((float) (clone $counted)->sum(DB::raw('subtotal + shipping_charge')), 2),
+            'discount'        => round((float) (clone $counted)->sum('discount'), 2),
+            'discount_orders' => (int) (clone $counted)->where('discount', '>', 0)->count(),
+            'net'             => round((float) (clone $counted)->sum('total'), 2),
+            'cancelled'       => $stat('cancelled'),
+            'returned'        => $stat('returned'),
+            'refunded'        => round((float) (clone $lost)->where('status', 'returned')->where('payment_status', 'refunded')->sum('total'), 2),
+            'supplier_returns' => round((float) DB::table('grn_return_items')
+                ->join('grn_returns', 'grn_returns.id', '=', 'grn_return_items.grn_return_id')
+                ->whereBetween('grn_returns.return_date', [$from, $to])
+                ->sum('grn_return_items.total'), 2),
+            'lost_orders'     => (clone $lost)->latest('placed_at')->limit(100)
+                ->get(['id', 'order_no', 'source', 'shipping_name', 'status', 'payment_status', 'total', 'placed_at']),
+            'discounted'      => (clone $counted)->where('discount', '>', 0)->orderByDesc('discount')->limit(50)
+                ->get(['id', 'order_no', 'source', 'shipping_name', 'subtotal', 'discount', 'total', 'placed_at']),
+            'products'        => $products,
+        ];
+    }
+
+    /**
+     * Product-wise profit with each product's top-level category
+     * (T-Shirt, Shirt, Jeans, Footwear…) attached as `category_id` / `category`.
+     */
+    public function productWiseWithCategory(string $from, string $to): Collection
+    {
+        $rows = $this->productWise($from, $to);
+        $products = Product::with('category.parent:id,name')
+            ->whereIn('id', $rows->pluck('product_id')->filter())
+            ->get(['id', 'category_id', 'stock'])
+            ->keyBy('id');
+
+        return $rows->each(function ($row) use ($products) {
+            $category = $products[$row->product_id]->category ?? null;
+            $top = $category?->parent ?? $category;
+            $row->category_id = $top?->id;
+            $row->category = $top?->name ?? 'Uncategorised';
+            $row->stock = $products[$row->product_id]->stock ?? null;
+        });
+    }
+
+    /**
+     * In-stock products with no sale in the last $days days (or never sold),
+     * oldest last-sale first. Products added within $days are left out.
+     */
+    public function slowMovers(int $days, ?array $categoryIds = null)
+    {
+        $cutoff = now()->subDays($days);
+
+        $lastSale = OrderItem::query()
+            ->join('orders', 'orders.id', '=', 'order_items.order_id')
+            ->whereIn('orders.status', self::COUNTED_STATUSES)
+            ->groupBy('order_items.product_id')
+            ->selectRaw('order_items.product_id, max(orders.placed_at) as last_sold, sum(order_items.quantity) as total_sold');
+
+        return Product::query()
+            ->where('products.type', 'physical')
+            ->where('products.stock', '>', 0)
+            ->where('products.created_at', '<', $cutoff)
+            ->when($categoryIds, fn ($q) => $q->whereIn('products.category_id', $categoryIds))
+            ->leftJoinSub($lastSale, 'ls', 'ls.product_id', '=', 'products.id')
+            ->where(fn ($q) => $q->whereNull('ls.last_sold')->orWhere('ls.last_sold', '<', $cutoff))
+            ->select('products.id', 'products.name', 'products.sku', 'products.stock', 'products.purchase_price', 'products.selling_price', 'products.category_id', 'products.created_at')
+            ->selectRaw('ls.last_sold, coalesce(ls.total_sold, 0) as total_sold, products.stock * coalesce(products.purchase_price, 0) as stock_value')
+            ->orderByRaw('ls.last_sold is not null, ls.last_sold, products.created_at');
     }
 
     private function withProfit(array $row): array

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
+use App\Models\SupplierPayment;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
@@ -39,6 +41,8 @@ class PurchaseController extends Controller
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.quantity' => 'required|numeric|min:0.01',
             'items.*.unit_cost' => 'required|numeric|min:0',
+            'paid_amount' => 'nullable|numeric|min:0',
+            'payment_method' => 'nullable|in:' . implode(',', SupplierPayment::METHODS),
         ]);
 
         $purchase = DB::transaction(function () use ($request) {
@@ -72,6 +76,19 @@ class PurchaseController extends Controller
 
             $purchase->update(['total_amount' => $totalAmount]);
 
+            $paid = min((float) $request->input('paid_amount', 0), $totalAmount);
+            if ($paid > 0) {
+                SupplierPayment::create([
+                    'supplier_id'    => $purchase->supplier_id,
+                    'purchase_id'    => $purchase->id,
+                    'amount'         => $paid,
+                    'payment_method' => $request->input('payment_method', 'cash'),
+                    'note'           => 'Paid with purchase',
+                    'paid_by'        => Auth::guard('admin')->id(),
+                    'paid_on'        => $request->purchase_date,
+                ]);
+            }
+
             return $purchase;
         });
 
@@ -81,7 +98,7 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
-        $purchase->load('supplier', 'warehouse', 'items');
+        $purchase->load('supplier', 'warehouse', 'items', 'payments');
         return view('Admin.purchase.show', compact('purchase'));
     }
 

@@ -13,6 +13,7 @@ use App\Models\ProductWarehouse;
 use App\Models\Warehouse;
 use App\Services\AdminNotificationService;
 use Carbon\Carbon;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,11 +39,28 @@ class PosController extends Controller
         $warehouseId = (int) $request->warehouse_id;
         $search = trim((string) $request->query('s', ''));
 
+        // Barcode scanner: an exact barcode / SKU / variant SKU wins over a name search.
+        $scanned = null;
+        $scannedVariantId = null;
+        if ($request->boolean('scan') && $search !== '') {
+            $variant = ProductVariant::where('sku', $search)->first();
+            if ($variant) {
+                $scanned = $variant->product_id;
+                $scannedVariantId = $variant->id;
+            } else {
+                $exact = Product::published()->where('type', 'physical')
+                    ->where(fn ($q) => $q->where('barcode', $search)->orWhere('sku', $search))
+                    ->limit(2)->pluck('id');
+                $scanned = $exact->count() === 1 ? $exact->first() : null;
+            }
+        }
+
         $query = Product::published()
             ->where('type', 'physical')
             ->with(['variants' => fn ($q) => $q->orderBy('sort_order')])
             ->when($request->filled('category_id'), fn ($q) => $q->where('category_id', $request->category_id))
-            ->when($search !== '', function ($q) use ($search) {
+            ->when($scanned, fn ($q) => $q->whereKey($scanned))
+            ->when(!$scanned && $search !== '', function ($q) use ($search) {
                 $q->where(function ($qq) use ($search) {
                     $qq->where('name', 'like', "%{$search}%")
                         ->orWhere('sku', 'like', "%{$search}%")
@@ -81,6 +99,7 @@ class PosController extends Controller
 
         return response()->json([
             'data'         => $items,
+            'matched_variant_id' => $scannedVariantId,
             'current_page' => $products->currentPage(),
             'last_page'    => $products->lastPage(),
         ]);
@@ -130,7 +149,14 @@ class PosController extends Controller
             'items.*.product_id'  => 'required|integer|exists:products,id',
             'items.*.variant_id'  => 'nullable|integer|exists:product_variants,id',
             'items.*.quantity'    => 'required|numeric|min:0.01',
+            'client_token'        => 'nullable|string|max:64',
         ]);
+
+        // Same token again (double click / network retry) → that sale, not a new one.
+        $token = $data['client_token'] ?? null;
+        if ($token && ($existing = Order::where('client_token', $token)->first())) {
+            return $this->saleResponse($existing);
+        }
 
         $warehouseId = (int) $data['warehouse_id'];
         $productIds = collect($data['items'])->pluck('product_id')->unique();
@@ -219,99 +245,113 @@ class PosController extends Controller
             ? ($data['due_date'] ?? now(\App\Models\DealsBanner::LOCAL_TZ)->endOfMonth()->toDateString())
             : null;
 
-        $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $dueAmount, $dueDate, $paymentStatus, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
-            $customer = null;
-            $isNewCustomer = false;
-            if (!$isWalkIn) {
-                $customer = Customer::firstOrNew(['phone' => $customerPhone]);
-                $isNewCustomer = !$customer->exists;
-                $customer->fill([
-                    'name'    => $customerName,
-                    'email'   => $data['customer_email'] ?? $customer->email,
-                    'address' => $data['customer_address'] ?? $customer->address,
+        try {
+            $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $dueAmount, $dueDate, $paymentStatus, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
+                $customer = null;
+                $isNewCustomer = false;
+                if (!$isWalkIn) {
+                    $customer = Customer::firstOrNew(['phone' => $customerPhone]);
+                    $isNewCustomer = !$customer->exists;
+                    $customer->fill([
+                        'name'    => $customerName,
+                        'email'   => $data['customer_email'] ?? $customer->email,
+                        'address' => $data['customer_address'] ?? $customer->address,
+                    ]);
+                    if ($isNewCustomer) {
+                        $customer->status = true;
+                    }
+                    $customer->save();
+                }
+
+                $order = Order::create([
+                    'order_no'         => $this->nextPosOrderNumber(),
+                    'client_token'     => $data['client_token'] ?? null,
+                    'source'           => 'pos',
+                    'customer_id'      => $customer?->id,
+                    'warehouse_id'     => $warehouseId,
+                    'served_by'        => Auth::guard('admin')->id(),
+                    'shipping_name'    => $customerName,
+                    'shipping_phone'   => $customerPhone,
+                    'shipping_email'   => $isWalkIn ? null : ($data['customer_email'] ?? null),
+                    'shipping_address' => $data['customer_address'] ?? 'Walk-in / POS sale',
+                    'subtotal'         => $subtotal,
+                    'shipping_charge'  => 0,
+                    'discount'         => $discount,
+                    'total'            => $total,
+                    'paid_amount'      => $paidAmount,
+                    'change_due'       => $changeDue,
+                    'due_amount'       => $dueAmount,
+                    'due_date'         => $dueDate,
+                    'payment_method'   => $data['payment_method'],
+                    'payment_status'   => $paymentStatus,
+                    'status'           => 'delivered',
+                    'notes'            => $data['notes'] ?? null,
+                    'stock_deducted'   => true,
+                    'placed_at'        => now(),
                 ]);
+
+                foreach ($lineItems as $li) {
+                    $product = $li['product'];
+                    $variant = $li['variant'];
+
+                    OrderItem::create([
+                        'order_id'      => $order->id,
+                        'product_id'    => $product->id,
+                        'variant_id'    => $variant?->id,
+                        'product_name'  => $product->name,
+                        'variant_label' => $variant ? trim(implode(' / ', array_filter([$variant->color, $variant->size])) ?: $variant->name) : null,
+                        'product_sku'   => $product->sku,
+                        'variant_sku'   => $variant?->sku,
+                        'thumbnail'     => $product->thumbnail,
+                        'quantity'      => $li['quantity'],
+                        'unit_price'    => $li['unit_price'],
+                        'total'         => $li['total'],
+                    ]);
+
+                    if ($product->type === 'physical') {
+                        $newStock = max(0, (float) $product->stock - $li['quantity']);
+                        $product->update(['stock' => $newStock]);
+
+                        $pw = ProductWarehouse::where('product_id', $product->id)
+                            ->where('warehouse_id', $warehouseId)
+                            ->first();
+                        if ($pw) {
+                            $pw->update(['stock' => max(0, (float) $pw->stock - $li['quantity'])]);
+                        }
+
+                        if ($variant) {
+                            $variant->update(['stock' => max(0, (float) $variant->stock - $li['quantity'])]);
+                        }
+
+                        $alert = (int) ($product->alert_quantity ?? 5);
+                        if ($newStock <= $alert) {
+                            AdminNotificationService::lowStock($product->name, (int) $newStock, $product->id);
+                        }
+                    }
+                }
+
+                $customer?->recalculateStats();
+
+                AdminNotificationService::newOrder($order->order_no, $customerName, $total);
                 if ($isNewCustomer) {
-                    $customer->status = true;
+                    AdminNotificationService::newCustomer($customerName, $customerPhone);
                 }
-                $customer->save();
+
+                return $order;
+            });
+        } catch (UniqueConstraintViolationException $e) {
+            // Two identical requests raced past the check above; the first one won.
+            if ($token && ($existing = Order::where('client_token', $token)->first())) {
+                return $this->saleResponse($existing);
             }
+            throw $e;
+        }
 
-            $order = Order::create([
-                'order_no'         => $this->nextPosOrderNumber(),
-                'source'           => 'pos',
-                'customer_id'      => $customer?->id,
-                'warehouse_id'     => $warehouseId,
-                'served_by'        => Auth::guard('admin')->id(),
-                'shipping_name'    => $customerName,
-                'shipping_phone'   => $customerPhone,
-                'shipping_email'   => $isWalkIn ? null : ($data['customer_email'] ?? null),
-                'shipping_address' => $data['customer_address'] ?? 'Walk-in / POS sale',
-                'subtotal'         => $subtotal,
-                'shipping_charge'  => 0,
-                'discount'         => $discount,
-                'total'            => $total,
-                'paid_amount'      => $paidAmount,
-                'change_due'       => $changeDue,
-                'due_amount'       => $dueAmount,
-                'due_date'         => $dueDate,
-                'payment_method'   => $data['payment_method'],
-                'payment_status'   => $paymentStatus,
-                'status'           => 'delivered',
-                'notes'            => $data['notes'] ?? null,
-                'stock_deducted'   => true,
-                'placed_at'        => now(),
-            ]);
+        return $this->saleResponse($order);
+    }
 
-            foreach ($lineItems as $li) {
-                $product = $li['product'];
-                $variant = $li['variant'];
-
-                OrderItem::create([
-                    'order_id'      => $order->id,
-                    'product_id'    => $product->id,
-                    'variant_id'    => $variant?->id,
-                    'product_name'  => $product->name,
-                    'variant_label' => $variant ? trim(implode(' / ', array_filter([$variant->color, $variant->size])) ?: $variant->name) : null,
-                    'product_sku'   => $product->sku,
-                    'variant_sku'   => $variant?->sku,
-                    'thumbnail'     => $product->thumbnail,
-                    'quantity'      => $li['quantity'],
-                    'unit_price'    => $li['unit_price'],
-                    'total'         => $li['total'],
-                ]);
-
-                if ($product->type === 'physical') {
-                    $newStock = max(0, (float) $product->stock - $li['quantity']);
-                    $product->update(['stock' => $newStock]);
-
-                    $pw = ProductWarehouse::where('product_id', $product->id)
-                        ->where('warehouse_id', $warehouseId)
-                        ->first();
-                    if ($pw) {
-                        $pw->update(['stock' => max(0, (float) $pw->stock - $li['quantity'])]);
-                    }
-
-                    if ($variant) {
-                        $variant->update(['stock' => max(0, (float) $variant->stock - $li['quantity'])]);
-                    }
-
-                    $alert = (int) ($product->alert_quantity ?? 5);
-                    if ($newStock <= $alert) {
-                        AdminNotificationService::lowStock($product->name, (int) $newStock, $product->id);
-                    }
-                }
-            }
-
-            $customer?->recalculateStats();
-
-            AdminNotificationService::newOrder($order->order_no, $customerName, $total);
-            if ($isNewCustomer) {
-                AdminNotificationService::newCustomer($customerName, $customerPhone);
-            }
-
-            return $order;
-        });
-
+    private function saleResponse(Order $order)
+    {
         return response()->json([
             'success'  => true,
             'order_no' => $order->order_no,

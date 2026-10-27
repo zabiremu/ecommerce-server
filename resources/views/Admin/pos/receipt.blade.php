@@ -3,6 +3,10 @@
     $phone   = \App\Models\SiteSetting::get('contact_phone', '');
     $address = \App\Models\SiteSetting::get('contact_address', '');
     $colorPrimary = \App\Models\SiteSetting::get('color_primary', '#2D1B69');
+    // Thermal roll width: 80mm (default) or 58mm. Printable area is a few mm narrower.
+    $paper = request('paper') === '58' ? '58' : '80';
+    $printWidth = $paper === '58' ? '48mm' : '72mm';
+    $tz = \App\Models\DealsBanner::LOCAL_TZ;
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +44,26 @@
         .badge-due { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
         .footer { margin-top: 14px; font-size: 10.5px; color: #94a3b8; text-align: center; }
 
+        .paper-switch { display: flex; gap: 4px; justify-content: center; margin-top: 8px; font-family: Arial, sans-serif; font-size: 12px; }
+        .paper-switch a { padding: 4px 10px; border-radius: 4px; border: 1px solid #e2e8f0; background: #fff; color: #334155; text-decoration: none; }
+        .paper-switch a.on { background: #1e293b; color: #fff; border-color: #1e293b; }
+
+        /* Thermal printer: page = roll width, no margins, height follows the content. */
+        @page { size: {{ $paper }}mm auto; margin: 0; }
         @media print {
-            body { background: #fff; }
+            html, body { background: #fff; width: {{ $paper }}mm; }
             .no-print { display: none !important; }
-            .sheet { box-shadow: none; margin: 0; border-radius: 0; max-width: 100%; }
+            .sheet { box-shadow: none; margin: 0 auto; border-radius: 0; width: {{ $printWidth }}; max-width: {{ $printWidth }}; padding: 2mm 0 6mm; }
+            /* Thermal heads print black only — no greys or colours. */
+            * { color: #000 !important; }
+            .divider { border-top-color: #000; }
+            .items-table th { border-bottom-color: #000; }
+            .badge { background: none !important; border: 1px solid #000 !important; }
+            @if ($paper === '58')
+            .sheet { font-size: 10px; }
+            .items-table { font-size: 10px; }
+            .row { font-size: 10.5px; }
+            @endif
         }
     </style>
 </head>
@@ -52,6 +72,11 @@
     <div class="toolbar no-print">
         <a href="{{ route('admin.pos.index') }}" class="btn-back">← Back to POS</a>
         <button onclick="window.print()" class="btn-print"><i class="fas fa-print"></i> Print Receipt</button>
+    </div>
+    <div class="paper-switch no-print">
+        <span style="align-self:center;color:#64748b">Paper:</span>
+        <a href="?paper=80" class="{{ $paper === '80' ? 'on' : '' }}" onclick="try{localStorage.setItem('pos_paper','80')}catch(e){}">80mm</a>
+        <a href="?paper=58" class="{{ $paper === '58' ? 'on' : '' }}" onclick="try{localStorage.setItem('pos_paper','58')}catch(e){}">58mm</a>
     </div>
 
     <div class="sheet">
@@ -64,7 +89,7 @@
         <div class="divider"></div>
 
         <div class="row"><span class="lbl">Receipt No</span><span><strong>{{ $order->order_no }}</strong></span></div>
-        <div class="row"><span class="lbl">Date</span><span>{{ $order->placed_at?->format('d M, Y h:i A') }}</span></div>
+        <div class="row"><span class="lbl">Date</span><span>{{ $order->placed_at?->copy()->setTimezone($tz)->format('d M, Y h:i A') }}</span></div>
         <div class="row"><span class="lbl">Cashier</span><span>{{ $order->servedBy->name ?? '—' }}</span></div>
         @if ($order->warehouse)
         <div class="row"><span class="lbl">Outlet</span><span>{{ $order->warehouse->name }}</span></div>
@@ -132,10 +157,23 @@
 
         <div class="footer">
             Thank you for shopping with us!<br>
-            Generated {{ now()->format('d M, Y h:i A') }}
+            Generated {{ now($tz)->format('d M, Y h:i A') }}
         </div>
     </div>
 
-    <script>window.onload = () => setTimeout(() => window.print(), 300);</script>
+    <script>
+        // Remember the shop's roll width; then print automatically.
+        (function () {
+            let saved = null;
+            try { saved = localStorage.getItem('pos_paper'); } catch (e) {}
+            const url = new URL(location.href);
+            if (!url.searchParams.has('paper') && saved && saved !== '{{ $paper }}') {
+                url.searchParams.set('paper', saved);
+                location.replace(url);
+                return;
+            }
+            window.onload = () => setTimeout(() => window.print(), 300);
+        })();
+    </script>
 </body>
 </html>

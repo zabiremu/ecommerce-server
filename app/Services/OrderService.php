@@ -49,6 +49,15 @@ class OrderService
     ): JsonResponse {
         $total = max(0, $subtotal + $shippingCharge - $discount);
 
+        // Same cart submitted again (double click, back + resubmit) → that order, not a second one.
+        if ($duplicate = $this->recentDuplicate($data['shipping_phone'], $total, $lineItems)) {
+            return response()->json([
+                'success'  => true,
+                'order_no' => $duplicate->order_no,
+                'redirect' => route('order-complete') . '?id=' . $duplicate->order_no,
+            ]);
+        }
+
         // ── Risk score calculation ────────────────────────────────────
         $risk = (new OrderRiskService())->calculate($data['shipping_phone'], $total, $request, $recaptchaScore);
 
@@ -204,6 +213,30 @@ class OrderService
             'order_no' => $order->order_no,
             'redirect' => route('order-complete') . '?id=' . $order->order_no,
         ]);
+    }
+
+    /** An online order from this phone, for exactly these items and total, in the last 2 minutes. */
+    private function recentDuplicate(string $phone, float $total, array $lineItems): ?Order
+    {
+        $signature = fn ($rows) => collect($rows)
+            ->map(fn ($r) => $r['product_id'] . ':' . ($r['variant_id'] ?? 0) . ':' . (float) $r['quantity'])
+            ->sort()->implode('|');
+
+        $wanted = $signature(array_map(fn ($li) => [
+            'product_id' => $li['product']->id,
+            'variant_id' => ($li['variant'] ?? null)?->id,
+            'quantity'   => $li['quantity'],
+        ], $lineItems));
+
+        return Order::with('items:id,order_id,product_id,variant_id,quantity')
+            ->where('source', 'online')
+            ->where('shipping_phone', $phone)
+            ->where('placed_at', '>=', now()->subMinutes(2))
+            ->whereNotIn('status', ['cancelled', 'returned'])
+            ->whereBetween('total', [$total - 0.01, $total + 0.01])
+            ->latest('id')
+            ->get()
+            ->first(fn (Order $o) => $signature($o->items->map(fn ($i) => $i->only('product_id', 'variant_id', 'quantity'))) === $wanted);
     }
 
     public function nextOrderNumber(): string

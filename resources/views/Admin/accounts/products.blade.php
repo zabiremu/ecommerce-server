@@ -8,41 +8,14 @@
 @endpush
 
 @section('content')
-@php
-    $money = fn ($v) => \App\Support\Money::format($v);
-    $todayC = \Illuminate\Support\Carbon::parse($today);
-    $presets = [
-        'Today'      => [$today, $today],
-        'Last 7 days' => [$todayC->copy()->subDays(6)->toDateString(), $today],
-        'This month' => [$todayC->copy()->startOfMonth()->toDateString(), $today],
-        'Last month' => [$todayC->copy()->subMonthNoOverflow()->startOfMonth()->toDateString(), $todayC->copy()->subMonthNoOverflow()->endOfMonth()->toDateString()],
-        'This year'  => [$todayC->copy()->startOfYear()->toDateString(), $today],
-    ];
-@endphp
+@php $money = fn ($v) => \App\Support\Money::format($v); @endphp
 
 <div class="flex flex-wrap items-center gap-3 mb-4">
     <h1 class="wp-h1">Product-wise Profit</h1>
     <span class="text-[13px] text-[#50575e]">How much each product earned — {{ \Illuminate\Support\Carbon::parse($from)->format('d M Y') }} to {{ \Illuminate\Support\Carbon::parse($to)->format('d M Y') }}</span>
 </div>
 
-<div class="flex flex-wrap items-end justify-between gap-3 mb-4">
-    <form method="GET" action="{{ route('admin.accounts.products') }}" class="flex flex-wrap items-end gap-2">
-        <div>
-            <label class="block text-[12px] font-semibold text-[#50575e] mb-1">From</label>
-            <input type="date" name="from" value="{{ $from }}" max="{{ $today }}" class="wp-input" style="width:160px">
-        </div>
-        <div>
-            <label class="block text-[12px] font-semibold text-[#50575e] mb-1">To</label>
-            <input type="date" name="to" value="{{ $to }}" max="{{ $today }}" class="wp-input" style="width:160px">
-        </div>
-        <button type="submit" class="wp-btn wp-btn-primary">Show</button>
-    </form>
-    <div class="flex flex-wrap gap-1.5">
-        @foreach ($presets as $label => [$pf, $pt])
-            <a href="{{ route('admin.accounts.products', ['from' => $pf, 'to' => $pt]) }}" class="wp-btn {{ $pf === $from && $pt === $to ? 'wp-btn-primary' : '' }}">{{ $label }}</a>
-        @endforeach
-    </div>
-</div>
+@include('Admin.accounts._range_form', ['route' => 'admin.accounts.products'])
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
     <div class="summary-card"><div class="lbl">Products Sold</div><div class="val">{{ $products->count() }}</div><div class="sub">{{ rtrim(rtrim(number_format($totals['qty'], 2), '0'), '.') }} units</div></div>

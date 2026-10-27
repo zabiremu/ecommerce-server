@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\DatabaseBackupService;
 use App\Services\DueReminderService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -17,3 +18,10 @@ Artisan::command('dues:month-end-reminder {--force : Send now even if it is not 
 
 // Checked daily; the service only sends on the last day of the month (once).
 Schedule::command('dues:month-end-reminder')->dailyAt('10:00')->timezone('Asia/Dhaka');
+
+// Daily database backup (storage/app/backups, newest 30 kept).
+Artisan::command('backup:run', function (DatabaseBackupService $backups) {
+    $this->info('Backup created: ' . $backups->create('auto'));
+})->purpose('Back up the database');
+
+Schedule::command('backup:run')->dailyAt('02:00')->timezone('Asia/Dhaka');

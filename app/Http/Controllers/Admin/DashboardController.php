@@ -18,6 +18,20 @@ class DashboardController extends Controller
         // Fallback for hosting without cron: month-end due reminder (sent once per month).
         \App\Services\DueReminderService::sendIfDue();
 
+        // Same fallback for the daily backup: if the last one is over a day old, take one after the page is sent.
+        if (!app()->runningUnitTests()) {
+            \Illuminate\Support\defer(function () {
+                $backups = app(\App\Services\DatabaseBackupService::class);
+                if (!$backups->latestAt()?->gt(now()->subDay())) {
+                    try {
+                        $backups->create('auto');
+                    } catch (\Throwable $e) {
+                        \Illuminate\Support\Facades\Log::error('Automatic backup failed: ' . $e->getMessage());
+                    }
+                }
+            });
+        }
+
         $now       = Carbon::now();
         $thisMonth = $now->copy()->startOfMonth();
         $lastMonth = $now->copy()->subMonth()->startOfMonth();

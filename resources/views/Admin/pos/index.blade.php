@@ -271,6 +271,10 @@ function posApp() {
         dueDate: '',
         error: '',
         submitting: false,
+        // One token per sale: a double click or retry re-sends it and the server returns the same sale.
+        saleToken: '',
+        scanBuffer: '',
+        scanLastKey: 0,
 
         get subtotal() {
             return this.cart.reduce((sum, l) => sum + (l.price * l.qty), 0);
@@ -299,7 +303,38 @@ function posApp() {
             this.paidAmount = this.total;
             this.$watch('total', (v) => { if (this.paymentMethod === 'cash') this.paidAmount = v; });
             this.loadProducts();
+            this.newSaleToken();
             this.$nextTick(() => this.$refs.scanInput?.focus());
+            window.addEventListener('keydown', (e) => this.captureScanner(e));
+        },
+
+        newSaleToken() {
+            this.saleToken = (window.crypto && crypto.randomUUID)
+                ? crypto.randomUUID()
+                : Date.now().toString(36) + Math.random().toString(36).slice(2);
+        },
+
+        // A USB / Bluetooth barcode scanner types the code very fast and ends with Enter.
+        // Catch that even when the cursor is not in the scan box (but not while typing in another field).
+        captureScanner(e) {
+            const t = e.target;
+            const typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable);
+            if (typing) return;
+
+            const now = Date.now();
+            if (now - this.scanLastKey > 80) this.scanBuffer = '';
+            this.scanLastKey = now;
+
+            if (e.key === 'Enter') {
+                if (this.scanBuffer.length >= 3) {
+                    e.preventDefault();
+                    this.barcode = this.scanBuffer;
+                    this.scanBarcode();
+                }
+                this.scanBuffer = '';
+            } else if (e.key.length === 1) {
+                this.scanBuffer += e.key;
+            }
         },
 
         fmt(n) { return '৳' + (parseFloat(n) || 0).toFixed(2); },
@@ -372,12 +407,21 @@ function posApp() {
 
         scanBarcode() {
             if (!this.barcode.trim()) return;
-            fetch(`{{ route('admin.pos.products') }}?${new URLSearchParams({ warehouse_id: this.warehouseId, s: this.barcode.trim(), page: 1 })}`, { headers: { 'Accept': 'application/json' } })
+            fetch(`{{ route('admin.pos.products') }}?${new URLSearchParams({ warehouse_id: this.warehouseId, s: this.barcode.trim(), page: 1, scan: 1 })}`, { headers: { 'Accept': 'application/json' } })
                 .then(r => r.json())
                 .then(json => {
                     if (json.data.length === 1) {
-                        this.quickAdd(json.data[0]);
-                        this.error = '';
+                        const p = json.data[0];
+                        const variant = json.matched_variant_id ? p.variants.find(v => v.id === json.matched_variant_id) : null;
+                        const stock = variant ? variant.stock : p.stock;
+                        if (!variant && p.variants.length > 0) {
+                            this.error = `"${p.name}" has sizes/colours — pick one from the product card (or scan the variant code).`;
+                        } else if (stock <= 0) {
+                            this.error = `"${p.name}" is out of stock in this warehouse.`;
+                        } else {
+                            this.addToCart(p, variant);
+                            this.error = '';
+                        }
                     } else if (json.data.length === 0) {
                         this.error = 'No product found for that code.';
                     } else {
@@ -447,6 +491,7 @@ function posApp() {
                         is_due: this.isDue,
                         due_date: this.isDue ? (this.dueDate || null) : null,
                         items: this.cart.map(l => ({ product_id: l.product_id, variant_id: l.variant_id, quantity: l.qty })),
+                        client_token: this.saleToken,
                     }),
                 });
                 const json = await res.json();
@@ -458,6 +503,7 @@ function posApp() {
                 window.open(json.redirect, '_blank');
 
                 // Reset for the next sale
+                this.newSaleToken();
                 this.cart = [];
                 this.discount = 0;
                 this.paymentMethod = 'cash';

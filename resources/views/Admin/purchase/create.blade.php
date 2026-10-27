@@ -51,6 +51,22 @@
                         <input type="date" name="purchase_date" id="purchase_date" value="{{ old('purchase_date', now()->format('Y-m-d')) }}" class="wp-input" style="max-width: 240px;">
                     </div>
 
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="wp-field">
+                            <label for="paid_amount">Paid Now <span class="font-normal text-[#646970]">(optional)</span></label>
+                            <input type="number" name="paid_amount" id="paid_amount" step="0.01" min="0" value="{{ old('paid_amount') }}" class="wp-input" placeholder="0.00">
+                            <p class="wp-help">What you paid the supplier today. The rest shows as supplier due.</p>
+                        </div>
+                        <div class="wp-field">
+                            <label for="payment_method">Paid By</label>
+                            <select name="payment_method" id="payment_method" class="wp-input">
+                                @foreach (\App\Models\SupplierPayment::METHODS as $m)
+                                    <option value="{{ $m }}" @selected(old('payment_method', 'cash') === $m)>{{ ucfirst($m) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="wp-field">
                         <label for="notes">Notes</label>
                         <textarea name="notes" id="notes" rows="2" class="wp-input" placeholder="Optional notes">{{ old('notes') }}</textarea>

@@ -36,6 +36,15 @@ class CheckAdminPermission
         'admin.accounts.daily'                   => 'accounts_reports.view',
         'admin.accounts.monthly'                 => 'accounts_reports.view',
         'admin.accounts.products'                => 'accounts_reports.view',
+        'admin.accounts.returns'                 => 'accounts_reports.view',
+        'admin.accounts.performance'             => 'accounts_reports.view',
+        // Backups (restore/upload are also Super Admin only, checked in the controller)
+        'admin.backups.download'                 => 'backups.view',
+        'admin.backups.restore'                  => 'backups.create',
+        'admin.backups.upload'                   => 'backups.create',
+        // Supplier dues
+        'admin.supplier-dues.pay'                => 'supplier_dues.edit',
+        'admin.supplier-dues.payments.destroy'   => 'supplier_dues.edit',
         // Orders
         'admin.orders.status'                   => 'orders.edit',
         'admin.orders.payment-status'            => 'orders.edit',

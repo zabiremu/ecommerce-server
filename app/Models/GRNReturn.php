@@ -42,6 +42,6 @@ class GRNReturn extends Model
 
     public function items()
     {
-        return $this->hasMany(GRNReturnItem::class);
+        return $this->hasMany(GRNReturnItem::class, 'grn_return_id');
     }
 }

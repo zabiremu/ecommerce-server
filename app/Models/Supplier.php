@@ -24,6 +24,21 @@ class Supplier extends Model
         ];
     }
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(SupplierPayment::class)->orderByDesc('paid_on')->orderByDesc('id');
+    }
+
+    public function grnReturns()
+    {
+        return $this->hasMany(GRNReturn::class);
+    }
+
     protected static function booted(): void
     {
         static::creating(function (Supplier $supplier) {

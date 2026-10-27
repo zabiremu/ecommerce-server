@@ -119,6 +119,20 @@
                     <span class="lbl">Total Amount</span>
                     <span class="val">{{ \App\Support\Money::format($purchase->total_amount) }}</span>
                 </div>
+                @php $purchasePaid = (float) $purchase->payments->sum('amount'); @endphp
+                <div class="wc-summary-row">
+                    <span class="lbl">Paid for this purchase</span>
+                    <span class="val text-emerald-700">{{ \App\Support\Money::format($purchasePaid) }}</span>
+                </div>
+                @if ($purchase->status !== 'cancelled' && (float) $purchase->total_amount - $purchasePaid > 0.009)
+                    <div class="wc-summary-row">
+                        <span class="lbl">Unpaid</span>
+                        <span class="val text-rose-700">{{ \App\Support\Money::format((float) $purchase->total_amount - $purchasePaid) }}</span>
+                    </div>
+                @endif
+                @if (Auth::guard('admin')->user()->hasPermission('supplier_dues.view'))
+                    <a href="{{ route('admin.supplier-dues.show', $purchase->supplier_id) }}" class="wp-btn w-full justify-center mt-2"><i class="fas fa-hand-holding-dollar mr-1"></i> Supplier due / pay</a>
+                @endif
             </div>
         </div>
 

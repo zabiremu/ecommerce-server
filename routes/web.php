@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\DueController as AdminDueController;
 use App\Http\Controllers\Admin\AccountsReportController as AdminAccountsReportController;
 use App\Http\Controllers\Admin\ExpenseController as AdminExpenseController;
 use App\Http\Controllers\Admin\InvestmentController as AdminInvestmentController;
+use App\Http\Controllers\Admin\SupplierDueController as AdminSupplierDueController;
+use App\Http\Controllers\Admin\BackupController as AdminBackupController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
@@ -229,6 +231,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/accounts/daily', [AdminAccountsReportController::class, 'daily'])->name('accounts.daily');
         Route::get('/accounts/monthly', [AdminAccountsReportController::class, 'monthly'])->name('accounts.monthly');
         Route::get('/accounts/products', [AdminAccountsReportController::class, 'products'])->name('accounts.products');
+        Route::get('/accounts/returns', [AdminAccountsReportController::class, 'returns'])->name('accounts.returns');
+        Route::get('/accounts/performance', [AdminAccountsReportController::class, 'performance'])->name('accounts.performance');
+
+        // Database backup & restore
+        Route::get('/backups', [AdminBackupController::class, 'index'])->name('backups.index');
+        Route::post('/backups', [AdminBackupController::class, 'store'])->name('backups.store');
+        Route::post('/backups/upload', [AdminBackupController::class, 'upload'])->name('backups.upload');
+        Route::get('/backups/{name}/download', [AdminBackupController::class, 'download'])->name('backups.download');
+        Route::post('/backups/{name}/restore', [AdminBackupController::class, 'restore'])->name('backups.restore');
+        Route::delete('/backups/{name}', [AdminBackupController::class, 'destroy'])->name('backups.destroy');
+
+        // Supplier dues (what we owe suppliers)
+        Route::get('/supplier-dues', [AdminSupplierDueController::class, 'index'])->name('supplier-dues.index');
+        Route::get('/supplier-dues/{supplier}', [AdminSupplierDueController::class, 'show'])->name('supplier-dues.show');
+        Route::post('/supplier-dues/{supplier}/pay', [AdminSupplierDueController::class, 'pay'])->name('supplier-dues.pay');
+        Route::delete('/supplier-dues/{supplier}/payments/{payment}', [AdminSupplierDueController::class, 'destroyPayment'])->name('supplier-dues.payments.destroy');
         foreach (['expenses' => AdminExpenseController::class, 'investments' => AdminInvestmentController::class] as $ledger => $ledgerController) {
             Route::get("/{$ledger}", [$ledgerController, 'index'])->name("{$ledger}.index");
             Route::post("/{$ledger}", [$ledgerController, 'store'])->name("{$ledger}.store");

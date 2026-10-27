@@ -230,12 +230,12 @@
             @endif
 
             {{-- ── ACCOUNTS & REPORTS ── --}}
-            @if($_admin->hasPermission('accounts_reports.view') || $_admin->hasPermission('investments.view') || $_admin->hasPermission('expenses.view'))
+            @if($_admin->hasPermission('accounts_reports.view') || $_admin->hasPermission('investments.view') || $_admin->hasPermission('expenses.view') || $_admin->hasPermission('supplier_dues.view'))
             <div>
                 <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Accounts &amp; Reports</p>
                 <ul class="space-y-0.5">
                     @if($_admin->hasPermission('accounts_reports.view'))
-                    @foreach ([['admin.accounts.daily', 'fa-calendar-day', 'Daily Report'], ['admin.accounts.monthly', 'fa-calendar-days', 'Monthly Report'], ['admin.accounts.products', 'fa-tags', 'Product Profit']] as [$_route, $_icon, $_label])
+                    @foreach ([['admin.accounts.daily', 'fa-calendar-day', 'Daily Report'], ['admin.accounts.monthly', 'fa-calendar-days', 'Monthly Report'], ['admin.accounts.products', 'fa-tags', 'Product Profit'], ['admin.accounts.performance', 'fa-ranking-star', 'Best & Low Products'], ['admin.accounts.returns', 'fa-rotate-left', 'Returns & Discounts']] as [$_route, $_icon, $_label])
                     <li><a href="{{ route($_route) }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs($_route) ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
                         <i class="fas {{ $_icon }} w-4 text-[12px] {{ request()->routeIs($_route) ? 'text-accent-400' : '' }}"></i><span>{{ $_label }}</span>
                     </a></li>
@@ -249,6 +249,11 @@
                     @if($_admin->hasPermission('expenses.view'))
                     <li><a href="{{ route('admin.expenses.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.expenses.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
                         <i class="fas fa-receipt w-4 text-[12px] {{ request()->routeIs('admin.expenses.*') ? 'text-accent-400' : '' }}"></i><span>Expenses</span>
+                    </a></li>
+                    @endif
+                    @if($_admin->hasPermission('supplier_dues.view'))
+                    <li><a href="{{ route('admin.supplier-dues.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.supplier-dues.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas fa-truck-ramp-box w-4 text-[12px] {{ request()->routeIs('admin.supplier-dues.*') ? 'text-accent-400' : '' }}"></i><span>Supplier Dues</span>
                     </a></li>
                     @endif
                 </ul>
@@ -280,7 +285,7 @@
             @endif
 
             {{-- ── SETTINGS ── --}}
-            @if($_admin->hasPermission('pages.view') || $_admin->hasPermission('site_settings.view') || $_admin->hasPermission('admins.view') || $_admin->hasPermission('roles.view'))
+            @if($_admin->hasPermission('pages.view') || $_admin->hasPermission('site_settings.view') || $_admin->hasPermission('admins.view') || $_admin->hasPermission('roles.view') || $_admin->hasPermission('backups.view'))
             <div>
                 <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Settings</p>
                 <ul class="space-y-0.5">
@@ -302,6 +307,11 @@
                     @if($_admin->hasPermission('roles.view'))
                     <li><a href="{{ route('admin.roles.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.roles.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
                         <i class="fas fa-user-shield w-4 text-[12px] {{ request()->routeIs('admin.roles.*') ? 'text-accent-400' : '' }}"></i><span>Roles</span>
+                    </a></li>
+                    @endif
+                    @if($_admin->hasPermission('backups.view'))
+                    <li><a href="{{ route('admin.backups.index') }}" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.backups.*') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+                        <i class="fas fa-database w-4 text-[12px] {{ request()->routeIs('admin.backups.*') ? 'text-accent-400' : '' }}"></i><span>Backup &amp; Restore</span>
                     </a></li>
                     @endif
                 </ul>
