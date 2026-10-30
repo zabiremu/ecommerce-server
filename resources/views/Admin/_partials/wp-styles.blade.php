@@ -27,6 +27,9 @@
 
     .wp-list-table { border: 1px solid #c3c4c7; background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,.04); width: 100%; border-collapse: collapse; }
     .wp-list-table thead th { background: #fff; color: #2c3338; font-weight: 600; font-size: 13px; padding: 10px 8px; border-bottom: 1px solid #c3c4c7; text-align: left; }
+    /* Let alignment classes on header cells beat the default left-align above, so headers line up with their columns. */
+    .wp-list-table thead th.num, .wp-list-table thead th.text-right { text-align: right; }
+    .wp-list-table thead th.text-center { text-align: center; }
     .wp-list-table tbody td { font-size: 13px; padding: 12px 8px; vertical-align: top; color: #2c3338; border-bottom: 1px solid #f0f0f1; }
     .wp-list-table tbody tr:hover { background: #f6f7f7; }
     .wp-list-table tbody tr:hover .wp-row-actions { visibility: visible; }
