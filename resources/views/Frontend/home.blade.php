@@ -15,7 +15,6 @@
                 @include('Frontend.partials.home.reviews')
                 @include('Frontend.partials.home.featured-products')
                 @include('Frontend.partials.home.newsletter')
-                @include('Frontend.partials.home.instagram-feed')
 
             </article>
 
