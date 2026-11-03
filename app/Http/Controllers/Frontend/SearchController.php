@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\SearchLog;
+use App\Support\PublicImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SearchController extends Controller
@@ -45,7 +45,7 @@ class SearchController extends Controller
                 return [
                     'id'    => $p->id,
                     'title' => $p->name,
-                    'img'   => $p->thumbnail ? Storage::url($p->thumbnail) : '',
+                    'img'   => PublicImage::url($p->thumbnail) ?? PublicImage::placeholder(),
                     'price' => (float) ($hasSale ? $p->sale_price : $p->selling_price),
                     'url'   => route('product-details') . '?slug=' . $p->slug,
                 ];

@@ -139,6 +139,7 @@
             style="--wd-col-lg:5;--wd-col-md:5;--wd-col-sm:2;--wd-gap-lg:20px;--wd-gap-sm:10px;">
             <div class="wd-carousel-wrap">
                 @foreach($homeCategories as $cat)
+                @php $categoryImage = \App\Support\PublicImage::url($cat->image); @endphp
                 <div class="wd-carousel-item">
                     <div class="category-grid-item wd-cat cat-design-alt without-product-count wd-with-subcat product-category product {{ $loop->first ? 'first' : '' }} {{ $loop->last ? 'last' : '' }}"
                         data-loop="{{ $loop->iteration }}">
@@ -147,9 +148,9 @@
                                 <a class="wd-cat-image category-image gms-cat-image-link"
                                     href="{{ route('category-products') }}?cat={{ $cat->slug }}"
                                     aria-label="{{ $cat->name }}">
-                                    @if($cat->image)
+                                    @if($categoryImage)
                                     <img {{ $loop->index > 1 ? 'loading=lazy' : '' }} decoding="async" width="150" height="150"
-                                        src="{{ Storage::url($cat->image) }}"
+                                        src="{{ $categoryImage }}"
                                         class="attachment-150x150 size-150x150"
                                         alt="{{ $cat->name }}"
                                         style="object-fit: cover; width: 150px; height: 150px;" />

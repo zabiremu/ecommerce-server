@@ -4,9 +4,6 @@
     <link rel="preload" as="font" href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/fonts/woodmart-font-2-700.woff2') }}"
         type="font/woff2"
         crossorigin>
-    <link rel="preload" as="image" href="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }}"
-        imagesrcset="{{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt.jpg.webp') }} 1294w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-300x139.jpg.webp') }} 300w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-1024x475.jpg.webp') }} 1024w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-768x356.jpg.webp') }} 768w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-290x134.jpg.webp') }} 290w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-100x46.jpg.webp') }} 100w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-600x278.jpg.webp') }} 600w, {{ asset('frontend/merchandise/wp-content/uploads/sites/31/2025/11/gms-slide-1-opt-150x70.jpg.webp') }} 150w"
-        imagesizes="(max-width: 1294px) 100vw, 1294px" fetchpriority="high" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fontawesome-all.min.css') }}">
     <link rel='stylesheet' id='wd-style-base-css' href="{{ asset('frontend/merchandise/wp-content/themes/woodmart/css/parts/base.css') }}"
         type='text/css' media='all' />
@@ -1596,6 +1593,9 @@
         /*# sourceURL=merchandise/wp-content/themes/woodmart/css/parts/int-mc4wp.css */
     </style>
     <script type="text/javascript" src="{{ asset('frontend/merchandise/wp-includes/js/jquery/jquery.min.js') }}" id="jquery-core-js"></script>
+    <script type="text/javascript"
+        src="{{ asset('frontend/merchandise/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js') }}"
+        id="js-cookie-js"></script>
     <script type="text/javascript" src="{{ asset('frontend/merchandise/wp-content/themes/woodmart/js/scripts/global/scrollBar.min.js') }}"
         id="wd-scrollbar-js"></script>
     <meta name="theme-color" content="rgb(245,245,245)">
@@ -1608,9 +1608,7 @@
         </style>
     </noscript>
     @php
-        $faviconUrl = !empty($siteSettings['favicon'] ?? null)
-            ? asset('storage/' . $siteSettings['favicon'])
-            : null;
+        $faviconUrl = \App\Support\PublicImage::url($siteSettings['favicon'] ?? null);
     @endphp
     <link rel="icon" href="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-45x45.png') }}" sizes="32x32" />
     <link rel="icon" href="{{ $faviconUrl ?? asset('frontend/wp-content/uploads/2021/06/cropped-woodmart-favicon-512px-290x290.png') }}" sizes="192x192" />

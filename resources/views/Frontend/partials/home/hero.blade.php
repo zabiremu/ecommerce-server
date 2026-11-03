@@ -8,9 +8,7 @@
             <div class="wd-carousel-wrap">
                 @foreach($sliders as $slider)
                 @php
-                    $slideImage = !empty($slider->image) && \Illuminate\Support\Facades\Storage::disk('public')->exists($slider->image)
-                        ? \Illuminate\Support\Facades\Storage::url($slider->image)
-                        : (!empty($slider->image) ? asset($slider->image) : null);
+                    $slideImage = \App\Support\PublicImage::url($slider->image);
                     $slideUrl = $slider->url ?? null;
                 @endphp
                 <div
@@ -18,7 +16,8 @@
 
                     <div class="wd-slide-bg wd-fill">
                         @if($slideImage)
-                            <img decoding="async" width="1294" height="600" src="{{ $slideImage }}" alt="{{ $slider->title }}" />
+                            <img decoding="async" width="1294" height="600" src="{{ $slideImage }}" alt="{{ $slider->title }}"
+                                fetchpriority="{{ $loop->first ? 'high' : 'auto' }}" />
                         @else
                             <div class="gms-slide-fallback-bg" aria-hidden="true"></div>
                         @endif

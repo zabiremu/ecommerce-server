@@ -17,12 +17,13 @@
             style="--wd-col-lg:6;--wd-col-md:3;--wd-col-sm:3;--wd-gap-lg:20px;--wd-gap-sm:10px;">
 
             @foreach($instagramPosts as $post)
+            @php $postImage = \App\Support\PublicImage::url($post->image) ?? \App\Support\PublicImage::placeholder(); @endphp
             <div class="wd-insta-item wd-col">
                 <a href="{{ $post->link ?: \App\Models\SiteSetting::get('instagram_url', 'https://www.instagram.com/') }}"
                     target="_blank" rel="noopener" aria-label="Instagram picture"></a>
 
                 <img loading="lazy" decoding="async" width="256" height="256"
-                    src="{{ Storage::url($post->image) }}"
+                    src="{{ $postImage }}"
                     class="attachment-medium size-medium" alt="" />
                 <div class="wd-insta-meta wd-grid-g">
                     <span class="wd-insta-likes instagram-likes"><span>{{ $post->likes_count }}</span></span>

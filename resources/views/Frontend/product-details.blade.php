@@ -1956,12 +1956,9 @@
 
         @php
             $resolveImage = function ($path) {
-                if (!$path) return null;
-                return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
-                    ? \Illuminate\Support\Facades\Storage::url($path)
-                    : asset($path);
+                return \App\Support\PublicImage::url($path);
             };
-            $mainImage = $resolveImage($product->thumbnail) ?: 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" font-size="24" fill="#999" text-anchor="middle" dy=".3em">No image</text></svg>');
+            $mainImage = $resolveImage($product->thumbnail) ?? \App\Support\PublicImage::placeholder();
             $galleryImages = collect($product->gallery ?? [])
                 ->map(fn ($g) => $resolveImage(is_array($g) ? ($g['path'] ?? null) : $g))
                 ->filter()
@@ -2168,7 +2165,7 @@
                 @php
                     $rHasSale = $rp->sale_price && $rp->sale_price < $rp->selling_price;
                     $rPrice = $rHasSale ? $rp->sale_price : $rp->selling_price;
-                    $rImg = $resolveImage($rp->thumbnail);
+                    $rImg = $resolveImage($rp->thumbnail) ?? \App\Support\PublicImage::placeholder();
                     $rUrl = route('product-details') . '?slug=' . $rp->slug;
                 @endphp
                 <div class="wd-product wd-hover-quick product-grid-item" data-id="{{ $rp->id }}">

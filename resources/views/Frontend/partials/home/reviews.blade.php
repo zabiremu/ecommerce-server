@@ -19,9 +19,12 @@
             @if(!empty($review->photos))
                 <div class="wd-review-photos" style="display:flex;gap:6px;margin-bottom:10px;">
                     @foreach(array_slice($review->photos, 0, 4) as $photo)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($photo) }}" alt="Customer photo"
+                        @php $photoUrl = \App\Support\PublicImage::url($photo); @endphp
+                        @if($photoUrl)
+                        <img src="{{ $photoUrl }}" alt="Customer photo"
                             loading="lazy" width="56" height="56"
                             style="width:56px;height:56px;object-fit:cover;border-radius:6px;" />
+                        @endif
                     @endforeach
                 </div>
             @endif

@@ -5,12 +5,9 @@
     $reviewsCount = (int) ($product->reviews_count ?? 0);
     $detailsUrl = route('product-details') . '?slug=' . $product->slug;
     $resolveImage = function ($path) {
-        if (!$path) return null;
-        return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
-            ? \Illuminate\Support\Facades\Storage::url($path)
-            : asset($path);
+        return \App\Support\PublicImage::url($path);
     };
-    $thumbUrl = $resolveImage($product->thumbnail);
+    $thumbUrl = $resolveImage($product->thumbnail) ?? \App\Support\PublicImage::placeholder();
     $galleryFirst = $product->gallery[0] ?? null;
     $hoverPath = is_array($galleryFirst) ? ($galleryFirst['path'] ?? null) : $galleryFirst;
     $hoverUrl = $hoverPath ? $resolveImage($hoverPath) : null;

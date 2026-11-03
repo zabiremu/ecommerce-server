@@ -17,6 +17,7 @@ use App\Models\SiteSetting;
 use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Support\PublicImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -200,14 +201,7 @@ class HomePageController extends Controller
         $avgRating = round($product->reviews()->approved()->avg('rating') ?? 0, 1);
         $reviewsCount = $product->reviews()->approved()->count();
 
-        $noImagePlaceholder = 'data:image/svg+xml;charset=UTF-8,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" font-size="24" fill="#999" text-anchor="middle" dy=".3em">No image</text></svg>');
-        if ($product->thumbnail) {
-            $image = Storage::disk('public')->exists($product->thumbnail)
-                ? Storage::url($product->thumbnail)
-                : asset($product->thumbnail);
-        } else {
-            $image = $noImagePlaceholder;
-        }
+        $image = PublicImage::url($product->thumbnail) ?? PublicImage::placeholder();
 
         return response()->json([
             'name'           => $product->name,
@@ -238,10 +232,7 @@ class HomePageController extends Controller
             ->pluck('id')
             ->all();
 
-        $resolveImage = function (?string $path) {
-            if (!$path) return '';
-            return Storage::disk('public')->exists($path) ? Storage::url($path) : asset($path);
-        };
+        $resolveImage = fn (?string $path) => PublicImage::url($path) ?? PublicImage::placeholder();
 
         // A single product with an invalid-UTF-8 byte sequence (e.g. from a bulk
         // import) would otherwise make json_encode() fail for the whole catalog
@@ -473,7 +464,7 @@ class HomePageController extends Controller
                         'qty'        => (float) $i->quantity,
                         'price'      => (float) $i->unit_price,
                         'total'      => (float) $i->total,
-                        'thumbnail'  => $i->thumbnail ? Storage::url($i->thumbnail) : null,
+                        'thumbnail'  => PublicImage::url($i->thumbnail) ?? PublicImage::placeholder(),
                     ])->values(),
                 ];
             })->values(),
@@ -631,9 +622,7 @@ class HomePageController extends Controller
 
         $resolveImage = function (?string $path) {
             if (!$path) return null;
-            return \Illuminate\Support\Facades\Storage::disk('public')->exists($path)
-                ? \Illuminate\Support\Facades\Storage::url($path)
-                : asset($path);
+            return PublicImage::url($path);
         };
 
         $galleryImages = collect([$product->thumbnail])
@@ -870,7 +859,7 @@ class HomePageController extends Controller
                     'qty'       => (float) $i->quantity,
                     'price'     => (float) $i->unit_price,
                     'total'     => (float) $i->total,
-                    'thumbnail' => $i->thumbnail ? Storage::url($i->thumbnail) : null,
+                    'thumbnail' => PublicImage::url($i->thumbnail) ?? PublicImage::placeholder(),
                 ])->values(),
                 'timeline' => $timeline,
             ],

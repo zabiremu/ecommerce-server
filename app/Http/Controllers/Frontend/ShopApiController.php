@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Support\Money;
+use App\Support\PublicImage;
 use App\Support\Shipping;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ShopApiController extends Controller
 {
@@ -31,12 +31,7 @@ class ShopApiController extends Controller
 
         $products = Product::published()->whereIn('id', $ids)->get();
 
-        $resolveImage = function (?string $path) {
-            if (!$path) return null;
-            return Storage::disk('public')->exists($path) ? Storage::url($path) : asset($path);
-        };
-
-        return response()->json($products->map(function (Product $p) use ($resolveImage) {
+        return response()->json($products->map(function (Product $p) {
             $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
 
             return [
@@ -44,7 +39,7 @@ class ShopApiController extends Controller
                 'slug'     => $p->slug,
                 'name'     => $p->name,
                 'sku'      => $p->sku,
-                'image'    => $resolveImage($p->thumbnail),
+                'image'    => PublicImage::url($p->thumbnail) ?? PublicImage::placeholder(),
                 'price'    => (float) ($hasSale ? $p->sale_price : $p->selling_price),
                 'old_price' => $hasSale ? (float) $p->selling_price : null,
                 'stock'    => (float) $p->stock,

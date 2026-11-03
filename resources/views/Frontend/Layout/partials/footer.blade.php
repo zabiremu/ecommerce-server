@@ -108,10 +108,10 @@
               <div class="wp-block-wd-column wd-c6cd3918">
                   <div class="wp-block-wd-image wd-block-image wd-35aff150 wd-custom-width"><a href="{{ route('home') }}"
                           class="wd-block-image-link">
-                          @if (!empty($siteSettings['logo']))
+                          @if ($logoUrl = \App\Support\PublicImage::url($siteSettings['logo'] ?? null))
                               <img loading="lazy" decoding="async" width="201" height="32"
                                   class="wp-image-996"
-                                  src="{{ asset('storage/' . $siteSettings['logo']) }}"
+                                  src="{{ $logoUrl }}"
                                   alt="" />
                           @else
                               <img loading="lazy" decoding="async" width="201" height="32"
