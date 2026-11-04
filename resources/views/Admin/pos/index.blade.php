@@ -83,7 +83,11 @@
                                 <button type="button" @click="addToCart(p, v)" :disabled="v.stock <= 0"
                                         class="text-[10.5px] font-medium px-1.5 py-0.5 rounded border disabled:opacity-40 disabled:cursor-not-allowed"
                                         :class="v.stock > 0 ? 'border-slate-300 text-slate-700 hover:border-brand-400 hover:text-brand-600' : 'border-slate-200 text-slate-400'"
-                                        x-text="v.label"></button>
+                                        :title="v.label + ' — ' + (v.stock > 0 ? trimNum(v.stock) + ' in stock' : 'Out of stock')">
+                                    <span x-text="v.label"></span>
+                                    <span class="ml-0.5 font-semibold" :class="v.stock > 0 ? 'text-emerald-600' : 'text-red-500'"
+                                          x-text="'(' + trimNum(v.stock) + ')'"></span>
+                                </button>
                             </template>
                         </div>
                     </div>
