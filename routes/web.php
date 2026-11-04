@@ -264,6 +264,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/pos', [AdminPosController::class, 'index'])->name('pos.index');
         Route::get('/pos/products', [AdminPosController::class, 'products'])->name('pos.products');
         Route::get('/pos/customers', [AdminPosController::class, 'customers'])->name('pos.customers');
+        Route::get('/pos/catalog', [AdminPosController::class, 'catalog'])->name('pos.catalog');
+        Route::get('/pos/session', [AdminPosController::class, 'session'])->name('pos.session');
         Route::post('/pos/checkout', [AdminPosController::class, 'checkout'])->name('pos.checkout');
         Route::get('/pos/orders/{order}/receipt', [AdminPosController::class, 'receipt'])->name('pos.receipt');
 

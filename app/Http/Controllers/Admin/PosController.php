@@ -75,27 +75,7 @@ class PosController extends Controller
             ->whereIn('product_id', $products->pluck('id'))
             ->pluck('stock', 'product_id');
 
-        $items = $products->getCollection()->map(function (Product $p) use ($warehouseStocks) {
-            $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
-            return [
-                'id'         => $p->id,
-                'name'       => $p->name,
-                'sku'        => $p->sku,
-                'barcode'    => $p->barcode,
-                'thumbnail'  => $p->thumbnail ? asset('storage/' . $p->thumbnail) : null,
-                'price'      => (float) ($hasSale ? $p->sale_price : $p->selling_price),
-                'old_price'  => $hasSale ? (float) $p->selling_price : null,
-                'stock'      => (float) ($warehouseStocks[$p->id] ?? 0),
-                'type'       => $p->type,
-                'variants'   => $p->variants->map(fn (ProductVariant $v) => [
-                    'id'    => $v->id,
-                    'label' => trim(implode(' / ', array_filter([$v->color, $v->size])) ?: $v->name),
-                    'price' => (float) ($v->price > 0 ? $v->price : ($hasSale ? $p->sale_price : $p->selling_price)),
-                    'stock' => (float) $v->stock,
-                    'sku'   => $v->sku,
-                ])->values(),
-            ];
-        })->values();
+        $items = $products->getCollection()->map(fn (Product $p) => $this->posProduct($p, $warehouseStocks))->values();
 
         return response()->json([
             'data'         => $items,
@@ -103,6 +83,59 @@ class PosController extends Controller
             'current_page' => $products->currentPage(),
             'last_page'    => $products->lastPage(),
         ]);
+    }
+
+    /**
+     * Every sellable product for one warehouse, so the POS can keep selling when the internet drops.
+     */
+    public function catalog(Request $request)
+    {
+        $request->validate(['warehouse_id' => 'required|exists:warehouses,id']);
+
+        $warehouseStocks = ProductWarehouse::where('warehouse_id', (int) $request->warehouse_id)
+            ->pluck('stock', 'product_id');
+
+        $items = Product::published()
+            ->where('type', 'physical')
+            ->with(['variants' => fn ($q) => $q->orderBy('sort_order')])
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Product $p) => $this->posProduct($p, $warehouseStocks))
+            ->values();
+
+        return response()->json(['data' => $items, 'fetched_at' => now()->toIso8601String()]);
+    }
+
+    /**
+     * Fresh CSRF token before syncing offline sales — the one in a long-open page may be stale.
+     */
+    public function session()
+    {
+        return response()->json(['csrf' => csrf_token()]);
+    }
+
+    private function posProduct(Product $p, $warehouseStocks): array
+    {
+        $hasSale = $p->sale_price && $p->sale_price < $p->selling_price;
+        return [
+            'id'          => $p->id,
+            'name'        => $p->name,
+            'sku'         => $p->sku,
+            'barcode'     => $p->barcode,
+            'category_id' => $p->category_id,
+            'thumbnail'   => $p->thumbnail ? asset('storage/' . $p->thumbnail) : null,
+            'price'       => (float) ($hasSale ? $p->sale_price : $p->selling_price),
+            'old_price'   => $hasSale ? (float) $p->selling_price : null,
+            'stock'       => (float) ($warehouseStocks[$p->id] ?? 0),
+            'type'        => $p->type,
+            'variants'    => $p->variants->map(fn (ProductVariant $v) => [
+                'id'    => $v->id,
+                'label' => trim(implode(' / ', array_filter([$v->color, $v->size])) ?: $v->name),
+                'price' => (float) ($v->price > 0 ? $v->price : ($hasSale ? $p->sale_price : $p->selling_price)),
+                'stock' => (float) $v->stock,
+                'sku'   => $v->sku,
+            ])->values(),
+        ];
     }
 
     public function customers(Request $request)
@@ -150,7 +183,16 @@ class PosController extends Controller
             'items.*.variant_id'  => 'nullable|integer|exists:product_variants,id',
             'items.*.quantity'    => 'required|numeric|min:0.01',
             'client_token'        => 'nullable|string|max:64',
+            'offline'             => 'nullable|boolean',
+            'sold_at'             => 'nullable|date',
         ]);
+
+        // Sold while the shop was offline: the goods already left the counter, so the sale is
+        // recorded even if stock ran short meanwhile — it's flagged for review instead of refused.
+        $isOffline = (bool) ($data['offline'] ?? false);
+        $soldAt = $isOffline && !empty($data['sold_at'])
+            ? Carbon::parse($data['sold_at'])->min(now())
+            : now();
 
         // Same token again (double click / network retry) → that sale, not a new one.
         $token = $data['client_token'] ?? null;
@@ -165,6 +207,7 @@ class PosController extends Controller
         $lineItems = [];
         $subtotal = 0;
         $stockErrors = [];
+        $oversold = [];
 
         foreach ($data['items'] as $item) {
             $product = $products->get($item['product_id']);
@@ -192,11 +235,17 @@ class PosController extends Controller
                     ->where('warehouse_id', $warehouseId)
                     ->first();
                 $available = $pw ? (float) $pw->stock : 0;
+                $shortage = null;
                 if ($available < $qty) {
-                    $stockErrors[] = "\"{$product->name}\" — only {$available} left in this warehouse (requested {$qty})";
+                    $shortage = "\"{$product->name}\" — only {$available} left in this warehouse (requested {$qty})";
                 } elseif ($variant && (float) $variant->stock < $qty) {
                     $variantLabel = trim(implode(' / ', array_filter([$variant->color, $variant->size])) ?: $variant->name);
-                    $stockErrors[] = "\"{$product->name}\" ({$variantLabel}) — only {$variant->stock} left (requested {$qty})";
+                    $shortage = "\"{$product->name}\" ({$variantLabel}) — only {$variant->stock} left (requested {$qty})";
+                }
+                if ($shortage && $isOffline) {
+                    $oversold[] = $shortage;
+                } elseif ($shortage) {
+                    $stockErrors[] = $shortage;
                 }
             }
 
@@ -246,7 +295,7 @@ class PosController extends Controller
             : null;
 
         try {
-            $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $dueAmount, $dueDate, $paymentStatus, $warehouseId, $isWalkIn, $customerName, $customerPhone) {
+            $order = DB::transaction(function () use ($data, $lineItems, $subtotal, $discount, $total, $paidAmount, $changeDue, $dueAmount, $dueDate, $paymentStatus, $warehouseId, $isWalkIn, $customerName, $customerPhone, $isOffline, $soldAt, $oversold) {
                 $customer = null;
                 $isNewCustomer = false;
                 if (!$isWalkIn) {
@@ -264,7 +313,7 @@ class PosController extends Controller
                 }
 
                 $order = Order::create([
-                    'order_no'         => $this->nextPosOrderNumber(),
+                    'order_no'         => $this->nextPosOrderNumber($soldAt),
                     'client_token'     => $data['client_token'] ?? null,
                     'source'           => 'pos',
                     'customer_id'      => $customer?->id,
@@ -287,7 +336,11 @@ class PosController extends Controller
                     'status'           => 'delivered',
                     'notes'            => $data['notes'] ?? null,
                     'stock_deducted'   => true,
-                    'placed_at'        => now(),
+                    'placed_at'        => $soldAt,
+                    'admin_notes'      => $isOffline
+                        ? '[Offline sale, synced ' . now()->format('d M Y h:i A') . ']'
+                            . ($oversold ? ' STOCK SHORT — check: ' . implode('; ', $oversold) : '')
+                        : null,
                 ]);
 
                 foreach ($lineItems as $li) {
@@ -365,9 +418,9 @@ class PosController extends Controller
         return view('Admin.pos.receipt', compact('order'));
     }
 
-    protected function nextPosOrderNumber(): string
+    protected function nextPosOrderNumber(?Carbon $at = null): string
     {
-        $prefix = 'POS-' . Carbon::now()->format('Ymd') . '-';
+        $prefix = 'POS-' . ($at ?? Carbon::now())->format('Ymd') . '-';
         do {
             $candidate = $prefix . str_pad((string) random_int(1000, 9999), 4, '0', STR_PAD_LEFT);
         } while (Order::where('order_no', $candidate)->exists());

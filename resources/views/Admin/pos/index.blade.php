@@ -10,8 +10,39 @@
     <div class="flex-1 flex flex-col min-w-0 border-r border-slate-200 bg-white">
 
         <div class="p-3 border-b border-slate-200 space-y-2.5 shrink-0">
+            {{-- Offline / sync status --}}
+            <div x-show="!online" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-50 border border-amber-300 text-[12.5px] text-amber-800">
+                <i class="fas fa-wifi"></i>
+                <span><strong>Offline</strong> — sales are saved on this computer and will upload automatically when the internet is back.</span>
+            </div>
+            <div x-show="pendingCount > 0" class="flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-sky-50 border border-sky-200 text-[12.5px] text-sky-800">
+                <span>
+                    <i class="fas fa-cloud-arrow-up mr-1"></i>
+                    <strong x-text="pendingCount"></strong> offline sale(s) waiting to upload
+                    <span x-show="syncMessage" class="text-sky-700" x-text="'— ' + syncMessage"></span>
+                </span>
+                <button type="button" @click="syncQueue()" :disabled="syncing || !online"
+                        class="shrink-0 px-2.5 py-1 text-[11.5px] font-semibold rounded border border-sky-300 bg-white hover:bg-sky-100 disabled:opacity-50">
+                    <span x-show="!syncing">Sync now</span>
+                    <span x-show="syncing"><i class="fas fa-circle-notch fa-spin"></i></span>
+                </button>
+            </div>
+            <template x-for="f in failedSales" :key="f.payload.client_token">
+                <div class="flex items-start justify-between gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-[12px] text-red-700">
+                    <span>
+                        <strong>Offline sale not uploaded</strong>
+                        (<span x-text="new Date(f.payload.sold_at).toLocaleString()"></span>, <span x-text="fmt(f.total)"></span>):
+                        <span x-text="f.error"></span>
+                    </span>
+                    <span class="shrink-0 flex gap-1">
+                        <button type="button" @click="retryFailed(f)" class="px-2 py-0.5 rounded border border-red-300 bg-white hover:bg-red-100">Retry</button>
+                        <button type="button" @click="discardFailed(f)" class="px-2 py-0.5 rounded border border-red-300 bg-white hover:bg-red-100">Remove</button>
+                    </span>
+                </div>
+            </template>
+
             <div class="flex items-center gap-2">
-                <select x-model="warehouseId" @change="resetAndLoad()" class="text-[13px] border border-slate-300 rounded-lg px-2.5 py-2 bg-white font-medium">
+                <select x-model="warehouseId" @change="refreshCatalog(); resetAndLoad()" class="text-[13px] border border-slate-300 rounded-lg px-2.5 py-2 bg-white font-medium">
                     @foreach ($warehouses as $w)
                         <option value="{{ $w->id }}">{{ $w->name }}</option>
                     @endforeach
@@ -280,6 +311,16 @@ function posApp() {
         scanBuffer: '',
         scanLastKey: 0,
 
+        // Offline mode: products come from a saved copy and sales queue up on this computer.
+        online: navigator.onLine,
+        queue: [],          // sales waiting to upload: { payload, total, error? }
+        syncing: false,
+        syncMessage: '',
+        shopName: @json(\App\Models\SiteSetting::get('company_name', 'Roventex')),
+
+        get pendingCount() { return this.queue.filter(q => !q.error).length; },
+        get failedSales() { return this.queue.filter(q => q.error); },
+
         get subtotal() {
             return this.cart.reduce((sum, l) => sum + (l.price * l.qty), 0);
         },
@@ -306,10 +347,82 @@ function posApp() {
         init() {
             this.paidAmount = this.total;
             this.$watch('total', (v) => { if (this.paymentMethod === 'cash') this.paidAmount = v; });
+            this.queue = this.store('pos_offline_queue') || [];
             this.loadProducts();
             this.newSaleToken();
             this.$nextTick(() => this.$refs.scanInput?.focus());
             window.addEventListener('keydown', (e) => this.captureScanner(e));
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('{{ asset('pos-sw.js') }}', { scope: '{{ route('admin.pos.index', [], false) }}' })
+                    .catch((e) => console.warn('POS offline cache unavailable', e));
+            }
+            window.addEventListener('online', () => { this.online = true; this.syncQueue(); });
+            window.addEventListener('offline', () => { this.online = false; });
+            setInterval(() => this.syncQueue(), 30000);
+            this.syncQueue().then(() => this.refreshCatalog());
+        },
+
+        // ── Local storage (survives closing the browser) ──────────────
+        store(key, value) {
+            try {
+                if (value === undefined) return JSON.parse(localStorage.getItem(key));
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (e) {
+                if (value !== undefined) this.error = 'Could not save offline data on this computer (browser storage full or blocked).';
+                return null;
+            }
+        },
+        saveQueue() { this.store('pos_offline_queue', this.queue); },
+        catalogKey() { return 'pos_catalog_' + this.warehouseId; },
+
+        // Full product list for this warehouse, kept for offline use. Skipped while sales are
+        // still waiting to upload, so the saved stock keeps those sales deducted.
+        async refreshCatalog() {
+            if (!navigator.onLine || this.queue.some(q => !q.error && q.payload.warehouse_id == this.warehouseId)) return;
+            try {
+                const res = await fetch(`{{ route('admin.pos.catalog') }}?warehouse_id=${this.warehouseId}`, { headers: { 'Accept': 'application/json' } });
+                if (!res.ok) return;
+                const json = await res.json();
+                this.store(this.catalogKey(), json.data);
+            } catch (e) { /* offline — keep the saved copy */ }
+        },
+
+        // Take sold quantities off the saved product list, so offline stock stays right.
+        deductFromCatalog(warehouseId, items) {
+            const key = 'pos_catalog_' + warehouseId;
+            const catalog = this.store(key);
+            if (!catalog) return;
+            items.forEach((it) => {
+                const p = catalog.find(x => x.id === it.product_id);
+                if (!p) return;
+                p.stock = Math.max(0, p.stock - it.quantity);
+                const v = it.variant_id ? p.variants.find(x => x.id === it.variant_id) : null;
+                if (v) v.stock = Math.max(0, v.stock - it.quantity);
+            });
+            this.store(key, catalog);
+        },
+
+        offlineProducts() {
+            const catalog = this.store(this.catalogKey());
+            if (!catalog) {
+                this.error = 'No saved product list for this warehouse yet — open the POS once while online.';
+                return [];
+            }
+            const s = this.search.trim().toLowerCase();
+            return catalog.filter(p =>
+                (this.categoryId === '' || String(p.category_id) === String(this.categoryId)) &&
+                (s === '' || p.name.toLowerCase().includes(s) || (p.sku || '').toLowerCase().includes(s) || p.barcode === this.search.trim())
+            );
+        },
+
+        offlineScan(code) {
+            const catalog = this.store(this.catalogKey()) || [];
+            for (const p of catalog) {
+                const v = p.variants.find(x => x.sku && x.sku === code);
+                if (v) return { data: [p], matched_variant_id: v.id };
+            }
+            return { data: catalog.filter(p => p.barcode === code || p.sku === code).slice(0, 2), matched_variant_id: null };
         },
 
         newSaleToken() {
@@ -351,6 +464,7 @@ function posApp() {
         async loadProducts() {
             this.loading = true;
             try {
+                if (!navigator.onLine) throw new TypeError('offline');
                 const params = new URLSearchParams({
                     warehouse_id: this.warehouseId,
                     s: this.search,
@@ -362,7 +476,10 @@ function posApp() {
                 this.products = this.page === 1 ? json.data : this.products.concat(json.data);
                 this.lastPage = json.last_page;
             } catch (e) {
-                console.error(e);
+                // No connection: page through the saved product list instead.
+                const all = this.offlineProducts();
+                this.products = all.slice(0, this.page * 24);
+                this.lastPage = Math.max(1, Math.ceil(all.length / 24));
             } finally {
                 this.loading = false;
             }
@@ -411,8 +528,12 @@ function posApp() {
 
         scanBarcode() {
             if (!this.barcode.trim()) return;
-            fetch(`{{ route('admin.pos.products') }}?${new URLSearchParams({ warehouse_id: this.warehouseId, s: this.barcode.trim(), page: 1, scan: 1 })}`, { headers: { 'Accept': 'application/json' } })
-                .then(r => r.json())
+            const code = this.barcode.trim();
+            (navigator.onLine
+                ? fetch(`{{ route('admin.pos.products') }}?${new URLSearchParams({ warehouse_id: this.warehouseId, s: code, page: 1, scan: 1 })}`, { headers: { 'Accept': 'application/json' } })
+                    .then(r => r.json())
+                    .catch(() => this.offlineScan(code))
+                : Promise.resolve(this.offlineScan(code)))
                 .then(json => {
                     if (json.data.length === 1) {
                         const p = json.data[0];
@@ -446,9 +567,14 @@ function posApp() {
 
         async searchCustomers() {
             if (!this.customerQuery.trim()) { this.customerResults = []; return; }
-            const res = await fetch(`{{ route('admin.pos.customers') }}?s=${encodeURIComponent(this.customerQuery)}`, { headers: { 'Accept': 'application/json' } });
-            const json = await res.json();
-            this.customerResults = json.data;
+            try {
+                const res = await fetch(`{{ route('admin.pos.customers') }}?s=${encodeURIComponent(this.customerQuery)}`, { headers: { 'Accept': 'application/json' } });
+                const json = await res.json();
+                this.customerResults = json.data;
+            } catch (e) {
+                // Offline: just type the name and phone below — the customer is matched by phone on upload.
+                this.customerResults = [];
+            }
         },
 
         selectCustomer(c) {
@@ -472,32 +598,39 @@ function posApp() {
                 return;
             }
 
+            const payload = {
+                warehouse_id: this.warehouseId,
+                walk_in: this.walkIn,
+                customer_name: this.walkIn ? null : this.customer.name,
+                customer_phone: this.walkIn ? null : this.customer.phone,
+                customer_email: this.walkIn ? null : (this.customer.email || null),
+                customer_address: this.walkIn ? null : (this.customer.address || null),
+                payment_method: this.paymentMethod,
+                discount: this.discount || 0,
+                paid_amount: this.isDue ? (parseFloat(this.duePaid) || 0)
+                    : (this.paymentMethod === 'cash' ? (this.paidAmount || this.total) : this.total),
+                is_due: this.isDue,
+                due_date: this.isDue ? (this.dueDate || null) : null,
+                items: this.cart.map(l => ({ product_id: l.product_id, variant_id: l.variant_id, quantity: l.qty })),
+                client_token: this.saleToken,
+            };
+            if (!this.isDue && payload.paid_amount < this.total - 0.009) {
+                this.error = 'Amount received is less than the total. Tick "Due sale" to sell the rest on credit.';
+                return;
+            }
+
             this.submitting = true;
             try {
-                const res = await fetch(`{{ route('admin.pos.checkout') }}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': this.csrf(),
-                    },
-                    body: JSON.stringify({
-                        warehouse_id: this.warehouseId,
-                        walk_in: this.walkIn,
-                        customer_name: this.walkIn ? null : this.customer.name,
-                        customer_phone: this.walkIn ? null : this.customer.phone,
-                        customer_email: this.walkIn ? null : (this.customer.email || null),
-                        customer_address: this.walkIn ? null : (this.customer.address || null),
-                        payment_method: this.paymentMethod,
-                        discount: this.discount || 0,
-                        paid_amount: this.isDue ? (parseFloat(this.duePaid) || 0)
-                            : (this.paymentMethod === 'cash' ? (this.paidAmount || this.total) : this.total),
-                        is_due: this.isDue,
-                        due_date: this.isDue ? (this.dueDate || null) : null,
-                        items: this.cart.map(l => ({ product_id: l.product_id, variant_id: l.variant_id, quantity: l.qty })),
-                        client_token: this.saleToken,
-                    }),
-                });
+                let res;
+                try {
+                    if (!navigator.onLine) throw new TypeError('offline');
+                    res = await this.postSale(payload);
+                } catch (e) {
+                    // No connection — keep the sale on this computer and upload it later.
+                    this.queueOfflineSale(payload);
+                    return;
+                }
+
                 const json = await res.json();
                 if (!res.ok || !json.success) {
                     this.error = json.message || 'Checkout failed. Please try again.';
@@ -505,19 +638,133 @@ function posApp() {
                 }
 
                 window.open(json.redirect, '_blank');
-
-                // Reset for the next sale
-                this.newSaleToken();
-                this.cart = [];
-                this.discount = 0;
-                this.paymentMethod = 'cash';
-                this.resetCustomer();
-                this.resetAndLoad();
+                this.deductFromCatalog(payload.warehouse_id, payload.items);
+                this.finishSale();
             } catch (e) {
-                this.error = 'Network error — please try again.';
+                this.error = 'Something went wrong — please try again.';
             } finally {
                 this.submitting = false;
             }
+        },
+
+        postSale(payload) {
+            return fetch(`{{ route('admin.pos.checkout') }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': this.csrf(),
+                },
+                body: JSON.stringify(payload),
+            });
+        },
+
+        // Reset for the next sale
+        finishSale() {
+            this.newSaleToken();
+            this.cart = [];
+            this.discount = 0;
+            this.paymentMethod = 'cash';
+            this.resetCustomer();
+            this.resetAndLoad();
+        },
+
+        queueOfflineSale(payload) {
+            const sale = {
+                payload: { ...payload, offline: true, sold_at: new Date().toISOString() },
+                total: this.total,
+                lines: this.cart.map(l => ({ name: l.name, variant_label: l.variant_label, qty: l.qty, price: l.price })),
+                subtotal: this.subtotal,
+            };
+            this.queue.push(sale);
+            this.saveQueue();
+            this.deductFromCatalog(payload.warehouse_id, payload.items);
+            this.printOfflineReceipt(sale);
+            this.finishSale();
+        },
+
+        // Upload queued offline sales. Each carries its own sale token, so a sale that already
+        // reached the server is matched, never entered twice.
+        async syncQueue() {
+            if (this.syncing || !navigator.onLine || this.pendingCount === 0) return;
+            this.syncing = true;
+            this.syncMessage = '';
+            let uploaded = 0;
+            try {
+                const session = await fetch(`{{ route('admin.pos.session') }}`, { headers: { 'Accept': 'application/json' } });
+                if (session.status === 401 || session.redirected) {
+                    this.syncMessage = 'log in again to upload them';
+                    return;
+                }
+                const { csrf } = await session.json();
+                document.querySelector('meta[name="csrf-token"]').setAttribute('content', csrf);
+
+                for (const sale of this.queue.filter(q => !q.error)) {
+                    const res = await this.postSale(sale.payload);
+                    if (res.status === 401 || res.status === 419) {
+                        this.syncMessage = 'log in again to upload them';
+                        break;
+                    }
+                    const json = await res.json().catch(() => ({}));
+                    if (res.ok && json.success) {
+                        this.queue = this.queue.filter(q => q !== sale);
+                        uploaded++;
+                    } else if (res.status === 422) {
+                        sale.error = json.message || 'The server rejected this sale.';
+                    } else {
+                        this.syncMessage = 'server error, will retry';
+                        break;
+                    }
+                    this.saveQueue();
+                }
+            } catch (e) {
+                this.syncMessage = 'still offline, will retry';
+            } finally {
+                this.syncing = false;
+            }
+
+            if (uploaded > 0) {
+                this.syncMessage = '';
+                await this.refreshCatalog();
+                this.resetAndLoad();
+            }
+        },
+
+        retryFailed(sale) {
+            delete sale.error;
+            this.saveQueue();
+            this.syncQueue();
+        },
+
+        discardFailed(sale) {
+            if (!confirm('Remove this offline sale? It will NOT be recorded on the server.')) return;
+            this.queue = this.queue.filter(q => q !== sale);
+            this.saveQueue();
+        },
+
+        printOfflineReceipt(sale) {
+            const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+            const p = sale.payload;
+            const paid = parseFloat(p.paid_amount) || 0;
+            const rows = sale.lines.map(l => `<tr><td>${esc(l.name)}${l.variant_label ? '<br><small>' + esc(l.variant_label) + '</small>' : ''}</td>
+                <td style="text-align:center">${this.trimNum(l.qty)}</td><td style="text-align:right">${this.fmt(l.price * l.qty)}</td></tr>`).join('');
+            const w = window.open('', '_blank', 'width=380,height=600');
+            if (!w) return;
+            w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Receipt</title>
+                <style>body{font:12px monospace;width:72mm;margin:0 auto;padding:8px}h2{text-align:center;margin:4px 0}
+                table{width:100%;border-collapse:collapse}td{padding:2px 0;vertical-align:top}.r{text-align:right}hr{border:0;border-top:1px dashed #000}</style></head>
+                <body><h2>${esc(this.shopName)}</h2>
+                <p style="text-align:center">${new Date(p.sold_at).toLocaleString()}<br>Ref: ${esc(p.client_token.slice(0, 8).toUpperCase())}<br><b>OFFLINE SALE</b></p>
+                <p>Customer: ${p.walk_in ? 'Walk-in Customer' : esc(p.customer_name) + ' (' + esc(p.customer_phone) + ')'}</p>
+                <hr><table>${rows}</table><hr>
+                <table><tr><td>Subtotal</td><td class="r">${this.fmt(sale.subtotal)}</td></tr>
+                <tr><td>Discount</td><td class="r">${this.fmt(p.discount)}</td></tr>
+                <tr><td><b>Total</b></td><td class="r"><b>${this.fmt(sale.total)}</b></td></tr>
+                <tr><td>Paid (${esc(p.payment_method)})</td><td class="r">${this.fmt(paid)}</td></tr>
+                ${p.is_due ? `<tr><td>Due</td><td class="r">${this.fmt(sale.total - paid)}</td></tr>` : `<tr><td>Change</td><td class="r">${this.fmt(Math.max(0, paid - sale.total))}</td></tr>`}
+                </table><hr><p style="text-align:center">Thank you!</p>
+                <script>window.onload=()=>window.print()<\/script></body></html>`);
+            w.document.close();
         },
     };
 }
