@@ -24,3 +24,4 @@ Homestead.yaml
 Thumbs.db
 .env.demo
 .github\workflows
+.playwright-mcp

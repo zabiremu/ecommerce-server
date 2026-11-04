@@ -20,8 +20,10 @@ class PublicImage
 
         $path = ltrim($path, '/');
 
+        // Build from the current request host rather than APP_URL, so a misconfigured
+        // APP_URL (e.g. missing "https://") can't produce broken relative URLs.
         if (Storage::disk('public')->exists($path)) {
-            return Storage::disk('public')->url($path);
+            return asset('storage/' . $path);
         }
 
         return is_file(public_path($path)) ? asset($path) : null;
