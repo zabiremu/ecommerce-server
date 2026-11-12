@@ -5,12 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CheckAdminPermission
 {
     // Routes exempt from permission checks (personal/system)
     private const EXEMPT = [
-        'admin.dashboard',
         'admin.logout',
         'admin.profile',
         'admin.profile.update',
@@ -19,13 +19,19 @@ class CheckAdminPermission
         'admin.notifications.index',
         'admin.notifications.mark-all-read',
         'admin.notifications.read',
-        'admin.search',
-        'admin.dashboard.data',
+        'admin.search',          // results are filtered by permission in AdminSearchController
     ];
 
     // Custom route-name → permission (for non-resourceful routes)
     private const CUSTOM = [
+        // Dashboard
+        'admin.dashboard'                        => 'dashboard.view',
+        'admin.dashboard.data'                   => 'dashboard.view',
+        'admin.live-visitors'                    => 'dashboard.view',
+        'admin.visitor-stats'                    => 'dashboard.view',
         // POS
+        'admin.pos.catalog'                      => 'pos.view',
+        'admin.pos.session'                      => 'pos.view',
         'admin.pos.products'                     => 'pos.view',
         'admin.pos.customers'                     => 'pos.view',
         'admin.pos.checkout'                      => 'pos.create',
@@ -50,9 +56,11 @@ class CheckAdminPermission
         'admin.orders.payment-status'            => 'orders.edit',
         'admin.orders.notes'                     => 'orders.edit',
         'admin.orders.bulk-action'               => 'orders.edit',
+        'admin.orders.invoice'                   => 'orders.view',
+        'admin.orders.bdcourier-check'           => 'orders.view',
         // Steadfast
         'admin.steadfast.send'                   => 'orders.edit',
-        'admin.steadfast.status'                 => 'orders.view',
+        'admin.steadfast.check-status'           => 'orders.edit',
         'admin.steadfast.balance'                => 'orders.view',
         // Products
         'admin.products.set-status'              => 'products.edit',
@@ -66,17 +74,34 @@ class CheckAdminPermission
         'admin.products.landing.update'          => 'landings.edit',
         // Categories
         'admin.categories.toggle-status'         => 'categories.edit',
+        'admin.brands.toggle-status'             => 'brands.edit',
+        'admin.units.toggle-status'              => 'units.edit',
+        'admin.suppliers.toggle-status'          => 'suppliers.edit',
+        'admin.warehouses.toggle-status'         => 'warehouses.edit',
+        'admin.customers.toggle-status'          => 'customers.edit',
+        'admin.sliders.toggle-status'            => 'sliders.edit',
+        'admin.trust-items.toggle-status'        => 'trust_items.edit',
+        'admin.instagram-posts.toggle-status'    => 'instagram_posts.edit',
+        'admin.coupons.toggle-status'            => 'coupons.edit',
+        'admin.coupons.generate-code'            => 'coupons.create',
         // Purchases
         'admin.purchases.invoice'                => 'purchases.view',
+        'admin.purchases.status'                 => 'purchases.edit',
         // GRN
-        'admin.grn.create-from-purchase'         => 'grn.create',
+        'admin.grn.purchase-items'               => 'grn.create',
+        'admin.grn-returns.grn-items'            => 'grn_returns.create',
         // Stock
         'admin.stock-adjustments.product-stock'  => 'stock_adjustments.view',
         'admin.stock-transfers.product-stock'    => 'stock_transfers.view',
+        'admin.stock-transfers.status'           => 'stock_transfers.edit',
+        // Reports
+        'admin.sales-report.export'              => 'sales_report.view',
+        'admin.purchase-report.export'           => 'purchase_report.view',
         // Phone blacklist
         'admin.phone-blacklist.block-from-order' => 'phone_blacklist.create',
-        // Contact messages
-        'admin.contact-messages.mark-read'       => 'contact_messages.edit',
+        // Contact messages (no "edit" permission exists — changing status is part of viewing)
+        'admin.contact-messages.status'          => 'contact_messages.view',
+        'admin.contact-messages.bulk-action'     => 'contact_messages.view',
         // Site settings
         'admin.site-settings.test-email'         => 'site_settings.edit',
         // Admins
@@ -95,6 +120,37 @@ class CheckAdminPermission
         'admin.roles.edit'                       => 'roles.edit',
         'admin.roles.update'                     => 'roles.edit',
         'admin.roles.destroy'                    => 'roles.delete',
+    ];
+
+    // Bulk actions whose "delete" option needs the delete permission too.
+    private const BULK_DELETE = [
+        'admin.products.bulk-action'         => 'products.delete',
+        'admin.orders.bulk-action'           => 'orders.delete',
+        'admin.contact-messages.bulk-action' => 'contact_messages.delete',
+    ];
+
+    /**
+     * Where to send an admin whose role can't see the dashboard (in sidebar
+     * order) — so logging in never lands on a 403.
+     */
+    private const LANDING_PAGES = [
+        'pos.view'              => 'admin.pos.index',
+        'orders.view'           => 'admin.orders.index',
+        'dues.view'             => 'admin.dues.index',
+        'products.view'         => 'admin.products.index',
+        'customers.view'        => 'admin.customers.index',
+        'purchases.view'        => 'admin.purchases.index',
+        'grn.view'              => 'admin.grn.index',
+        'stock_report.view'     => 'admin.stock-report.index',
+        'sales_report.view'     => 'admin.sales-report.index',
+        'accounts_reports.view' => 'admin.accounts.daily',
+        'categories.view'       => 'admin.categories.index',
+        'coupons.view'          => 'admin.coupons.index',
+        'contact_messages.view' => 'admin.contact-messages.index',
+        'sliders.view'          => 'admin.sliders.index',
+        'site_settings.view'    => 'admin.site-settings.edit',
+        'admins.view'           => 'admin.admins.index',
+        'roles.view'            => 'admin.roles.index',
     ];
 
     // Standard resource action → permission suffix
@@ -123,17 +179,48 @@ class CheckAdminPermission
         // Exempt personal / system routes
         if (in_array($routeName, self::EXEMPT, true)) return $next($request);
 
-        $permission = $this->resolve($routeName);
+        $permission = self::permissionFor($routeName);
 
-        // Unknown mapping — allow (fail-open for unregistered routes)
-        if (!$permission) return $next($request);
+        // Unknown mapping — deny (fail-closed). A new admin route must be given a
+        // permission here or follow the admin.{module}.{index|create|…} naming.
+        if (!$permission) {
+            Log::warning('Admin route has no permission mapping — access denied', ['route' => $routeName]);
+            return $this->deny($request, 'super admin');
+        }
 
-        if ($admin->hasPermission($permission)) return $next($request);
+        if (!$admin->hasPermission($permission)) {
+            // A role without dashboard access still needs somewhere to land after login.
+            if ($routeName === 'admin.dashboard' && !$request->expectsJson()) {
+                $landing = $this->landingFor($admin);
+                if ($landing) return redirect()->route($landing);
+            }
+            return $this->deny($request, $permission);
+        }
 
-        return $this->deny($request, $permission);
+        // "Delete" inside a bulk action needs the delete permission as well.
+        if (isset(self::BULK_DELETE[$routeName]) && $request->input('action') === 'delete'
+            && !$admin->hasPermission(self::BULK_DELETE[$routeName])) {
+            return $this->deny($request, self::BULK_DELETE[$routeName]);
+        }
+
+        return $next($request);
     }
 
-    private function resolve(string $routeName): ?string
+    private function landingFor($admin): ?string
+    {
+        foreach (self::LANDING_PAGES as $permission => $route) {
+            if ($admin->hasPermission($permission)) return $route;
+        }
+        return null;
+    }
+
+    public static function isExempt(string $routeName): bool
+    {
+        return in_array($routeName, self::EXEMPT, true);
+    }
+
+    /** The permission an admin route needs, or null when none is mapped. */
+    public static function permissionFor(string $routeName): ?string
     {
         // Explicit custom mapping first
         if (isset(self::CUSTOM[$routeName])) {

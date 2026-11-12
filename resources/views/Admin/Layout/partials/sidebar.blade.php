@@ -27,6 +27,7 @@
             <div>
                 <p class="px-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Main</p>
                 <ul class="space-y-0.5">
+                    @if($_admin->hasPermission('dashboard.view'))
                     <li>
                         <a href="{{ route('admin.dashboard') }}"
                            class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-brand-500/15 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
@@ -34,6 +35,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
 

@@ -98,6 +98,7 @@
                         </div>
                     </div>
 
+                    @if(auth('admin')->user()->isSuperAdmin())
                     <div class="wp-field mt-1">
                         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:500;color:#1d2327;">
                             <input type="hidden" name="is_super_admin" value="0">
@@ -109,6 +110,9 @@
                         </label>
                         <p class="wp-help">Super admins bypass all permission checks and have full access.</p>
                     </div>
+                    @else
+                    <input type="hidden" name="is_super_admin" value="0">
+                    @endif
                 </div>
             </div>
 
@@ -156,7 +160,8 @@
                                                    value="{{ $key }}"
                                                    class="perm-cb module-cb"
                                                    data-module="{{ $module }}"
-                                                   {{ in_array($key, $savedPerms) ? 'checked' : '' }}>
+                                                   {{ in_array($key, $savedPerms) ? 'checked' : '' }}
+                                                   @unless(auth('admin')->user()->hasPermission($key)) disabled title="You don't have this permission yourself" @endunless>
                                         @else
                                             <span style="color:#c3c4c7;font-size:11px;">—</span>
                                         @endif

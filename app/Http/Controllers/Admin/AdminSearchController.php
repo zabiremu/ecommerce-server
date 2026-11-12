@@ -19,9 +19,11 @@ class AdminSearchController extends Controller
         }
 
         $like = "%{$q}%";
+        $admin = \Illuminate\Support\Facades\Auth::guard('admin')->user();
+        $can = fn (string $perm) => $admin && $admin->hasPermission($perm);
 
         // Orders
-        $orders = Order::where('order_no', 'like', $like)
+        $orders = !$can('orders.view') ? collect() : Order::where('order_no', 'like', $like)
             ->orWhere('shipping_name', 'like', $like)
             ->orWhere('shipping_phone', 'like', $like)
             ->latest('id')->limit(5)->get()
@@ -34,7 +36,7 @@ class AdminSearchController extends Controller
             ]);
 
         // Products
-        $products = Product::where('name', 'like', $like)
+        $products = !$can('products.view') ? collect() : Product::where('name', 'like', $like)
             ->orWhere('sku', 'like', $like)
             ->latest('id')->limit(5)->get()
             ->map(fn ($p) => [
@@ -46,7 +48,7 @@ class AdminSearchController extends Controller
             ]);
 
         // Customers
-        $customers = Customer::where('name', 'like', $like)
+        $customers = !$can('customers.view') ? collect() : Customer::where('name', 'like', $like)
             ->orWhere('phone', 'like', $like)
             ->orWhere('email', 'like', $like)
             ->latest('id')->limit(5)->get()

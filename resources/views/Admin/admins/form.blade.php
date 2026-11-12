@@ -190,7 +190,9 @@
                 </div>
                 <div class="wp-panel-body px-4 py-3">
                     <select name="role_id" class="wp-input" style="width:100%">
+                        @if(auth('admin')->user()->isSuperAdmin())
                         <option value="">— Super Admin (no role) —</option>
+                        @endif
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}"
                                 {{ old('role_id', $admin->role_id ?? '') == $role->id ? 'selected' : '' }}>

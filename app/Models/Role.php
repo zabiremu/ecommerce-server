@@ -43,7 +43,7 @@ class Role extends Model
                 'pos'              => ['view', 'create'],
                 'dues'             => ['view', 'edit'],
                 'orders'           => ['view', 'create', 'edit', 'delete'],
-                'abandoned_carts'  => ['view'],
+                'abandoned_carts'  => ['view', 'delete'],
                 'customers'        => ['view', 'edit', 'delete'],
                 'phone_blacklist'  => ['view', 'create', 'delete'],
                 'coupons'          => ['view', 'create', 'edit', 'delete'],
@@ -75,6 +75,18 @@ class Role extends Model
                 'backups'       => ['view', 'create', 'delete'],
             ],
         ];
+    }
+
+    /** Flat list of every grantable permission, e.g. ["products.view", …]. */
+    public static function permissionKeys(): array
+    {
+        $keys = [];
+        foreach (static::allPermissions() as $modules) {
+            foreach ($modules as $module => $actions) {
+                foreach ($actions as $action) $keys[] = "{$module}.{$action}";
+            }
+        }
+        return $keys;
     }
 
     // Human-readable labels for module keys
