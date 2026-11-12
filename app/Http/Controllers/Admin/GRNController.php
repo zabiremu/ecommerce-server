@@ -14,7 +14,7 @@ class GRNController extends Controller
 {
     public function index()
     {
-        $grns = GoodsReceivedNote::with('supplier', 'warehouse', 'purchase')
+        $grns = GoodsReceivedNote::with('supplier', 'warehouse', 'purchase', 'items:id,goods_received_note_id,product_id,product_name,received_qty', 'items.product:id,name')
             ->orderBy('created_at', 'desc')
             ->get();
         return view('Admin.grn.index', compact('grns'));

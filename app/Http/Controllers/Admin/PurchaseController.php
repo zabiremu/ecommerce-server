@@ -16,7 +16,8 @@ class PurchaseController extends Controller
 {
     public function index()
     {
-        $purchases = Purchase::with('supplier', 'warehouse')->orderBy('created_at', 'desc')->get();
+        $purchases = Purchase::with('supplier', 'warehouse', 'items:id,purchase_id,product_id,product_name,quantity', 'items.product:id,name')
+            ->orderBy('created_at', 'desc')->get();
         return view('Admin.purchase.index', compact('purchases'));
     }
 

@@ -23,6 +23,7 @@
     <thead>
         <tr>
             <th>GRN No</th>
+            <th>Products</th>
             <th>Purchase</th>
             <th>Supplier</th>
             <th>Warehouse</th>
@@ -44,6 +45,7 @@
                         </span>
                     </div>
                 </td>
+                <td>@include('Admin.purchase._product_list', ['items' => $g->items, 'qtyField' => 'received_qty'])</td>
                 <td class="text-[#50575e] font-mono text-[12px]">{{ $g->purchase->invoice_no }}</td>
                 <td class="text-[#50575e]">{{ $g->supplier->name }}</td>
                 <td class="text-[#50575e]">{{ $g->warehouse->name }}</td>
@@ -63,7 +65,7 @@
         $('#grnTable').DataTable({
             pageLength: 25,
             order: [[0, 'desc']],
-            language: { search: "_INPUT_", searchPlaceholder: "Search GRNs..." }
+            language: { search: "_INPUT_", searchPlaceholder: "Search by product, GRN, invoice..." }
         });
     });
 </script>

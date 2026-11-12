@@ -23,6 +23,7 @@
     <thead>
         <tr>
             <th>Invoice</th>
+            <th>Products</th>
             <th>Supplier</th>
             <th>Warehouse</th>
             <th>Date</th>
@@ -46,6 +47,7 @@
                         </span>
                     </div>
                 </td>
+                <td>@include('Admin.purchase._product_list', ['items' => $p->items, 'qtyField' => 'quantity'])</td>
                 <td class="text-[#50575e]">{{ $p->supplier->name }}</td>
                 <td class="text-[#50575e]">{{ $p->warehouse->name }}</td>
                 <td class="text-[#50575e]">{{ $p->purchase_date->format('d M, Y') }}</td>
@@ -72,8 +74,8 @@
         $('#purchaseTable').DataTable({
             pageLength: 25,
             order: [[0, 'desc']],
-            language: { search: "_INPUT_", searchPlaceholder: "Search purchases..." },
-            columnDefs: [{ orderable: false, targets: [5] }]
+            language: { search: "_INPUT_", searchPlaceholder: "Search by product, invoice, supplier..." },
+            columnDefs: [{ orderable: false, targets: [1, 6] }]
         });
     });
 </script>

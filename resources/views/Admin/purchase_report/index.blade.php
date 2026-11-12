@@ -56,17 +56,25 @@
             @endforeach
         </select>
     </label>
+    <label><i class="fas fa-box text-[#787c82]"></i> Product:
+        <select name="product_id">
+            <option value="">All Products</option>
+            @foreach ($products as $pr)
+                <option value="{{ $pr->id }}" {{ $productId == $pr->id ? 'selected' : '' }}>{{ $pr->name }}</option>
+            @endforeach
+        </select>
+    </label>
     <label><i class="fas fa-filter text-[#787c82]"></i> Status:
         <select name="status">
             <option value="">All Statuses</option>
-            @foreach (['pending', 'ordered', 'received', 'cancelled'] as $s)
+            @foreach (['pending', 'completed', 'cancelled'] as $s)
                 <option value="{{ $s }}" {{ $status === $s ? 'selected' : '' }}>{{ ucfirst($s) }}</option>
             @endforeach
         </select>
     </label>
     <button type="submit" class="wp-btn wp-btn-primary"><i class="fas fa-search mr-1"></i> Apply</button>
     <a href="{{ route('admin.purchase-report.index') }}" class="wp-btn">Reset</a>
-    <a href="{{ route('admin.purchase-report.export', ['from' => $from->toDateString(), 'to' => $to->toDateString(), 'supplier_id' => $supplierId, 'warehouse_id' => $warehouseId, 'status' => $status]) }}" class="wp-btn">
+    <a href="{{ route('admin.purchase-report.export', ['from' => $from->toDateString(), 'to' => $to->toDateString(), 'supplier_id' => $supplierId, 'warehouse_id' => $warehouseId, 'status' => $status, 'product_id' => $productId]) }}" class="wp-btn">
         <i class="fas fa-file-csv mr-1"></i> Export CSV
     </a>
 </form>
@@ -84,9 +92,9 @@
         <div class="sub">All statuses</div>
     </div>
     <div class="stat-card">
-        <div class="label">Received Amount</div>
+        <div class="label">Completed Amount</div>
         <div class="value">{{ \App\Support\Money::format($receivedAmount) }}</div>
-        <div class="sub">Received purchases</div>
+        <div class="sub">Completed purchases</div>
     </div>
     <div class="stat-card">
         <div class="label">Pending Amount</div>
@@ -98,10 +106,10 @@
 {{-- Status breakdown --}}
 @if ($statusCounts->isNotEmpty())
 <div class="mb-4 flex flex-wrap gap-2">
-    @foreach (['pending', 'ordered', 'received', 'cancelled'] as $s)
+    @foreach (['pending', 'completed', 'cancelled'] as $s)
         @if ($statusCounts->has($s))
         @php
-            $badgeMap = ['pending'=>'badge-pending','ordered'=>'badge-ordered','received'=>'badge-received','cancelled'=>'badge-cancelled'];
+            $badgeMap = ['pending'=>'badge-pending','completed'=>'badge-received','cancelled'=>'badge-cancelled'];
         @endphp
         <span class="status-badge {{ $badgeMap[$s] ?? '' }}">
             {{ ucfirst($s) }}: {{ $statusCounts->get($s, 0) }}
@@ -116,6 +124,7 @@
     <thead>
         <tr>
             <th>Invoice #</th>
+            <th>Products</th>
             <th>Date</th>
             <th>Supplier</th>
             <th>Warehouse</th>
@@ -127,7 +136,7 @@
     <tbody>
         @foreach ($purchases as $purchase)
         @php
-            $badgeMap = ['pending'=>'badge-pending','ordered'=>'badge-ordered','received'=>'badge-received','cancelled'=>'badge-cancelled'];
+            $badgeMap = ['pending'=>'badge-pending','completed'=>'badge-received','cancelled'=>'badge-cancelled'];
         @endphp
         <tr>
             <td>
@@ -135,6 +144,7 @@
                     {{ $purchase->invoice_no }}
                 </a>
             </td>
+            <td>@include('Admin.purchase._product_list', ['items' => $purchase->items, 'qtyField' => 'quantity'])</td>
             <td class="text-[#50575e]">{{ \Carbon\Carbon::parse($purchase->purchase_date)->format('d M Y') }}</td>
             <td>{{ $purchase->supplier->name ?? '—' }}</td>
             <td class="text-[#50575e]">{{ $purchase->warehouse->name ?? '—' }}</td>
@@ -155,7 +165,7 @@
     @if ($purchases->isNotEmpty())
     <tfoot>
         <tr style="background:#f6f7f7; font-weight:600; font-size:13px;">
-            <td colspan="5" class="text-right pr-2" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
+            <td colspan="6" class="text-right pr-2" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
                 Totals ({{ $totalPurchases }} purchases)
             </td>
             <td class="text-right" style="padding:10px 8px; border-top:2px solid #c3c4c7;">
@@ -176,10 +186,11 @@
     $(function () {
         $('#purchaseTable').DataTable({
             pageLength: 25,
-            order: [[1, 'desc']],
+            order: [[2, 'desc']],
+            columnDefs: [{ orderable: false, targets: [1] }],
             language: {
                 search: "_INPUT_",
-                searchPlaceholder: "Search purchases...",
+                searchPlaceholder: "Search by product, invoice, supplier...",
                 emptyTable: "No purchases found for the selected period."
             }
         });
