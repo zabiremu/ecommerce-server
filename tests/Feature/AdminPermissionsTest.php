@@ -173,4 +173,15 @@ class AdminPermissionsTest extends TestCase
         $this->put("/admin/admins/{$owner->id}", ['name' => 'Hacked', 'email' => 'owner@x.com', 'role_id' => ''])
             ->assertForbidden();
     }
+
+    public function test_create_edit_delete_imply_view_when_saving_a_role(): void
+    {
+        $this->actingAsAdmin(); // super admin
+        $this->post('/admin/roles', ['name' => 'Stock Clerk', 'permissions' => ['products.create', 'orders.delete']])
+            ->assertSessionHasNoErrors();
+
+        $perms = Role::where('name', 'Stock Clerk')->first()->permissions;
+        sort($perms);
+        $this->assertSame(['orders.delete', 'orders.view', 'products.create', 'products.view'], $perms);
+    }
 }

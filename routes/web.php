@@ -325,8 +325,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/about-page', [AdminAboutPageController::class, 'edit'])->name('about-page.edit');
 
         // Site Settings
-        Route::resource('/roles', AdminRoleController::class)->names('roles');
-        Route::resource('/admins', AdminUserController::class)->names('admins');
+        Route::resource('/roles', AdminRoleController::class)->except('show')->names('roles');
+        Route::resource('/admins', AdminUserController::class)->except('show')->names('admins');
 
         Route::get('/site-settings', [AdminSiteSettingController::class, 'edit'])->name('site-settings.edit');
         Route::put('/site-settings', [AdminSiteSettingController::class, 'update'])->name('site-settings.update');

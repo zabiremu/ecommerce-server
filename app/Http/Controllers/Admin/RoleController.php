@@ -33,6 +33,7 @@ class RoleController extends Controller
             'permissions'    => 'nullable|array',
             'permissions.*'  => ['string', Rule::in(Role::permissionKeys())],
         ]);
+        $data['permissions'] = Role::withImpliedView($data['permissions'] ?? []);
         $this->guardEscalation($data);
 
         Role::create([
@@ -64,6 +65,7 @@ class RoleController extends Controller
             'permissions.*'  => ['string', Rule::in(Role::permissionKeys())],
         ]);
         $this->guardRoleAccess($role);
+        $data['permissions'] = Role::withImpliedView($data['permissions'] ?? []);
         $this->guardEscalation($data);
 
         // Permissions the editor doesn't hold show as locked boxes (not submitted);

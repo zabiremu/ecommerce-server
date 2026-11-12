@@ -89,6 +89,20 @@ class Role extends Model
         return $keys;
     }
 
+    /**
+     * Create/edit/delete on a module is useless without seeing its list (the
+     * sidebar link and index page need ".view"), so those imply ".view".
+     */
+    public static function withImpliedView(array $permissions): array
+    {
+        $keys = static::permissionKeys();
+        foreach ($permissions as $p) {
+            [$module] = explode('.', $p, 2);
+            if (in_array("{$module}.view", $keys, true)) $permissions[] = "{$module}.view";
+        }
+        return array_values(array_unique($permissions));
+    }
+
     // Human-readable labels for module keys
     public static function moduleLabel(string $key): string
     {

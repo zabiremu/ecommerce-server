@@ -236,15 +236,29 @@ function toggleSuperAdmin(cb) {
 
 function selectAll(masterCb) {
     var cbs = document.querySelectorAll('.perm-cb');
-    cbs.forEach(function(cb) { cb.checked = masterCb.checked; });
+    cbs.forEach(function(cb) { if (!cb.disabled) cb.checked = masterCb.checked; });
     document.querySelectorAll('.row-all-cb').forEach(function(cb) { cb.checked = masterCb.checked; });
     updateCount();
 }
 
 function selectRow(module, rowCb) {
     var cbs = document.querySelectorAll('.module-cb[data-module="' + module + '"]');
-    cbs.forEach(function(cb) { cb.checked = rowCb.checked; });
+    cbs.forEach(function(cb) { if (!cb.disabled) cb.checked = rowCb.checked; });
     updateCount();
+}
+
+// Create/Edit/Delete need View (otherwise the page can't even be opened):
+// ticking one ticks View; unticking View unticks the rest of that row.
+function syncViewPermission(cb) {
+    var module = cb.dataset.module;
+    var view = document.querySelector('.module-cb[data-module="' + module + '"][value="' + module + '.view"]');
+    if (!view) return;
+    if (cb !== view && cb.checked && !view.disabled) view.checked = true;
+    if (cb === view && !cb.checked) {
+        document.querySelectorAll('.module-cb[data-module="' + module + '"]').forEach(function(o) {
+            if (!o.disabled) o.checked = false;
+        });
+    }
 }
 
 // Keep row "all" checkbox in sync when individual checkboxes change
@@ -252,6 +266,7 @@ document.addEventListener('change', function(e) {
     if (e.target.classList.contains('perm-cb')) {
         var module = e.target.dataset.module;
         if (!module) return;
+        syncViewPermission(e.target);
         var rowCbs = document.querySelectorAll('.module-cb[data-module="' + module + '"]');
         var allChecked = Array.from(rowCbs).every(function(cb) { return cb.checked; });
         var rowAll = document.querySelector('tr[data-module="' + module + '"] .row-all-cb');
