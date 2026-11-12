@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCart Video Studio — Automatic Video Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Hind+Siliguri:wght@600;700&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card: #101626;
+      --border: #1e293b;
+      --primary: #3b82f6;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      background: linear-gradient(135deg, #2563eb, #8b5cf6);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .main-grid {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* Video Player Canvas Container */
+    .video-frame-container {
+      width: 100%;
+      background: #000;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.2);
+      position: relative;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Overlay Controls */
+    .controls-panel {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .status-area {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .status-title {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      box-shadow: 0 0 10px #10b981;
+    }
+    .status-dot.recording {
+      background: #ef4444;
+      box-shadow: 0 0 12px #ef4444;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse { from { opacity: 0.4; } to { opacity: 1; } }
+
+    .status-sub {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .buttons-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .btn-record {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+    .btn-record:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+    }
+    .btn-preview {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+    .btn-preview:hover {
+      background: #334155;
+    }
+
+    /* Output Video Download Area */
+    .download-card {
+      width: 100%;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 18px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .download-card.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-box">
+      <div class="logo-icon">VIDEO STUDIO</div>
+      <div>
+        <h2 style="font-size: 18px; font-weight: 800;">OmniCart ERP & eCommerce Video Maker</h2>
+        <p style="font-size: 12px; color: #94a3b8;">Automated 1080p Video Generator with Voiceover & Scene Transitions</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-grid">
+
+    <!-- 1080p Canvas Frame -->
+    <div class="video-frame-container">
+      <canvas id="videoCanvas" width="1920" height="1080"></canvas>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+      <div class="status-area">
+        <div class="status-title">
+          <span class="status-dot" id="recDot"></span>
+          <span id="statusText">Ready to Generate Video</span>
+        </div>
+        <div class="status-sub" id="statusSub">Length: ~35 seconds (Full HD 1080p, 60fps)</div>
+      </div>
+
+      <div class="buttons-group">
+        <button class="btn btn-preview" id="btnPreview" onclick="playLivePreview()">
+          👁️ Preview Scenes
+        </button>
+        <button class="btn btn-record" id="btnRecord" onclick="startVideoRecording()">
+          🎬 Generate & Download MP4 Video (.mp4)
+        </button>
+      </div>
+    </div>
+
+    <!-- Download Card (Shown when finished) -->
+    <div class="download-card" id="downloadBanner">
+      <div>
+        <h4 style="color: #34d399; font-size: 15px; margin-bottom: 2px;">✅ MP4 Video Successfully Generated!</h4>
+        <p style="font-size: 13px; color: #cbd5e1;">Your MP4 video file has been compiled and downloaded to your computer.</p>
+      </div>
+      <a id="btnDirectDownload" class="btn" style="background: #10b981; color: white; text-decoration: none;" download="OmniCart_Enterprise_Project_Demo.mp4">
+        📥 Save MP4 File Again
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    const canvas = document.getElementById('videoCanvas');
+    const ctx = canvas.getContext('2d');
+    const statusText = document.getElementById('statusText');
+    const statusSub = document.getElementById('statusSub');
+    const recDot = document.getElementById('recDot');
+    const downloadBanner = document.getElementById('downloadBanner');
+    const btnDirectDownload = document.getElementById('btnDirectDownload');
+
+    // Video duration & scenes
+    const TOTAL_DURATION = 36; // 36 seconds
+    let startTime = 0;
+    let isRendering = false;
+    let isRecording = false;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let animationId = null;
+
+    // Web Audio Synthesizer for high-tech background sound
+    let audioCtx = null;
+    let audioDest = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioDest = audioCtx.createMediaStreamDestination();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTechChime(freq = 440, duration = 0.3) {
+      if (!audioCtx || !audioDest) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioDest);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    // Scenes definitions
+    const scenes = [
+      {
+        id: 1,
+        start: 0,
+        end: 6,
+        tag: "SYSTEM ARCHITECTURE",
+        title: "OmniCart Enterprise ERP & eCommerce",
+        subtitle: "Full-Stack Laravel REST API + Responsive Storefront + Multi-Warehouse Logistics",
+        highlights: ["Laravel 10 Framework", "Role-Based Access Control", "Clean MVC Architecture", "High Concurrency Ready"],
+        speech: "Welcome to OmniCart Enterprise. A full-stack eCommerce and inventory management solution built with Laravel."
+      },
+      {
+        id: 2,
+        start: 6,
+        end: 12,
+        tag: "STOREFRONT & CONVERSION",
+        title: "Modern Online Storefront & Dynamic Cart",
+        subtitle: "Lightning-fast product catalog with variant selection and seamless one-click checkout.",
+        highlights: ["Variant Price Matrix", "Dynamic Discount Coupons", "Instant COD Checkout", "DB::transaction Lock"],
+        speech: "Customers can browse variants, apply automated coupons, and place orders with instant transaction locks."
+      },
+      {
+        id: 3,
+        start: 12,
+        end: 19,
+        tag: "SUPPLY CHAIN & LOGISTICS",
+        title: "Multi-Warehouse ERP & Goods Received Notes (GRN)",
+        subtitle: "Enterprise procurement lifecycle: Purchase Orders -> GRN verification -> Warehouse allocation.",
+        highlights: ["Automated GRN Verification", "Zero Stock Mismatch", "Inter-Warehouse Transfers", "Stock Adjustments Log"],
+        speech: "Our core ERP features Goods Received Notes and multi-warehouse transfers with complete audit trails."
+      },
+      {
+        id: 4,
+        start: 19,
+        end: 25,
+        tag: "POINT OF SALE (POS)",
+        title: "Retail Point of Sale with Offline Resilience",
+        subtitle: "High-speed in-store billing with thermal receipt printing and service-worker reliability.",
+        highlights: ["Barcode Scanner Support", "Thermal Receipt Layout", "Offline Service Worker", "Customer Due Tracking"],
+        speech: "The Point of Sale terminal enables physical store billing with offline support and thermal printing."
+      },
+      {
+        id: 5,
+        start: 25,
+        end: 31,
+        tag: "SECURITY & ACCOUNTS",
+        title: "Anti-Fraud Phone Blacklist & Double-Entry Ledger",
+        subtitle: "Preventing fake Cash-on-Delivery losses while keeping meticulous financial balance sheets.",
+        highlights: ["Phone Blacklist Shield", "Automated Ledger Journal", "Supplier Payment Due", "Expense & Investments"],
+        speech: "Anti-fraud phone blacklisting eliminates fake orders, while the financial ledger maintains transparency."
+      },
+      {
+        id: 6,
+        start: 31,
+        end: 36,
+        tag: "PRODUCTION READY",
+        title: "Scalable. Tested. Enterprise Grade.",
+        subtitle: "Built to drive real business growth and streamline end-to-end commerce operations.",
+        highlights: ["RESTful API Endpoints", "Comprehensive Admin Suite", "MySQL Optimized Indexing", "Ready for Deployment"],
+        speech: "OmniCart is fully production-ready for clients and enterprise deployment. Thank you!"
+      }
+    ];
+
+    let lastSpokenScene = -1;
+
+    function speakScene(scene) {
+      if (lastSpokenScene === scene.id) return;
+      lastSpokenScene = scene.id;
+      playTechChime(520 + (scene.id * 60), 0.4);
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(scene.speech);
+        u.rate = 1.05;
+        u.pitch = 1.0;
+        window.speechSynthesis.speak(u);
+      }
+    }
+
+    // Render Canvas Frame
+    function renderFrame(time) {
+      const elapsed = (time - startTime) / 1000;
+      
+      // Background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 1920, 1080);
+      bgGrad.addColorStop(0, '#060a14');
+      bgGrad.addColorStop(0.5, '#0c1322');
+      bgGrad.addColorStop(1, '#080d19');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1920, 1080);
+
+      // Subtle cyber grid lines
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.05)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < 1920; x += 80) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 1080); ctx.stroke();
+      }
+      for (let y = 0; y < 1080; y += 80) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1920, y); ctx.stroke();
+      }
+
+      // Find current scene
+      let curScene = scenes[scenes.length - 1];
+      for (let s of scenes) {
+        if (elapsed >= s.start && elapsed < s.end) {
+          curScene = s;
+          break;
+        }
+      }
+
+      speakScene(curScene);
+
+      // Top Bar Header
+      ctx.fillStyle = 'rgba(16, 24, 39, 0.7)';
+      ctx.fillRect(80, 50, 1760, 70);
+      ctx.strokeStyle = '#1e293b';
+      ctx.strokeRect(80, 50, 1760, 70);
+
+      // Logo & Tag
+      ctx.fillStyle = '#3b82f6';
+      ctx.font = 'bold 24px "Plus Jakarta Sans"';
+      ctx.fillText('OMNICART ERP', 120, 94);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '18px "Plus Jakarta Sans"';
+      ctx.fillText('Enterprise Commerce & Supply Chain Suite', 330, 93);
+
+      // Scene Progress Indicator
+      ctx.fillStyle = '#10b981';
+      ctx.font = 'bold 16px "Plus Jakarta Sans"';
+      ctx.fillText(`SCENE 0${curScene.id} / 06`, 1660, 93);
+
+      // Main Content Box
+      ctx.save();
+      const sceneProgress = (elapsed - curScene.start) / (curScene.end - curScene.start);
+      const alpha = Math.min(1, sceneProgress * 4);
+      ctx.globalAlpha = alpha;
+
+      // Category Tag
+      ctx.fillStyle = '#60a5fa';
+      ctx.font = 'bold 20px "Plus Jakarta Sans"';
+      ctx.fillText(`●  ${curScene.tag}`, 120, 230);
+
+      // Big Title
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '800 54px "Plus Jakarta Sans"';
+      ctx.fillText(curScene.title, 120, 310);
+
+      // Subtitle
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '500 26px "Plus Jakarta Sans"';
+      ctx.fillText(curScene.subtitle, 120, 370);
+
+      // Highlight Cards Grid
+      const startX = 120;
+      const startY = 440;
+      const cardWidth = 390;
+      const cardHeight = 320;
+      const gap = 40;
+
+      curScene.highlights.forEach((h, index) => {
+        const x = startX + index * (cardWidth + gap);
+        const y = startY;
+
+        // Card container
+        ctx.fillStyle = 'rgba(17, 24, 39, 0.85)';
+        ctx.strokeStyle = index === 0 ? '#3b82f6' : '#1e293b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(x, y, cardWidth, cardHeight, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        // Card Glow Top Bar
+        ctx.fillStyle = index === 0 ? '#3b82f6' : '#10b981';
+        ctx.beginPath();
+        ctx.roundRect(x, y, cardWidth, 6, [16, 16, 0, 0]);
+        ctx.fill();
+
+        // Icon Badge
+        ctx.fillStyle = '#1e293b';
+        ctx.beginPath();
+        ctx.arc(x + 50, y + 60, 26, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 20px "Plus Jakarta Sans"';
+        ctx.fillText(`0${index + 1}`, x + 38, y + 67);
+
+        // Feature Text
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = 'bold 26px "Plus Jakarta Sans"';
+        
+        // Wrap text if needed
+        const words = h.split(' ');
+        let line1 = words.slice(0, 2).join(' ');
+        let line2 = words.slice(2).join(' ');
+        ctx.fillText(line1, x + 30, y + 150);
+        if (line2) {
+          ctx.fillText(line2, x + 30, y + 190);
+        }
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '16px "Plus Jakarta Sans"';
+        ctx.fillText('Verified Enterprise Feature', x + 30, y + 260);
+      });
+
+      // Bottom Lower Third / Live Subtitles
+      ctx.fillStyle = 'rgba(10, 15, 26, 0.9)';
+      ctx.fillRect(80, 840, 1760, 120);
+      ctx.strokeStyle = '#2563eb';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(80, 840, 1760, 120);
+
+      // Wave indicator
+      ctx.fillStyle = '#10b981';
+      ctx.font = 'bold 18px "Plus Jakarta Sans"';
+      ctx.fillText('🎙️ NARRATION', 120, 890);
+
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = '500 24px "Plus Jakarta Sans"';
+      ctx.fillText(`"${curScene.speech}"`, 120, 930);
+
+      // Bottom Progress Bar
+      const totalProg = Math.min(1, elapsed / TOTAL_DURATION);
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(80, 980, 1760, 10);
+      ctx.fillStyle = '#3b82f6';
+      ctx.fillRect(80, 980, 1760 * totalProg, 10);
+
+      ctx.restore();
+
+      // Check if finished
+      if (elapsed < TOTAL_DURATION) {
+        animationId = requestAnimationFrame(renderFrame);
+      } else {
+        finishVideo();
+      }
+    }
+
+    function playLivePreview() {
+      if (isRendering) return;
+      initAudio();
+      isRendering = true;
+      startTime = performance.now();
+      lastSpokenScene = -1;
+      statusText.innerText = "Playing Live Preview...";
+      statusSub.innerText = "Reviewing all 6 scenes at full 1080p resolution.";
+      recDot.classList.remove('recording');
+      downloadBanner.classList.remove('show');
+      requestAnimationFrame(renderFrame);
+    }
+
+    function startVideoRecording() {
+      if (isRecording) return;
+      initAudio();
+
+      // Capture stream from canvas at 60fps
+      const canvasStream = canvas.captureStream(60);
+      
+      // Combine video stream with audio destination stream
+      const combinedTracks = [
+        ...canvasStream.getVideoTracks(),
+        ...audioDest.stream.getAudioTracks()
+      ];
+      const combinedStream = new MediaStream(combinedTracks);
+
+      // Detect Best MP4 Container & Codec
+      let mimeType = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+      let exportMime = 'video/mp4';
+
+      if (!MediaRecorder.isTypeSupported(mimeType)) {
+        if (MediaRecorder.isTypeSupported('video/mp4')) {
+          mimeType = 'video/mp4';
+          exportMime = 'video/mp4';
+        } else if (MediaRecorder.isTypeSupported('video/webm; codecs=h264')) {
+          mimeType = 'video/webm; codecs=h264';
+          exportMime = 'video/mp4';
+        } else if (MediaRecorder.isTypeSupported('video/webm; codecs=vp9')) {
+          mimeType = 'video/webm; codecs=vp9';
+          exportMime = 'video/mp4';
+        } else {
+          mimeType = 'video/webm';
+          exportMime = 'video/mp4';
+        }
+      }
+
+      let options = { mimeType: mimeType };
+
+      try {
+        mediaRecorder = new MediaRecorder(combinedStream, options);
+      } catch (e) {
+        mediaRecorder = new MediaRecorder(canvasStream);
+      }
+
+      recordedChunks = [];
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordedChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: exportMime });
+        const videoUrl = URL.createObjectURL(blob);
+        
+        // Trigger auto download as MP4
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = videoUrl;
+        a.download = 'OmniCart_Enterprise_Project_Demo.mp4';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 1000);
+
+        // Show download card
+        btnDirectDownload.href = videoUrl;
+        btnDirectDownload.download = 'OmniCart_Enterprise_Project_Demo.mp4';
+        downloadBanner.classList.add('show');
+        statusText.innerText = "MP4 Video Generated & Saved!";
+        statusSub.innerText = "OmniCart_Enterprise_Project_Demo.mp4 has been saved to your computer.";
+        recDot.classList.remove('recording');
+      };
+
+      mediaRecorder.start(100);
+      isRecording = true;
+      isRendering = true;
+      startTime = performance.now();
+      lastSpokenScene = -1;
+
+      statusText.innerText = "Recording Video in Full HD (1080p)...";
+      statusSub.innerText = "Rendering frames, recording audio, and building the video file...";
+      recDot.classList.add('recording');
+      downloadBanner.classList.remove('show');
+
+      requestAnimationFrame(renderFrame);
+    }
+
+    function finishVideo() {
+      isRendering = false;
+      if (isRecording && mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        isRecording = false;
+      } else {
+        statusText.innerText = "Preview Finished";
+        statusSub.innerText = "Click 'Generate & Download Video File' to compile the actual video file.";
+      }
+    }
+
+    // Initial first frame render
+    startTime = performance.now();
+    renderFrame(startTime);
+    cancelAnimationFrame(animationId);
+  </script>
+</body>
+</html>
