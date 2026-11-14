@@ -199,13 +199,10 @@
                     </a>
                     @if($isEdit)
                     <hr style="border:0;border-top:1px solid #f0f0f1;margin:4px 0">
-                    <form method="POST" action="{{ route('admin.roles.destroy', $role) }}"
-                          onsubmit="return confirm('Delete this role?')">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="wp-btn" style="width:100%;color:#b32d2e;border-color:#fca5a5;background:#fff5f5;">
-                            <i class="fas fa-trash mr-1"></i> Delete Role
-                        </button>
-                    </form>
+                    {{-- Submits #delete-role-form below (a form can't sit inside the edit form) --}}
+                    <button type="submit" form="delete-role-form" class="wp-btn" style="width:100%;color:#b32d2e;border-color:#fca5a5;background:#fff5f5;">
+                        <i class="fas fa-trash mr-1"></i> Delete Role
+                    </button>
                     @endif
                 </div>
             </div>
@@ -224,6 +221,13 @@
         </div>
     </div>
 </form>
+
+@if($isEdit)
+<form id="delete-role-form" method="POST" action="{{ route('admin.roles.destroy', $role) }}"
+      onsubmit="return confirm('Delete this role?')">
+    @csrf @method('DELETE')
+</form>
+@endif
 
 @endsection
 

@@ -86,6 +86,9 @@
     @endforeach
 </ul>
 
+{{-- Search form lives outside the bulk form (nested forms break both); its fields use form="msgSearchForm" --}}
+<form id="msgSearchForm" method="GET" action="{{ route('admin.contact-messages.index') }}"></form>
+
 <form method="POST" action="{{ route('admin.contact-messages.bulk-action') }}" id="bulkForm">
     @csrf
     <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -99,11 +102,11 @@
             </select>
             <button type="submit" class="wp-btn" onclick="return confirmBulk(this.form)">Apply</button>
         </div>
-        <form method="GET" action="{{ route('admin.contact-messages.index') }}" class="flex items-center gap-2">
-            <input type="hidden" name="status" value="{{ $status }}">
-            <input type="search" name="s" value="{{ $search }}" placeholder="Search name, email, message..." class="wp-input" style="width:260px">
-            <button type="submit" class="wp-btn">Search</button>
-        </form>
+        <div class="flex items-center gap-2">
+            <input type="hidden" name="status" value="{{ $status }}" form="msgSearchForm">
+            <input type="search" name="s" value="{{ $search }}" placeholder="Search name, email, message..." class="wp-input" style="width:260px" form="msgSearchForm">
+            <button type="submit" class="wp-btn" form="msgSearchForm">Search</button>
+        </div>
     </div>
 
     <table class="wp-list-table">

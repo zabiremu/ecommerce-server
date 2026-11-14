@@ -170,14 +170,11 @@
 
                     @if($isEdit && Auth::guard('admin')->id() !== $admin->id)
                     <hr style="border:0;border-top:1px solid #f0f0f1;margin:4px 0">
-                    <form method="POST" action="{{ route('admin.admins.destroy', $admin) }}"
-                          onsubmit="return confirm('Delete this admin? This cannot be undone.')">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="wp-btn"
-                                style="width:100%;color:#b32d2e;border-color:#fca5a5;background:#fff5f5;">
-                            <i class="fas fa-trash mr-1"></i> Delete Admin
-                        </button>
-                    </form>
+                    {{-- Submits #delete-admin-form below (a form can't sit inside the edit form) --}}
+                    <button type="submit" form="delete-admin-form" class="wp-btn"
+                            style="width:100%;color:#b32d2e;border-color:#fca5a5;background:#fff5f5;">
+                        <i class="fas fa-trash mr-1"></i> Delete Admin
+                    </button>
                     @endif
                 </div>
             </div>
@@ -240,6 +237,13 @@
         </div>
     </div>
 </form>
+
+@if($isEdit && Auth::guard('admin')->id() !== $admin->id)
+<form id="delete-admin-form" method="POST" action="{{ route('admin.admins.destroy', $admin) }}"
+      onsubmit="return confirm('Delete this admin? This cannot be undone.')">
+    @csrf @method('DELETE')
+</form>
+@endif
 
 @endsection
 
