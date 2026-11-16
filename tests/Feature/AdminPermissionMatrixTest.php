@@ -158,8 +158,11 @@ class AdminPermissionMatrixTest extends TestCase
                 $status = $res->getStatusCode();
                 $checked++;
 
-                if (in_array($name, self::SUPER_ADMIN_ONLY, true)) {
+                if (in_array($name, self::SUPER_ADMIN_ONLY, true) || in_array($perm, Role::SUPER_ADMIN_ONLY, true)) {
                     // documented exception — nothing to assert for staff
+                    if (in_array($perm, Role::SUPER_ADMIN_ONLY, true) && $status !== 403) {
+                        $failures[] = "{$name} [{$perm}] → {$status} for staff (Super Admin only, expected 403)";
+                    }
                 } elseif ($status === 403) {
                     $failures[] = "{$name} [{$perm}] → 403 even though the role has the permission";
                 } elseif ($status >= 500 && !in_array($name, self::GATE_ONLY, true)) {

@@ -30,7 +30,8 @@ class AdminPermissionsTest extends TestCase
 
     public function test_every_admin_route_needs_a_grantable_permission(): void
     {
-        $grantable = Role::permissionKeys();
+        // Super-Admin-only permissions are deliberately not grantable.
+        $grantable = array_merge(Role::permissionKeys(), Role::SUPER_ADMIN_ONLY);
         $problems = [];
 
         foreach (Route::getRoutes() as $route) {
@@ -183,5 +184,35 @@ class AdminPermissionsTest extends TestCase
         $perms = Role::where('name', 'Stock Clerk')->first()->permissions;
         sort($perms);
         $this->assertSame(['orders.delete', 'orders.view', 'products.create', 'products.view'], $perms);
+    }
+
+    // ── Profit is Super Admin only ──────────────────────────────────────
+
+    public function test_profit_is_hidden_from_non_super_admins(): void
+    {
+        // Even a role that still has the old permission stored can't see profit.
+        $this->staffWith(['dashboard.view', 'accounts_reports.view', 'expenses.view']);
+
+        foreach (['daily', 'monthly', 'products', 'performance', 'returns'] as $page) {
+            $this->get("/admin/accounts/{$page}")->assertForbidden();
+        }
+        $this->get('/admin/dashboard')->assertOk()->assertDontSee('Monthly Profit');
+        $this->get('/admin/roles/create')->assertDontSee('value="accounts_reports.view"', false);
+    }
+
+    public function test_profit_cannot_be_granted_to_a_role(): void
+    {
+        $this->actingAsAdmin();
+
+        $this->post('/admin/roles', ['name' => 'Accountant', 'permissions' => ['accounts_reports.view']])
+            ->assertSessionHasErrors('permissions.0');
+    }
+
+    public function test_super_admin_still_sees_profit(): void
+    {
+        $this->actingAsAdmin();
+
+        $this->get('/admin/accounts/daily')->assertOk();
+        $this->get('/admin/dashboard')->assertOk()->assertSee('Monthly Profit');
     }
 }

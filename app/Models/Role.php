@@ -16,6 +16,12 @@ class Role extends Model
 
     // ── Permission registry ─────────────────────────────────────────────────
 
+    /**
+     * Permissions no role can be granted — only Super Admins have them.
+     * Profit (Accounts reports + dashboard profit cards) is owner-only.
+     */
+    public const SUPER_ADMIN_ONLY = ['accounts_reports.view'];
+
     public static function allPermissions(): array
     {
         return [
@@ -63,7 +69,7 @@ class Role extends Model
                 'customer_report' => ['view'],
             ],
             'Accounts' => [
-                'accounts_reports' => ['view'],
+                // accounts_reports (profit) is Super Admin only — see SUPER_ADMIN_ONLY.
                 'expenses'         => ['view', 'create', 'edit', 'delete'],
                 'investments'      => ['view', 'create', 'edit', 'delete'],
             ],
@@ -114,6 +120,8 @@ class Role extends Model
     public function hasPermission(string $permission): bool
     {
         if ($this->is_super_admin) return true;
+        // Even if an older role still has it stored, it no longer counts.
+        if (in_array($permission, self::SUPER_ADMIN_ONLY, true)) return false;
         return in_array($permission, $this->permissions ?? [], true);
     }
 
